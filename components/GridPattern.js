@@ -13,32 +13,46 @@ export default function PreciseGrid() {
     return () => window.removeEventListener("resize", updateSize);
   }, []);
 
-  const rowHeight = 80;
-  const colWidth = 80;
+  // grid size
+  const rowHeight = 60;
+  const colWidth = 60;
 
-  // rowIndex -> array of columnIndexes mapping
+  // rowIndex -> array of columnIndexes mapping for glowing squares
   const rowToCols = {
-    1: [2, 14],  // first row: 2nd and 14th column
-    3: [6, 10],
-    5: [8],
-    7: [2, 14],
+    1: [1, 14],
+    2: [4, 10, 18],
+    3: [6, 12],
+    4: [8, 16],
+    5: [20],
   };
 
   const arcs = [];
 
-  // go through rows
-  for (let row = 1; row <= Math.floor(size.height / rowHeight); row++) {
+  // calculate total rows and columns based on window size
+  const totalRows = Math.floor(size.height / rowHeight);
+  const totalCols = Math.floor(size.width / colWidth);
+
+  // collect comet launch points: {col, y}
+  const cometLaunchPoints = [];
+
+  for (let row = 1; row <= totalRows; row++) {
     if (rowToCols[row]) {
       rowToCols[row].forEach((col) => {
-        const y = row * rowHeight;
-        const x = col * colWidth;
+        if (col <= totalCols) {
+          const y = row * rowHeight;
+          const x = col * colWidth;
 
-        arcs.push(
-          `M${x} ${y - 40} Q${x} ${y} ${x + 40} ${y}`,
-          `M${x} ${y - 40} Q${x} ${y} ${x - 40} ${y}`,
-          `M${x - 40} ${y} Q${x} ${y} ${x} ${y + 40}`,
-          `M${x + 40} ${y} Q${x} ${y} ${x} ${y + 40}`
-        );
+          // save launch point for comet effect
+          cometLaunchPoints.push({ col, x, y });
+
+          // arcs for glowing diamonds
+          arcs.push(
+            `M${x} ${y - 20} Q${x} ${y} ${x + 20} ${y}`,
+            `M${x} ${y - 20} Q${x} ${y} ${x - 20} ${y}`,
+            `M${x - 20} ${y} Q${x} ${y} ${x} ${y + 20}`,
+            `M${x + 20} ${y} Q${x} ${y} ${x} ${y + 20}`
+          );
+        }
       });
     }
   }
@@ -53,14 +67,14 @@ export default function PreciseGrid() {
         {/* Grid pattern */}
         <pattern
           id="gridTile"
-          width="80"
-          height="80"
+          width={colWidth}
+          height={rowHeight}
           patternUnits="userSpaceOnUse"
         >
           <path
-            d="M0 0 H80 M0 0 V80"
+            d={`M0 0 H${colWidth} M0 0 V${rowHeight}`}
             fill="none"
-            stroke="rgba(255,255,255,0.06)"
+            stroke="#4b5563"
             strokeWidth="1"
           />
         </pattern>
@@ -84,6 +98,11 @@ export default function PreciseGrid() {
             <feMergeNode in="SourceGraphic" />
           </feMerge>
         </filter>
+
+        {/* Comet glow */}
+        <filter id="cometGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="4" />
+        </filter>
       </defs>
 
       <g mask="url(#maskGradient)">
@@ -91,13 +110,35 @@ export default function PreciseGrid() {
         <rect width="100%" height="100%" fill="url(#gridTile)" />
 
         {/* Glowing arcs */}
-        <path
-          d={arcs.join(" ")}
-          fill="none"
-          stroke="#7dd3fc"
-          strokeWidth="2"
-          filter="url(#glow)"
-        />
+        <path d={arcs.join(" ")} fill="none" stroke="#4b5563" />
+    {/* Falling comets starting from the squares */}
+{cometLaunchPoints.map((pt, i) => (
+  <circle
+    key={`${pt.col}-${pt.y}`}
+    cx={pt.x}
+    cy={pt.y}
+    r="6"
+    fill="#7dd3fc"              // 🔵 light blue comet
+    filter="url(#cometGlow)"
+  >
+    <animate
+      attributeName="cy"
+      from={pt.y}
+      to={size.height + 20}
+      dur="3s"
+      begin={`${i * 0.8}s`}
+      repeatCount="indefinite"
+    />
+    <animate
+      attributeName="opacity"
+      values="1;0.8;0"
+      dur="3s"
+      begin={`${i * 0.8}s`}
+      repeatCount="indefinite"
+    />
+  </circle>
+))}
+
       </g>
     </svg>
   );

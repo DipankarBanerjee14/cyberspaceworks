@@ -28,7 +28,7 @@ export default function Home() {
     >
       {/* cyan blurred background glow */}
       <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
-        <div className="w-[500px] h-[100px] rounded-full blur-[200px] bg-[#0ebac7] opacity-60" />
+        <div className="w-[500px] h-[100px] rounded-full blur-[200px] bg-[#0ebac7] opacity-100" />
       </div>
 
       {/* soft radial glow behind everything */}
