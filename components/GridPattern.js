@@ -13,11 +13,9 @@ export default function PreciseGrid() {
     return () => window.removeEventListener("resize", updateSize);
   }, []);
 
-  // grid size
   const rowHeight = 60;
   const colWidth = 60;
 
-  // rowIndex -> array of columnIndexes mapping for glowing squares
   const rowToCols = {
     1: [1, 14],
     2: [4, 10, 18],
@@ -27,12 +25,8 @@ export default function PreciseGrid() {
   };
 
   const arcs = [];
-
-  // calculate total rows and columns based on window size
   const totalRows = Math.floor(size.height / rowHeight);
   const totalCols = Math.floor(size.width / colWidth);
-
-  // collect comet launch points: {col, y}
   const cometLaunchPoints = [];
 
   for (let row = 1; row <= totalRows; row++) {
@@ -41,11 +35,7 @@ export default function PreciseGrid() {
         if (col <= totalCols) {
           const y = row * rowHeight;
           const x = col * colWidth;
-
-          // save launch point for comet effect
           cometLaunchPoints.push({ col, x, y });
-
-          // arcs for glowing diamonds
           arcs.push(
             `M${x} ${y - 20} Q${x} ${y} ${x + 20} ${y}`,
             `M${x} ${y - 20} Q${x} ${y} ${x - 20} ${y}`,
@@ -64,7 +54,6 @@ export default function PreciseGrid() {
       preserveAspectRatio="none"
     >
       <defs>
-        {/* Grid pattern */}
         <pattern
           id="gridTile"
           width={colWidth}
@@ -79,7 +68,6 @@ export default function PreciseGrid() {
           />
         </pattern>
 
-        {/* Fade mask */}
         <linearGradient id="fadeMask" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="white" stopOpacity="1" />
           <stop offset="100%" stopColor="white" stopOpacity="0" />
@@ -88,7 +76,6 @@ export default function PreciseGrid() {
           <rect width="100%" height="100%" fill="url(#fadeMask)" />
         </mask>
 
-        {/* Glow filter */}
         <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
           <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur1" />
           <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur2" />
@@ -99,46 +86,47 @@ export default function PreciseGrid() {
           </feMerge>
         </filter>
 
-        {/* Comet glow */}
         <filter id="cometGlow" x="-50%" y="-50%" width="200%" height="200%">
           <feGaussianBlur in="SourceGraphic" stdDeviation="4" />
         </filter>
       </defs>
 
       <g mask="url(#maskGradient)">
-        {/* Grid */}
         <rect width="100%" height="100%" fill="url(#gridTile)" />
-
-        {/* Glowing arcs */}
         <path d={arcs.join(" ")} fill="none" stroke="#4b5563" />
-    {/* Falling comets starting from the squares */}
-{cometLaunchPoints.map((pt, i) => (
-  <circle
-    key={`${pt.col}-${pt.y}`}
-    cx={pt.x}
-    cy={pt.y}
-    r="6"
-    fill="#7dd3fc"              // 🔵 light blue comet
-    filter="url(#cometGlow)"
-  >
-    <animate
-      attributeName="cy"
-      from={pt.y}
-      to={size.height + 20}
-      dur="3s"
-      begin={`${i * 0.8}s`}
-      repeatCount="indefinite"
-    />
-    <animate
-      attributeName="opacity"
-      values="1;0.8;0"
-      dur="3s"
-      begin={`${i * 0.8}s`}
-      repeatCount="indefinite"
-    />
-  </circle>
-))}
 
+        {/* Falling comets with dynamic tail */}
+        {cometLaunchPoints.map((pt, i) => (
+          <g key={`${pt.col}-${pt.y}`}>
+            {[0, 1, 2].map((t) => (
+              <circle
+                key={t}
+                cx={pt.x}
+                cy={pt.y - t * 15}
+                r={6 - t} // smaller behind
+                fill="#7dd3fc"
+                opacity={0.6 - t * 0.15}
+                filter="url(#cometGlow)"
+              >
+                <animate
+                  attributeName="cy"
+                  from={pt.y - t * 15}
+                  to={size.height + 20 - t * 15}
+                  dur="3s"
+                  begin={`${i * 0.8}s`}
+                  repeatCount="indefinite"
+                />
+                <animate
+                  attributeName="opacity"
+                  values={`${0.6 - t * 0.15};0`}
+                  dur="3s"
+                  begin={`${i * 0.8}s`}
+                  repeatCount="indefinite"
+                />
+              </circle>
+            ))}
+          </g>
+        ))}
       </g>
     </svg>
   );
