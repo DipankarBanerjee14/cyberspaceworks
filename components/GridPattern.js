@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 
-export default function PreciseGrid() {
+export default function CometGrid() {
   const [size, setSize] = useState({ width: 1920, height: 1080 });
 
   useEffect(() => {
@@ -13,14 +13,16 @@ export default function PreciseGrid() {
     return () => window.removeEventListener("resize", updateSize);
   }, []);
 
+  // Grid dimensions
   const rowHeight = 60;
   const colWidth = 60;
 
+  // Comet starting points (row -> cols)
   const rowToCols = {
-    1: [1, 14],
+    1: [2, 8, 14],
     2: [4, 10, 18],
     3: [6, 12],
-    4: [8, 16],
+    4: [16],
     5: [20],
   };
 
@@ -36,6 +38,7 @@ export default function PreciseGrid() {
           const y = row * rowHeight;
           const x = col * colWidth;
           cometLaunchPoints.push({ col, x, y });
+          // Decorative arcs
           arcs.push(
             `M${x} ${y - 20} Q${x} ${y} ${x + 20} ${y}`,
             `M${x} ${y - 20} Q${x} ${y} ${x - 20} ${y}`,
@@ -54,6 +57,7 @@ export default function PreciseGrid() {
       preserveAspectRatio="none"
     >
       <defs>
+        {/* Background grid */}
         <pattern
           id="gridTile"
           width={colWidth}
@@ -68,6 +72,7 @@ export default function PreciseGrid() {
           />
         </pattern>
 
+        {/* Gradient mask (top to bottom fade) */}
         <linearGradient id="fadeMask" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="white" stopOpacity="1" />
           <stop offset="100%" stopColor="white" stopOpacity="0" />
@@ -76,6 +81,7 @@ export default function PreciseGrid() {
           <rect width="100%" height="100%" fill="url(#fadeMask)" />
         </mask>
 
+        {/* Glow filter for grid */}
         <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
           <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur1" />
           <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur2" />
@@ -86,47 +92,52 @@ export default function PreciseGrid() {
           </feMerge>
         </filter>
 
+        {/* Comet glow */}
         <filter id="cometGlow" x="-50%" y="-50%" width="200%" height="200%">
           <feGaussianBlur in="SourceGraphic" stdDeviation="4" />
         </filter>
       </defs>
 
       <g mask="url(#maskGradient)">
+        {/* Grid background */}
         <rect width="100%" height="100%" fill="url(#gridTile)" />
         <path d={arcs.join(" ")} fill="none" stroke="#4b5563" />
 
-        {/* Falling comets with dynamic tail */}
-        {cometLaunchPoints.map((pt, i) => (
-          <g key={`${pt.col}-${pt.y}`}>
-            {[0, 1, 2].map((t) => (
-              <circle
-                key={t}
-                cx={pt.x}
-                cy={pt.y - t * 15}
-                r={6 - t} // smaller behind
-                fill="#7dd3fc"
-                opacity={0.6 - t * 0.15}
-                filter="url(#cometGlow)"
-              >
-                <animate
-                  attributeName="cy"
-                  from={pt.y - t * 15}
-                  to={size.height + 20 - t * 15}
-                  dur="3s"
-                  begin={`${i * 0.8}s`}
-                  repeatCount="indefinite"
-                />
-                <animate
-                  attributeName="opacity"
-                  values={`${0.6 - t * 0.15};0`}
-                  dur="3s"
-                  begin={`${i * 0.8}s`}
-                  repeatCount="indefinite"
-                />
-              </circle>
-            ))}
-          </g>
-        ))}
+       {/* Comets */}
+{cometLaunchPoints.map((pt, i) => (
+  <g key={`${pt.col}-${pt.y}`}>
+    {[...Array(10)].map((_, t) => (
+      <circle
+        key={t}
+        cx={pt.x}
+        cy={pt.y - t * 12}  // space between tail segments
+        r={6 - t * 0.5}     // gradually smaller circles
+        fill="#7dd3fc"
+        opacity={0.6 - t * 0.06} // gradually fading
+        filter="url(#cometGlow)"
+      >
+        {/* Vertical movement */}
+        <animate
+          attributeName="cy"
+          from={pt.y - t * 12}
+          to={size.height + 20 - t * 12}
+          dur="3s"
+          begin={`${i * 0.8}s`}
+          repeatCount="indefinite"
+        />
+        {/* Fade tail */}
+        <animate
+          attributeName="opacity"
+          values={`${0.6 - t * 0.06};0`}
+          dur="3s"
+          begin={`${i * 0.8}s`}
+          repeatCount="indefinite"
+        />
+      </circle>
+    ))}
+  </g>
+))}
+
       </g>
     </svg>
   );
