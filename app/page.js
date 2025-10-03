@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import PreciseGrid from "@/components/GridPattern.js";
+import Link from "next/link";
 
 export default function Home() {
   const [coords, setCoords] = useState({ x: 0, y: 0 });
@@ -31,7 +32,7 @@ export default function Home() {
         <div className="w-[500px] h-[100px] rounded-full blur-[200px] bg-[#0ebac7] opacity-100" />
       </div>
 
-      {/* soft radial glow behind everything */}
+      {/* soft radial glow */}
       <div
         className="absolute inset-0 pointer-events-none"
         aria-hidden
@@ -67,12 +68,25 @@ export default function Home() {
           </p>
         </div>
 
-        {/* Pricing cards with glow */}
+        {/* Pricing cards */}
         <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-5xl w-full">
           {[
-            { title: "Starter", price: "$0", desc: "Ideal for individuals who want to get started with simple design tasks." },
-            { title: "Pro", price: "$50", desc: "Enhanced design tools for scaling teams who need more flexibility.", highlight: true },
-            { title: "Advanced", price: "$85", desc: "Powerful tools designed for extensive collaboration and customization." },
+            {
+              title: "Starter",
+              price: "$0",
+              desc: "Ideal for individuals who want to get started with simple design tasks.",
+            },
+            {
+              title: "Pro",
+              price: "$50",
+              desc: "Enhanced design tools for scaling teams who need more flexibility.",
+              highlight: true,
+            },
+            {
+              title: "Advanced",
+              price: "$85",
+              desc: "Powerful tools designed for extensive collaboration and customization.",
+            },
           ].map((card, i) => (
             <div
               key={i}
@@ -85,10 +99,21 @@ export default function Home() {
                 }`}
               />
               <h3 className="text-white text-xl font-semibold">{card.title}</h3>
-              <p className="mt-4 text-4xl font-bold text-white">{card.price}</p>
+              <p className="mt-4 text-4xl font-bold text-white">
+                {card.price}
+              </p>
               <p className="mt-4 text-gray-300 text-sm">{card.desc}</p>
             </div>
           ))}
+        </div>
+
+        {/* Navigation Button */}
+        <div className="mt-12">
+          <Link href="/tranding">
+            <button className="px-6 py-3 rounded-full bg-blue-500 hover:bg-blue-600 transition shadow-lg font-medium text-white">
+              Go to Tranding Page →
+            </button>
+          </Link>
         </div>
       </div>
     </main>

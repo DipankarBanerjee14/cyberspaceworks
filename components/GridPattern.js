@@ -103,41 +103,40 @@ export default function CometGrid() {
         <rect width="100%" height="100%" fill="url(#gridTile)" />
         <path d={arcs.join(" ")} fill="none" stroke="#4b5563" />
 
-       {/* Comets */}
-{cometLaunchPoints.map((pt, i) => (
-  <g key={`${pt.col}-${pt.y}`}>
-    {[...Array(10)].map((_, t) => (
-      <circle
-        key={t}
-        cx={pt.x}
-        cy={pt.y - t * 12}  // space between tail segments
-        r={6 - t * 0.5}     // gradually smaller circles
-        fill="#7dd3fc"
-        opacity={0.6 - t * 0.06} // gradually fading
-        filter="url(#cometGlow)"
-      >
-        {/* Vertical movement */}
-        <animate
-          attributeName="cy"
-          from={pt.y - t * 12}
-          to={size.height + 20 - t * 12}
-          dur="3s"
-          begin={`${i * 0.8}s`}
-          repeatCount="indefinite"
-        />
-        {/* Fade tail */}
-        <animate
-          attributeName="opacity"
-          values={`${0.6 - t * 0.06};0`}
-          dur="3s"
-          begin={`${i * 0.8}s`}
-          repeatCount="indefinite"
-        />
-      </circle>
-    ))}
-  </g>
-))}
-
+        {/* Comets */}
+        {cometLaunchPoints.map((pt, i) => (
+          <g key={`${pt.col}-${pt.y}`}>
+            {[...Array(10)].map((_, t) => (
+              <circle
+                key={t}
+                cx={pt.x}
+                cy={pt.y - t * 12} // space between tail segments
+                r={6 - t * 0.5}    // gradually smaller circles
+                fill="#7dd3fc"
+                opacity={0.6 - t * 0.06} // gradually fading
+                filter="url(#cometGlow)"
+              >
+                {/* Vertical movement */}
+                <animate
+                  attributeName="cy"
+                  from={pt.y - t * 12}
+                  to={size.height + 20 - t * 12}
+                  dur="3s"
+                  begin={`${i * 0.8}s`}
+                  repeatCount="indefinite"
+                />
+                {/* Fade tail */}
+                <animate
+                  attributeName="opacity"
+                  values={`${0.6 - t * 0.06};0`}
+                  dur="3s"
+                  begin={`${i * 0.8}s`}
+                  repeatCount="indefinite"
+                />
+              </circle>
+            ))}
+          </g>
+        ))}
       </g>
     </svg>
   );
