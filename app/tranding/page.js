@@ -1,3 +1,4 @@
+//app/tranding/page.js
 "use client";
 import React, { useEffect, useRef } from "react";
 import Link from "next/link";
@@ -75,7 +76,10 @@ export default function TrandingPage() {
   }, []);
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-gradient-to-b from-[#0d1b2a] to-black text-white">
+    <div className="relative w-full h-screen overflow-hidden text-white">
+      {/* Radial Glow Gradient Background */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_#1e3a8a_0%,_#0d1b2a_50%,_#000000_100%)]" />
+
       {/* Star canvas */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
 
@@ -94,14 +98,16 @@ export default function TrandingPage() {
 
       {/* Hero Section */}
       <main className="relative z-10 flex flex-col items-center justify-center h-[calc(100vh-100px)] text-center px-4">
-        {/* <div className="mb-6 inline-block px-4 py-1 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 text-sm font-medium shadow-md">
+        <div className="mb-6 inline-block px-4 py-1 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 text-sm font-medium shadow-md">
           ✨ New: Our AI integration just landed
-        </div> */}
+        </div>
 
         <h2 className="text-4xl md:text-6xl font-extrabold leading-tight">
           Discover endless possibilities <br />
           in the world of{" "}
-          <span className="text-blue-400">Trading</span>
+          <span className="text-blue-400 drop-shadow-[0_0_15px_rgba(59,130,246,0.8)]">
+            Trading
+          </span>
         </h2>
 
         <p className="mt-4 max-w-2xl text-gray-300">
