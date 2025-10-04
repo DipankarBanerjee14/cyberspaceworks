@@ -1,3 +1,4 @@
+
 "use client";
 import React, { useEffect, useState } from "react";
 import {
@@ -68,7 +69,7 @@ const VortaskyAISection = () => {
       <section className="py-16 px-4 relative z-10">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12 text-white">
-            Unlock the Power of Vortasky AI
+           About Us
           </h2>
 
           {/* Top Row - Single Card */}
@@ -146,14 +147,14 @@ const VortaskyAISection = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
-                title: "Vortasky AI Speaks Every Customer's Language",
+                title: "Mission",
                 desc: "Deliver personalized experiences by speaking every customer's language.",
                 languages: ["English", "Spanish", "Bangla"],
                 avatars: true,
               },
               {
                 title:
-                  "Vortasky AI Understand Context In Every Interaction",
+                  "Vission",
                 desc: "Vortasky AI remembers and understands conversation context to deliver truly personalized experiences.",
                 highlight: true,
               },
