@@ -53,9 +53,9 @@ const HowWeDoIt = () => {
       style={{ background: "#000000" }} // black background
     >
       {/* Cyan blurred background glow */}
-      <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
+      {/* <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
         <div className="w-[1000px] h-[500px] rounded-full blur-[300px] bg-[#0ebac7] opacity-20" />
-      </div>
+      </div> */}
 
       {/* Radial backdrop glow */}
       <div
@@ -63,7 +63,7 @@ const HowWeDoIt = () => {
         aria-hidden
         style={{
           background:
-            "radial-gradient(circle at 50% 50%, rgba(14,186,199,0.18), transparent 60%)",
+            "radial-gradient(circle at 50% 50%, rgba(14,186,199,0.18), transparent 40%)",
         }}
       />
 

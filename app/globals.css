@@ -1,40 +1,64 @@
 @import "tailwindcss";
 
-/* Body text */
+/* Fonts */
 body {
   font-family: var(--font-geist-sans);
   color: white;
 }
-
-/* Headings */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-rubik);
 }
-
-/* Monospace/code */
 code, pre {
   font-family: var(--font-geist-mono);
 }
 
-/* Background and helper styles */
+/* Background setup */
 :root {
   --bg: #0D2D2A;
   --cyan: #0ebac7;
 }
-
 html, body, #__next {
   height: 100%;
   background: var(--bg);
+  overflow-x: hidden;
 }
 
-.overlay-svg {
+/* ==========================================================
+   🌌 COSMIC NEBULA CLOUD EFFECT
+   ========================================================== */
+@keyframes nebula-move {
+  0% {
+    background-position: 0% 50%;
+    filter: hue-rotate(0deg) brightness(0.9) saturate(1.3);
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: hue-rotate(60deg) brightness(1.1) saturate(1.5);
+  }
+  100% {
+    background-position: 0% 50%;
+    filter: hue-rotate(0deg) brightness(0.9) saturate(1.3);
+  }
+}
+
+.nebula-bg {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(ellipse at 30% 40%, rgba(125, 211, 252, 0.6) 0%, transparent 70%),
+              radial-gradient(ellipse at 70% 60%, rgba(147, 51, 234, 0.5) 0%, transparent 70%),
+              radial-gradient(ellipse at 50% 50%, rgba(236, 72, 153, 0.45) 0%, transparent 80%),
+              #0D2D2A;
+  background-size: 200% 200%;
+  filter: blur(120px) saturate(180%);
+  animation: nebula-move 40s ease-in-out infinite alternate;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .spotlight { transition: none !important; }
+
+@keyframes nebula-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+.nebula-glow {
+  animation: nebula-glow 10s ease-in-out infinite;
 }
