@@ -1,6 +1,12 @@
-//app/tranding/page.js
+
+// app/tranding/page.js
 "use client";
 import React, { useEffect, useRef } from "react";
+import OurServices from "@/components/OurServices.js";
+import WhyChooseUs from "@/components/WhyChooseUs.js"
+import AboutSection from "@/components/AboutSection.js";
+import HowWeDoIt from "@/components/HowWeDoIt.js";
+import Testimonial from "@/components/Testimonial.js"
 import Link from "next/link";
 
 export default function TrandingPage() {
@@ -22,7 +28,7 @@ export default function TrandingPage() {
         y: Math.random() * canvas.height,
         size: Math.random() * 2,
         speed: Math.random() * 0.5 + 0.2,
-        fall: Math.random() < 0.02, // chance of falling star
+        fall: Math.random() < 0.02,
       });
     }
 
@@ -40,7 +46,6 @@ export default function TrandingPage() {
     function updateStars() {
       stars.forEach((star) => {
         if (star.fall) {
-          // falling star
           star.y += star.speed * 6;
           star.x += star.speed * 2;
           if (star.y > canvas.height) {
@@ -48,7 +53,6 @@ export default function TrandingPage() {
             star.x = Math.random() * canvas.width;
           }
         } else {
-          // slow drift
           star.y += star.speed * 0.3;
           if (star.y > canvas.height) {
             star.y = 0;
@@ -76,21 +80,46 @@ export default function TrandingPage() {
   }, []);
 
   return (
-    <div className="relative w-full h-screen overflow-hidden text-white">
-      {/* Radial Glow Gradient Background */}
+    <div className="relative w-full h-screen overflow-y-auto text-white">
+      {/* Background */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_#1e3a8a_0%,_#0d1b2a_50%,_#000000_100%)]" />
 
-      {/* Star canvas */}
+      {/* Stars */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
 
-      {/* Header */}
+      {/* Header / Navbar */}
       <header className="relative z-10 flex justify-between items-center px-8 py-6">
-        <h1 className="text-2xl font-bold">CapiTradie</h1>
+        {/* Logo */}
+        <h1 className="text-2xl font-bold tracking-wide">CapiTradie</h1>
+
+        {/* Glassmorphic Navbar */}
+        <nav className="flex gap-6 px-6 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-lg">
+          <Link
+            href="/aboutus"
+            className="text-sm font-medium px-3 py-1 rounded-full hover:text-blue-400 transition"
+          >
+            About Us
+          </Link>
+          <Link
+            href="/ourservices"
+            className="text-sm font-medium px-3 py-1 rounded-full hover:text-blue-400 transition"
+          >
+            Our Services
+          </Link>
+          <Link
+            href="/contactus"
+            className="text-sm font-medium px-3 py-1 rounded-full hover:text-blue-400 transition"
+          >
+            Contact Us
+          </Link>
+        </nav>
+
+        {/* Right Buttons */}
         <div className="flex gap-4">
           <button className="px-4 py-2 rounded-full text-sm font-medium hover:text-blue-400">
             Login
           </button>
-          <button className="px-5 py-2 rounded-full bg-blue-500 hover:bg-blue-600 shadow-lg text-white font-medium">
+          <button className="px-5 py-2 rounded-full bg-blue-500 hover:bg-blue-600 shadow-lg text-white font-medium transition">
             Start Free Trial
           </button>
         </div>
@@ -133,7 +162,13 @@ export default function TrandingPage() {
             </button>
           </Link>
         </div>
+       
       </main>
+       <OurServices/>
+       <WhyChooseUs/>
+       <AboutSection/>
+       <HowWeDoIt/>
+       <Testimonial/>
     </div>
   );
 }
