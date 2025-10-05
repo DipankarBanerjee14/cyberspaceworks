@@ -1,7 +1,7 @@
 "use client";
-import { useEffect, useState, useRef } from 'react';
-import Head from 'next/head';
-import Chart from 'chart.js/auto';
+import { useEffect, useState, useRef } from "react";
+import Head from "next/head";
+import Chart from "chart.js/auto";
 
 export default function Dashboard() {
   const [coords, setCoords] = useState({ x: 0, y: 0 });
@@ -17,33 +17,33 @@ export default function Dashboard() {
 
     const onMove = (e) => setCoords({ x: e.clientX, y: e.clientY });
     window.addEventListener("mousemove", onMove);
-    
+
     // Chart.js setup
-    const ctx = canvasRef.current.getContext('2d');
+    const ctx = canvasRef.current.getContext("2d");
     chartRef.current = new Chart(ctx, {
-      type: 'line',
+      type: "line",
       data: {
-        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
         datasets: [
           {
-            label: 'Income',
+            label: "Income",
             data: [1200, 1000, 1300, 1100, 1400, 1200, 1500],
-            borderColor: '#EC4899',
-            backgroundColor: 'rgba(236, 72, 153, 0.3)',
-            pointBackgroundColor: '#EC4899',
-            pointBorderColor: '#fff',
+            borderColor: "#EC4899",
+            backgroundColor: "rgba(236, 72, 153, 0.3)",
+            pointBackgroundColor: "#EC4899",
+            pointBorderColor: "#fff",
             pointBorderWidth: 2,
             fill: false,
             tension: 0.4,
             borderWidth: 2,
           },
           {
-            label: 'Expense',
+            label: "Expense",
             data: [2500, 1500, 2000, 1800, 2200, 1700, 1900],
-            borderColor: '#3B82F6',
-            backgroundColor: 'rgba(59, 130, 246, 0.3)',
-            pointBackgroundColor: '#3B82F6',
-            pointBorderColor: '#fff',
+            borderColor: "#3B82F6",
+            backgroundColor: "rgba(59, 130, 246, 0.3)",
+            pointBackgroundColor: "#3B82F6",
+            pointBorderColor: "#fff",
             pointBorderWidth: 2,
             fill: false,
             tension: 0.4,
@@ -62,14 +62,10 @@ export default function Dashboard() {
         scales: {
           x: {
             display: true,
-            grid: {
-              display: false,
-            },
+            grid: { display: false },
             ticks: {
-              color: '#9CA3AF',
-              font: {
-                size: 12,
-              },
+              color: "#9CA3AF",
+              font: { size: 12 },
             },
           },
           y: {
@@ -103,8 +99,8 @@ export default function Dashboard() {
     <>
       <Head>
         <title>Dashboard</title>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
       </Head>
+
       <main
         className="min-h-screen relative overflow-hidden p-6"
         style={{ background: "#000000" }}
@@ -120,20 +116,14 @@ export default function Dashboard() {
         />
 
         {/* Soft global blue glow */}
-        <div
-          className="absolute inset-0 flex justify-center items-center pointer-events-none"
-        >
-          {/* <div className="w-[1200px] h-[600px] rounded-full blur-[300px] bg-[#0096ff] opacity-20" /> */}
-        </div>
+        <div className="absolute inset-0 flex justify-center items-center pointer-events-none" />
 
         {/* Spotlight following cursor */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={spotlightStyle}
-        />
+        <div className="absolute inset-0 pointer-events-none" style={spotlightStyle} />
 
         {/* Dashboard Content */}
         <div className="relative z-10 max-w-6xl mx-auto">
+          {/* Top Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
             {[
               { title: "Total Income", value: "$1200", color: "pink", percent: "50%" },
@@ -144,7 +134,6 @@ export default function Dashboard() {
                 key={i}
                 className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]"
               >
-                {/* Blue → white glow */}
                 <div
                   className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
                   style={{
@@ -157,7 +146,13 @@ export default function Dashboard() {
                   <div className="flex justify-between items-center">
                     <span className="text-2xl font-bold text-white">{item.value}</span>
                     <div
-                      className={`w-16 h-16 bg-gradient-to-r ${item.color === 'pink' ? 'from-pink-500 to-pink-600' : item.color === 'blue' ? 'from-blue-500 to-blue-600' : 'from-purple-500 to-purple-600'} rounded-full flex items-center justify-center text-white font-bold`}
+                      className={`w-16 h-16 bg-gradient-to-r ${
+                        item.color === "pink"
+                          ? "from-pink-500 to-pink-600"
+                          : item.color === "blue"
+                          ? "from-blue-500 to-blue-600"
+                          : "from-purple-500 to-purple-600"
+                      } rounded-full flex items-center justify-center text-white font-bold`}
                     >
                       {item.percent}
                     </div>
@@ -167,16 +162,16 @@ export default function Dashboard() {
             ))}
           </div>
 
+          {/* Chart + Transactions */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
             {/* Chart Card */}
             <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
-              {/* Blue → white glow */}
               <div
                 className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
                 style={{
                   background:
                     "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
-                  }}
+                }}
               />
               <div className="relative z-10">
                 <div className="flex justify-between mb-4">
@@ -200,7 +195,6 @@ export default function Dashboard() {
 
             {/* Transactions Card */}
             <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
-              {/* Blue → white glow */}
               <div
                 className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
                 style={{
@@ -232,7 +226,10 @@ export default function Dashboard() {
                     { name: "Netflix", amount: "$13.63" },
                     { name: "Airbnb", amount: "$200.12" },
                   ].map((tx, i) => (
-                    <div key={i} className="flex justify-between py-1 border-b border-white/10 last:border-b-0">
+                    <div
+                      key={i}
+                      className="flex justify-between py-1 border-b border-white/10 last:border-b-0"
+                    >
                       <span className="text-gray-300">{tx.name}</span>
                       <span className="text-white font-semibold">{tx.amount}</span>
                     </div>
@@ -242,6 +239,7 @@ export default function Dashboard() {
             </div>
           </div>
 
+          {/* Investment + Deposit */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
               { title: "Investment", value: "$12000", percent: "+5%", color: "blue", width: "50%" },
@@ -251,7 +249,6 @@ export default function Dashboard() {
                 key={i}
                 className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]"
               >
-                {/* Blue → white glow */}
                 <div
                   className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
                   style={{
@@ -267,7 +264,11 @@ export default function Dashboard() {
                   </div>
                   <div className="w-full bg-black/40 h-2 rounded-xl overflow-hidden">
                     <div
-                      className={`h-2 rounded-xl bg-gradient-to-r ${item.color === 'blue' ? 'from-blue-500 to-blue-600' : 'from-pink-500 to-pink-600'}`}
+                      className={`h-2 rounded-xl bg-gradient-to-r ${
+                        item.color === "blue"
+                          ? "from-blue-500 to-blue-600"
+                          : "from-pink-500 to-pink-600"
+                      }`}
                       style={{ width: item.width }}
                     ></div>
                   </div>
