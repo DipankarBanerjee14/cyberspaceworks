@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useEffect, useState } from "react";
 import {
@@ -26,61 +25,57 @@ const VortaskyAISection = () => {
   }, []);
 
   const spotlightStyle = {
-    background: `radial-gradient(400px at ${coords.x}px ${coords.y}px, rgba(0,150,255,0.2), transparent 60%)`,
-    transition: "background-position 90ms linear, opacity 160ms ease",
-  };
+  background: `radial-gradient(400px at ${coords.x}px ${coords.y}px, rgba(147,51,234,0.2), transparent 60%)`,
+  transition: "background-position 90ms linear, opacity 160ms ease",
+};
 
   return (
     <main
-      className="min-h-screen relative overflow-hidden"
+      className=" relative overflow-hidden"
       style={{ background: "#000000" }}
     >
-      {/* soft global blue glow */}
-      {/* <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
-        <div className="w-[1200px] h-[600px] rounded-full blur-[300px] bg-[#0096ff] opacity-20" />
-      </div> */}
-
-  <div
-        className="absolute inset-0 pointer-events-none"
-        aria-hidden
-        style={{
-          background:
-            "radial-gradient(circle at 50% 50%, rgba(14,186,199,0.18), transparent 60%)",
-        }}
-      />
-
-      {/* radial backdrop glow - updated with provided teal gradient */}
+      {/* soft global purple glow */}
       <div
         className="absolute inset-0 pointer-events-none"
         aria-hidden
         style={{
           background:
-            "radial-gradient(circle at 50% 50%, rgba(14,186,199,0.18), transparent 60%)",
+            "radial-gradient(circle at 50% 50%, rgba(147,51,234,0.18), transparent 60%)",
+        }}
+      />
+
+      {/* radial backdrop glow - updated with purple gradient */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        aria-hidden
+        style={{
+          background:
+            "radial-gradient(circle at 50% 50%, rgba(147,51,234,0.18), transparent 60%)",
         }}
       />
 
       {/* spotlight following cursor */}
-      {/* <div
+      <div
         className="absolute inset-0 pointer-events-none spotlight"
         style={spotlightStyle}
-      /> */}
+      />
 
       {/* Vortasky AI Section */}
       <section className="py-16 px-4 relative z-10">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12 text-white">
-           About Us
+            About Us
           </h2>
 
           {/* Top Row - Single Card */}
           <div className="mb-12">
-            <div className="relative rounded-2xl p-8 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
-              {/* blue → white glow - enhanced on hover */}
+            <div className="relative rounded-2xl p-8 bg-gradient-to-b from-transparent via-purple-800/60 to-white backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(147,51,234,0.5)]">
+              {/* purple → white glow - enhanced on hover */}
               <div
                 className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
                 style={{
                   background:
-                    "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
+                    "radial-gradient(circle at center, rgba(147,51,234,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
                 }}
               />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative z-10">
@@ -92,7 +87,7 @@ const VortaskyAISection = () => {
                     Automatically route conversations to the right agent or
                     department—no delays, no confusion.
                   </p>
-                  <button className="bg-gradient-to-r from-blue-600 to-cyan-400 text-white px-4 py-2 rounded shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 w-fit">
+                  <button className="bg-gradient-to-r from-purple-600 to-purple-400 text-white px-4 py-2 rounded shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 w-fit">
                     Get Started →
                   </button>
                 </div>
@@ -161,14 +156,14 @@ const VortaskyAISection = () => {
             ].map((item, i) => (
               <div
                 key={i}
-                className="relative rounded-2xl p-8 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg flex flex-col items-center group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]"
+                className="relative rounded-2xl p-8 bg-gradient-to-b from-transparent via-purple-800/60 to-white backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg flex flex-col items-center group transition-all duration-300 hover:shadow-[0_0_30px_rgba(147,51,234,0.5)]"
               >
-                {/* blue → white glow - enhanced on hover */}
+                {/* purple → white glow - enhanced on hover */}
                 <div
                   className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
                   style={{
                     background:
-                      "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
+                      "radial-gradient(circle at center, rgba(147,51,234,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
                   }}
                 />
                 <div className="relative z-10 flex flex-col items-center w-full">
@@ -195,7 +190,7 @@ const VortaskyAISection = () => {
                       ))}
                     </div>
                   )}
-                 
+
                   {!item.languages && (
                     <div className="relative w-full h-40 mt-4">
                       <svg

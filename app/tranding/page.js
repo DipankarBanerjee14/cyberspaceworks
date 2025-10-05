@@ -1,16 +1,19 @@
 // app/tranding/page.js
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import OurServices from "@/components/OurServices.js";
 import WhyChooseUs from "@/components/WhyChooseUs.js";
 import AboutSection from "@/components/AboutSection.js";
 import HowWeDoIt from "@/components/HowWeDoIt.js";
 import Testimonial from "@/components/Testimonial.js";
 import Dashboard from "@/components/Dasboard";
+import Demo from "@/components/Demo.js";
 import Link from "next/link";
+import { FiMenu, FiX } from "react-icons/fi";
 
 export default function TrandingPage() {
   const canvasRef = useRef(null);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -80,43 +83,47 @@ export default function TrandingPage() {
   }, []);
 
   return (
-    <div className="relative w-full h-screen overflow-y-auto text-white">
+    <div className="relative max-w-7xl mx-auto overflow-y-auto text-white overflow-x-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_#1e3a8a_0%,_#0d1b2a_50%,_#000000_100%)]" />
 
       {/* Stars */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
+   
 
-      {/* Header / Navbar */}
-      <header className="relative z-10 flex justify-between items-center px-8 py-6">
-        <h1 className="text-2xl font-bold tracking-wide">CapiTradie</h1>
-        <nav className="flex gap-6 px-6 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-lg">
-          <Link href="/aboutus" className="text-sm font-medium px-3 py-1 rounded-full hover:text-blue-400 transition">
-            About Us
-          </Link>
-          <Link href="/ourservices" className="text-sm font-medium px-3 py-1 rounded-full hover:text-blue-400 transition">
-            Our Services
-          </Link>
-          <Link href="/contactus" className="text-sm font-medium px-3 py-1 rounded-full hover:text-blue-400 transition">
-            Contact Us
-          </Link>
-        </nav>
-        <div className="flex gap-4">
-          <button className="px-4 py-2 rounded-full text-sm font-medium hover:text-blue-400">Login</button>
-          <button className="px-5 py-2 rounded-full bg-blue-500 hover:bg-blue-600 shadow-lg text-white font-medium transition">Start Free Trial</button>
-        </div>
-      </header>
+<nav className="relative w-full z-50 text-white mt-6">
+  <div className="relative mx-auto w-[95%] md:w-[90%] border border-[#2b2b2b] bg-[#0a0a0a]/80 backdrop-blur-md shadow-[0_0_25px_rgba(140,0,255,0.2)]" style={{clipPath: "polygon(0% 0%, calc(50% - 110px) 0%, calc(50% - 75px) 25px, calc(50% + 75px) 25px, calc(50% + 110px) 0%, 100% 0%, 100% 100%, 0% 100%)", borderRadius: "12px"}}>
+    <div className="flex justify-between items-center px-6 py-3 relative">
+      <ul className="hidden md:flex space-x-8 text-sm uppercase tracking-wide font-medium">
+        {["Home", "About", "Live", "Contact Us"].map((item) => (
+          <li key={item} className="relative group">
+            <Link href="#" className="transition-colors duration-300 group-hover:text-purple-400">{item}</Link>
+            <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full"></span>
+          </li>
+        ))}
+      </ul>
+      <div className="absolute left-1/2 -translate-x-1/2 -top-[2px] bg-[#0a0a0a] border border-[#2b2b2b] px-8 py-1.5 rounded-b-lg shadow-[0_0_20px_rgba(168,85,247,0.4)]"></div>
+      <button className="flex items-center gap-2 text-gray-300 hover:text-white transition">
+        <span className="uppercase text-sm hidden md:inline">Menu</span>
+        <FiMenu className="text-2xl text-purple-400" />
+      </button>
+    </div>
+    <div className="md:hidden absolute right-6 mt-2 w-48 bg-[#0b0b0d]/95 border border-[#292929] rounded-lg backdrop-blur-md p-3 shadow-lg">
+      <ul className="flex flex-col gap-3 text-gray-300">
+        {["Home", "About", "Live", "Contact Us"].map((item) => (
+          <li key={item}>
+            <Link href="#" className="block px-3 py-2 rounded hover:bg-purple-500/10 transition">{item}</Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
 
       {/* Hero Section */}
       <main className="relative z-10 flex flex-col items-center justify-center h-[calc(100vh-100px)] text-center px-4 overflow-hidden">
-        
-        {/* 🌌 Cosmic Cloud Animation (Hero Section Only) */}
-        {/* <div className="absolute inset-0 z-0 pointer-events-none">
-          <div className="absolute w-[150%] h-[150%] -top-1/4 -left-1/4 
-            bg-[radial-gradient(ellipse_at_30%_40%,rgba(125,211,252,0.4)_0%,transparent_70%),radial-gradient(ellipse_at_70%_60%,rgba(147,51,234,0.3)_0%,transparent_70%),radial-gradient(ellipse_at_50%_50%,rgba(236,72,153,0.25)_0%,transparent_80%)] 
-            bg-[length:200%_200%] blur-[120px] animate-hero-nebula"></div>
-        </div> */}
-
         <div className="mb-6 inline-block px-4 py-1 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 text-sm font-medium shadow-md">
           ✨ New: Our AI integration just landed
         </div>
@@ -124,15 +131,12 @@ export default function TrandingPage() {
         <h2 className="text-4xl md:text-6xl font-extrabold leading-tight">
           Discover endless possibilities <br />
           in the world of{" "}
-          <span className="text-blue-400 drop-shadow-[0_0_15px_rgba(59,130,246,0.8)]">
-            Trading
-          </span>
+          <span className="text-blue-400 drop-shadow-[0_0_15px_rgba(59,130,246,0.8)]">Trading</span>
         </h2>
 
         <p className="mt-4 max-w-2xl text-gray-300">
-          Step into the world of trading excellence and seize every opportunity
-          with our advanced platform, expert guidance, and strategic insights
-          for unrivaled financial success.
+          Step into the world of trading excellence and seize every opportunity with our advanced platform,
+          expert guidance, and strategic insights for unrivaled financial success.
         </p>
 
         <div className="mt-6 flex gap-4">
@@ -153,9 +157,10 @@ export default function TrandingPage() {
         </div>
       </main>
 
+      <Demo />
       <OurServices />
       <WhyChooseUs />
-      <Dashboard/>
+      <Dashboard />
       <AboutSection />
       <HowWeDoIt />
       <Testimonial />

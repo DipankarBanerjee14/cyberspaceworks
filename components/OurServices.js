@@ -10,52 +10,10 @@ import {
   FaTrademark,
 } from "react-icons/fa";
 
-const services = [
-  {
-    icon: <FaPalette size={42} className="text-cyan-400" />,
-    title: "UI/UX Design",
-    description: "Creating intuitive and visually appealing user interfaces.",
-  },
-  {
-    icon: <FaLaptopCode size={42} className="text-cyan-400" />,
-    title: "Web Development",
-    description:
-      "Crafting responsive and dynamic websites tailored to your business needs.",
-  },
-  {
-    icon: <FaMobileAlt size={42} className="text-cyan-400" />,
-    title: "App Development",
-    description: "Building innovative and user-friendly mobile applications.",
-  },
-  {
-    icon: <FaCode size={42} className="text-cyan-400" />,
-    title: "Software Development",
-    description:
-      "Custom software solutions to optimize your business processes.",
-  },
-  {
-    icon: <FaBullhorn size={42} className="text-cyan-400" />,
-    title: "Digital Marketing",
-    description:
-      "Boost your online presence with targeted marketing strategies.",
-  },
-  {
-    icon: <FaBrush size={42} className="text-cyan-400" />,
-    title: "Graphic Design",
-    description: "Designing stunning visuals to enhance your brand identity.",
-  },
-  {
-    icon: <FaTrademark size={42} className="text-cyan-400" />,
-    title: "Branding",
-    description:
-      "Developing a unique brand identity that stands out in the market.",
-  },
-];
-
-const OurServices = () => {
+export default function OurServices() {
   return (
-    <section className="relative z-10 py-20 px-4 bg-black overflow-hidden">
-         {/* Soft global teal glow */}
+    <section className="relative z-10 py-16 px-4 bg-black overflow-hidden max-w-7xl mx-auto">
+      {/* Soft global teal glow */}
       <div
         className="absolute inset-0 pointer-events-none"
         aria-hidden
@@ -64,55 +22,157 @@ const OurServices = () => {
             "radial-gradient(circle at 50% 50%, rgba(14,186,199,0.18), transparent 60%)",
         }}
       />
-      <div className="max-w-7xl mx-auto text-center">
+
+      <div className="text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-16 tracking-wide">
           Our Services
         </h2>
 
-        <div className="flex flex-col items-center">
+        {/* Wrapper for hexagons */}
+        <div className="flex flex-col items-center space-y-10 md:space-y-0">
           {/* Top Row (3 hexagons) */}
-          <div className="flex gap-8 mb-[-45px]">
-            {services.slice(0, 3).map((service, idx) => (
-              <HexCard key={idx} {...service} />
-            ))}
+          <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-6 md:gap-8">
+            {/* 1️⃣ Web Development */}
+            <div className="relative group w-[200px] sm:w-[250px] h-[200px] sm:h-[250px] transition-transform duration-500 ease-out hover:scale-[1.2] hover:z-20">
+              <div
+                className={`absolute inset-0 clip-hexagon 
+                bg-gradient-to-br from-[#0f0f0f] to-[#1a1a1a]
+                border border-white/10 shadow-[0_0_15px_rgba(0,255,255,0.1),inset_0_0_25px_rgba(255,255,255,0.05)]
+                backdrop-blur-xl flex flex-col items-center justify-center text-center px-4
+                transition-all duration-500 ease-out group-hover:border-cyan-400/70
+                group-hover:shadow-[0_0_35px_rgba(0,255,255,0.6),inset_0_0_40px_rgba(0,255,255,0.1)]`}
+              >
+                <FaLaptopCode size={38} className="text-cyan-400 mb-2" />
+                <h3 className="text-sm font-semibold text-white">
+                  Web Development
+                </h3>
+                <p className="text-xs text-gray-400 mt-1 leading-tight">
+                  Crafting responsive and dynamic <br/> websites tailored to your 
+                </p>
+              </div>
+            </div>
+
+            {/* 2️⃣ App Development */}
+            <div className="relative group w-[200px] sm:w-[250px] h-[200px] sm:h-[250px] transition-transform duration-500 ease-out hover:scale-[1.2] hover:z-20">
+              <div
+                className={`absolute inset-0 clip-hexagon 
+                bg-gradient-to-br from-[#0f0f0f] to-[#1a1a1a]
+                border border-white/10 shadow-[0_0_15px_rgba(0,255,255,0.1),inset_0_0_25px_rgba(255,255,255,0.05)]
+                backdrop-blur-xl flex flex-col items-center justify-center text-center px-4
+                transition-all duration-500 ease-out group-hover:border-cyan-400/70
+                group-hover:shadow-[0_0_35px_rgba(0,255,255,0.6),inset_0_0_40px_rgba(0,255,255,0.1)]`}
+              >
+                <FaMobileAlt size={38} className="text-cyan-400 mb-2" />
+                <h3 className="text-sm font-semibold text-white">
+                  App Development
+                </h3>
+                <p className="text-xs text-gray-400 mt-1 leading-tight">
+                  Building innovative and user- <br/>friendly mobile applications.
+                </p>
+              </div>
+            </div>
+
+            {/* 3️⃣ Software Development */}
+            <div className="relative group w-[200px] sm:w-[250px] h-[200px] sm:h-[250px] transition-transform duration-500 ease-out hover:scale-[1.2] hover:z-20">
+              <div
+                className={`absolute inset-0 clip-hexagon 
+                bg-gradient-to-br from-[#0f0f0f] to-[#1a1a1a]
+                border border-white/10 shadow-[0_0_15px_rgba(0,255,255,0.1),inset_0_0_25px_rgba(255,255,255,0.05)]
+                backdrop-blur-xl flex flex-col items-center justify-center text-center px-4
+                transition-all duration-500 ease-out group-hover:border-cyan-400/70
+                group-hover:shadow-[0_0_35px_rgba(0,255,255,0.6),inset_0_0_40px_rgba(0,255,255,0.1)]`}
+              >
+                <FaCode size={38} className="text-cyan-400 mb-2" />
+                <h3 className="text-sm font-semibold text-white">
+                  Software Development
+                </h3>
+                <p className="text-xs text-gray-400 mt-1 leading-tight">
+                  Custom software solutions to <br/> optimize your business processes.
+                </p>
+              </div>
+            </div>
           </div>
 
           {/* Bottom Row (4 hexagons) */}
-          <div className="flex gap-8 mt-0">
-            {services.slice(3, 7).map((service, idx) => (
-              <HexCard key={idx} {...service} />
-            ))}
+          <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-6 md:gap-8">
+            {/* 4️⃣ UI/UX Design */}
+            <div className="relative group w-[200px] sm:w-[250px] h-[200px] sm:h-[250px] transition-transform duration-500 ease-out hover:scale-[1.2] hover:z-20">
+              <div
+                className={`absolute inset-0 clip-hexagon 
+                bg-gradient-to-br from-[#0f0f0f] to-[#1a1a1a]
+                border border-white/10 shadow-[0_0_15px_rgba(0,255,255,0.1),inset_0_0_25px_rgba(255,255,255,0.05)]
+                backdrop-blur-xl flex flex-col items-center justify-center text-center px-4
+                transition-all duration-500 ease-out group-hover:border-cyan-400/70
+                group-hover:shadow-[0_0_35px_rgba(0,255,255,0.6),inset_0_0_40px_rgba(0,255,255,0.1)]`}
+              >
+                <FaPalette size={38} className="text-cyan-400 mb-2" />
+                <h3 className="text-sm font-semibold text-white">UI/UX Design</h3>
+                <p className="text-xs text-gray-400 mt-1 leading-tight">
+                  Creating intuitive and visually <br/> appealing user interfaces.
+                </p>
+              </div>
+            </div>
+
+            {/* 5️⃣ Digital Marketing */}
+            <div className="relative group w-[200px] sm:w-[250px] h-[200px] sm:h-[250px] transition-transform duration-500 ease-out hover:scale-[1.2] hover:z-20">
+              <div
+                className={`absolute inset-0 clip-hexagon 
+                bg-gradient-to-br from-[#0f0f0f] to-[#1a1a1a]
+                border border-white/10 shadow-[0_0_15px_rgba(0,255,255,0.1),inset_0_0_25px_rgba(255,255,255,0.05)]
+                backdrop-blur-xl flex flex-col items-center justify-center text-center px-4
+                transition-all duration-500 ease-out group-hover:border-cyan-400/70
+                group-hover:shadow-[0_0_35px_rgba(0,255,255,0.6),inset_0_0_40px_rgba(0,255,255,0.1)]`}
+              >
+                <FaBullhorn size={38} className="text-cyan-400 mb-2" />
+                <h3 className="text-sm font-semibold text-white">
+                  Digital Marketing
+                </h3>
+                <p className="text-xs text-gray-400 mt-1 leading-tight">
+                  Boost your online presence with <br/> targeted marketing strategies.
+                </p>
+              </div>
+            </div>
+
+            {/* 6️⃣ Graphic Design */}
+            <div className="relative group w-[200px] sm:w-[250px] h-[200px] sm:h-[250px] transition-transform duration-500 ease-out hover:scale-[1.2] hover:z-20">
+              <div
+                className={`absolute inset-0 clip-hexagon 
+                bg-gradient-to-br from-[#0f0f0f] to-[#1a1a1a]
+                border border-white/10 shadow-[0_0_15px_rgba(0,255,255,0.1),inset_0_0_25px_rgba(255,255,255,0.05)]
+                backdrop-blur-xl flex flex-col items-center justify-center text-center px-4
+                transition-all duration-500 ease-out group-hover:border-cyan-400/70
+                group-hover:shadow-[0_0_35px_rgba(0,255,255,0.6),inset_0_0_40px_rgba(0,255,255,0.1)]`}
+              >
+                <FaBrush size={38} className="text-cyan-400 mb-2" />
+                <h3 className="text-sm font-semibold text-white">Graphic Design</h3>
+                <p className="text-xs text-gray-400 mt-1 leading-tight">
+                  Designing stunning visuals to <br/> enhance your brand identity.
+                </p>
+              </div>
+            </div>
+
+            {/* 7️⃣ Branding */}
+            <div className="relative group w-[200px] sm:w-[250px] h-[200px] sm:h-[250px] transition-transform duration-500 ease-out hover:scale-[1.2] hover:z-20">
+              <div
+                className={`absolute inset-0 clip-hexagon 
+                bg-gradient-to-br from-[#0f0f0f] to-[#1a1a1a]
+                border border-white/10 shadow-[0_0_15px_rgba(0,255,255,0.1),inset_0_0_25px_rgba(255,255,255,0.05)]
+                backdrop-blur-xl flex flex-col items-center justify-center text-center px-4
+                transition-all duration-500 ease-out group-hover:border-cyan-400/70
+                group-hover:shadow-[0_0_35px_rgba(0,255,255,0.6),inset_0_0_40px_rgba(0,255,255,0.1)]`}
+              >
+                <FaTrademark size={38} className="text-cyan-400 mb-2" />
+                <h3 className="text-sm font-semibold text-white">Branding</h3>
+                <p className="text-xs text-gray-400 mt-1 leading-tight">
+                  Developing a unique brand identity <br/> that stands out in the market.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </section>
-  );
-};
 
-const HexCard = ({ icon, title, description }) => {
-  return (
-    <div
-      className="relative group w-[170px] h-[195px] transition-transform duration-500 ease-out hover:scale-[1.2] hover:z-20"
-      style={{ transformOrigin: "center" }}
-    >
-      <div
-        className={`absolute inset-0 clip-hexagon 
-          bg-gradient-to-br from-[#0f0f0f] to-[#1a1a1a]
-          border border-white/10
-          shadow-[0_0_15px_rgba(0,255,255,0.1),inset_0_0_25px_rgba(255,255,255,0.05)]
-          backdrop-blur-xl
-          transition-all duration-500 ease-out
-          flex flex-col items-center justify-center text-center
-          px-4
-          group-hover:border-cyan-400/70
-          group-hover:shadow-[0_0_35px_rgba(0,255,255,0.6),inset_0_0_40px_rgba(0,255,255,0.1)]`}
-      >
-        <div className="mb-2">{icon}</div>
-        <h3 className="text-sm font-semibold text-white">{title}</h3>
-        <p className="text-xs text-gray-400 mt-1 leading-tight">{description}</p>
-      </div>
-
-      {/* Hexagon Shape */}
+      {/* Hexagon shape style */}
       <style jsx>{`
         .clip-hexagon {
           clip-path: polygon(
@@ -125,8 +185,6 @@ const HexCard = ({ icon, title, description }) => {
           );
         }
       `}</style>
-    </div>
+    </section>
   );
-};
-
-export default OurServices;
+}
