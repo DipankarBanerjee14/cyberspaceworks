@@ -5,7 +5,7 @@ import React, { useEffect, useRef, useState } from "react";
 import {
   FaLaptopCode,
   FaMobileAlt,
-  FaCode,addColorStop
+  FaCode,
   FaPalette,
   FaBullhorn,
   FaBrush,
