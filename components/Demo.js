@@ -1,228 +1,152 @@
 "use client";
-import * as THREE from "three";
 import { useEffect, useRef } from "react";
+import * as THREE from "three";
 
-export default function Galaxy() {
-    const mountRef = useRef(null);
+export default function PoweredBySection() {
+  const mountRef = useRef(null);
 
-    useEffect(() => {
-        // Scene, camera, renderer
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(
-            75,
-            window.innerWidth / window.innerHeight,
-            0.1,
-            1000
-        );
-        camera.position.z = 80; // Closer for more immersive view
+  useEffect(() => {
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color("#0a0a0a");
 
-        const renderer = new THREE.WebGLRenderer({ antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        mountRef.current.appendChild(renderer.domElement);
+    const camera = new THREE.PerspectiveCamera(
+      75,
+      mountRef.current.clientWidth / mountRef.current.clientHeight,
+      0.1,
+      1000
+    );
+    camera.position.z = 6;
 
-        // Parameters
-        const starParams = {
-            count: 80000, // More stars for density
-            size: 0.015, // Slightly smaller for finer detail
-            radius: 180,
-            thickness: 25, // Thinner disk for galaxy band
-            randomness: 0.7,
-            randomnessPower: 3.0, // Higher power for more clustered arms
-            insideColor: "#ffffff", // Bright white core
-            outsideColor: "#6A0DAD", // Purple arms
-        };
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(
+      mountRef.current.clientWidth,
+      mountRef.current.clientHeight
+    );
+    mountRef.current.appendChild(renderer.domElement);
 
-        const blueDustParams = {
-            count: 5000,
-            size: 3.0,
-            radius: 180,
-            thickness: 35,
-            color: "#4169E1", // Royal blue
-            opacity: 0.08,
-            randomness: 0.8,
-            randomnessPower: 2.5,
-            randScale: 20,
-        };
+    // Bigger microchip base
+    const chipWidth = 6;
+    const chipHeight = 2;
+    const chipGeometry = new THREE.BoxGeometry(chipWidth, chipHeight, 0.2);
+    const chipMaterial = new THREE.MeshStandardMaterial({
+      color: "#111",
+      emissive: "#00ffff",
+      emissiveIntensity: 0.3,
+    });
+    const chip = new THREE.Mesh(chipGeometry, chipMaterial);
+    scene.add(chip);
 
-        const purpleDustParams = {
-            count: 4000,
-            size: 2.5,
-            radius: 190,
-            thickness: 40,
-            color: "#9932CC", // Dark orchid
-            opacity: 0.06,
-            randomness: 0.6,
-            randomnessPower: 2.0,
-            randScale: 18,
-        };
+    // Pins with spacing around the chip
+    const pinMaterial = new THREE.MeshStandardMaterial({ color: "#888" });
+    const pinGeometry = new THREE.BoxGeometry(0.1, 0.1, 0.2);
+    const pinOffsetY = chipHeight / 2;
+    const bottomPinPositions = [];
 
-        const orangeDustParams = {
-            count: 3000,
-            size: 4.0,
-            radius: 170,
-            thickness: 30,
-            color: "#FF8C00", // Dark orange glow
-            opacity: 0.04,
-            randomness: 0.9,
-            randomnessPower: 3.5,
-            randScale: 22,
-        };
+    const pinCount = 7;
+    const pinInset = 0.5; // space from edge
+    const pinSpacing = (chipWidth - 2 * pinInset) / (pinCount - 1);
+    const pinStartX = -chipWidth / 2 + pinInset;
 
-        // ----------------------
-        // Stars
-        // ----------------------
-        const starGeometry = new THREE.BufferGeometry();
-        const starPositions = new Float32Array(starParams.count * 3);
-        const starColors = new Float32Array(starParams.count * 3);
+    for (let i = 0; i < pinCount; i++) {
+      const x = pinStartX + i * pinSpacing;
 
-        const colorInside = new THREE.Color(starParams.insideColor);
-        const colorOutside = new THREE.Color(starParams.outsideColor);
+      const topPin = new THREE.Mesh(pinGeometry, pinMaterial);
+      topPin.position.set(x, pinOffsetY, 0);
+      scene.add(topPin);
 
-        for (let i = 0; i < starParams.count; i++) {
-            const i3 = i * 3;
+      const bottomPin = new THREE.Mesh(pinGeometry, pinMaterial);
+      bottomPin.position.set(x, -pinOffsetY, 0);
+      scene.add(bottomPin);
 
-            const radius = Math.random() * starParams.radius;
-            const angle = Math.random() * Math.PI * 2;
+      bottomPinPositions.push(bottomPin.position.clone());
+    }
 
-            const x =
-                Math.cos(angle) * radius +
-                (Math.random() - 0.5) *
-                starParams.randomness *
-                Math.pow(radius / starParams.radius, starParams.randomnessPower) *
-                25; // Adjusted randomness scaling
-            const z =
-                Math.sin(angle) * radius +
-                (Math.random() - 0.5) *
-                starParams.randomness *
-                Math.pow(radius / starParams.radius, starParams.randomnessPower) *
-                25;
-            const y = (Math.random() - 0.5) * starParams.thickness;
+    // Colors
+    const glowColors = [
+      "#00ffff", "#ff00ff", "#ffff00", "#ff8800",
+      "#00ff88", "#8888ff", "#ff4444"
+    ];
 
-            starPositions[i3] = x;
-            starPositions[i3 + 1] = y * 4; // Slightly less vertical stretch
-            starPositions[i3 + 2] = z;
+    // Meteor setup
+    const meteors = [];
+    const baseSpeed = 0.1;
+    const tailLength = 50;
 
-            const mixedColor = colorInside.clone();
-            mixedColor.lerp(colorOutside, radius / starParams.radius);
+    bottomPinPositions.forEach((startPos, index) => {
+      const curve = new THREE.CubicBezierCurve3(
+        startPos,
+        new THREE.Vector3(startPos.x, startPos.y - 0.4, 0),
+        new THREE.Vector3(startPos.x, startPos.y - 0.8, 0),
+        new THREE.Vector3(startPos.x, startPos.y - 1.6, 0)
+      );
 
-            starColors[i3] = mixedColor.r;
-            starColors[i3 + 1] = mixedColor.g;
-            starColors[i3 + 2] = mixedColor.b;
-        }
+      // Grey line
+      const line = new THREE.Line(
+        new THREE.BufferGeometry().setFromPoints(curve.getPoints(40)),
+        new THREE.LineBasicMaterial({ color: "#555", transparent: true, opacity: 0.4 })
+      );
+      scene.add(line);
 
-        starGeometry.setAttribute("position", new THREE.BufferAttribute(starPositions, 3));
-        starGeometry.setAttribute("color", new THREE.BufferAttribute(starColors, 3));
-
-        const starMaterial = new THREE.PointsMaterial({
-            size: starParams.size,
-            vertexColors: true,
-            blending: THREE.AdditiveBlending,
-            depthWrite: false,
+      // Tail segments (short curved lines)
+      const segments = [];
+      for (let i = 0; i < tailLength; i++) {
+        const segmentGeometry = new THREE.BufferGeometry();
+        const segmentMaterial = new THREE.LineBasicMaterial({
+          color: glowColors[index],
+          transparent: true,
+          opacity: 1 - i / tailLength,
         });
+        const segment = new THREE.Line(segmentGeometry, segmentMaterial);
+        scene.add(segment);
+        segments.push(segment);
+      }
 
-        const stars = new THREE.Points(starGeometry, starMaterial);
-        scene.add(stars);
+      meteors.push({
+        curve,
+        t: 0,
+        speed: baseSpeed,
+        segments,
+      });
+    });
 
-        // ----------------------
-        // Dust Clouds
-        // ----------------------
-        const createDust = (params) => {
-            const dustGeometry = new THREE.BufferGeometry();
-            const dustPositions = new Float32Array(params.count * 3);
+    // Lighting
+    scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+    scene.add(new THREE.PointLight(0x00ffff, 1).position.set(0, 0, 6));
 
-            for (let i = 0; i < params.count; i++) {
-                const i3 = i * 3;
+    // Animate
+    const animate = () => {
+      requestAnimationFrame(animate);
 
-                const radius = Math.random() * params.radius;
-                let angle = Math.random() * Math.PI * 2;
+      meteors.forEach((meteor) => {
+        meteor.t += meteor.speed;
+        if (meteor.t > 1) meteor.t = 0;
 
-                // Add spiral twist for more organic shape
-                angle += Math.log(radius + 1) * 4; // Log spiral offset
+        for (let i = 0; i < tailLength; i++) {
+          const t1 = meteor.t - i * 0.01;
+          const t2 = t1 - 0.01;
+          if (t2 < 0) {
+            meteor.segments[i].visible = false;
+            continue;
+          }
 
-                let x = Math.cos(angle) * radius;
-                let z = Math.sin(angle) * radius;
+          const p1 = meteor.curve.getPoint(t1);
+          const p2 = meteor.curve.getPoint(t2);
 
-                // Add randomness for round, cloudy appearance
-                const randFactorX = (Math.random() - 0.5) * params.randomness * Math.pow(Math.random(), params.randomnessPower) * params.randScale;
-                const randFactorZ = (Math.random() - 0.5) * params.randomness * Math.pow(Math.random(), params.randomnessPower) * params.randScale;
-                x += randFactorX;
-                z += randFactorZ;
-
-                const y = (Math.random() - 0.5) * params.thickness * 0.8; // Slightly thinner for centering on plane
-
-                dustPositions[i3] = x;
-                dustPositions[i3 + 1] = y * 4;
-                dustPositions[i3 + 2] = z;
-            }
-
-            dustGeometry.setAttribute("position", new THREE.BufferAttribute(dustPositions, 3));
-
-            const dustMaterial = new THREE.PointsMaterial({
-                size: params.size,
-                color: params.color,
-                transparent: true,
-                opacity: params.opacity,
-                blending: THREE.AdditiveBlending,
-                depthWrite: false,
-            });
-
-            return new THREE.Points(dustGeometry, dustMaterial);
-        };
-
-        const blueDust = createDust(blueDustParams);
-        scene.add(blueDust);
-
-        // ----------------------
-        // Purple Dust Clouds
-        // ----------------------
-        const purpleDust = createDust(purpleDustParams);
-        purpleDust.rotation.y = Math.PI / 4; // Slight offset for layering
-        scene.add(purpleDust);
-
-        // ----------------------
-        // Orange Dust Clouds
-        // ----------------------
-        const orangeDust = createDust(orangeDustParams);
-        orangeDust.rotation.y = -Math.PI / 6; // Another offset
-        scene.add(orangeDust);
-
-        // ----------------------
-        // Animation
-        // ----------------------
-        function animate() {
-            requestAnimationFrame(animate);
-
-            stars.rotation.y += 0.0002; // Slower rotation
-            blueDust.rotation.y += 0.00015;
-            purpleDust.rotation.y += 0.0001;
-            orangeDust.rotation.y += 0.00025; // Vary speeds for depth
-
-            renderer.render(scene, camera);
+          const geometry = new THREE.BufferGeometry().setFromPoints([p1, p2]);
+          meteor.segments[i].geometry.dispose();
+          meteor.segments[i].geometry = geometry;
+          meteor.segments[i].visible = true;
         }
-        animate();
+      });
 
-        // Resize
-        const handleResize = () => {
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-        };
-        window.addEventListener("resize", handleResize);
+      renderer.render(scene, camera);
+    };
+    animate();
 
-        return () => {
-            mountRef.current.removeChild(renderer.domElement);
-            window.removeEventListener("resize", handleResize);
-            // Dispose geometries and materials
-            starGeometry.dispose();
-            starMaterial.dispose();
-            blueDust.geometry.dispose();
-            blueDust.material.dispose();
-            purpleDust.geometry.dispose();
-            purpleDust.material.dispose();
-            orangeDust.geometry.dispose();
-            orangeDust.material.dispose();
-        };
-    }, []);
+    return () => {
+      mountRef.current.removeChild(renderer.domElement);
+    };
+  }, []);
 
-    return <div ref={mountRef} className="w-screen min-h-screen bg-black fixed top-0 left-0 z-0" />;
+  return <div ref={mountRef} style={{ width: "100%", height: "600px" }} />;
 }
