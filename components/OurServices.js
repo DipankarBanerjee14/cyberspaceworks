@@ -1,9 +1,11 @@
+
+
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import {
   FaLaptopCode,
   FaMobileAlt,
-  FaCode,
+  FaCode,addColorStop
   FaPalette,
   FaBullhorn,
   FaBrush,
@@ -488,3 +490,4 @@ export default function OurServicesWithWires() {
     </section>
   );
 }
+ 
