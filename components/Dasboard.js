@@ -102,7 +102,7 @@ export default function Dashboard() {
       </Head>
 
       <main
-        className="min-h-screen relative overflow-hidden p-6"
+        className="relative overflow-hidden p-6"
         style={{ background: "#000000" }}
       >
         {/* Soft global teal glow */}

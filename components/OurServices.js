@@ -372,9 +372,10 @@ export default function OurServicesWithWires() {
 
   return (
     <section
-      ref={containerRef}
-      className="relative z-10 py-16  bg-black overflow-hidden max-w-7xl mx-auto"
-    >
+  ref={containerRef}
+  className="relative z-10 py-16 bg-black overflow-hidden max-w-7xl mx-auto"
+>
+
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full pointer-events-none"
@@ -382,7 +383,7 @@ export default function OurServicesWithWires() {
       />
        {/* Cyan blurred background glow */}
       <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
-        <div className="w-[1000px] h-[300px] rounded-full blur-[300px] bg-[#0ebac7] opacity-20" />
+        <div className="w-[1000px] h-[50px] rounded-full blur-[300px] bg-[#0ebac7] opacity-20" />
       </div>
 
       <div

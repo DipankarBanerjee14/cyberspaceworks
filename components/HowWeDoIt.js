@@ -49,7 +49,7 @@ const HowWeDoIt = () => {
 
   return (
     <main
-      className="min-h-screen relative overflow-hidden"
+      className=" relative overflow-hidden"
       style={{ background: "#000000" }} // black background
     >
       {/* Cyan blurred background glow */}

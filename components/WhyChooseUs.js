@@ -99,7 +99,7 @@ const WhyChooseUsWithGraph = () => {
   };
 
   return (
-    <main className="min-h-screen relative overflow-hidden" style={{ background: "#000000" }}>
+    <main className=" relative overflow-hidden" style={{ background: "#000000" }}>
       {/* Soft global teal glow */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -110,22 +110,115 @@ const WhyChooseUsWithGraph = () => {
         }}
       />
 
-      <section className="py-16 px-4 relative z-10 max-w-6xl mx-auto">
-        {/* Top Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-          <div className="mb-12 md:mb-0">
-            <p className="text-gray-500 text-sm mb-2">
-              2. Automate billing & collections
-            </p>
-            <div className="flex items-baseline mb-4">
-              <FaBolt className="text-white text-4xl mr-2" />
-              <h2 className="text-5xl font-bold text-white">Why Choose Us</h2>
-            </div>
-            <p className="text-gray-300">
-              Pay suppliers & employees with a click. No data entry needed. Get
-              paid faster with automated AR.
-            </p>
+      <section className="py-16 relative z-10 max-w-6xl mx-auto ">
+       {/* Top Section */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        {/* Left content */}
+        <div>
+          <p className="text-gray-500 text-sm mb-2">
+            2. Automate billing & collections
+          </p>
+          <div className="flex items-baseline mb-4">
+            <FaBolt className="text-white text-4xl mr-2" />
+            <h2 className="text-5xl font-bold text-white">Why Choose Us</h2>
           </div>
+          <p className="text-gray-300 mb-8">
+            Pay suppliers & employees with a click. No data entry needed. Get
+            paid faster with automated AR.
+          </p>
+
+          {/* Cards Grid - 2 per row */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {/* Card 1 */}
+            <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
+              <div
+                className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                style={{
+                  background:
+                    "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
+                }}
+              />
+              <div className="relative z-10">
+                <div className="mb-4 bg-blue-900 rounded-md inline-flex p-2">
+                  <FaBolt className="text-white" size={20} />
+                </div>
+                <h3 className="text-lg font-semibold mb-2 leading-tight">
+                  Get paid <br /> faster.
+                </h3>
+                <p className="text-gray-300 text-sm">
+                  Boost cash flow and save time with automated receivables.
+                </p>
+              </div>
+              <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-cyan-500/10 to-transparent blur-xl pointer-events-none"></div>
+            </div>
+
+            {/* Card 2 */}
+            <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
+              <div
+                className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                style={{
+                  background:
+                    "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
+                }}
+              />
+              <div className="relative z-10">
+                <div className="mb-4 bg-blue-900 rounded-md inline-flex p-2">
+                  <FaBolt className="text-white" size={20} />
+                </div>
+                <h3 className="text-lg font-semibold mb-2 leading-tight">
+                  Simplify <br /> payments.
+                </h3>
+                <p className="text-gray-300 text-sm">
+                  Manage and automate all payments in one secure place.
+                </p>
+              </div>
+            </div>
+
+            {/* Card 3 */}
+            <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
+              <div
+                className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                style={{
+                  background:
+                    "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
+                }}
+              />
+              <div className="relative z-10">
+                <div className="mb-4 bg-blue-900 rounded-md inline-flex p-2">
+                  <FaBolt className="text-white" size={20} />
+                </div>
+                <h3 className="text-lg font-semibold mb-2 leading-tight">
+                  Automate <br /> invoices.
+                </h3>
+                <p className="text-gray-300 text-sm">
+                  Automatically generate invoices and reminders with AI.
+                </p>
+              </div>
+            </div>
+
+            {/* Card 4 */}
+            <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
+              <div
+                className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                style={{
+                  background:
+                    "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
+                }}
+              />
+              <div className="relative z-10">
+                <div className="mb-4 bg-blue-900 rounded-md inline-flex p-2">
+                  <FaBolt className="text-white" size={20} />
+                </div>
+                <h3 className="text-lg font-semibold mb-2 leading-tight">
+                  Track <br /> performance.
+                </h3>
+                <p className="text-gray-300 text-sm">
+                  Monitor all transactions and analytics in one dashboard.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
 
           {/* Chart Card */}
           <div className="relative rounded-2xl p-8 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
@@ -138,7 +231,7 @@ const WhyChooseUsWithGraph = () => {
             />
             <div className="relative z-10">
               {/* Header */}
-              <div className="flex justify-between mb-8">
+              {/* <div className="flex justify-between mb-8">
                 <div>
                   <div className="flex items-center">
                     <div className="bg-yellow-500 rounded-full w-10 h-10 flex items-center justify-center text-black font-bold text-lg">
@@ -157,9 +250,9 @@ const WhyChooseUsWithGraph = () => {
                     </span>
                   </div>
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-2"> */}
                   {/* Assignees Top (manual) */}
-                  <div className="flex items-center">
+                  {/* <div className="flex items-center">
                     <div className="w-8 h-8 rounded-full bg-blue-900 flex items-center justify-center text-white text-xs mr-2">S</div>
                     <p className="text-white text-sm">Sara Kunze</p>
                     <p className="ml-4 text-gray-300 text-sm">5/8</p>
@@ -186,17 +279,17 @@ const WhyChooseUsWithGraph = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
               {/* Efficiency */}
               <div className="flex justify-between items-end mb-4">
                 <div>
                   <p className="text-5xl font-bold text-white">67%</p>
-                  <p className="text-gray-400 text-sm">
+                  {/* <p className="text-gray-400 text-sm">
                     efficiency based on 8 key indicators
-                  </p>
+                  </p> */}
                 </div>
-                <p className="text-3xl font-bold text-white">$75k</p>
+                {/* <p className="text-3xl font-bold text-white">$75k</p> */}
               </div>
 
               {/* Graph */}
