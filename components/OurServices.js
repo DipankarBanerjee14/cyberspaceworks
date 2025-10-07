@@ -380,6 +380,11 @@ export default function OurServicesWithWires() {
         className="absolute inset-0 w-full h-full pointer-events-none"
         aria-hidden
       />
+       {/* Cyan blurred background glow */}
+      <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
+        <div className="w-[1000px] h-[300px] rounded-full blur-[300px] bg-[#0ebac7] opacity-20" />
+      </div>
+
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
