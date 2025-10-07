@@ -17,11 +17,11 @@ export default function Navbar() {
         </div>
 
         {/* Navbar */}
-        <nav className="text-white">
+        <nav className="text-white ">
           <div className="relative flex items-center justify-between h-[70px]">
 
             {/* Left Menu */}
-            <ul className=" space-x-6 mr-6 font-bold px-6 py-3 rounded-full bg-black/10 border border-white/10 shadow-xl flex items-center justify-between backdrop-blur-sm ">
+            <ul className=" space-x-6 mr-6 font-bold px-6 py-3 rounded-full bg-black/10 border border-white/10 shadow-xl flex items-center justify-between backdrop-blur-sm  ">
               {["Home", "About", "Contact"].map((item) => (
                 <li key={item} className="relative group">
                   <Link

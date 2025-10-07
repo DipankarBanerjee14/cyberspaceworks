@@ -1,5 +1,3 @@
-
-
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import {
@@ -12,13 +10,6 @@ import {
   FaTrademark,
 } from "react-icons/fa";
 
-/**
- * OurServicesWithWires
- * - draws wires from chip pins to service box centers using a full-size canvas overlay
- * - animated pulse travels along each wire
- *
- * Usage: just import and render <OurServicesWithWires /> inside your page.
- */
 export default function OurServicesWithWires() {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
@@ -29,7 +20,6 @@ export default function OurServicesWithWires() {
 
   const [ready, setReady] = useState(false);
 
-  // services list (same as your original)
   const services = [
     {
       icon: <FaLaptopCode size={38} />,
@@ -68,7 +58,6 @@ export default function OurServicesWithWires() {
     },
   ];
 
-  // helper to get center point of an element relative to canvas
   const getElementCenterRelativeToCanvas = (elem, canvas) => {
     const cRect = canvas.getBoundingClientRect();
     const r = elem.getBoundingClientRect();
@@ -79,7 +68,6 @@ export default function OurServicesWithWires() {
   };
 
   useEffect(() => {
-    // ensure refs for boxes
     boxRefs.current = boxRefs.current.slice(0, services.length);
 
     const canvas = canvasRef.current;
@@ -88,6 +76,19 @@ export default function OurServicesWithWires() {
     if (!canvas || !container || !chipEl) return;
 
     const ctx = canvas.getContext("2d");
+
+   const boxColors = [
+      [207, 250, 254],  // Web Development: cyan-100 shadow
+      [255, 0, 255],    // App Development: magenta shadow
+      [255, 255, 0],    // Software Development: yellow shadow
+      [57, 255, 20],    // UI/UX Design: green shadow
+      [225, 29, 72],    // Digital Marketing: rose shadow
+      [249, 115, 22],   // Graphic Design: orange shadow
+      [167, 139, 250],  // Branding: indigo shadow
+];
+
+    const cableColor = [55, 65, 81]; // gray-700
+    const cableGlowColor = [40, 50, 66]; // darker gray for outer glow
 
     const setCanvasSize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -99,65 +100,59 @@ export default function OurServicesWithWires() {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 
-    // initial sizing
     setCanvasSize();
 
-    // recompute on resize
     resizeObserverRef.current = new ResizeObserver(() => {
       setCanvasSize();
-      // re-init drawing state if needed
     });
     resizeObserverRef.current.observe(container);
 
-    // Build wires data: pins and destination boxes, with control points for curve
     const computeLayout = () => {
       const canvasRect = canvas.getBoundingClientRect();
       const chipRect = chipEl.getBoundingClientRect();
 
-      // chip center relative to canvas
       const chipCenter = {
         x: chipRect.left + chipRect.width / 2 - canvasRect.left,
         y: chipRect.top + chipRect.height / 2 - canvasRect.top,
       };
 
-      // compute pin positions around the chip - matches the visual top/bottom/left/right layout
-      // top: 7 pins spaced horizontally (centered)
+      // pins counts (mirror your sketch)
       const topCount = 7;
       const bottomCount = 7;
       const leftCount = 3;
       const rightCount = 3;
 
-      const chipVisualW = Math.max(180, chipRect.width); // fallback widths
+      const chipVisualW = Math.max(180, chipRect.width);
       const chipVisualH = Math.max(70, chipRect.height);
 
-      // horizontal spacing across chip for pins
-      const hSpan = chipVisualW * 0.84; // slightly inset
+      const hSpan = chipVisualW * 0.84;
+
       const topPins = Array.from({ length: topCount }, (_, i) => {
-        const t = i / (topCount - 1);
+        const t = topCount === 1 ? 0.5 : i / (topCount - 1);
         return {
           x: chipCenter.x - hSpan / 2 + t * hSpan,
-          y: chipCenter.y - chipVisualH / 2 - 10, // visually just above
-        };
-      });
-      const bottomPins = Array.from({ length: bottomCount }, (_, i) => {
-        const t = i / (bottomCount - 1);
-        return {
-          x: chipCenter.x - hSpan / 2 + t * hSpan,
-          y: chipCenter.y + chipVisualH / 2 + 10, // visually just below
+          y: chipCenter.y - chipVisualH / 2 - 10,
         };
       });
 
-      // vertical side pins
+      const bottomPins = Array.from({ length: bottomCount }, (_, i) => {
+        const t = bottomCount === 1 ? 0.5 : i / (bottomCount - 1);
+        return {
+          x: chipCenter.x - hSpan / 2 + t * hSpan,
+          y: chipCenter.y + chipVisualH / 2 + 10,
+        };
+      });
+
       const vSpan = chipVisualH * 0.6;
       const leftPins = Array.from({ length: leftCount }, (_, i) => {
-        const t = i / (leftCount - 1);
+        const t = leftCount === 1 ? 0.5 : i / (leftCount - 1);
         return {
           x: chipCenter.x - chipVisualW / 2 - 10,
           y: chipCenter.y - vSpan / 2 + t * vSpan,
         };
       });
       const rightPins = Array.from({ length: rightCount }, (_, i) => {
-        const t = i / (rightCount - 1);
+        const t = rightCount === 1 ? 0.5 : i / (rightCount - 1);
         return {
           x: chipCenter.x + chipVisualW / 2 + 10,
           y: chipCenter.y - vSpan / 2 + t * vSpan,
@@ -166,9 +161,7 @@ export default function OurServicesWithWires() {
 
       const pins = { top: topPins, bottom: bottomPins, left: leftPins, right: rightPins };
 
-      // map services to which pin group they should connect to (imitating original)
-      // top row (services 0..2) connect to top pins (left, center, right)
-      // bottom row (services 3..6) connect to bottom pins (spread)
+      // destinations: centers of the service boxes
       const dests = services.map((_, idx) => {
         const boxEl = boxRefs.current[idx];
         if (!boxEl) return null;
@@ -176,178 +169,200 @@ export default function OurServicesWithWires() {
         return center;
       });
 
-      // connection mapping (choose pin index for each service to match original feel)
+      // connections follow your picture mapping (top 3, bottom 4 mapping)
       const connections = [
-        { pin: pins.top[1], to: dests[0] }, // web -> top-left-ish pin
-        { pin: pins.top[3], to: dests[1] }, // app -> top-center pin
-        { pin: pins.top[5], to: dests[2] }, // software -> top-right-ish pin
-        { pin: pins.bottom[1], to: dests[3] }, // ui/ux -> bottom-left
-        { pin: pins.bottom[3], to: dests[4] }, // digital -> bottom-left-center
-        { pin: pins.bottom[4], to: dests[5] }, // graphic -> bottom-right-center
-        { pin: pins.bottom[6], to: dests[6] }, // branding -> bottom-right
+        { pin: pins.top[1], to: dests[0] }, // top-left to first
+        { pin: pins.top[3], to: dests[1] }, // top-mid to second
+        { pin: pins.top[5], to: dests[2] }, // top-right to third
+        { pin: pins.bottom[1], to: dests[3] }, // bottom-left to fourth
+        { pin: pins.bottom[3], to: dests[4] }, // bottom-mid to fifth
+        { pin: pins.bottom[4], to: dests[5] }, // bottom-mid-right to sixth
+        { pin: pins.bottom[6], to: dests[6] }, // bottom-right to seventh
       ];
 
-      // convert into path descriptions with control points
-      const paths = connections
+      const validPaths = connections
         .filter((c) => c.pin && c.to)
         .map((c) => {
-          // control point calculation:
-          // push control point away from straight line to make large, soft arcs
           const from = { x: c.pin.x, y: c.pin.y };
           const to = { x: c.to.x, y: c.to.y };
-
-          // mid point
-          const midX = (from.x + to.x) / 2;
-          const midY = (from.y + to.y) / 2;
-
-          // choose a control offset depending on whether line goes up/down/left/right
-          // push control offset perpendicular to the from->to direction to create arc
-          const dx = to.x - from.x;
-          const dy = to.y - from.y;
-          // perpendicular direction
-          const perpX = -dy;
-          const perpY = dx;
-          // normalize
-          const len = Math.max(1, Math.hypot(perpX, perpY));
-          const normX = perpX / len;
-          const normY = perpY / len;
-
-          // strength of curve depends on distance
-          const dist = Math.hypot(dx, dy);
-          const strength = Math.min(1.0, Math.max(0.25, dist / 450)); // tuneable
-
-          // final control point
-          const control = {
-            x: midX + normX * 80 * strength,
-            y: midY + normY * 80 * strength,
-          };
-
-          return { from, to, control, dist };
+          return { from, to, dist: Math.hypot(to.x - from.x, to.y - from.y) };
         });
 
-      return { canvasRect, chipCenter, pins, paths };
+      // all pins and which are unconnected
+      const connectedPins = connections.map((c) => c.pin);
+      const allPins = [...pins.top, ...pins.bottom, ...pins.left, ...pins.right];
+      const unconnected = allPins.filter(
+        (pin) => !connectedPins.some((cp) => cp && cp.x === pin.x && cp.y === pin.y)
+      );
+
+      return { canvasRect, chipCenter, pins, paths: validPaths, unconnected };
     };
 
-    // animation state
+    // cubic bezier helper: get point for t (0..1)
+    const cubicAt = (t, p0, p1, p2, p3) => {
+      const u = 1 - t;
+      const tt = t * t;
+      const uu = u * u;
+      const uuu = uu * u;
+      const ttt = tt * t;
+      const x = uuu * p0.x + 3 * uu * t * p1.x + 3 * u * tt * p2.x + ttt * p3.x;
+      const y = uuu * p0.y + 3 * uu * t * p1.y + 3 * u * tt * p2.y + ttt * p3.y;
+      return { x, y };
+    };
+
+    // produce control points for a smooth curve that can look like soft-L or flowing curve
+    const makeControlPoints = (from, to) => {
+      const dx = to.x - from.x;
+      const dy = to.y - from.y;
+      // base offsets depend on distance and direction
+      const d = Math.hypot(dx, dy);
+      const common = Math.min(160, d * 0.35);
+      // choose bend direction so curve looks natural:
+      // if mostly vertical, offset horizontally; if mostly horizontal, offset vertically
+      const horizBias = Math.abs(dx) > Math.abs(dy);
+      const signX = dx >= 0 ? 1 : -1;
+      const signY = dy >= 0 ? 1 : -1;
+
+      const cp1 = {
+        x: from.x + (horizBias ? dx * 0.25 : -signX * common * 0.4),
+        y: from.y + (horizBias ? signY * common * 0.18 : dy * 0.25),
+      };
+      const cp2 = {
+        x: from.x + (horizBias ? dx * 0.75 : signX * common * 0.4),
+        y: from.y + (horizBias ? dy * 0.75 : dy * 0.75 + signY * common * 0.18),
+      };
+      return [cp1, cp2];
+    };
+
     let lastTs = 0;
-    let tProgress = 0; // animation progress 0..1 (used for pulse)
+    let tProgress = 0;
 
     const drawFrame = (ts) => {
       if (!canvas) return;
       const ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.save();
-      // scale back to CSS pixels since we already set transform earlier
-      // draw slight vignette / glow under the chip area for aesthetics
-      // background glow (subtle)
-      const grd = ctx.createRadialGradient(
-        canvas.width / 2,
-        canvas.height / 2,
-        10,
-        canvas.width / 2,
-        canvas.height / 2,
-        Math.max(canvas.width, canvas.height) * 0.6
-      );
+
+      // subtle vignette
+      const w = canvas.width;
+      const h = canvas.height;
+      const grd = ctx.createRadialGradient(w / 2, h / 2, 10, w / 2, h / 2, Math.max(w, h) * 0.6);
       grd.addColorStop(0, "rgba(0,40,40,0.06)");
       grd.addColorStop(1, "rgba(0,0,0,0)");
       ctx.fillStyle = grd;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillRect(0, 0, w, h);
 
-      // recompute layout each frame to remain pixel perfect on resize (cheap)
       const layout = computeLayout();
       const paths = layout.paths;
 
-      // Draw each cable path: base stroke + outer glow + moving pulse
+      // draw each path as sampled cubic bezier segments, with fading tail at the end
       paths.forEach((p, idx) => {
-        // Base faint stroke (outer glow)
-        ctx.lineWidth = 6;
-        ctx.strokeStyle = "rgba(0,200,200,0.05)";
+        const [r, g, b] = boxColors[idx];
+        const from = p.from;
+        const to = p.to;
+        const [cp1, cp2] = makeControlPoints(from, to);
+        const segments = 120; // finer segments for smooth fade
+        // main glowing core (a thin bright spline) - gray cable
+        for (let i = 0; i < segments; i++) {
+          const t1 = i / segments;
+          const t2 = (i + 1) / segments;
+          const pt1 = cubicAt(t1, from, cp1, cp2, to);
+          const pt2 = cubicAt(t2, from, cp1, cp2, to);
+
+          // fading factor: tail fades towards the end of curve
+          const fade = Math.pow(1 - t1, 1.8);
+          const alpha = 0.22 * fade + 0.05; // base visibility
+          ctx.lineWidth = 1.6 + 2.2 * fade;
+          ctx.lineCap = "round";
+
+          // gradient-like color variation via rgba - use gray
+          ctx.strokeStyle = `rgba(${cableColor[0]},${cableColor[1]},${cableColor[2]},${alpha})`;
+          ctx.beginPath();
+          ctx.moveTo(pt1.x, pt1.y);
+          ctx.lineTo(pt2.x, pt2.y);
+          ctx.stroke();
+        }
+
+        // draw a subtle outer glow stroke following same curve - gray glow
+        ctx.lineWidth = 0.8;
         ctx.beginPath();
-        ctx.moveTo(p.from.x, p.from.y);
-        // draw quadratic bezier
-        ctx.quadraticCurveTo(p.control.x, p.control.y, p.to.x, p.to.y);
+        for (let i = 0; i <= segments; i++) {
+          const t = i / segments;
+          const q = cubicAt(t, from, cp1, cp2, to);
+          if (i === 0) ctx.moveTo(q.x, q.y);
+          else ctx.lineTo(q.x, q.y);
+        }
+        ctx.strokeStyle = `rgba(${cableGlowColor[0]},${cableGlowColor[1]},${cableGlowColor[2]},0.12)`;
         ctx.stroke();
 
-        // Middle bright stroke
-        ctx.lineWidth = 2.6;
-        // create gradient along path (approx by using linear gradient between endpoints)
-        const grad = ctx.createLinearGradient(p.from.x, p.from.y, p.to.x, p.to.y);
-        grad.addColorStop(0, "rgba(0,200,200,0.95)");
-        grad.addColorStop(0.5, "rgba(0,255,255,0.9)");
-        grad.addColorStop(1, "rgba(0,200,200,0.95)");
-        ctx.strokeStyle = grad;
+        // endpoint dots (denser near start and end) - gray
         ctx.beginPath();
-        ctx.moveTo(p.from.x, p.from.y);
-        ctx.quadraticCurveTo(p.control.x, p.control.y, p.to.x, p.to.y);
-        ctx.stroke();
-
-        // small highlight stroke for depth
-        ctx.lineWidth = 1;
-        ctx.strokeStyle = "rgba(255,255,255,0.06)";
+        ctx.fillStyle = `rgba(${cableColor[0]},${cableColor[1]},${cableColor[2]},0.72)`;
+        ctx.arc(from.x, from.y, 3.2, 0, Math.PI * 2);
+        ctx.fill();
         ctx.beginPath();
-        ctx.moveTo(p.from.x, p.from.y);
-        ctx.quadraticCurveTo(p.control.x, p.control.y, p.to.x, p.to.y);
-        ctx.stroke();
-
-        // endpoint dot (soft)
-        ctx.beginPath();
-        ctx.fillStyle = "rgba(0,240,255,0.65)";
-        ctx.arc(p.to.x, p.to.y, 3.2, 0, Math.PI * 2);
+        ctx.arc(to.x, to.y, 3.2, 0, Math.PI * 2);
         ctx.fill();
       });
 
-      // Draw animated pulses travelling along each path (use tProgress + index offset)
-      tProgress += (ts - lastTs) * 0.00035; // speed factor
-      if (tProgress > 1) tProgress = tProgress - Math.floor(tProgress);
+      // animated pulses traveling along each path (bright fast dots) - box color
+      tProgress += (ts - lastTs) * 0.0006;
+      if (tProgress > 1) tProgress -= 1;
       lastTs = ts;
 
       paths.forEach((p, idx) => {
-        // each path gets an offset so pulses are staggered
-        const offset = (idx / paths.length) * 0.5;
-        let t = (tProgress + offset) % 1;
-
-        // optionally draw multiple pulses per path by adding small extra points
+        const [r, g, b] = boxColors[idx];
+        const from = p.from;
+        const to = p.to;
+        const [cp1, cp2] = makeControlPoints(from, to);
         const pulses = 1;
         for (let pi = 0; pi < pulses; pi++) {
-          const tp = (t + pi * 0.12) % 1;
-          // quadratic bezier point at parameter tp
-          // B(t) = (1-t)^2 * P0 + 2(1-t)t * CP + t^2 * P1
-          const it = tp;
-          const oneMinus = 1 - it;
-          const x =
-            oneMinus * oneMinus * p.from.x +
-            2 * oneMinus * it * p.control.x +
-            it * it * p.to.x;
-          const y =
-            oneMinus * oneMinus * p.from.y +
-            2 * oneMinus * it * p.control.y +
-            it * it * p.to.y;
-
-          // draw glow
+          // offset pulses per path to stagger them
+          const offset = (idx / Math.max(1, paths.length)) * 0.45;
+          const t0 = (tProgress + offset + pi * 0.12) % 1;
+          // one dot
+          const pt = cubicAt(t0, from, cp1, cp2, to);
           ctx.beginPath();
-          ctx.fillStyle = "rgba(0,230,255,0.18)";
-          ctx.arc(x, y, 8, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${r},${g},${b},0.95)`;
+          ctx.arc(pt.x, pt.y, 3.6, 0, Math.PI * 2);
           ctx.fill();
 
+          // outer glow
           ctx.beginPath();
-          ctx.fillStyle = "rgba(0,255,255,0.95)";
-          ctx.arc(x, y, 3.2, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${r},${g},${b},0.14)`;
+          ctx.arc(pt.x, pt.y, 8, 0, Math.PI * 2);
           ctx.fill();
         }
+      });
+
+      // draw unconnected pins as pulsing circles
+      layout.unconnected.forEach((pin) => {
+        const pulse = (Math.sin(ts * 0.004 + (pin.x + pin.y) * 0.001) + 1) / 2;
+        const alpha = 0.28 + pulse * 0.42;
+        const r = 3.8 + pulse * 1.6;
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(0,255,255,${alpha})`;
+        ctx.arc(pin.x, pin.y, r, 0, Math.PI * 2);
+        ctx.fill();
+
+        // tiny rim
+        ctx.beginPath();
+        ctx.strokeStyle = `rgba(0,200,255,${0.25 + pulse * 0.25})`;
+        ctx.lineWidth = 1;
+        ctx.arc(pin.x, pin.y, r + 3, 0, Math.PI * 2);
+        ctx.stroke();
       });
 
       ctx.restore();
       rafRef.current = requestAnimationFrame(drawFrame);
     };
 
-    // start animation
     rafRef.current = requestAnimationFrame((ts) => {
       lastTs = ts;
       drawFrame(ts);
       setReady(true);
     });
 
-    // cleanup
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       if (resizeObserverRef.current) resizeObserverRef.current.disconnect();
@@ -355,20 +370,16 @@ export default function OurServicesWithWires() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // render
   return (
     <section
       ref={containerRef}
-      className="relative z-10 py-16 px-4 bg-black overflow-hidden max-w-7xl mx-auto"
+      className="relative z-10 py-16  bg-black overflow-hidden max-w-7xl mx-auto"
     >
-      {/* Canvas overlay */}
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full pointer-events-none"
         aria-hidden
       />
-
-      {/* subtle teal radial glow */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -383,22 +394,65 @@ export default function OurServicesWithWires() {
         </h2>
 
         {/* Top three boxes */}
-        <div className="flex flex-wrap justify-center gap-6 md:gap-8 mb-16">
-          {services.slice(0, 3).map((s, i) => (
-            <div
-              key={i}
-              ref={(el) => (boxRefs.current[i] = el)}
-              className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out hover:scale-[1.12] hover:z-20"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-[#0f0f0f] to-[#141414] border border-white/8 shadow-[0_8px_30px_rgba(0,255,255,0.06),inset_0_0_30px_rgba(255,255,255,0.02)] backdrop-blur-xl flex flex-col items-center justify-center text-center px-5 transition-all duration-500 ease-out group-hover:border-cyan-400/70 group-hover:shadow-[0_0_40px_rgba(0,255,255,0.4),inset_0_0_40px_rgba(0,255,255,0.06)] rounded-lg">
-                <div className="text-cyan-400 mb-2">{s.icon}</div>
-                <h3 className="text-sm font-semibold text-white">{s.title}</h3>
-                <p className="text-xs text-gray-400 mt-1 leading-tight">
-                  {s.desc}
-                </p>
-              </div>
-            </div>
-          ))}
+         <div className="flex flex-wrap justify-center gap-6 md:gap-8 mb-16">
+     {/* Web Development */}
+<div
+  ref={(el) => (boxRefs.current[0] = el)}
+  className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out"
+>
+  <div className="absolute inset-0 
+bg-gradient-to-br from-[#0f0f0f] to-[#141414] 
+shadow-[0_0_40px_rgba(207,250,254,0.4),inset_0_0_40px_rgba(207,250,254,0.06)] 
+backdrop-blur-xl 
+flex flex-col items-center justify-center text-center px-5 
+transition-all duration-500 ease-out rounded-lg
+"
+  >
+    <div className="text-cyan-400 mb-2">
+      <FaLaptopCode size={38} />
+    </div>
+    <h3 className="text-sm font-semibold text-white">Web Development</h3>
+    <p className="text-xs text-gray-400 mt-1 leading-tight">
+      Crafting responsive and dynamic <br /> websites tailored to your <br /> needs.
+    </p>
+  </div>
+</div>
+
+
+
+    {/* App Development */}
+<div
+  ref={(el) => (boxRefs.current[1] = el)}
+  className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out "
+>
+  <div className="absolute inset-0 bg-gradient-to-br from-[#0f0f0f] to-[#141414] shadow-[0_0_40px_rgba(255,0,255,0.4),inset_0_0_40px_rgba(255,0,255,0.06)] backdrop-blur-xl flex flex-col items-center justify-center text-center px-5 transition-all duration-500 ease-out rounded-lg">
+    <div className="text-cyan-400 mb-2"><FaMobileAlt size={38} /></div>
+    <h3 className="text-sm font-semibold text-white">App Development</h3>
+    <p className="text-xs text-gray-400 mt-1 leading-tight">
+      Building innovative and  <br/>user-friendly mobile  <br/>applications.
+    </p>
+  </div>
+</div>
+
+
+    
+{/* Software Development */}
+<div
+  ref={(el) => (boxRefs.current[2] = el)}
+  className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out"
+>
+  <div className="absolute inset-0 bg-gradient-to-br from-[#0f0f0f] to-[#141414] 
+      shadow-[0_0_40px_rgba(255,255,0,0.4),inset_0_0_40px_rgba(255,255,0,0.06)] 
+      backdrop-blur-xl flex flex-col items-center justify-center text-center px-5 rounded-lg">
+    <div className="text-cyan-400 mb-2"><FaCode size={38} /></div>
+    <h3 className="text-sm font-semibold text-white">Software Development</h3>
+    <p className="text-xs text-gray-400 mt-1 leading-tight">
+      Custom software solutions to  <br/>optimize your business <br/> processes.
+    </p>
+  </div>
+</div>
+
+
         </div>
 
         {/* Chip area */}
@@ -407,7 +461,7 @@ export default function OurServicesWithWires() {
             ref={chipRef}
             className="relative w-[300px] h-[92px] bg-gradient-to-b from-[#1b1b1b] to-[#0e0e0e] rounded-lg border border-[#222] shadow-[0_18px_60px_rgba(0,0,0,0.7)] flex items-center justify-center overflow-visible"
           >
-            {/* top pins */}
+            {/* pins */}
             <div className="absolute -top-[28px] left-1/2 -translate-x-1/2 flex justify-between w-[260px]">
               {Array(7)
                 .fill()
@@ -419,7 +473,6 @@ export default function OurServicesWithWires() {
                 ))}
             </div>
 
-            {/* bottom pins */}
             <div className="absolute -bottom-[28px] left-1/2 -translate-x-1/2 flex justify-between w-[260px]">
               {Array(7)
                 .fill()
@@ -431,7 +484,6 @@ export default function OurServicesWithWires() {
                 ))}
             </div>
 
-            {/* left pins */}
             <div className="absolute -left-[28px] top-1/2 -translate-y-1/2 flex flex-col justify-between h-[66px]">
               {Array(3)
                 .fill()
@@ -443,7 +495,6 @@ export default function OurServicesWithWires() {
                 ))}
             </div>
 
-            {/* right pins */}
             <div className="absolute -right-[28px] top-1/2 -translate-y-1/2 flex flex-col justify-between h-[66px]">
               {Array(3)
                 .fill()
@@ -455,39 +506,87 @@ export default function OurServicesWithWires() {
                 ))}
             </div>
 
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <h3 className="text-gray-200 text-lg font-semibold select-none tracking-wide">
-                <span className="bg-clip-text text-transparent bg-gradient-to-b from-gray-100 to-gray-400">
-                  Powered By
-                </span>
-              </h3>
+            {/* glowing core */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] rounded-lg" />
+            <div className="absolute inset-0 flex items-center justify-center text-cyan-300 text-lg font-semibold tracking-wide">
+              CyberSpaceWork
+            </div>
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,255,255,0.15),transparent_70%)] animate-pulse" />
             </div>
           </div>
         </div>
 
-        {/* bottom four boxes */}
-        <div className="flex flex-wrap justify-center gap-6 md:gap-8 mt-12">
-          {services.slice(3).map((s, i) => {
-            const idx = i + 3;
-            return (
-              <div
-                key={idx}
-                ref={(el) => (boxRefs.current[idx] = el)}
-                className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out hover:scale-[1.12] hover:z-20"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-[#0f0f0f] to-[#141414] border border-white/8 shadow-[0_8px_30px_rgba(0,255,255,0.06),inset_0_0_30px_rgba(255,255,255,0.02)] backdrop-blur-xl flex flex-col items-center justify-center text-center px-5 transition-all duration-500 ease-out group-hover:border-cyan-400/70 group-hover:shadow-[0_0_40px_rgba(0,255,255,0.4),inset_0_0_40px_rgba(0,255,255,0.06)] rounded-lg">
-                  <div className="text-cyan-400 mb-2">{s.icon}</div>
-                  <h3 className="text-sm font-semibold text-white">{s.title}</h3>
-                  <p className="text-xs text-gray-400 mt-1 leading-tight">
-                    {s.desc}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+        {/* Bottom boxes */}
+         {/* Bottom boxes */}
+        <div className="flex flex-wrap justify-center gap-6 md:gap-8 mt-16">
+
+{/* UI/UX Design */}
+<div
+  ref={(el) => (boxRefs.current[3] = el)}
+  className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out "
+>
+  <div className="absolute inset-0 bg-gradient-to-br from-[#0f0f0f] to-[#141414] 
+      shadow-[0_0_40px_rgba(57,255,20,0.4),inset_0_0_40px_rgba(57,255,20,0.06)] 
+      backdrop-blur-xl flex flex-col items-center justify-center text-center px-5 rounded-lg">
+    <div className="text-cyan-400 mb-2"><FaPalette size={38} /></div>
+    <h3 className="text-sm font-semibold text-white">UI/UX Design</h3>
+    <p className="text-xs text-gray-400 mt-1 leading-tight">
+      Creating intuitive and  <br/>visually appealing user <br/> interfaces.
+    </p>
+  </div>
+</div>
+{/* Digital Marketing */}
+<div
+  ref={(el) => (boxRefs.current[4] = el)}
+  className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out "
+>
+  <div className="absolute inset-0 bg-gradient-to-br from-[#0f0f0f] to-[#141414]
+      shadow-[0_0_40px_rgba(225,29,72,0.4),inset_0_0_40px_rgba(225,29,72,0.06)]
+      backdrop-blur-xl flex flex-col items-center justify-center text-center px-5 rounded-lg">
+    <div className="text-cyan-400 mb-2"><FaBullhorn size={38} /></div>
+    <h3 className="text-sm font-semibold text-white">Digital Marketing</h3>
+    <p className="text-xs text-gray-400 mt-1 leading-tight">
+      Boost your online presence  <br/>with targeted marketing  <br/>strategies.
+    </p>
+  </div>
+</div>
+
+{/* Graphic Design */}
+<div
+  ref={(el) => (boxRefs.current[5] = el)}
+  className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out "
+>
+  <div className="absolute inset-0 bg-gradient-to-br from-[#0f0f0f] to-[#141414]
+      shadow-[0_0_40px_rgba(249,115,22,0.4),inset_0_0_40px_rgba(249,115,22,0.06)]
+      backdrop-blur-xl flex flex-col items-center justify-center text-center px-5 rounded-lg">
+    <div className="text-cyan-400 mb-2"><FaBrush size={38} /></div>
+    <h3 className="text-sm font-semibold text-white">Graphic Design</h3>
+    <p className="text-xs text-gray-400 mt-1 leading-tight">
+      Designing stunning visuals <br/> to enhance your brand <br/> identity.
+    </p>
+  </div>
+</div>
+
+{/* Branding */}
+<div
+  ref={(el) => (boxRefs.current[6] = el)}
+  className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out"
+>
+  <div className="absolute inset-0 bg-gradient-to-br from-[#0f0f0f] to-[#141414]
+      shadow-[0_0_40px_rgba(167,139,250,0.4),inset_0_0_40px_rgba(167,139,250,0.06)]
+      backdrop-blur-xl flex flex-col items-center justify-center text-center px-5 rounded-lg">
+    <div className="text-cyan-400 mb-2"><FaTrademark size={38} /></div>
+    <h3 className="text-sm font-semibold text-white">Branding</h3>
+    <p className="text-xs text-gray-400 mt-1 leading-tight">
+      Developing a unique brand <br/> identity that stands out in  <br/>the market.
+    </p>
+  </div>
+</div>
+
+
+          </div>
       </div>
     </section>
   );
 }
- 

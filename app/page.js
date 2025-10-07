@@ -8,19 +8,20 @@ import HowWeDoIt from "@/components/HowWeDoIt.js";
 import Testimonial from "@/components/Testimonial.js";
 import Navbar from "@/components/Navbar.js";
 import HeroSection from "@/components/HeroSection.js"
-import Demo from "@/components/Demo.js"
 
+import Dashboard from "@/components/Dasboard.js"
 export default function TrandingPage() {
 
 
   return (
-    <div className="relative w-full h-screen  text-white">
+    <div className="relative w-full   text-white">
     
       <Navbar/>
       <HeroSection/>
-      <Demo/>
+  
       <OurServices />
       <WhyChooseUs />
+      <Dashboard/>
       <AboutSection />
       <HowWeDoIt />
       <Testimonial />

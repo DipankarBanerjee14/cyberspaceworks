@@ -124,7 +124,7 @@ export default function Testimonials() {
                 }}
               >
                 <div
-                  className={`h-[250px] bg-[#0ebac7]/60 backdrop-blur-xl border border-white/10 rounded-xl p-4 relative overflow-hidden transition-all duration-300 ${
+                  className={`h-[250px] bg-cyan-400 backdrop-blur-xl border border-white/10 rounded-xl p-4 relative overflow-hidden transition-all duration-300 ${
                     isActive
                       ? 'flex flex-row gap-4 items-start'
                       : 'flex flex-col items-center justify-center mb-10'
