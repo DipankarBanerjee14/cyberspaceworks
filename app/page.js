@@ -8,7 +8,7 @@ import HowWeDoIt from "@/components/HowWeDoIt.js";
 import Testimonial from "@/components/Testimonial.js";
 import Navbar from "@/components/Navbar.js";
 import HeroSection from "@/components/HeroSection.js"
-import Demo from "@/components/Demo.js"
+
 import Dashboard from "@/components/Dasboard.js"
 export default function TrandingPage() {
 
@@ -18,7 +18,7 @@ export default function TrandingPage() {
     
       <Navbar/>
       <HeroSection/>
-      <Demo/>
+  
       <OurServices />
       <WhyChooseUs />
       <Dashboard/>

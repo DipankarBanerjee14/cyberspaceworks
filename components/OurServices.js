@@ -383,7 +383,7 @@ export default function OurServicesWithWires() {
       />
        {/* Cyan blurred background glow */}
       <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
-        <div className="w-[1000px] h-[50px] rounded-full blur-[300px] bg-[#0ebac7] opacity-20" />
+        <div className="w-[200px] h-[50px] rounded-full blur-[300px] bg-cyan-400 opacity-20" />
       </div>
 
       <div
@@ -407,11 +407,11 @@ export default function OurServicesWithWires() {
   className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out"
 >
   <div className="absolute inset-0 
-bg-gradient-to-br from-[#0f0f0f] to-[#141414] 
-shadow-[0_0_40px_rgba(207,250,254,0.4),inset_0_0_40px_rgba(207,250,254,0.06)] 
-backdrop-blur-xl 
-flex flex-col items-center justify-center text-center px-5 
-transition-all duration-500 ease-out rounded-lg
+    bg-gradient-to-br from-[#0f0f0f] to-[#141414] 
+    shadow-[0_0_15px_rgba(207,250,254,0.2),inset_0_0_15px_rgba(207,250,254,0.03)] 
+    backdrop-blur-xl 
+    flex flex-col items-center justify-center text-center px-5 
+    transition-all duration-500 ease-out rounded-lg
 "
   >
     <div className="text-cyan-400 mb-2">
@@ -431,7 +431,12 @@ transition-all duration-500 ease-out rounded-lg
   ref={(el) => (boxRefs.current[1] = el)}
   className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out "
 >
-  <div className="absolute inset-0 bg-gradient-to-br from-[#0f0f0f] to-[#141414] shadow-[0_0_40px_rgba(255,0,255,0.4),inset_0_0_40px_rgba(255,0,255,0.06)] backdrop-blur-xl flex flex-col items-center justify-center text-center px-5 transition-all duration-500 ease-out rounded-lg">
+  <div className="absolute inset-0 
+    bg-gradient-to-br from-[#0f0f0f] to-[#141414] 
+    shadow-[0_0_15px_rgba(255,0,255,0.2),inset_0_0_15px_rgba(255,0,255,0.03)] 
+    backdrop-blur-xl 
+    flex flex-col items-center justify-center text-center px-5 
+    transition-all duration-500 ease-out rounded-lg">
     <div className="text-cyan-400 mb-2"><FaMobileAlt size={38} /></div>
     <h3 className="text-sm font-semibold text-white">App Development</h3>
     <p className="text-xs text-gray-400 mt-1 leading-tight">
@@ -447,9 +452,12 @@ transition-all duration-500 ease-out rounded-lg
   ref={(el) => (boxRefs.current[2] = el)}
   className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out"
 >
-  <div className="absolute inset-0 bg-gradient-to-br from-[#0f0f0f] to-[#141414] 
-      shadow-[0_0_40px_rgba(255,255,0,0.4),inset_0_0_40px_rgba(255,255,0,0.06)] 
-      backdrop-blur-xl flex flex-col items-center justify-center text-center px-5 rounded-lg">
+  <div className="absolute inset-0 
+    bg-gradient-to-br from-[#0f0f0f] to-[#141414] 
+    shadow-[0_0_15px_rgba(255,255,0,0.2),inset_0_0_15px_rgba(255,255,0,0.03)] 
+    backdrop-blur-xl 
+    flex flex-col items-center justify-center text-center px-5 
+    rounded-lg">
     <div className="text-cyan-400 mb-2"><FaCode size={38} /></div>
     <h3 className="text-sm font-semibold text-white">Software Development</h3>
     <p className="text-xs text-gray-400 mt-1 leading-tight">
@@ -533,7 +541,7 @@ transition-all duration-500 ease-out rounded-lg
   className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out "
 >
   <div className="absolute inset-0 bg-gradient-to-br from-[#0f0f0f] to-[#141414] 
-      shadow-[0_0_40px_rgba(57,255,20,0.4),inset_0_0_40px_rgba(57,255,20,0.06)] 
+      shadow-[0_0_15px_rgba(57,255,20,0.2),inset_0_0_15px_rgba(57,255,20,0.03)] 
       backdrop-blur-xl flex flex-col items-center justify-center text-center px-5 rounded-lg">
     <div className="text-cyan-400 mb-2"><FaPalette size={38} /></div>
     <h3 className="text-sm font-semibold text-white">UI/UX Design</h3>
@@ -548,7 +556,7 @@ transition-all duration-500 ease-out rounded-lg
   className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out "
 >
   <div className="absolute inset-0 bg-gradient-to-br from-[#0f0f0f] to-[#141414]
-      shadow-[0_0_40px_rgba(225,29,72,0.4),inset_0_0_40px_rgba(225,29,72,0.06)]
+      shadow-[0_0_15px_rgba(225,29,72,0.2),inset_0_0_15px_rgba(225,29,72,0.03)]
       backdrop-blur-xl flex flex-col items-center justify-center text-center px-5 rounded-lg">
     <div className="text-cyan-400 mb-2"><FaBullhorn size={38} /></div>
     <h3 className="text-sm font-semibold text-white">Digital Marketing</h3>
@@ -564,7 +572,7 @@ transition-all duration-500 ease-out rounded-lg
   className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out "
 >
   <div className="absolute inset-0 bg-gradient-to-br from-[#0f0f0f] to-[#141414]
-      shadow-[0_0_40px_rgba(249,115,22,0.4),inset_0_0_40px_rgba(249,115,22,0.06)]
+      shadow-[0_0_15px_rgba(249,115,22,0.2),inset_0_0_15px_rgba(249,115,22,0.03)]
       backdrop-blur-xl flex flex-col items-center justify-center text-center px-5 rounded-lg">
     <div className="text-cyan-400 mb-2"><FaBrush size={38} /></div>
     <h3 className="text-sm font-semibold text-white">Graphic Design</h3>
@@ -580,7 +588,7 @@ transition-all duration-500 ease-out rounded-lg
   className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out"
 >
   <div className="absolute inset-0 bg-gradient-to-br from-[#0f0f0f] to-[#141414]
-      shadow-[0_0_40px_rgba(167,139,250,0.4),inset_0_0_40px_rgba(167,139,250,0.06)]
+      shadow-[0_0_15px_rgba(167,139,250,0.2),inset_0_0_15px_rgba(167,139,250,0.03)]
       backdrop-blur-xl flex flex-col items-center justify-center text-center px-5 rounded-lg">
     <div className="text-cyan-400 mb-2"><FaTrademark size={38} /></div>
     <h3 className="text-sm font-semibold text-white">Branding</h3>

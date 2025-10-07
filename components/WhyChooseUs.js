@@ -97,6 +97,25 @@ const WhyChooseUsWithGraph = () => {
       },
     },
   };
+  const CardWrapper = ({ children, className = "" }) => (
+    <div className={`relative group rounded-2xl p-[2px] bg-gradient-to-b from-cyan-500/20 to-transparent overflow-hidden ${className}`}>
+      <div className="relative bg-black/60 backdrop-blur-lg rounded-2xl p-6 flex flex-col gap-4 h-full transition-all duration-500  overflow-hidden">
+        {/* Bottom blur overlay */}
+        <div className="absolute bottom-0 left-0 w-full h-2/3 blur-2xl pointer-events-none"></div>
+        {children}
+      </div>
+    </div>
+  );
+
+  const CardContent = ({ icon, title, description, className = "" }) => (
+    <div className={`relative z-10 ${className}`}>
+      <div className="mb-4 bg-blue-900 rounded-md inline-flex p-2 text-cyan-400">
+        {icon}
+      </div>
+      <h3 className="text-white text-lg font-semibold mb-2 leading-tight">{title}</h3>
+      <p className="text-gray-400 text-sm leading-relaxed">{description}</p>
+    </div>
+  );
 
   return (
     <main className=" relative overflow-hidden" style={{ background: "#000000" }}>
@@ -112,7 +131,7 @@ const WhyChooseUsWithGraph = () => {
 
       <section className="py-16 relative z-10 max-w-6xl mx-auto ">
        {/* Top Section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
         {/* Left content */}
         <div>
           <p className="text-gray-500 text-sm mb-2">
@@ -127,99 +146,47 @@ const WhyChooseUsWithGraph = () => {
             paid faster with automated AR.
           </p>
 
-          {/* Cards Grid - 2 per row */}
+{/* Cards Grid - 2 per row */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {/* Card 1 */}
-            <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
-              <div
-                className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-                style={{
-                  background:
-                    "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
-                }}
-              />
-              <div className="relative z-10">
-                <div className="mb-4 bg-blue-900 rounded-md inline-flex p-2">
-                  <FaBolt className="text-white" size={20} />
-                </div>
-                <h3 className="text-lg font-semibold mb-2 leading-tight">
-                  Get paid <br /> faster.
-                </h3>
-                <p className="text-gray-300 text-sm">
-                  Boost cash flow and save time with automated receivables.
-                </p>
-              </div>
-              <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-cyan-500/10 to-transparent blur-xl pointer-events-none"></div>
-            </div>
+          
+{/* Card 1 */}
+<CardWrapper>
+  <CardContent
+    icon={<FaBolt className="text-white" size={20} />}
+    title="Get paid faster."
+    description="Boost cash flow and save time with automated receivables."
+  />
+</CardWrapper>
 
             {/* Card 2 */}
-            <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
-              <div
-                className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-                style={{
-                  background:
-                    "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
-                }}
+            <CardWrapper>
+              <CardContent
+                icon={<FaBolt className="text-white" size={20} />}
+                title="Simplify payments."
+                description="Manage and automate all payments in one secure place."
               />
-              <div className="relative z-10">
-                <div className="mb-4 bg-blue-900 rounded-md inline-flex p-2">
-                  <FaBolt className="text-white" size={20} />
-                </div>
-                <h3 className="text-lg font-semibold mb-2 leading-tight">
-                  Simplify <br /> payments.
-                </h3>
-                <p className="text-gray-300 text-sm">
-                  Manage and automate all payments in one secure place.
-                </p>
-              </div>
-            </div>
+            </CardWrapper>
 
             {/* Card 3 */}
-            <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
-              <div
-                className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-                style={{
-                  background:
-                    "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
-                }}
+            <CardWrapper>
+              <CardContent
+                icon={<FaBolt className="text-white" size={20} />}
+                title="Automate invoices."
+                description="Automatically generate invoices and reminders with AI."
               />
-              <div className="relative z-10">
-                <div className="mb-4 bg-blue-900 rounded-md inline-flex p-2">
-                  <FaBolt className="text-white" size={20} />
-                </div>
-                <h3 className="text-lg font-semibold mb-2 leading-tight">
-                  Automate <br /> invoices.
-                </h3>
-                <p className="text-gray-300 text-sm">
-                  Automatically generate invoices and reminders with AI.
-                </p>
-              </div>
-            </div>
+            </CardWrapper>
 
             {/* Card 4 */}
-            <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
-              <div
-                className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-                style={{
-                  background:
-                    "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
-                }}
+            <CardWrapper>
+              <CardContent
+                icon={<FaBolt className="text-white" size={20} />}
+                title="Track performance."
+                description="Monitor all transactions and analytics in one dashboard."
               />
-              <div className="relative z-10">
-                <div className="mb-4 bg-blue-900 rounded-md inline-flex p-2">
-                  <FaBolt className="text-white" size={20} />
-                </div>
-                <h3 className="text-lg font-semibold mb-2 leading-tight">
-                  Track <br /> performance.
-                </h3>
-                <p className="text-gray-300 text-sm">
-                  Monitor all transactions and analytics in one dashboard.
-                </p>
-              </div>
-            </div>
+            </CardWrapper>
           </div>
         </div>
-
+        
           {/* Chart Card */}
           <div className="relative rounded-2xl p-8 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
             <div
@@ -338,90 +305,42 @@ const WhyChooseUsWithGraph = () => {
         </div>
 
         {/* Reasons (manual divs) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-          {/* Card 1 */}
-          <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
-            <div className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-              style={{
-                background:
-                  "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
-              }}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-3">
+{/* Card 1 */}
+          <CardWrapper>
+            <CardContent
+              icon={<FaBolt className="text-white" size={20} />}
+              title="Pay anyone, anywhere"
+              description="Save up to 1 day per week with automated payments."
             />
-            <div className="relative z-10">
-              <div className="mb-4 bg-blue-900 rounded-md inline-flex p-2">
-                <FaBolt className="text-white" size={20} />
-              </div>
-              <h3 className="text-lg font-semibold text-white mb-2">
-                Pay anyone, <br/>anywhere
-              </h3>
-              <p className="text-gray-300 text-sm">
-                Save up to 1 day per week with automated payments.
-              </p>
-            </div>
-          </div>
+          </CardWrapper>
 
           {/* Card 2 */}
-          <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
-            <div className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-              style={{
-                background:
-                  "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
-              }}
+          <CardWrapper>
+            <CardContent
+              icon={<FaBolt className="text-white" size={20} />}
+              title="Get paid faster."
+              description="Boost cash flow and save time with automated receivables."
             />
-            <div className="relative z-10">
-              <div className="mb-4 bg-blue-900 rounded-md inline-flex p-2">
-                <FaBolt className="text-white" size={20} />
-              </div>
-              <h3 className="text-lg font-semibold text-white mb-2">
-                Get paid <br/>faster.
-              </h3>
-              <p className="text-gray-300 text-sm">
-                Boost cash flow and save time with automated receivables.
-              </p>
-            </div>
-          </div>
+          </CardWrapper>
 
           {/* Card 3 */}
-          <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
-            <div className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-              style={{
-                background:
-                  "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
-              }}
+          <CardWrapper>
+            <CardContent
+              icon={<FaBolt className="text-white" size={20} />}
+              title="Automate bookkeeping."
+              description="Keep your books up-to-date with auto reconciliation."
             />
-            <div className="relative z-10">
-              <div className="mb-4 bg-blue-900 rounded-md inline-flex p-2">
-                <FaBolt className="text-white" size={20} />
-              </div>
-              <h3 className="text-lg font-semibold text-white mb-2">
-                Automate bookkeeping.
-              </h3>
-              <p className="text-gray-300 text-sm">
-                Keep your books up-to-date with auto reconciliation.
-              </p>
-            </div>
-          </div>
+          </CardWrapper>
 
           {/* Card 4 */}
-          <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
-            <div className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-              style={{
-                background:
-                  "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
-              }}
+          <CardWrapper>
+            <CardContent
+              icon={<FaBolt className="text-white" size={20} />}
+              title="Access working capital."
+              description="Access pre-approved credit instantly, in your workflow."
             />
-            <div className="relative z-10">
-              <div className="mb-4 bg-blue-900 rounded-md inline-flex p-2">
-                <FaBolt className="text-white" size={20} />
-              </div>
-              <h3 className="text-lg font-semibold text-white mb-2">
-                Access working <br/> capital.
-              </h3>
-              <p className="text-gray-300 text-sm">
-                Access pre-approved credit instantly, in your workflow.
-              </p>
-            </div>
-          </div>
+          </CardWrapper>
         </div>
       </section>
     </main>

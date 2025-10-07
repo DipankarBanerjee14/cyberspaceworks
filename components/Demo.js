@@ -1,67 +1,102 @@
 "use client";
 import React from "react";
-import { FaDollarSign, FaChartLine, FaExchangeAlt, FaLock, FaCogs, FaHeadset } from "react-icons/fa";
+import {
+  FaLayerGroup,
+  FaCogs,
+  FaProjectDiagram,
+  FaChartLine,
+} from "react-icons/fa";
 
-const features = [
-  {
-    icon: <FaDollarSign size={30} />,
-    title: "Instant Savings",
-    description: "Get immediate savings on every purchase, powered by AI to optimize your transactions.",
-  },
-  {
-    icon: <FaChartLine size={30} />,
-    title: "Real-Time Insights",
-    description: "Make smarter decisions with live data and actionable insights, delivered in real-time.",
-  },
-  {
-    icon: <FaExchangeAlt size={30} />,
-    title: "Flexible Plans",
-    description: "Choose plans that adapt to your business needs, offering scalability and cost-effectiveness.",
-  },
-  {
-    icon: <FaLock size={30} />,
-    title: "Secure Transactions",
-    description: "Prioritize safety with encryption and robust security features for every interaction.",
-  },
-  {
-    icon: <FaCogs size={30} />,
-    title: "Adaptive Features",
-    description: "Leverage AI-driven features that evolve with your business for efficiency and innovation.",
-  },
-  {
-    icon: <FaHeadset size={30} />,
-    title: "Dedicated Support",
-    description: "Access expert assistance 24/7 to ensure you’re never alone on your growth journey.",
-  },
-];
-
-export default function GlassCards() {
+export default function ITSupportSection() {
   return (
-    <section className="relative bg-black min-h-screen py-16 px-6 flex flex-col items-center justify-center">
-      <h2 className="text-4xl font-bold text-white mb-12">Our Features</h2>
+    <section className="relative bg-black text-white py-24 px-6 max-w-6xl mx-auto">
+      {/* Headings */}
+      <div className="text-center mb-20">
+        <h2 className="text-4xl md:text-5xl font-semibold mb-4">
+          We Fix It Right.
+        </h2>
+        <p className="text-gray-400 max-w-2xl mx-auto text-base md:text-lg">
+          We solve, automate, and support your tech from day one to never-let-you-down.
+        </p>
+      </div>
 
-      <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl">
-        {features.map((feature, index) => (
-          <div
-            key={index}
-            className="relative group rounded-2xl p-[2px] bg-gradient-to-b from-cyan-500/60 to-transparent overflow-hidden"
-          >
-            {/* Inner glass container */}
-            <div className="relative bg-black/50 backdrop-blur-lg rounded-2xl p-6 flex flex-col gap-4 h-full transition-all duration-500 group-hover:scale-[1.03] group-hover:shadow-[0_0_25px_rgba(0,255,255,0.3)]">
-              {/* Icon */}
-              <div className="text-cyan-400">{feature.icon}</div>
-
-              {/* Title */}
-              <h3 className="text-white text-lg font-semibold">{feature.title}</h3>
-
-              {/* Description */}
-              <p className="text-gray-400 text-sm leading-relaxed">{feature.description}</p>
-
-              {/* Bottom blur overlay */}
-              <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-cyan-500/10 to-transparent blur-xl pointer-events-none"></div>
+      {/* Grid Layout */}
+      <div className="relative max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 md:gap-32 text-center md:text-left">
+        {/* Center Glowing Logo */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+          <div className="relative w-40 h-40 flex items-center justify-center rounded-full">
+            {/* Glow */}
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-orange-500 to-purple-600 blur-3xl opacity-80 rounded-full"></div>
+            {/* Inner circle */}
+            <div className="relative w-32 h-32 bg-black border border-gray-700 rounded-full flex items-center justify-center text-white font-semibold tracking-widest">
+              TECHKOOKS
             </div>
           </div>
-        ))}
+        </div>
+
+        {/* Divider Lines */}
+        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-white/20 z-0" />
+        <div className="absolute top-1/2 left-0 right-0 h-px bg-white/20 z-0" />
+
+        {/* Top Left */}
+        <div className="flex flex-col items-center text-center relative z-10 max-w-3xl mx-auto">
+           <h3 className="absolute -top-10 -left-6 md:-left-16 text-4xl font-light text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-orange-500">
+            01
+          </h3>
+          <FaLayerGroup className="text-4xl text-white mb-4" />
+          <h4 className="text-lg font-semibold mb-2">
+            Stack Audit & Assessment
+          </h4>
+          <p className="text-gray-400 text-sm leading-relaxed max-w-sm">
+            We audit your systems, find what’s broken or bloated, and identify
+            exactly what’s slowing you down. No fluff. Just facts.
+          </p>
+        </div>
+
+        {/* Top Right */}
+        <div className="flex flex-col items-center  text-center relative z-10 max-w-3xl mx-auto">
+          <h3 className="absolute -top-10 -right-6 md:-right-16 text-4xl font-light text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-orange-500">
+            02
+          </h3>
+          <FaCogs className="text-4xl text-white mb-4" />
+          <h4 className="text-lg font-semibold mb-2">
+            Custom Strategy & Solution Design
+          </h4>
+          <p className="text-gray-400 text-sm leading-relaxed max-w-sm">
+            We build a clear plan with tools, automations, and support aligned
+            to your workflow. Smart, scalable, and future-ready.
+          </p>
+        </div>
+
+        {/* Bottom Left */}
+        <div className="flex flex-col items-center text-center  relative z-10 max-w-3xl mx-auto">
+          <h3 className="absolute bottom-30 -left-6 md:-left-16 text-4xl font-light text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-orange-500">
+            03
+          </h3>
+          <FaProjectDiagram className="text-4xl text-white mb-4" />
+          <h4 className="text-lg font-semibold mb-2">
+            Full Setup & Seamless Integration
+          </h4>
+          <p className="text-gray-400 text-sm leading-relaxed max-w-sm">
+            We deploy your stack, integrate it all, and keep it running smooth
+            with zero surprises and documented support.
+          </p>
+        </div>
+
+        {/* Bottom Right */}
+        <div className="flex flex-col items-center text-center  relative z-10 max-w-3xl mx-auto">
+         <h3 className="absolute bottom-30 -right-6 md:-right-16 text-4xl font-light text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-orange-500">
+            04
+          </h3>
+          <FaChartLine className="text-4xl text-white mb-4" />
+          <h4 className="text-lg font-semibold mb-2">
+            Monitor, Optimize, and Scale
+          </h4>
+          <p className="text-gray-400 text-sm leading-relaxed max-w-sm">
+            We don’t disappear. We track, tweak, and improve your stack as you
+            grow, all under flat fee support.
+          </p>
+        </div>
       </div>
     </section>
   );

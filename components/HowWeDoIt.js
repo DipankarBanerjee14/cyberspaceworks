@@ -1,123 +1,115 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
+import {
+  FaLayerGroup,
+  FaCogs,
+  FaProjectDiagram,
+  FaChartLine,
+} from "react-icons/fa";
 
-const HowWeDoIt = () => {
-  const [coords, setCoords] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    setCoords({
-      x: window.innerWidth / 2,
-      y: window.innerHeight / 2,
-    });
-
-    const onMove = (e) => setCoords({ x: e.clientX, y: e.clientY });
-    window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
-  }, []);
-
-  const spotlightStyle = {
-    background: `radial-gradient(320px at ${coords.x}px ${coords.y}px, rgba(0,150,255,0.25), transparent 55%)`,
-    transition: "background-position 90ms linear, opacity 160ms ease",
-  };
-
-  const features = [
-    {
-      code: "01/",
-      title: "Configure Tasks Integrations",
-      description:
-        "Connect your systems. Vortasky AI handles everything from task creation to completion.",
-    },
-    {
-      code: "02/",
-      title: "Effortless Conversation Automation",
-      description:
-        "Stay engaged 24/7 with customers through AI-driven auto responses and smart inquiry labeling.",
-    },
-    {
-      code: "03/",
-      title: "Shape Your AI to Reflect How You Work",
-      description:
-        "With Vortasky AI, each team member can build a virtual assistant that mirrors their style and voice.",
-    },
-    {
-      code: "04/",
-      title: "Set a New Standard in Service Excellence",
-      description:
-        "Vortasky AI ensures fast, high-quality responses for consistently exceptional service.",
-    },
-  ];
-
+export default function ITSupportSection() {
   return (
-    <main
-      className=" relative overflow-hidden"
-      style={{ background: "#000000" }} // black background
-    >
-      {/* Cyan blurred background glow */}
-      {/* <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
-        <div className="w-[1000px] h-[500px] rounded-full blur-[300px] bg-[#0ebac7] opacity-20" />
-      </div> */}
+    <section className="relative bg-black text-white py-16 px-6 max-w-6xl mx-auto">
+      {/* Headings */}
+      <div className="text-center mb-20">
+        <h2 className="text-4xl md:text-5xl font-semibold mb-4">
+         How We Do It
+        </h2>
+        <p className="text-gray-400 max-w-2xl mx-auto text-base md:text-lg">
+          We solve, automate, and support your tech from day one to never-let-you-down.
+        </p>
+      </div>
 
-      {/* Radial backdrop glow */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        aria-hidden
-        style={{
-          background:
-            "radial-gradient(circle at 50% 50%, rgba(14,186,199,0.18), transparent 40%)",
-        }}
-      />
+      {/* Grid Layout */}
+      <div className="relative max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 md:gap-32 text-center md:text-left">
+        {/* Center Glowing Logo */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+          <div className="relative w-40 h-40 flex items-center justify-center rounded-full">
+           {/* Glow */}
+<div className="absolute inset-0 bg-gradient-to-r from-white via-cyan-400 to-cyan-600 blur-3xl opacity-80 rounded-full"></div>
 
-      {/* spotlight following cursor (optional, uncomment if needed) */}
-      {/* <div
-        className="absolute inset-0 pointer-events-none spotlight"
-        style={spotlightStyle}
-      /> */}
-
-      {/* How We Do It Section */}
-      <section className="py-16 px-4 relative z-10">
-        <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-4xl font-bold text-white mb-12">How We Do It</h2>
-
-          {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
-            {features.map((feature, index) => (
-              <div
-                key={index}
-                className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden group text-left shadow-lg transition-all duration-300 hover:shadow-[0_0_25px_rgba(0,150,255,0.5)]"
-              >
-                {/* blue → white glow behind each card */}
-                <div
-                  className="absolute -inset-20 blur-[150px] opacity-70 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{
-                    background:
-                      "radial-gradient(circle at center, rgba(0,150,255,0.6) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
-                  }}
-                />
-
-                <div className="relative z-10">
-                  <p className="text-gray-400 text-sm mb-2">{feature.code}</p>
-                  <h4 className="text-xl font-semibold text-white mb-2">
-                    {feature.title}
-                  </h4>
-                  <p className="text-gray-300 text-sm">{feature.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* CTA Buttons */}
-          <div className="flex justify-center space-x-4">
-            <button className="bg-gradient-to-r from-blue-600 to-cyan-400 text-white px-6 py-3 rounded-full font-semibold shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition">
-              Get Started →
-            </button>
-            <button className="bg-transparent border border-[#0ebac7] text-[#0ebac7] px-6 py-3 rounded-full font-semibold hover:bg-[#0ebac7]/20 transition">
-              Request a Demo →
-            </button>
+            {/* Inner circle */}
+            <div className="relative w-32 h-32 bg-black border border-gray-700 rounded-full flex items-center justify-center text-white font-semibold tracking-widest">
+             
+                <img src="/logo2.png" alt="Logo" className="h-25 w-auto" />
+             
+            </div>
           </div>
         </div>
-      </section>
-    </main>
-  );
-};
 
-export default HowWeDoIt;
+   {/* Divider Lines */}
+{/* Vertical Line */}
+<div
+  className="absolute left-1/2 top-0 bottom-0 w-px z-0 
+    bg-gradient-to-b from-gray-700 via-gray-800 to-black"
+/>
+
+{/* Horizontal Line */}
+<div
+  className="absolute top-1/2 left-0 right-0 h-px z-0 
+    bg-gradient-to-r from-gray-700 via-gray-800 to-black"
+/>
+
+        {/* Top Left */}
+        <div className="flex flex-col items-center text-center relative z-10 max-w-3xl mx-auto">
+           <h3 className="absolute -top-10 -left-6 md:-left-16 text-4xl font-light text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-400 to-cyan-600">
+            01
+          </h3>
+          <FaLayerGroup className="text-4xl text-white mb-4" />
+          <h4 className="text-lg font-semibold mb-2">
+            Stack Audit & Assessment
+          </h4>
+          <p className="text-gray-400 text-sm leading-relaxed max-w-sm">
+            We audit your systems, find what’s broken or bloated, and identify
+            exactly what’s slowing you down. No fluff. Just facts.
+          </p>
+        </div>
+
+        {/* Top Right */}
+        <div className="flex flex-col items-center  text-center relative z-10 max-w-3xl mx-auto">
+          <h3 className="absolute -top-10 -right-6 md:-right-16 text-4xl font-light text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-400 to-cyan-600">
+            02
+          </h3>
+          <FaCogs className="text-4xl text-white mb-4" />
+          <h4 className="text-lg font-semibold mb-2">
+            Custom Strategy & Solution Design
+          </h4>
+          <p className="text-gray-400 text-sm leading-relaxed max-w-sm">
+            We build a clear plan with tools, automations, and support aligned
+            to your workflow. Smart, scalable, and future-ready.
+          </p>
+        </div>
+
+        {/* Bottom Left */}
+        <div className="flex flex-col items-center text-center  relative z-10 max-w-3xl mx-auto">
+          <h3 className="absolute bottom-30 -left-6 md:-left-16 text-4xl font-light text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-400 to-cyan-600">
+            03
+          </h3>
+          <FaProjectDiagram className="text-4xl text-white mb-4" />
+          <h4 className="text-lg font-semibold mb-2">
+            Full Setup & Seamless Integration
+          </h4>
+          <p className="text-gray-400 text-sm leading-relaxed max-w-sm">
+            We deploy your stack, integrate it all, and keep it running smooth
+            with zero surprises and documented support.
+          </p>
+        </div>
+
+        {/* Bottom Right */}
+        <div className="flex flex-col items-center text-center  relative z-10 max-w-3xl mx-auto">
+         <h3 className="absolute bottom-30 -right-6 md:-right-16 text-4xl font-light text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-400 to-cyan-600">
+            04
+          </h3>
+          <FaChartLine className="text-4xl text-white mb-4" />
+          <h4 className="text-lg font-semibold mb-2">
+            Monitor, Optimize, and Scale
+          </h4>
+          <p className="text-gray-400 text-sm leading-relaxed max-w-sm">
+            We don’t disappear. We track, tweak, and improve your stack as you
+            grow, all under flat fee support.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
