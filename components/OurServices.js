@@ -78,13 +78,13 @@ export default function OurServicesWithWires() {
     const ctx = canvas.getContext("2d");
 
    const boxColors = [
-      [207, 250, 254],  // Web Development: cyan-100 shadow
-      [255, 0, 255],    // App Development: magenta shadow
-      [255, 255, 0],    // Software Development: yellow shadow
-      [57, 255, 20],    // UI/UX Design: green shadow
-      [225, 29, 72],    // Digital Marketing: rose shadow
-      [249, 115, 22],   // Graphic Design: orange shadow
-      [167, 139, 250],  // Branding: indigo shadow
+  [14, 116, 144],   // Web Development: cyan-700
+  [21, 128, 61],    // App Development: green-700
+  [4, 120, 87],     // Software Development: emerald-700
+  [15, 118, 110],   // UI/UX Design: teal-700
+  [3, 105, 161],    // Digital Marketing: sky-700
+  [29, 78, 216],    // Graphics Designing: blue-700
+  [67, 56, 202],    // Branding: indigo-700
 ];
 
     const cableColor = [55, 65, 81]; // gray-700
@@ -408,7 +408,7 @@ export default function OurServicesWithWires() {
 >
   <div className="absolute inset-0 
     bg-gradient-to-br from-[#0f0f0f] to-[#141414] 
-    shadow-[0_0_15px_rgba(207,250,254,0.2),inset_0_0_15px_rgba(207,250,254,0.03)] 
+    shadow-[0_0_15px_rgba(14,116,144,0.3),inset_0_0_15px_rgba(14,116,144,0.05)]
     backdrop-blur-xl 
     flex flex-col items-center justify-center text-center px-5 
     transition-all duration-500 ease-out rounded-lg
@@ -433,7 +433,7 @@ export default function OurServicesWithWires() {
 >
   <div className="absolute inset-0 
     bg-gradient-to-br from-[#0f0f0f] to-[#141414] 
-    shadow-[0_0_15px_rgba(255,0,255,0.2),inset_0_0_15px_rgba(255,0,255,0.03)] 
+    shadow-[0_0_15px_rgba(21,128,61,0.3),inset_0_0_15px_rgba(21,128,61,0.05)]
     backdrop-blur-xl 
     flex flex-col items-center justify-center text-center px-5 
     transition-all duration-500 ease-out rounded-lg">
@@ -454,7 +454,7 @@ export default function OurServicesWithWires() {
 >
   <div className="absolute inset-0 
     bg-gradient-to-br from-[#0f0f0f] to-[#141414] 
-    shadow-[0_0_15px_rgba(255,255,0,0.2),inset_0_0_15px_rgba(255,255,0,0.03)] 
+   shadow-[0_0_15px_rgba(4,120,87,0.3),inset_0_0_15px_rgba(4,120,87,0.05)]
     backdrop-blur-xl 
     flex flex-col items-center justify-center text-center px-5 
     rounded-lg">
@@ -541,7 +541,7 @@ export default function OurServicesWithWires() {
   className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out "
 >
   <div className="absolute inset-0 bg-gradient-to-br from-[#0f0f0f] to-[#141414] 
-      shadow-[0_0_15px_rgba(57,255,20,0.2),inset_0_0_15px_rgba(57,255,20,0.03)] 
+      shadow-[0_0_15px_rgba(15,118,110,0.3),inset_0_0_15px_rgba(15,118,110,0.05)] 
       backdrop-blur-xl flex flex-col items-center justify-center text-center px-5 rounded-lg">
     <div className="text-cyan-400 mb-2"><FaPalette size={38} /></div>
     <h3 className="text-sm font-semibold text-white">UI/UX Design</h3>
@@ -556,7 +556,7 @@ export default function OurServicesWithWires() {
   className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out "
 >
   <div className="absolute inset-0 bg-gradient-to-br from-[#0f0f0f] to-[#141414]
-      shadow-[0_0_15px_rgba(225,29,72,0.2),inset_0_0_15px_rgba(225,29,72,0.03)]
+      shadow-[0_0_15px_rgba(3,105,161,0.3),inset_0_0_15px_rgba(3,105,161,0.05)]
       backdrop-blur-xl flex flex-col items-center justify-center text-center px-5 rounded-lg">
     <div className="text-cyan-400 mb-2"><FaBullhorn size={38} /></div>
     <h3 className="text-sm font-semibold text-white">Digital Marketing</h3>
@@ -572,7 +572,7 @@ export default function OurServicesWithWires() {
   className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out "
 >
   <div className="absolute inset-0 bg-gradient-to-br from-[#0f0f0f] to-[#141414]
-      shadow-[0_0_15px_rgba(249,115,22,0.2),inset_0_0_15px_rgba(249,115,22,0.03)]
+      shadow-[0_0_15px_rgba(29,78,216,0.3),inset_0_0_15px_rgba(29,78,216,0.05)]
       backdrop-blur-xl flex flex-col items-center justify-center text-center px-5 rounded-lg">
     <div className="text-cyan-400 mb-2"><FaBrush size={38} /></div>
     <h3 className="text-sm font-semibold text-white">Graphic Design</h3>
@@ -588,7 +588,7 @@ export default function OurServicesWithWires() {
   className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out"
 >
   <div className="absolute inset-0 bg-gradient-to-br from-[#0f0f0f] to-[#141414]
-      shadow-[0_0_15px_rgba(167,139,250,0.2),inset_0_0_15px_rgba(167,139,250,0.03)]
+      shadow-[0_0_15px_rgba(67,56,202,0.3),inset_0_0_15px_rgba(67,56,202,0.05)]
       backdrop-blur-xl flex flex-col items-center justify-center text-center px-5 rounded-lg">
     <div className="text-cyan-400 mb-2"><FaTrademark size={38} /></div>
     <h3 className="text-sm font-semibold text-white">Branding</h3>

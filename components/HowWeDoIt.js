@@ -40,14 +40,14 @@ export default function ITSupportSection() {
    {/* Divider Lines */}
 {/* Vertical Line */}
 <div
-  className="absolute left-1/2 top-0 bottom-0 w-px z-0 
-    bg-gradient-to-b from-gray-700 via-gray-800 to-black"
+  className="absolute left-1/2 top-0 bottom-0 w-[1.5px] z-0 
+    bg-gradient-to-b from-gray-600 via-gray-500 to-black"
 />
 
 {/* Horizontal Line */}
 <div
-  className="absolute top-1/2 left-0 right-0 h-px z-0 
-    bg-gradient-to-r from-gray-700 via-gray-800 to-black"
+  className="absolute top-1/2 left-0 right-0 h-[1px] z-0 
+    bg-gradient-to-r from-gray-600 via-gray-500 to-black"
 />
 
         {/* Top Left */}
@@ -55,7 +55,7 @@ export default function ITSupportSection() {
            <h3 className="absolute -top-10 -left-6 md:-left-16 text-4xl font-light text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-400 to-cyan-600">
             01
           </h3>
-          <FaLayerGroup className="text-4xl text-white mb-4" />
+          <FaLayerGroup className="text-4xl text-cyan-400 mb-4" />
           <h4 className="text-lg font-semibold mb-2">
             Stack Audit & Assessment
           </h4>
@@ -70,7 +70,7 @@ export default function ITSupportSection() {
           <h3 className="absolute -top-10 -right-6 md:-right-16 text-4xl font-light text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-400 to-cyan-600">
             02
           </h3>
-          <FaCogs className="text-4xl text-white mb-4" />
+          <FaCogs className="text-4xl text-cyan-400 mb-4" />
           <h4 className="text-lg font-semibold mb-2">
             Custom Strategy & Solution Design
           </h4>
@@ -85,7 +85,7 @@ export default function ITSupportSection() {
           <h3 className="absolute bottom-30 -left-6 md:-left-16 text-4xl font-light text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-400 to-cyan-600">
             03
           </h3>
-          <FaProjectDiagram className="text-4xl text-white mb-4" />
+          <FaProjectDiagram className="text-4xl text-cyan-400 mb-4" />
           <h4 className="text-lg font-semibold mb-2">
             Full Setup & Seamless Integration
           </h4>
@@ -100,7 +100,7 @@ export default function ITSupportSection() {
          <h3 className="absolute bottom-30 -right-6 md:-right-16 text-4xl font-light text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-400 to-cyan-600">
             04
           </h3>
-          <FaChartLine className="text-4xl text-white mb-4" />
+          <FaChartLine className="text-4xl text-cyan-400 mb-4" />
           <h4 className="text-lg font-semibold mb-2">
             Monitor, Optimize, and Scale
           </h4>

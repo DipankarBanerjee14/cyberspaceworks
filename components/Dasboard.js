@@ -124,43 +124,53 @@ export default function Dashboard() {
         {/* Dashboard Content */}
         <div className="relative z-10 max-w-6xl mx-auto">
           {/* Top Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-            {[
-              { title: "Total Income", value: "$1200", color: "pink", percent: "50%" },
-              { title: "Total Expense", value: "$7400", color: "blue", percent: "25%" },
-              { title: "Total Bonus", value: "$6000", color: "purple", percent: "68%" },
-            ].map((item, i) => (
-              <div
-                key={i}
-                className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]"
-              >
-                <div
-                  className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{
-                    background:
-                      "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
-                  }}
-                />
-                <div className="relative z-10">
-                  <p className="text-gray-400 mb-2">{item.title}</p>
-                  <div className="flex justify-between items-center">
-                    <span className="text-2xl font-bold text-white">{item.value}</span>
-                    <div
-                      className={`w-16 h-16 bg-gradient-to-r ${
-                        item.color === "pink"
-                          ? "from-pink-500 to-pink-600"
-                          : item.color === "blue"
-                          ? "from-blue-500 to-blue-600"
-                          : "from-purple-500 to-purple-600"
-                      } rounded-full flex items-center justify-center text-white font-bold`}
-                    >
-                      {item.percent}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+  {[
+    { title: "Years of Experience", value: "8+", color: "cyan" },
+    { title: "Completed Projects", value: "500+", color: "blue" },
+    { title: "5★ Reviews", value: "100+", color: "purple" },
+    { title: "Countries Served", value: "5+", color: "emerald" },
+  ].map((item, i) => (
+    <div
+      key={i}
+      className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]"
+    >
+      {/* Glow background */}
+      <div
+        className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+        style={{
+          background:
+            item.color === "cyan"
+              ? "radial-gradient(circle at center, rgba(34,211,238,0.6), transparent 70%)"
+              : item.color === "blue"
+              ? "radial-gradient(circle at center, rgba(59,130,246,0.6), transparent 70%)"
+              : item.color === "purple"
+              ? "radial-gradient(circle at center, rgba(168,85,247,0.6), transparent 70%)"
+              : "radial-gradient(circle at center, rgba(16,185,129,0.6), transparent 70%)",
+        }}
+      />
+
+      {/* Foreground content */}
+      <div className="relative z-10 text-center">
+        <p className="text-gray-400 mb-2 tracking-wide">{item.title}</p>
+        <span
+          className={`text-4xl font-extrabold bg-gradient-to-r ${
+            item.color === "cyan"
+              ? "from-cyan-400 to-cyan-600"
+              : item.color === "blue"
+              ? "from-blue-400 to-blue-600"
+              : item.color === "purple"
+              ? "from-purple-400 to-purple-600"
+              : "from-emerald-400 to-emerald-600"
+          } bg-clip-text text-transparent`}
+        >
+          {item.value}
+        </span>
+      </div>
+    </div>
+  ))}
+</div>
+
 
           {/* Chart + Transactions */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
