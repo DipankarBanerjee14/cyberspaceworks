@@ -137,7 +137,7 @@ export default function ServicesCircle() {
           opacity: 1 - i * 0.04,
           blending: THREE.AdditiveBlending,
           depthWrite: false,
-          linewidth: 5, // stronger glow
+          linewidth: 5,
         });
         const seg = new THREE.Line(geom, mat);
         seg.visible = false;
@@ -145,7 +145,7 @@ export default function ServicesCircle() {
         glowSegments.push(seg);
       }
 
-      connectors.push({ curve, t: 0, speed: 0.006, segments: glowSegments });
+      connectors.push({ curve, t: 0, speed: 0.01, segments: glowSegments }); // faster speed
     });
 
     let animationStarted = false;
@@ -163,8 +163,8 @@ export default function ServicesCircle() {
         if (c.t > 1.2) c.t = 0;
 
         c.segments.forEach((seg, i) => {
-          const tail = 0.005; // shorter tail
-          const spacing = 0.008; // tighter segments
+          const tail = 0.008; // slightly longer tail
+          const spacing = 0.005; // tighter spacing → more frequent glow
           const t1 = THREE.MathUtils.clamp(c.t - i * spacing, 0, 1);
           const t2 = THREE.MathUtils.clamp(t1 - tail, 0, 1);
 
@@ -229,7 +229,7 @@ export default function ServicesCircle() {
     >
       <div className="relative text-center z-10">
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 tracking-wide">
-          Technologies We Used
+          Technologies We Use
         </h2>
       <div className="relative" style={{ width: size, height: size }}>
         <div ref={mountRef} className="absolute inset-0" />

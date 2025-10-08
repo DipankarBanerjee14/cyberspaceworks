@@ -12,11 +12,7 @@ code, pre {
   font-family: var(--font-geist-mono);
 }
 
-/* Background setup */
-:root {
-  --bg: #0D2D2A;
-  --cyan: #0ebac7;
-}
+
 html, body, #__next {
   height: 100%;
   background: var(--bg);

@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar.js";
 
 import preloader from "@/public/preloader.gif";
 
+// Dynamically import heavy sections to reduce initial bundle size
 const HeroSection = dynamic(() => import("@/components/HeroSection.js"));
 const Technology = dynamic(() => import("@/components/Technology.js"));
 const OurServices = dynamic(() => import("@/components/OurServices.js"));
@@ -18,28 +19,51 @@ const Testimonial = dynamic(() => import("@/components/Testimonial.js"));
 export default function TrandingPage() {
   const [loading, setLoading] = useState(true);
 
+  // Preloader logic
   useEffect(() => {
     const img = new window.Image();
     img.src = preloader.src || preloader;
     img.onload = () => setLoading(false);
   }, []);
 
+  // Global cursor spotlight glow with mouse and touch support
   useEffect(() => {
     const spotlight = document.getElementById("cursor-spotlight");
     if (!spotlight) return;
 
-    const handleMouseMove = (e) => {
-      const x = e.clientX;
-      const y = e.clientY;
+    // Set initial gradient position to center of viewport
+    const initialX = window.innerWidth / 2;
+    const initialY = window.innerHeight / 2;
+    spotlight.style.background = `
+      radial-gradient(400px at ${initialX}px ${initialY}px, rgba(147,51,234,0.3), transparent 60%)
+    `;
 
-      // Make the gradient more visible
+    const updateSpotlight = (x, y) => {
       requestAnimationFrame(() => {
-        spotlight.style.background = `radial-gradient(circle 150px at ${x}px ${y}px, rgba(0,150,255,0.4) 0%, rgba(0,150,255,0.0) 80%)`;
+        spotlight.style.background = `
+          radial-gradient(400px at ${x}px ${y}px, rgba(147,51,234,0.3), transparent 60%)
+        `;
       });
     };
 
+    const handleMouseMove = (e) => {
+      const { clientX: x, clientY: y } = e;
+      updateSpotlight(x, y);
+    };
+
+    const handleTouchMove = (e) => {
+      const touch = e.touches[0];
+      const { clientX: x, clientY: y } = touch;
+      updateSpotlight(x, y);
+    };
+
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    window.addEventListener("touchmove", handleTouchMove);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("touchmove", handleTouchMove);
+    };
   }, []);
 
   if (loading) {
@@ -54,32 +78,39 @@ export default function TrandingPage() {
     );
   }
 
-  return (
-    <>
-      {/* Global custom cursor */}
-      <style jsx global>{`
-        * {
-          cursor: url("/cursor.png") 8 8, auto;
-        }
-      `}</style>
+ return (
+  <>
+    {/* Global custom cursor */}
+    <style jsx global>{`
+      * {
+        cursor: url("/cursor.png") 8 8, auto;
+      }
+      #cursor-spotlight {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 50; /* higher than any section */
+        mix-blend-mode: screen; /* makes glow visible on dark backgrounds */
+        transition: background-position 90ms linear, opacity 160ms ease;
+      }
+    `}</style>
 
-      {/* Cursor glow layer */}
-      <div
-        id="cursor-spotlight"
-        className="fixed top-0 left-0 w-screen h-screen pointer-events-none z-[9999] transition-all duration-75"
-      />
+    {/* Global cursor spotlight (purple glow) */}
+    <div id="cursor-spotlight" />
 
-      <div className="bg-black relative min-h-screen">
-        <Navbar />
-        <HeroSection />
-        <OurServices />
-        <WhyChooseUs />
-        <Dashboard />
-        <AboutSection />
-        <HowWeDoIt />
-        <Technology />
-        <Testimonial />
-      </div>
-    </>
-  );
+    {/* Main Page */}
+    <div className="relative min-h-screen bg-black overflow-hidden">
+      <Navbar />
+      <HeroSection />
+      <OurServices />
+      <WhyChooseUs />
+      <Dashboard />
+      <AboutSection />
+      <HowWeDoIt />
+      <Technology />
+      <Testimonial />
+    </div>
+  </>
+);
+
 }
