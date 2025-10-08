@@ -72,7 +72,7 @@ html, body, #__next {
     filter: blur(60px);
   }
   50% {
-    transform: scale(1.4);
+    transform: scale(1.2);
     opacity: 1;
     filter: blur(80px);
   }

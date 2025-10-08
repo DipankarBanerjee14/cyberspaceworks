@@ -21,7 +21,7 @@ export default function ITSupportSection() {
       </div>
 
       {/* Grid Layout */}
-      <div className="relative max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 md:gap-32 text-center md:text-left">
+      <div className="relative max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 md:gap-32 text-center md:text-left mb-20">
 {/* Center Glowing Logo */}
 <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
   <div className="relative w-40 h-40 flex items-center justify-center rounded-full">
@@ -49,7 +49,7 @@ export default function ITSupportSection() {
 {/* Horizontal Line — gradient from center to left & right */}
 <div
   className="absolute top-1/2 left-0 right-0 h-[1px] z-0 
-    bg-gradient-to-r from-transparent via-gray-500 to-transparent"
+    bg-gradient-to-r from-transparent via-gray-500 to-transparent " 
 />
 
 
