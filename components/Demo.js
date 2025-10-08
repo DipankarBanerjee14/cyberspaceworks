@@ -48,13 +48,10 @@ export default function ServicesCircle() {
     const resize = () => {
       const rect = el.getBoundingClientRect();
       let s = Math.min(rect.width, 900);
-
-      // 🔹 Responsive scaling for mobile & tablet
       if (window.innerWidth < 480) s = 340;
       else if (window.innerWidth < 768) s = 480;
       else if (window.innerWidth < 1024) s = 600;
       else s = 750;
-
       setSize(s);
     };
     resize();
@@ -78,43 +75,63 @@ export default function ServicesCircle() {
     renderer.setPixelRatio(window.devicePixelRatio);
     mount.appendChild(renderer.domElement);
 
-    const count = services.length;
     const center = new THREE.Vector3(0, 0, 0);
     const radius = Math.max(size / 2 - 70, 200);
+    const innerCircle = size < 480 ? 50 : size < 768 ? 65 : 80;
 
-    const cardPositions = services.map((_, idx) => {
-      const angle = (idx / count) * Math.PI * 2 - Math.PI / 2;
-      const x = Math.cos(angle) * radius;
-      const y = Math.sin(angle) * radius;
-      return new THREE.Vector3(x, -y, 0);
-    });
+    const cardWidth = size < 480 ? 80 : size < 768 ? 100 : 130;
+    const topCount = 8;
+    const bottomCount = 8;
+    const horizontalSpacing = 40;
 
+    const getPos = (idx) => {
+      const totalSpacingTop = (topCount - 1) * horizontalSpacing;
+      const totalWidthTop = cardWidth * topCount + totalSpacingTop;
+      const startXTop = -totalWidthTop / 2 + cardWidth / 2;
+
+      const totalSpacingBottom = (bottomCount - 1) * horizontalSpacing;
+      const totalWidthBottom = cardWidth * bottomCount + totalSpacingBottom;
+      const startXBottom = -totalWidthBottom / 2 + cardWidth / 2;
+
+      if (idx < topCount)
+        return new THREE.Vector3(startXTop + idx * (cardWidth + horizontalSpacing), radius * 0.7, 0);
+      else if (idx < topCount + bottomCount) {
+        const adj = idx - topCount;
+        return new THREE.Vector3(startXBottom + adj * (cardWidth + horizontalSpacing), -radius * 0.7, 0);
+      } else if (idx === topCount + bottomCount)
+        return new THREE.Vector3(-radius * 1.1, 0, 0);
+      else return new THREE.Vector3(radius * 1.1, 0, 0);
+    };
+
+    // --- Create connectors (card → inner circle edge) ---
     const connectors = [];
-    cardPositions.forEach((pos, idx) => {
-      const color = new THREE.Color(glowColors[idx % glowColors.length]);
-      const curve = new THREE.CatmullRomCurve3([
-        pos.clone().multiplyScalar(1.03),
-        pos.clone().multiplyScalar(0.7).add(new THREE.Vector3(0, 6, 0)),
-        pos.clone().multiplyScalar(0.5).add(new THREE.Vector3(0, 10, 0)),
-        center.clone(),
-      ]);
+    services.forEach((_, idx) => {
+      const start = getPos(idx); // card position
 
-      const baseLine = new THREE.Line(
-        new THREE.BufferGeometry().setFromPoints(curve.getPoints(60)),
-        new THREE.LineBasicMaterial({
-          color: "#3f3f46",
-          transparent: true,
-          opacity: 0.3,
-          depthWrite: false,
-        })
-      );
+      // compute direction and end point at circle edge
+      const dir = center.clone().sub(start).normalize();
+      const end = dir.clone().multiplyScalar(innerCircle).add(center);
+
+      const color = new THREE.Color(glowColors[idx % glowColors.length]);
+
+      // Base connector (gray line)
+      const curve = new THREE.LineCurve3(start.clone(), end.clone());
+      const baseGeom = new THREE.BufferGeometry().setFromPoints(curve.getPoints(20));
+      const baseMat = new THREE.LineBasicMaterial({
+        color: "#3f3f46", // gray-700
+        transparent: true,
+        opacity: 0.4,
+        depthWrite: false,
+      });
+      const baseLine = new THREE.Line(baseGeom, baseMat);
       scene.add(baseLine);
 
+      // Glow animation (inward motion)
       const glowSegments = [];
       for (let i = 0; i < 25; i++) {
         const geom = new THREE.BufferGeometry();
         const mat = new THREE.LineBasicMaterial({
-          color: color,
+          color,
           transparent: true,
           opacity: 1 - i * 0.04,
           blending: THREE.AdditiveBlending,
@@ -129,13 +146,13 @@ export default function ServicesCircle() {
       connectors.push({
         curve,
         t: 0,
-        speed: 0.005,
+        speed: 0.006,
         segments: glowSegments,
       });
     });
 
     let animationStarted = false;
-    setTimeout(() => (animationStarted = true), 2000);
+    setTimeout(() => (animationStarted = true), 1500);
 
     const animate = () => {
       requestAnimationFrame(animate);
@@ -154,8 +171,10 @@ export default function ServicesCircle() {
           const t1 = THREE.MathUtils.clamp(c.t - i * spacing, 0, 1);
           const t2 = THREE.MathUtils.clamp(t1 - tail, 0, 1);
 
+          // Inward motion: card → circle edge
           const p1 = c.curve.getPoint(t1);
           const p2 = c.curve.getPoint(t2);
+
           const g = new THREE.BufferGeometry().setFromPoints([p1, p2]);
           seg.geometry.dispose();
           seg.geometry = g;
@@ -187,22 +206,34 @@ export default function ServicesCircle() {
     };
   }, [services, size]);
 
-  const count = services.length;
+  // --- UI Overlay ---
   const center = { x: size / 2, y: size / 2 };
-
-  // 🔹 Responsive element sizing
   const innerCircle = size < 480 ? 50 : size < 768 ? 65 : 80;
   const cardWidth = size < 480 ? 80 : size < 768 ? 100 : 130;
   const cardHeight = size < 480 ? 60 : size < 768 ? 70 : 90;
   const radius = Math.max(size / 2 - cardWidth / 2 - 25, 150);
+  const horizontalSpacing = 40;
 
-  const getPos = (idx) => {
-    const angle = (idx / count) * Math.PI * 2 - Math.PI / 2;
-    return {
-      x: center.x + Math.cos(angle) * radius,
-      y: center.y + Math.sin(angle) * radius,
-      angle,
-    };
+  const getUIPos = (idx) => {
+    const totalSpacingTop = (8 - 1) * horizontalSpacing;
+    const totalWidthTop = cardWidth * 8 + totalSpacingTop;
+    const startXTop = -totalWidthTop / 2 + cardWidth / 2;
+
+    const totalSpacingBottom = (8 - 1) * horizontalSpacing;
+    const totalWidthBottom = cardWidth * 8 + totalSpacingBottom;
+    const startXBottom = -totalWidthBottom / 2 + cardWidth / 2;
+
+    const p = (() => {
+      if (idx < 8)
+        return { x: startXTop + idx * (cardWidth + horizontalSpacing), y: radius * 0.7 };
+      else if (idx < 16) {
+        const adj = idx - 8;
+        return { x: startXBottom + adj * (cardWidth + horizontalSpacing), y: -radius * 0.7 };
+      } else if (idx === 16) return { x: -radius * 1.1, y: 0 };
+      else return { x: radius * 1.1, y: 0 };
+    })();
+
+    return { x: p.x + size / 2, y: size / 2 - p.y };
   };
 
   return (
@@ -210,48 +241,34 @@ export default function ServicesCircle() {
       ref={containerRef}
       className="w-full flex justify-center items-center py-20 sm:py-28 md:py-36 bg-black relative overflow-hidden"
     >
-      <div
-        className="relative"
-        style={{
-          width: size,
-          height: size,
-          minWidth: 300,
-          maxWidth: "100vw",
-        }}
-      >
+      <div className="relative" style={{ width: size, height: size }}>
         <div ref={mountRef} className="absolute inset-0" style={{ width: size, height: size }} />
 
-        {/* Center logo */}
-    {/* Center logo (Perfect Circle) */}
-<div
-  className="absolute flex flex-col items-center justify-center text-center z-10"
-  style={{
-    left: center.x - innerCircle,
-    top: center.y - innerCircle,
-    width: innerCircle * 2,
-    height: innerCircle * 2,
-  }}
->
-  <div
-    className="relative flex items-center justify-center rounded-full bg-black border border-gray-700 shadow-[0_0_40px_rgba(0,255,255,0.6)] overflow-hidden"
-    style={{
-      width: innerCircle * 2,
-      height: innerCircle * 2,
-    }}
-  >
-    <img
-      src="/logo2.png"
-      alt="Logo"
-      className="w-[60%] sm:w-[70%] md:w-[75%] h-auto object-contain"
-    />
-  </div>
-</div>
+        {/* Center Circle */}
+        <div
+          className="absolute flex flex-col items-center justify-center text-center z-10"
+          style={{
+            left: center.x - innerCircle,
+            top: center.y - innerCircle,
+            width: innerCircle * 2,
+            height: innerCircle * 2,
+          }}
+        >
+          <div
+            className="relative flex items-center justify-center rounded-full bg-black border border-gray-700 shadow-[0_0_40px_rgba(0,255,255,0.6)]"
+            style={{ width: innerCircle * 2, height: innerCircle * 2 }}
+          >
+            <img
+              src="/logo2.png"
+              alt="Logo"
+              className="w-[60%] sm:w-[70%] md:w-[75%] h-auto object-contain"
+            />
+          </div>
+        </div>
 
-
-        {/* Service Cards */}
+        {/* Cards */}
         {services.map((s, idx) => {
-          const { x, y, angle } = getPos(idx);
-          const deg = (angle * 180) / Math.PI;
+          const { x, y } = getUIPos(idx);
           return (
             <div
               key={s.name}
@@ -261,15 +278,13 @@ export default function ServicesCircle() {
                 top: y - cardHeight / 2,
                 width: cardWidth,
                 height: cardHeight,
-                transform: `rotate(${deg}deg)`,
               }}
             >
               <div
-                className="w-full h-full rounded-xl flex flex-col items-center justify-center px-1.5 py-1 text-center border border-transparent backdrop-blur-xl transition-transform duration-300"
+                className="w-full h-full rounded-xl flex flex-col items-center justify-center px-1.5 py-1 border border-transparent backdrop-blur-xl transition-transform duration-300"
                 style={{
                   background: "linear-gradient(180deg, rgba(31,31,31,0.9), rgba(17,17,17,0.8))",
-                  boxShadow: `0 0 6px 0.5px ${glowColors[idx % glowColors.length]}80`,
-                  transform: `rotate(${-deg}deg)`,
+                  boxShadow: `0 0 12px 2px ${glowColors[idx % glowColors.length]}80`,
                 }}
               >
                 <div className="text-cyan-400 mb-1">{s.icon}</div>
