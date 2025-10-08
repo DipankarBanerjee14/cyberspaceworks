@@ -4,7 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import {
   FaReact, FaNodeJs, FaCode, FaDatabase, FaJs, FaCss3Alt, FaMobileAlt,
-  FaWordpress, FaWix, FaGlobe, FaDraftingCompass, FaCube, FaPaintBrush, FaBolt,
+  FaWordpress, FaWix, FaGlobe, FaDraftingCompass, FaCube,
+  FaPaintBrush, FaBolt
 } from "react-icons/fa";
 import { FaFlutter } from "react-icons/fa6";
 
@@ -83,38 +84,43 @@ export default function ServicesCircle() {
       return new THREE.Vector3(x, -y, 0);
     });
 
-    // Connector lines with glow effect (card to circle)
+    // Connectors (straight line but curved at start)
     const connectors = [];
     cardPositions.forEach((pos, idx) => {
       const color = new THREE.Color(glowColors[idx % glowColors.length]);
-      const curve = new THREE.LineCurve3(
-        pos.clone().multiplyScalar(1.1), // Start from card position
-        center // End at center
-      );
 
+      // Make the path mostly straight but curved at start
+      const curve = new THREE.CatmullRomCurve3([
+        pos.clone().multiplyScalar(1.05),
+        pos.clone().multiplyScalar(0.6).add(new THREE.Vector3(0, 30, 0)),
+        center.clone(),
+      ]);
+
+      // Base faint line
       const baseLine = new THREE.Line(
-  new THREE.BufferGeometry().setFromPoints(curve.getPoints(50)),
-  new THREE.LineBasicMaterial({
-    color: "#3f3f46", // Tailwind gray-700
-    transparent: true,
-    opacity: 0.55,
-    blending: THREE.NormalBlending,
-    depthWrite: false,
-  })
-);
-
+        new THREE.BufferGeometry().setFromPoints(curve.getPoints(60)),
+        new THREE.LineBasicMaterial({
+          color: "#3f3f46",
+          transparent: true,
+          opacity: 0.3,
+          depthWrite: false,
+        })
+      );
       scene.add(baseLine);
 
+      // Glow line segments
       const glowSegments = [];
-      for (let i = 0; i < 20; i++) {
+      for (let i = 0; i < 25; i++) {
         const geom = new THREE.BufferGeometry();
         const mat = new THREE.LineBasicMaterial({
           color: color,
           transparent: true,
-          opacity: 0.8 - (i * 0.04), // Fade out along length
+          opacity: 1 - i * 0.04,
           blending: THREE.AdditiveBlending,
+          depthWrite: false,
         });
         const seg = new THREE.Line(geom, mat);
+        seg.visible = false;
         scene.add(seg);
         glowSegments.push(seg);
       }
@@ -122,28 +128,41 @@ export default function ServicesCircle() {
       connectors.push({
         curve,
         t: 0,
-        speed: 0.015 + Math.random() * 0.005,
+        speed: 0.005,
         segments: glowSegments,
       });
     });
 
+    let animationStarted = false;
+
+    // Start after 7 seconds delay
+    setTimeout(() => {
+      animationStarted = true;
+    }, 4000);
+
     const animate = () => {
       requestAnimationFrame(animate);
+      if (!animationStarted) {
+        renderer.render(scene, camera);
+        return;
+      }
 
       connectors.forEach((c) => {
         c.t += c.speed;
-        if (c.t > 1) c.t = 0; // Loop animation
+        if (c.t > 1.2) c.t = 0; // Restart after reaching cards
 
         c.segments.forEach((seg, i) => {
-         // Flow from card (start) toward center (end)
-const t1 = THREE.MathUtils.clamp(c.t - (i * 0.05), 0, 1);
-const t2 = THREE.MathUtils.clamp(t1 - 0.05, 0, 1);
-const p1 = c.curve.getPoint(t1);
-const p2 = c.curve.getPoint(t2);
+          const tail = 0.03;
+          const spacing = 0.02;
+          const t1 = THREE.MathUtils.clamp(c.t - i * spacing, 0, 1);
+          const t2 = THREE.MathUtils.clamp(t1 - tail, 0, 1);
 
+          const p1 = c.curve.getPoint(t1);
+          const p2 = c.curve.getPoint(t2);
           const g = new THREE.BufferGeometry().setFromPoints([p1, p2]);
           seg.geometry.dispose();
           seg.geometry = g;
+
           seg.visible = t1 > 0 && t2 >= 0;
         });
       });
@@ -197,7 +216,7 @@ const p2 = c.curve.getPoint(t2);
       <div className="relative" style={{ width: size, height: size, minWidth: 320 }}>
         <div ref={mountRef} className="absolute inset-0" style={{ width: size, height: size }} />
 
-        {/* Center Logo */}
+        {/* Center logo */}
         <div
           className="absolute flex flex-col items-center justify-center rounded-full text-center z-10"
           style={{
@@ -229,7 +248,7 @@ const p2 = c.curve.getPoint(t2);
               }}
             >
               <div
-                className="w-full h-full rounded-xl flex flex-col items-center justify-center px-3 text-center border border-transparent backdrop-blur-xl transition-transform duration-300 hover:scale-110"
+                className="w-full h-full rounded-xl flex flex-col items-center justify-center px-3 text-center border border-transparent backdrop-blur-xl transition-transform duration-300 "
                 style={{
                   background: "linear-gradient(180deg, rgba(31,31,31,0.9), rgba(17,17,17,0.8))",
                   boxShadow: `0 0 6px 0.5px ${glowColors[idx % glowColors.length]}80`,
