@@ -66,14 +66,14 @@ export default function Testimonials() {
   return (
     <section className="relative bg-black text-black px-6 py-16 overflow-hidden">
       {/* 🌟 Soft global teal glow in background */}
-      <div
+      {/* <div
         className="absolute inset-0 pointer-events-none"
         aria-hidden
         style={{
           background:
-            'radial-gradient(circle at 50% 50%, rgba(14,186,199,0.18), transparent 60%)',
+            'radial-gradient(circle at 80% 80%, rgba(14,186,199,0.18), transparent 60%)',
         }}
-      />
+      /> */}
 
       <h2 className="text-4xl font-bold text-center mb-12 text-white relative z-10">
         What <span className="text-[#0ebac7]">People</span> Say About Us

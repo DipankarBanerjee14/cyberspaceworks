@@ -9,7 +9,7 @@ import {
 
 export default function ITSupportSection() {
   return (
-    <section className="relative bg-black text-white py-16 px-6 max-w-6xl mx-auto">
+    <section className="relative bg-black text-white py-16 px-6 max-w-6xl mx-auto z-0">
       {/* Headings */}
       <div className="text-center mb-20">
         <h2 className="text-4xl md:text-5xl font-semibold mb-4">
@@ -22,33 +22,36 @@ export default function ITSupportSection() {
 
       {/* Grid Layout */}
       <div className="relative max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 md:gap-32 text-center md:text-left">
-        {/* Center Glowing Logo */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-          <div className="relative w-40 h-40 flex items-center justify-center rounded-full">
-           {/* Glow */}
-<div className="absolute inset-0 bg-gradient-to-r from-white via-cyan-400 to-cyan-600 blur-3xl opacity-80 rounded-full"></div>
+{/* Center Glowing Logo */}
+<div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+  <div className="relative w-40 h-40 flex items-center justify-center rounded-full">
+    
+    {/* Animated Glow */}
+    <div className="absolute inset-0 bg-gradient-to-r from-white via-cyan-400 to-cyan-600 blur-3xl opacity-80 rounded-full 
+      animate-pulseGlow">
+    </div>
 
-            {/* Inner circle */}
-            <div className="relative w-32 h-32 bg-black border border-gray-700 rounded-full flex items-center justify-center text-white font-semibold tracking-widest">
-             
-                <img src="/logo2.png" alt="Logo" className="h-25 w-auto" />
-             
-            </div>
-          </div>
-        </div>
+    {/* Inner Circle */}
+    <div className="relative w-32 h-32 bg-black border border-gray-700 rounded-full flex items-center justify-center text-white font-semibold tracking-widest">
+      <img src="/logo2.png" alt="Logo" className="h-25 w-auto" />
+    </div>
+  </div>
+</div>
 
-   {/* Divider Lines */}
-{/* Vertical Line */}
+{/* Divider Lines */}
+
+{/* Vertical Line — gradient from center to top & bottom */}
 <div
   className="absolute left-1/2 top-0 bottom-0 w-[1.5px] z-0 
-    bg-gradient-to-b from-gray-600 via-gray-500 to-black"
+    bg-gradient-to-b from-transparent via-gray-500 to-transparent"
 />
 
-{/* Horizontal Line */}
+{/* Horizontal Line — gradient from center to left & right */}
 <div
   className="absolute top-1/2 left-0 right-0 h-[1px] z-0 
-    bg-gradient-to-r from-gray-600 via-gray-500 to-black"
+    bg-gradient-to-r from-transparent via-gray-500 to-transparent"
 />
+
 
         {/* Top Left */}
         <div className="flex flex-col items-center text-center relative z-10 max-w-3xl mx-auto">

@@ -90,10 +90,7 @@ export default function Dashboard() {
     };
   }, []);
 
-  const spotlightStyle = {
-    background: `radial-gradient(400px at ${coords.x}px ${coords.y}px, rgba(0,150,255,0.2), transparent 60%)`,
-    transition: "background-position 90ms linear, opacity 160ms ease",
-  };
+
 
   return (
     <>
@@ -118,8 +115,8 @@ export default function Dashboard() {
         {/* Soft global blue glow */}
         <div className="absolute inset-0 flex justify-center items-center pointer-events-none" />
 
-        {/* Spotlight following cursor */}
-        <div className="absolute inset-0 pointer-events-none" style={spotlightStyle} />
+     
+       
 
         {/* Dashboard Content */}
         <div className="relative z-10 max-w-6xl mx-auto">

@@ -8,7 +8,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="w-full fixed top-0 z-50">
+      <header className="w-full fixed top-0 z-20">
         {/* Neon top strip */}
         <div className="relative h-[10px] bg-cyan-400">
           <div className="absolute bottom-0 left-0 w-full h-[4px] bg-cyan-400 shadow-[0_0_15px_#00ffff]">

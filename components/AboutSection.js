@@ -54,12 +54,7 @@ const VortaskyAISection = () => {
         }}
       />
 
-      {/* spotlight following cursor */}
-      <div
-        className="absolute inset-0 pointer-events-none spotlight"
-        style={spotlightStyle}
-      />
-
+     
       {/* Vortasky AI Section */}
       <section className="py-16 px-4 relative z-10">
         <div className="max-w-6xl mx-auto">

@@ -373,7 +373,7 @@ export default function OurServicesWithWires() {
   return (
     <section
   ref={containerRef}
-  className="relative z-10 py-16 bg-black overflow-hidden max-w-7xl mx-auto"
+  className="relative z-0 py-16 bg-black overflow-hidden max-w-7xl mx-auto"
 >
 
       <canvas
@@ -582,7 +582,7 @@ export default function OurServicesWithWires() {
   </div>
 </div>
 
-{/* Branding */}
+{/* Research and Analytics */}
 <div
   ref={(el) => (boxRefs.current[6] = el)}
   className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out"
@@ -591,9 +591,9 @@ export default function OurServicesWithWires() {
       shadow-[0_0_15px_rgba(67,56,202,0.3),inset_0_0_15px_rgba(67,56,202,0.05)]
       backdrop-blur-xl flex flex-col items-center justify-center text-center px-5 rounded-lg">
     <div className="text-cyan-400 mb-2"><FaTrademark size={38} /></div>
-    <h3 className="text-sm font-semibold text-white">Branding</h3>
+    <h3 className="text-sm font-semibold text-white">Research and Analytics</h3>
     <p className="text-xs text-gray-400 mt-1 leading-tight">
-      Developing a unique brand <br/> identity that stands out in  <br/>the market.
+     We help businesses make sharper, faster, and more confident decisions in a competitive market.
     </p>
   </div>
 </div>

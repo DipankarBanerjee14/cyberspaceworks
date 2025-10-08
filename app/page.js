@@ -40,11 +40,11 @@ export default function TrandingPage() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-screen bg-black">
+      <div className="flex items-center justify-center h-screen bg-[#141416]">
         <img
           src={preloader.src || preloader}
           alt="Loading..."
-          className="w-50 h-50"
+          className="w-80 h-60"
         />
       </div>
     );
