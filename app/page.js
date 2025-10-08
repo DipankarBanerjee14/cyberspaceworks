@@ -1,41 +1,46 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
-import OurServices from "@/components/OurServices.js";
-import WhyChooseUs from "@/components/WhyChooseUs.js";
-import AboutSection from "@/components/AboutSection.js";
-import HowWeDoIt from "@/components/HowWeDoIt.js";
-import Testimonial from "@/components/Testimonial.js";
+import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar.js";
-import HeroSection from "@/components/HeroSection.js";
-import Demo from "@/components/Demo.js";
-import Dashboard from "@/components/Dasboard.js";
+
 import preloader from "@/public/preloader.gif";
+
+// Dynamically import heavy sections to reduce initial bundle size
+const HeroSection = dynamic(() => import("@/components/HeroSection.js"));
+const Demo = dynamic(() => import("@/components/Demo.js"));
+const OurServices = dynamic(() => import("@/components/OurServices.js"));
+const WhyChooseUs = dynamic(() => import("@/components/WhyChooseUs.js"));
+const Dashboard = dynamic(() => import("@/components/Dasboard.js")); // matches your file
+const AboutSection = dynamic(() => import("@/components/AboutSection.js"));
+const HowWeDoIt = dynamic(() => import("@/components/HowWeDoIt.js"));
+const Testimonial = dynamic(() => import("@/components/Testimonial.js"));
 
 export default function TrandingPage() {
   const [loading, setLoading] = useState(true);
-  const [coords, setCoords] = useState({ x: 0, y: 0 });
 
-  // --- Mouse tracking for spotlight ---
+  // --- Preloader logic (optimized using plain <img>) ---
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      setCoords({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    const img = new window.Image();
+    img.src = preloader.src || preloader;
+    img.onload = () => setLoading(false);
   }, []);
 
-  // --- Preloader logic ---
+  // --- Cursor glow effect (optimized using requestAnimationFrame) ---
   useEffect(() => {
-    const hasLoadedBefore = sessionStorage.getItem("hasLoaded");
-    if (!hasLoadedBefore) {
-      const timer = setTimeout(() => {
-        setLoading(false);
-        sessionStorage.setItem("hasLoaded", "true");
-      }, 2500);
-      return () => clearTimeout(timer);
-    } else {
-      setLoading(false);
-    }
+    const spotlight = document.getElementById("cursor-spotlight");
+    if (!spotlight) return;
+
+    const handleMouseMove = (e) => {
+      const x = e.clientX;
+      const y = e.clientY;
+      requestAnimationFrame(() => {
+        spotlight.style.background = `radial-gradient(400px at ${x}px ${y}px, rgba(0,150,255,0.18), transparent 60%)`;
+      });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
   if (loading) {
@@ -50,32 +55,22 @@ export default function TrandingPage() {
     );
   }
 
-  // --- Cursor glow (spotlight) style ---
-  const spotlightStyle = {
-    position: "fixed", // ensures it covers the whole viewport
-    top: 0,
-    left: 0,
-    width: "100vw",
-    height: "100vh",
-    pointerEvents: "none",
-    zIndex: 10, // ensures it's visible above sections
-    background: `radial-gradient(400px at ${coords.x}px ${coords.y}px, rgba(0,150,255,0.18), transparent 60%)`,
-    transition: "background-position 80ms linear",
-  };
-
   return (
     <>
-      {/* --- Global cursor --- */}
+      {/* Global custom cursor */}
       <style jsx global>{`
         * {
           cursor: url("/cursor.png") 8 8, auto;
         }
       `}</style>
 
-      {/* --- Cursor Glow Layer --- */}
-      <div style={spotlightStyle}></div>
+      {/* Cursor glow layer */}
+      <div
+        id="cursor-spotlight"
+        className="fixed top-0 left-0 w-screen h-screen pointer-events-none z-10"
+      />
 
-      {/* --- Main Page --- */}
+      {/* Main Page */}
       <div className="bg-black relative min-h-screen">
         <Navbar />
         <HeroSection />

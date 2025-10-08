@@ -1,4 +1,4 @@
-// app/tranding/page.js
+// app/HeroSection.js
 "use client";
 import React, { useEffect, useRef } from "react";
 import Link from "next/link";
