@@ -12,49 +12,65 @@ const testimonials = [
     firstname: 'Tom',
     lastname: 'Ford',
     position: 'CEO, Iennep',
-    testimonial: 'Their design process was smooth and easy to follow. Highly recommend.',
+    testimonial:
+      'Their design process was smooth and easy to follow. Highly recommend.',
+    avatar: 'https://randomuser.me/api/portraits/men/11.jpg',
   },
   {
     firstname: 'Devid',
     lastname: 'Dee',
     position: 'CEO, Deepstack',
-    testimonial: 'Impressive results in record time. These guys know what they’re doing.',
+    testimonial:
+      'Impressive results in record time. These guys know what they’re doing.',
+    avatar: 'https://randomuser.me/api/portraits/men/32.jpg',
   },
   {
     firstname: 'Jacob',
     lastname: 'Thomason',
     position: 'CEO, Rentpost',
-    testimonial: 'Very professional team that delivered beyond expectations!',
+    testimonial:
+      'Very professional team that delivered beyond expectations!',
+    avatar: 'https://randomuser.me/api/portraits/men/56.jpg',
   },
   {
     firstname: 'Jenny',
     lastname: 'Mark',
     position: 'CEO, Cofi',
-    testimonial: 'Loved working with them. Great results and support throughout.',
+    testimonial:
+      'Loved working with them. Great results and support throughout.',
+    avatar: 'https://randomuser.me/api/portraits/women/22.jpg',
   },
   {
-    firstname: 'Tom',
-    lastname: 'Ford',
-    position: 'CEO, Iennep',
-    testimonial: 'Their design process was smooth and easy to follow. Highly recommend.',
+    firstname: 'Olivia',
+    lastname: 'Stone',
+    position: 'Founder, BlueSky',
+    testimonial:
+      'The attention to detail and creativity blew my mind. Excellent job!',
+    avatar: 'https://randomuser.me/api/portraits/women/47.jpg',
   },
   {
-    firstname: 'Devid',
-    lastname: 'Dee',
-    position: 'CEO, Deepstack',
-    testimonial: 'Impressive results in record time. These guys know what they’re doing.',
+    firstname: 'Lucas',
+    lastname: 'Gray',
+    position: 'Tech Lead, Novex',
+    testimonial:
+      'Their innovative ideas helped us scale faster than expected.',
+    avatar: 'https://randomuser.me/api/portraits/men/64.jpg',
   },
   {
-    firstname: 'Jacob',
-    lastname: 'Thomason',
-    position: 'CEO, Rentpost',
-    testimonial: 'Very professional team that delivered beyond expectations!',
+    firstname: 'Isabella',
+    lastname: 'Moore',
+    position: 'CTO, CloudSync',
+    testimonial:
+      'Smooth collaboration and stunning results. Would love to work again!',
+    avatar: 'https://randomuser.me/api/portraits/women/66.jpg',
   },
   {
-    firstname: 'Jenny',
-    lastname: 'Mark',
-    position: 'CEO, Cofi',
-    testimonial: 'Loved working with them. Great results and support throughout.',
+    firstname: 'Ethan',
+    lastname: 'Brown',
+    position: 'CEO, Zenith Corp',
+    testimonial:
+      'The team’s dedication and professionalism stand out from the crowd.',
+    avatar: 'https://randomuser.me/api/portraits/men/70.jpg',
   },
 ];
 
@@ -65,16 +81,6 @@ export default function Testimonials() {
 
   return (
     <section className="relative bg-black text-black px-6 py-16 overflow-hidden">
-      {/* 🌟 Soft global teal glow in background */}
-      {/* <div
-        className="absolute inset-0 pointer-events-none"
-        aria-hidden
-        style={{
-          background:
-            'radial-gradient(circle at 80% 80%, rgba(14,186,199,0.18), transparent 60%)',
-        }}
-      /> */}
-
       <h2 className="text-4xl font-bold text-center mb-12 text-white relative z-10">
         What <span className="text-[#0ebac7]">People</span> Say About Us
       </h2>
@@ -130,39 +136,24 @@ export default function Testimonials() {
                       : 'flex flex-col items-center justify-center mb-10'
                   } group`}
                 >
-                  {/* ✨ Glow background (only visible when active) */}
-                  {isActive && (
-                    <div
-                      className="absolute inset-0 pointer-events-none opacity-0 animate-fadeIn transition-opacity duration-500"
-                      aria-hidden
-                      style={{
-                        background:
-                          'radial-gradient(circle at 50% 50%, rgba(14,186,199,0.18), transparent 60%)',
-                      }}
-                    />
-                  )}
-
-                  {/* Avatar and Name */}
+                  {/* Avatar + Name */}
                   <div className="w-1/2 h-full flex flex-col items-center justify-center text-center text-black">
                     <img
-                      src={item.avatar || 'https://via.placeholder.com/100'}
+                      src={item.avatar}
                       alt={`${item.firstname} ${item.lastname}`}
-                      className="w-24 h-24 rounded-full mb-2 object-cover"
+                      className="w-24 h-24 rounded-full mb-2 object-cover border-2 border-white/40 shadow-md"
                     />
                     <h4 className="text-lg font-semibold">{item.firstname}</h4>
                     <h4 className="text-lg font-semibold">{item.lastname}</h4>
-                    <p className="text-sm mt-5 text-gray-800">{item.position}</p>
+                    <p className="text-sm mt-2 text-gray-800">{item.position}</p>
                   </div>
 
                   {/* Testimonial */}
                   {isActive && (
                     <div className="w-1/2 relative flex items-center justify-center text-center text-sm h-full px-4 text-black">
-                      {/* Background Double Quote */}
                       <div className="absolute text-[10rem] sm:text-[14rem] text-black/10 pointer-events-none select-none leading-none">
                         &ldquo;
                       </div>
-
-                      {/* Testimonial Text */}
                       <p className="relative z-10 max-w-[90%]">{item.testimonial}</p>
                     </div>
                   )}

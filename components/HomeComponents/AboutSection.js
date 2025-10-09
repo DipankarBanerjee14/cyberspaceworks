@@ -32,14 +32,24 @@ const VortaskyAISection = () => {
   return (
     <main className="relative overflow-hidden" style={{ background: "#000000" }}>
       {/* soft global purple glow */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        aria-hidden
-        style={{
-          background:
-            "radial-gradient(circle at 50% 50%, rgba(147,51,234,0.18), transparent 60%)",
-        }}
-      />
+     {/* <div
+  className="absolute inset-0 pointer-events-none"
+  aria-hidden
+  style={{
+    background:
+      "radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.18), transparent 60%)",
+  }}
+/> */}
+
+ <div
+  className="absolute inset-0 pointer-events-none"
+  aria-hidden
+  style={{
+    background:
+      "radial-gradient(circle at 50% 50%, rgba(14,186,199,0.45), transparent 40%)",
+  }}
+/>
+
 
       {/* radial backdrop glow */}
       <div
@@ -60,24 +70,24 @@ const VortaskyAISection = () => {
 
           {/* 🔹 Top Row - Purple → White */}
           <div className="mb-12">
-            <div className="relative rounded-2xl p-8 bg-gradient-to-b from-purple-700 via-purple-500/60 to-white backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(147,51,234,0.5)]">
+            <div className="relative rounded-2xl p-8 bg-gradient-to-b from-cyan-700 via-cyan-400/60 to-white backdrop-blur-xl  overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,255,255,0.5)]">
               <div
                 className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
                 style={{
                   background:
-                    "radial-gradient(circle at center, rgba(147,51,234,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
+                    "radial-gradient(circle at center, rgba(255,255,255,0.4) 0%, rgba(0,255,255,0.6) 40%, transparent 70%)",
                 }}
               />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative z-10">
                 <div className="flex flex-col">
-                  <h3 className="text-xl font-semibold text-white mb-3">
+                  <h3 className="text-xl font-semibold text-black mb-3">
                     Vortasky Intelligent Routing That Delivers
                   </h3>
-                  <p className="text-gray-300 mb-4">
+                  <p className="text-gray-900 mb-4">
                     Automatically route conversations to the right agent or
                     department—no delays, no confusion.
                   </p>
-                  <button className="bg-gradient-to-r from-purple-600 to-purple-400 text-white px-4 py-2 rounded shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 w-fit">
+                  <button className="bg-gradient-to-r from-cyan-600 to-cyan-400 text-black px-4 py-2 rounded shadow-lg shadow-cyan-500/30 hover:shadow-purple-500/50 w-fit">
                     Get Started →
                   </button>
                 </div>
@@ -128,7 +138,7 @@ const VortaskyAISection = () => {
             </div>
           </div>
 
-          {/* 🔹 Bottom Row - White → Purple */}
+          {/* 🔹 Bottom Row - White → Cyan */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
@@ -143,23 +153,23 @@ const VortaskyAISection = () => {
             ].map((item, i) => (
               <div
                 key={i}
-                className="relative rounded-2xl p-8 bg-gradient-to-b from-white via-purple-500/40 to-purple-700 backdrop-blur-xl border border-white/20 overflow-hidden shadow-lg flex flex-col items-center group transition-all duration-300 hover:shadow-[0_0_30px_rgba(147,51,234,0.5)]"
+                className="relative rounded-2xl p-8 bg-gradient-to-b from-white via-cyan-400/60 to-cyan-700 backdrop-blur-xl  overflow-hidden shadow-lg flex flex-col items-center group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,255,255,0.5)]"
               >
                 <div
                   className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
                   style={{
                     background:
-                      "radial-gradient(circle at center, rgba(255,255,255,0.4) 0%, rgba(147,51,234,0.6) 40%, transparent 70%)",
+                      "radial-gradient(circle at center, rgba(255,255,255,0.4) 0%, rgba(0,255,255,0.6) 40%, transparent 70%)",
                   }}
                 />
                 <div className="relative z-10 flex flex-col items-center w-full">
                   {item.title && (
-                    <h3 className="text-xl font-semibold text-white mb-3 text-center">
+                    <h3 className="text-xl font-semibold text-b;ack mb-3 text-center text-black">
                       {item.title}
                     </h3>
                   )}
                   {item.desc && (
-                    <p className="text-gray-200 mb-4 text-center">
+                    <p className="text-gray-900 mb-4 text-center">
                       {item.desc}
                     </p>
                   )}
@@ -168,7 +178,7 @@ const VortaskyAISection = () => {
                       {item.languages.map((lang, j) => (
                         <div
                           key={j}
-                          className="bg-black/60 p-2 rounded text-gray-300 text-center flex justify-between items-center border border-white/10"
+                          className="bg-black/60 p-2 rounded text-gray-200 text-center flex justify-between items-center border border-white/10"
                         >
                           {lang}
                           <span>▼</span>
@@ -178,88 +188,50 @@ const VortaskyAISection = () => {
                   )}
 
                   {!item.languages && (
-                    <div className="relative w-full h-40 mt-4">
-                      <svg
-                        className="absolute inset-0 w-full h-full"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <line
-                          x1="25%"
-                          y1="10%"
-                          x2="50%"
-                          y2="50%"
-                          stroke="black"
-                          strokeWidth="1"
-                        />
-                        <line
-                          x1="75%"
-                          y1="10%"
-                          x2="50%"
-                          y2="50%"
-                          stroke="black"
-                          strokeWidth="1"
-                        />
-                        <line
-                          x1="20%"
-                          y1="90%"
-                          x2="50%"
-                          y2="50%"
-                          stroke="black"
-                          strokeWidth="1"
-                        />
-                        <line
-                          x1="80%"
-                          y1="90%"
-                          x2="50%"
-                          y2="50%"
-                          stroke="black"
-                          strokeWidth="1"
-                        />
-                      </svg>
-                      <div className="absolute top-0 left-1/4 transform -translate-x-1/2 text-center">
-                        <div className="rounded-lg bg-white/10 backdrop-blur-md p-2 border border-white/10">
-                          <FaDatabase
-                            className="mx-auto mb-1 text-black"
-                            size={24}
-                          />
-                          <p className="text-gray-900 text-sm">
-                            User Experience
-                          </p>
-                        </div>
-                      </div>
-                      <div className="absolute bottom-0 left-0 transform translate-x-1/2 text-center">
-                        <div className="rounded-lg bg-white/10 backdrop-blur-md p-2 border border-white/10">
-                          <FaCheckCircle
-                            className="mx-auto mb-1 text-black"
-                            size={24}
-                          />
-                          <p className="text-gray-900 text-sm">Final Result</p>
-                        </div>
-                      </div>
-                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-                        <FaBrain className="mx-auto text-black" size={40} />
-                      </div>
-                      <div className="absolute bottom-0 right-0 transform -translate-x-1/2 text-center">
-                        <div className="rounded-lg bg-white/10 backdrop-blur-md p-2 border border-white/10">
-                          <FaArrowRight
-                            className="mx-auto mb-1 text-black"
-                            size={24}
-                          />
-                          <p className="text-gray-900 text-sm">Data Infoflow</p>
-                        </div>
-                      </div>
-                      <div className="absolute top-0 right-1/4 transform translate-x-1/2 text-center">
-                        <div className="rounded-lg bg-white/10 backdrop-blur-md p-2 border border-white/10">
-                          <FaBrain
-                            className="mx-auto mb-1 text-black"
-                            size={24}
-                          />
-                          <p className="text-gray-900 text-sm">
-                            AI Knowledge
-                          </p>
-                        </div>
-                      </div>
+                    <div className="relative w-full h-64 mt-4">
+        {/* Connection Lines */}
+  <svg className="absolute inset-0 w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <line x1="25%" y1="25%" x2="50%" y2="50%" stroke="black" strokeWidth="1" />
+    <line x1="75%" y1="25%" x2="50%" y2="50%" stroke="black" strokeWidth="1" />
+    <line x1="25%" y1="75%" x2="50%" y2="50%" stroke="black" strokeWidth="1" />
+    <line x1="75%" y1="75%" x2="50%" y2="50%" stroke="black" strokeWidth="1" />
+  </svg>
+                  {/* Center Brain */}
+  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+    <FaBrain className="mx-auto text-black" size={40} />
+  </div>
+
+  {/* Top Left - User Experience */}
+  <div className="absolute top-[10%] left-[15%] transform -translate-x-1/2 text-center">
+    <div className="rounded-lg bg-white/10 backdrop-blur-md p-3 border border-white/10">
+      <FaDatabase className="mx-auto mb-1 text-black" size={24} />
+      <p className="text-gray-900 text-sm">User Experience</p>
+    </div>
+  </div>
+
+  {/* Top Right - AI Knowledge */}
+  <div className="absolute top-[10%] right-[15%] transform translate-x-1/2 text-center">
+    <div className="rounded-lg bg-white/10 backdrop-blur-md p-3 border border-white/10">
+      <FaBrain className="mx-auto mb-1 text-black" size={24} />
+      <p className="text-gray-900 text-sm">AI Knowledge</p>
+    </div>
+  </div>
+
+  {/* Bottom Left - Final Result */}
+  <div className="absolute bottom-[10%] left-[15%] transform -translate-x-1/2 text-center">
+    <div className="rounded-lg bg-white/10 backdrop-blur-md p-3 border border-white/10">
+      <FaCheckCircle className="mx-auto mb-1 text-black" size={24} />
+      <p className="text-gray-900 text-sm">Final Result</p>
+    </div>
+  </div>
+
+  {/* Bottom Right - Data Inflow */}
+  <div className="absolute bottom-[10%] right-[15%] transform translate-x-1/2 text-center">
+    <div className="rounded-lg bg-white/10 backdrop-blur-md p-3 border border-white/10">
+      <FaArrowRight className="mx-auto mb-1 text-black" size={24} />
+      <p className="text-gray-900 text-sm">Data Inflow</p>
+    </div>
+  </div>
                     </div>
                   )}
                 </div>

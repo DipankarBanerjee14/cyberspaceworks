@@ -7,7 +7,7 @@ const TerritorySection = () => {
     name: "",
     email: "",
     contact: "",
-    countryCode: "",
+    countryCode: "+91", // ✅ default country code
     website: "",
     service: "Social Media Marketing",
     requirement: "",
@@ -28,7 +28,7 @@ const TerritorySection = () => {
     setMessage("");
 
     try {
-      // Simulate API request (replace with your API endpoint)
+      // Simulate API request
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
       setMessage("✅ Thank you! Our team will contact you soon.");
@@ -36,7 +36,7 @@ const TerritorySection = () => {
         name: "",
         email: "",
         contact: "",
-        countryCode: "",
+        countryCode: "+91", // keep default
         website: "",
         service: "Web Development",
         requirement: "",
@@ -50,8 +50,18 @@ const TerritorySection = () => {
   };
 
   return (
-    <section className="relative py-20 bg-black text-white">
-      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-8 relative z-10 px-6">
+    <section className="relative py-20 bg-black text-white  px-6">
+       <div
+  className="absolute inset-0 pointer-events-none"
+  aria-hidden
+  style={{
+    background:
+      "radial-gradient(circle at 50% 50%, rgba(14,186,199,0.45), transparent 40%)",
+  }}
+/>
+
+      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-8 relative z-10">
+           
         {/* Header Section */}
         <div className="lg:w-1/2 space-y-4 text-center lg:text-left">
           <h1 className="text-4xl font-bold mb-4 leading-snug">
@@ -65,13 +75,13 @@ const TerritorySection = () => {
             Fill the form below and let our Marketing team identify <br />
             your blue ocean strategy for a perfect take down.
           </p>
-           <button
-                  type=""
-                  disabled={loading}
-                  className="py-2 px-8 bg-blue-500 hover:bg-blue-600 text-black font-semibold rounded-full duration-300 cursor-pointer shadow-lg shadow-black/50 hover:brightness-110 transition"
-                >
-                 Contact Us
-                </button>
+          <button
+            type=""
+            disabled={loading}
+            className="py-2 px-8 bg-blue-500 hover:bg-blue-600 text-black font-semibold rounded-full duration-300 cursor-pointer shadow-lg shadow-black/50 hover:brightness-110 transition"
+          >
+            Contact Us
+          </button>
         </div>
 
         {/* Form Section */}
@@ -97,6 +107,10 @@ const TerritorySection = () => {
                   required
                   className="p-3 rounded bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-400 outline-none"
                 />
+              </div>
+
+              {/* ✅ Country Code + Contact */}
+              <div className="flex gap-3">
                 <input
                   type="text"
                   name="countryCode"
@@ -104,16 +118,16 @@ const TerritorySection = () => {
                   value={formData.countryCode}
                   onChange={handleChange}
                   required
-                  className="p-3 rounded bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-400 outline-none"
+                  className="w-1/5 p-3 rounded bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-400 outline-none"
                 />
                 <input
                   type="tel"
                   name="contact"
-                  placeholder="Contact Number"
+                  placeholder="Contact or WhatsApp Number"
                   value={formData.contact}
                   onChange={handleChange}
                   required
-                  className="p-3 rounded bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-400 outline-none"
+                  className="w-4/5 p-3 rounded bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-400 outline-none"
                 />
               </div>
 
@@ -128,7 +142,6 @@ const TerritorySection = () => {
                   onChange={handleChange}
                   className="w-full p-3 rounded bg-gray-800 text-white focus:ring-2 focus:ring-blue-400 outline-none"
                 >
-                 
                   <option>Web Development</option>
                   <option>App Development</option>
                   <option>Software Development</option>

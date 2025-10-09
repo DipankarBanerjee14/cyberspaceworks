@@ -20,9 +20,9 @@ export default function Navbar() {
         <nav className="text-white ">
           <div className="relative flex items-center justify-between h-[70px]">
 
-            {/* Left Menu */}
-            <ul className=" space-x-6 mr-6 font-bold px-6 py-3 rounded-full bg-black/10 border border-white/10 shadow-xl flex items-center justify-between backdrop-blur-sm  ">
-              {["Home", "About", "Contact"].map((item) => (
+            {/* Left Menu Home, Services, About, Contact, Get a Quote(Button)*/}
+            <ul className=" space-x-6 mr-6 font-bold px-6 py-3 rounded-xl bg-black/10 border border-white/10 shadow-xl flex items-center justify-between backdrop-blur-sm  ">
+              {["Home","Services", "About", "Contact"].map((item) => (
                 <li key={item} className="relative group">
                   <Link
                     href="#"
@@ -30,9 +30,15 @@ export default function Navbar() {
                   >
                     {item}
                   </Link>
+                    
                   <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full"></span>
                 </li>
               ))}
+              <button
+                    className="flex items-center justify-center gap-1 relative px-4 py-2 text-black cursor-pointer bg-blue-400 rounded-full shadow-[0_0_12px_rgba(0,0,0,0.4)] transition-all duration-300 hover:shadow-[0_0_16px_rgba(0,0,0,0.6)] "
+                  >
+                    Get a Quote
+                  </button>
             </ul>
 
             {/* Center Logo with thick border */}
@@ -43,7 +49,7 @@ export default function Navbar() {
             </div>
 
             {/* Right Menu */}
-            <ul className="space-x-6 mr-6 font-bold px-6 py-3 rounded-full bg-black/10 border border-white/10 shadow-xl flex items-center justify-between backdrop-blur-sm ">
+            <ul className="space-x-6 mr-6 font-bold px-6 py-3 rounded-xl bg-black/10 border border-white/10 shadow-xl flex items-center justify-between backdrop-blur-sm ">
               {["Home", "About", "Contact"].map((item) => (
                 <li key={item} className="relative group">
                   <Link
