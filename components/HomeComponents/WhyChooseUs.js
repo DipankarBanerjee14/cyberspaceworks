@@ -1,8 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import {
-  FaBolt,
-} from "react-icons/fa";
+import { FaBolt } from "react-icons/fa";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -42,48 +40,98 @@ const WhyChooseUsWithGraph = () => {
     transition: "background-position 90ms linear, opacity 160ms ease",
   };
 
-  const dataLine = {
-    labels: ["4 Jan", "18 Jan", "1 Feb", "16 Feb", "1 Mar", "15 Mar"],
-    datasets: [
-      {
-        label: "Series 1",
-        data: [35, 38, 40, 37, 39, 35],
-        borderColor: "#ffd700",
-        backgroundColor: "rgba(255, 215, 0, 0.3)",
-        fill: true,
-        tension: 0.4,
-        pointBackgroundColor: "#ffd700",
-        pointBorderColor: "#fff",
-        pointBorderWidth: 2,
-      },
-      {
-        label: "Series 2",
-        data: [25, 28, 26, 30, 28, 32],
-        borderColor: "#00bfff",
-        backgroundColor: "rgba(0, 191, 255, 0.3)",
-        fill: true,
-        tension: 0.4,
-        pointBackgroundColor: "#00bfff",
-        pointBorderColor: "#fff",
-        pointBorderWidth: 2,
-      },
-    ],
+  // === COOL GRAPH ENHANCEMENTS ===
+  const createGradient = (ctx, color1, color2) => {
+    const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+    gradient.addColorStop(0, color1);
+    gradient.addColorStop(1, color2);
+    return gradient;
   };
+
+ const dataLine = {
+  labels: ["2017","2018","2019","2020","2021","2022","2023","2024","2025"],
+  datasets: [
+    {
+      label: "Google",
+      data: [15, 18, 20, 25, 28, 30, 33, 35, 45],
+      borderColor: "#ff4d4d",
+      fill: true,
+      backgroundColor: (context) =>
+        createGradient(
+          context.chart.ctx,
+          "rgba(255,77,77,0.4)",
+          "rgba(255,77,77,0.05)"
+        ),
+      tension: 0.45,
+      pointBackgroundColor: "#ff4d4d",
+      pointBorderColor: "#fff",
+      pointBorderWidth: 2,
+      pointRadius: 5,
+      pointHoverRadius: 8,
+      borderWidth: 3,
+    },
+    {
+      label: "Social Media",
+      data: [10, 11, 13, 17, 18, 21, 22, 23, 30],
+      borderColor: "#4da6ff",
+      fill: true,
+      backgroundColor: (context) =>
+        createGradient(
+          context.chart.ctx,
+          "rgba(77,166,255,0.4)",
+          "rgba(77,166,255,0.05)"
+        ),
+      tension: 0.45,
+      pointBackgroundColor: "#4da6ff",
+      pointBorderColor: "#fff",
+      pointBorderWidth: 2,
+      pointRadius: 5,
+      pointHoverRadius: 8,
+      borderWidth: 3,
+    },
+    {
+      label: "Referral",
+      data: [5, 6, 7, 8, 9, 10, 11, 12, 20],
+      borderColor: "#00cc99",
+      fill: true,
+      backgroundColor: (context) =>
+        createGradient(
+          context.chart.ctx,
+          "rgba(0,204,153,0.4)",
+          "rgba(0,204,153,0.05)"
+        ),
+      tension: 0.45,
+      pointBackgroundColor: "#00cc99",
+      pointBorderColor: "#fff",
+      pointBorderWidth: 2,
+      pointRadius: 5,
+      pointHoverRadius: 8,
+      borderWidth: 3,
+    },
+  ],
+};
+
 
   const optionsLine = {
     responsive: true,
     maintainAspectRatio: false,
-    plugins: { legend: { display: false } },
+    animation: {
+      duration: 1800,
+      easing: "easeInOutQuart",
+    },
+    plugins: {
+      legend: {
+        display: false, // 👈 hide Chart.js legend completely
+      },
+      title: {
+        display: true,
+      },
+    },
     scales: {
       y: {
         beginAtZero: true,
-        max: 50,
-        ticks: {
-          color: "#aaa",
-          stepSize: 12.5,
-          callback: (value) => `$${value}k`,
-        },
-        grid: { color: "rgba(255,255,255,0.1)" },
+        ticks: { color: "#aaa" },
+        grid: { color: "rgba(255,255,255,0.1)", drawBorder: false },
       },
       x: {
         ticks: { color: "#aaa" },
@@ -91,16 +139,15 @@ const WhyChooseUsWithGraph = () => {
       },
     },
     elements: {
-      point: {
-        radius: 4,
-        hoverRadius: 6,
-      },
+      line: { borderJoinStyle: "round" },
     },
   };
+
   const CardWrapper = ({ children, className = "" }) => (
-    <div className={`relative group rounded-2xl p-[2px] bg-gradient-to-b from-cyan-500/20 to-transparent overflow-hidden ${className}`}>
-      <div className="relative bg-black/60 backdrop-blur-lg rounded-2xl p-6 flex flex-col gap-4 h-full transition-all duration-500  overflow-hidden">
-        {/* Bottom blur overlay */}
+    <div
+      className={`relative group rounded-2xl p-[2px] bg-gradient-to-b from-cyan-500/20 to-transparent overflow-hidden ${className}`}
+    >
+      <div className="relative bg-black/60 backdrop-blur-lg rounded-2xl p-6 flex flex-col gap-4 h-full transition-all duration-500 overflow-hidden">
         <div className="absolute bottom-0 left-0 w-full h-2/3 blur-2xl pointer-events-none"></div>
         {children}
       </div>
@@ -109,17 +156,14 @@ const WhyChooseUsWithGraph = () => {
 
   const CardContent = ({ icon, title, description, className = "" }) => (
     <div className={`relative z-10 ${className}`}>
-      <div className="mb-4 bg-blue-900 rounded-md inline-flex p-2 text-cyan-400">
-        {icon}
-      </div>
+      <div className="mb-4 bg-blue-900 rounded-md inline-flex p-2 text-cyan-400">{icon}</div>
       <h3 className="text-white text-lg font-semibold mb-2 leading-tight">{title}</h3>
       <p className="text-gray-400 text-sm leading-relaxed">{description}</p>
     </div>
   );
 
   return (
-    <main className=" relative overflow-hidden" style={{ background: "#000000" }}>
-      {/* Soft global teal glow */}
+    <main className="relative overflow-hidden" style={{ background: "#000000" }}>
       <div
         className="absolute inset-0 pointer-events-none"
         aria-hidden
@@ -129,65 +173,55 @@ const WhyChooseUsWithGraph = () => {
         }}
       />
 
-      <section className="py-16 relative z-10 max-w-6xl mx-auto ">
-       {/* Top Section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
-        {/* Left content */}
-        <div>
-          <p className="text-gray-500 text-sm mb-2">
-            2. Automate billing & collections
-          </p>
-          <div className="flex items-baseline mb-4">
-            <FaBolt className="text-white text-4xl mr-2" />
-            <h2 className="text-5xl font-bold text-white">Why Choose Us</h2>
+      <section className="py-16 relative z-10 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
+          {/* Left content */}
+          <div>
+            <p className="text-gray-500 text-sm mb-2">2. Automate billing & collections</p>
+            <div className="flex items-baseline mb-4">
+              <FaBolt className="text-white text-4xl mr-2" />
+              <h2 className="text-5xl font-bold text-white">Why Choose Us</h2>
+            </div>
+            <p className="text-gray-300 mb-8">
+              Pay suppliers & employees with a click. No data entry needed. Get paid faster with automated AR.
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <CardWrapper>
+                <CardContent
+                  icon={<FaBolt className="text-white" size={20} />}
+                  title="Get paid faster."
+                  description="Boost cash flow and save time with automated receivables."
+                />
+              </CardWrapper>
+
+              <CardWrapper>
+                <CardContent
+                  icon={<FaBolt className="text-white" size={20} />}
+                  title="Simplify payments."
+                  description="Manage and automate all payments in one secure place."
+                />
+              </CardWrapper>
+
+              <CardWrapper>
+                <CardContent
+                  icon={<FaBolt className="text-white" size={20} />}
+                  title="Automate invoices."
+                  description="Automatically generate invoices and reminders with AI."
+                />
+              </CardWrapper>
+
+              <CardWrapper>
+                <CardContent
+                  icon={<FaBolt className="text-white" size={20} />}
+                  title="Track performance."
+                  description="Monitor all transactions and analytics in one dashboard."
+                />
+              </CardWrapper>
+            </div>
           </div>
-          <p className="text-gray-300 mb-8">
-            Pay suppliers & employees with a click. No data entry needed. Get
-            paid faster with automated AR.
-          </p>
 
-{/* Cards Grid - 2 per row */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          
-{/* Card 1 */}
-<CardWrapper>
-  <CardContent
-    icon={<FaBolt className="text-white" size={20} />}
-    title="Get paid faster."
-    description="Boost cash flow and save time with automated receivables."
-  />
-</CardWrapper>
-
-            {/* Card 2 */}
-            <CardWrapper>
-              <CardContent
-                icon={<FaBolt className="text-white" size={20} />}
-                title="Simplify payments."
-                description="Manage and automate all payments in one secure place."
-              />
-            </CardWrapper>
-
-            {/* Card 3 */}
-            <CardWrapper>
-              <CardContent
-                icon={<FaBolt className="text-white" size={20} />}
-                title="Automate invoices."
-                description="Automatically generate invoices and reminders with AI."
-              />
-            </CardWrapper>
-
-            {/* Card 4 */}
-            <CardWrapper>
-              <CardContent
-                icon={<FaBolt className="text-white" size={20} />}
-                title="Track performance."
-                description="Monitor all transactions and analytics in one dashboard."
-              />
-            </CardWrapper>
-          </div>
-        </div>
-        
-          {/* Chart Card */}
+          {/* Chart Section */}
           <div className="relative rounded-2xl p-8 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
             <div
               className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
@@ -197,116 +231,38 @@ const WhyChooseUsWithGraph = () => {
               }}
             />
             <div className="relative z-10">
-              {/* Header */}
-              {/* <div className="flex justify-between mb-8">
-                <div>
-                  <div className="flex items-center">
-                    <div className="bg-yellow-500 rounded-full w-10 h-10 flex items-center justify-center text-black font-bold text-lg">
-                      J
-                    </div>
-                    <span className="ml-2 text-white font-bold text-xl">
-                      JHSBSJ
-                    </span>
-                  </div>
-                  <div className="flex items-center mt-2">
-                    <button className="bg-blue-500 text-white rounded-full px-4 py-1 text-sm">
-                      In Progress
-                    </button>
-                    <span className="ml-4 text-blue-300 text-sm">
-                      Due in 3 days
-                    </span>
-                  </div>
-                </div>
-                <div className="space-y-2"> */}
-                  {/* Assignees Top (manual) */}
-                  {/* <div className="flex items-center">
-                    <div className="w-8 h-8 rounded-full bg-blue-900 flex items-center justify-center text-white text-xs mr-2">S</div>
-                    <p className="text-white text-sm">Sara Kunze</p>
-                    <p className="ml-4 text-gray-300 text-sm">5/8</p>
-                    <div className="ml-2 w-16 bg-gray-800 rounded-full h-2">
-                      <div className="h-2 rounded-full bg-orange-500" style={{ width: "46%" }} />
-                    </div>
-                  </div>
-
-                  <div className="flex items-center">
-                    <div className="w-8 h-8 rounded-full bg-blue-900 flex items-center justify-center text-white text-xs mr-2">M</div>
-                    <p className="text-white text-sm">Martha Sanger</p>
-                    <p className="ml-4 text-gray-300 text-sm">5/8</p>
-                    <div className="ml-2 w-16 bg-gray-800 rounded-full h-2">
-                      <div className="h-2 rounded-full bg-red-500" style={{ width: "19%" }} />
-                    </div>
-                  </div>
-
-                  <div className="flex items-center">
-                    <div className="w-8 h-8 rounded-full bg-blue-900 flex items-center justify-center text-white text-xs mr-2">B</div>
-                    <p className="text-white text-sm">Brittany Lind II</p>
-                    <p className="ml-4 text-gray-300 text-sm">5/8</p>
-                    <div className="ml-2 w-16 bg-gray-800 rounded-full h-2">
-                      <div className="h-2 rounded-full bg-green-500" style={{ width: "60%" }} />
-                    </div>
-                  </div>
-                </div>
-              </div> */}
-
-              {/* Efficiency */}
               <div className="flex justify-between items-end mb-4">
                 <div>
-                  <p className="text-5xl font-bold text-white">67%</p>
-                  {/* <p className="text-gray-400 text-sm">
-                    efficiency based on 8 key indicators
-                  </p> */}
+                  <p className="text-3xl font-bold text-white">Clients Acquired</p>
                 </div>
-                {/* <p className="text-3xl font-bold text-white">$75k</p> */}
               </div>
 
-              {/* Graph */}
+              {/* COOL GLOW GRAPH */}
               <div className="h-64 mb-8">
                 <Line data={dataLine} options={optionsLine} />
               </div>
 
-              {/* Assignees Bottom (manual) */}
-              <div>
-                <div className="flex text-gray-400 text-sm mb-4">
-                  <p className="w-1/2">Assignees</p>
-                  <p className="w-1/4">Tasks</p>
-                  <p className="w-1/4">Performance</p>
+              {/* Minimal color indicators only */}
+              <div className="flex justify-around mt-6">
+                <div className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full bg-[#ff4d4d]" />
+                  <p className="text-white text-sm">Google</p>
                 </div>
-
-                <div className="flex items-center mb-4">
-                  <div className="w-1/2 flex items-center">
-                    <div className="w-8 h-8 rounded-full bg-blue-900 flex items-center justify-center text-white text-xs mr-3">J</div>
-                    <p className="text-white">Jasmine Aisling</p>
-                  </div>
-                  <p className="w-1/4 text-white">0/8</p>
-                  <div className="w-1/4">
-                    <p className="text-yellow-500 font-bold">31%</p>
-                    <div className="w-16 h-2 bg-gray-800 rounded-full mt-1">
-                      <div className="h-2 rounded-full bg-yellow-500" style={{ width: "31%" }} />
-                    </div>
-                  </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full bg-[#4da6ff]" />
+                  <p className="text-white text-sm">Social Media</p>
                 </div>
-
-                <div className="flex items-center mb-4">
-                  <div className="w-1/2 flex items-center">
-                    <div className="w-8 h-8 rounded-full bg-blue-900 flex items-center justify-center text-white text-xs mr-3">C</div>
-                    <p className="text-white">Casey Malone</p>
-                  </div>
-                  <p className="w-1/4 text-white">5/8</p>
-                  <div className="w-1/4">
-                    <p className="text-green-500 font-bold">54%</p>
-                    <div className="w-16 h-2 bg-gray-800 rounded-full mt-1">
-                      <div className="h-2 rounded-full bg-green-500" style={{ width: "54%" }} />
-                    </div>
-                  </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full bg-[#00cc99]" />
+                  <p className="text-white text-sm">Referral</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Reasons (manual divs) */}
+        {/* Bottom Reason Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-3">
-{/* Card 1 */}
           <CardWrapper>
             <CardContent
               icon={<FaBolt className="text-white" size={20} />}
@@ -315,7 +271,6 @@ const WhyChooseUsWithGraph = () => {
             />
           </CardWrapper>
 
-          {/* Card 2 */}
           <CardWrapper>
             <CardContent
               icon={<FaBolt className="text-white" size={20} />}
@@ -324,7 +279,6 @@ const WhyChooseUsWithGraph = () => {
             />
           </CardWrapper>
 
-          {/* Card 3 */}
           <CardWrapper>
             <CardContent
               icon={<FaBolt className="text-white" size={20} />}
@@ -333,7 +287,6 @@ const WhyChooseUsWithGraph = () => {
             />
           </CardWrapper>
 
-          {/* Card 4 */}
           <CardWrapper>
             <CardContent
               icon={<FaBolt className="text-white" size={20} />}

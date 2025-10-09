@@ -33,19 +33,25 @@ function Counter({ target, start }) {
 
 export default function Dashboard() {
   const [coords, setCoords] = useState({ x: 0, y: 0 });
-  const chartRef = useRef(null);
-  const canvasRef = useRef(null);
+  const chartRef1 = useRef(null); // Ref for first chart
+  const chartRef2 = useRef(null); // Ref for second chart
+  const canvasRef1 = useRef(null); // Ref for first canvas
+  const canvasRef2 = useRef(null); // Ref for second canvas
+  const canvasRef3 = useRef(null);
+  const chartRef3 = useRef(null);
+  const canvasRef4 = useRef(null);
+  const chartRef4 = useRef(null);
   const { ref: cardsRef, inView: cardsInView } = useInView({
     triggerOnce: false,
-    threshold: 0.3, // Increased threshold for better visibility detection
-    rootMargin: "0px 0px -50px 0px", // Trigger slightly before fully in view
+    threshold: 0.3,
+    rootMargin: "0px 0px -50px 0px",
   });
 
   const topCards = [
     { title: "Years of Experience", value: "8+", color: "cyan", percentage: 80, target: 8 },
     { title: "Completed Projects", value: "500+", color: "blue", percentage: 70, target: 500 },
-    { title: " 5* reviews", value: "100+", color: "purple", percentage: 90, target: 100 },
-    { title: "Countries served", value: "5+", color: "emerald", percentage: 60, target: 5 },
+    { title: "5* reviews", value: "100+", color: "purple", percentage: 90, target: 100 },
+    { title: "Countries served", value: "5+", color: "emerald", percentage: 60, target: 5 },
   ];
 
   useEffect(() => {
@@ -54,17 +60,17 @@ export default function Dashboard() {
     const onMove = (e) => setCoords({ x: e.clientX, y: e.clientY });
     window.addEventListener("mousemove", onMove);
 
-    // Chart.js setup
-    const ctx = canvasRef.current?.getContext("2d");
-    if (ctx) {
-      chartRef.current = new Chart(ctx, {
+    // Chart 1 setup (Increasing values)
+    const ctx1 = canvasRef1.current?.getContext("2d");
+    if (ctx1) {
+      chartRef1.current = new Chart(ctx1, {
         type: "line",
         data: {
-          labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+          labels: ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"],
           datasets: [
             {
               label: "Income",
-              data: [1200, 1000, 1300, 1100, 1400, 1200, 1500],
+              data: [100, 120, 140, 160, 180, 200, 220, 240, 260],
               borderColor: "#EC4899",
               backgroundColor: "rgba(236, 72, 153, 0.3)",
               pointBackgroundColor: "#EC4899",
@@ -76,7 +82,7 @@ export default function Dashboard() {
             },
             {
               label: "Expense",
-              data: [2500, 1500, 2000, 1800, 2200, 1700, 1900],
+              data: [110, 125, 145, 165, 185, 205, 225, 245, 265],
               borderColor: "#3B82F6",
               backgroundColor: "rgba(59, 130, 246, 0.3)",
               pointBackgroundColor: "#3B82F6",
@@ -93,17 +99,163 @@ export default function Dashboard() {
           maintainAspectRatio: false,
           plugins: { legend: { display: false } },
           scales: {
-            x: { display: true, grid: { display: false }, ticks: { color: "#9CA3AF", font: { size: 12 } } },
-            y: { display: false, beginAtZero: true },
+            x: { display: true, grid: { display: true } },
+            y: { display: false, grid: { display: false } },
           },
           elements: { point: { radius: 4, hoverRadius: 6 } },
         },
       });
     }
 
+    // Chart 2 setup (Increasing values)
+    const ctx2 = canvasRef2.current?.getContext("2d");
+    if (ctx2) {
+      chartRef2.current = new Chart(ctx2, {
+        type: "line",
+        data: {
+          labels: ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"],
+          datasets: [
+            {
+              label: "Income",
+              data: [100, 115, 130, 145, 160, 175, 190, 205, 220],
+              borderColor: "#EC4899",
+              backgroundColor: "rgba(236, 72, 153, 0.3)",
+              pointBackgroundColor: "#EC4899",
+              pointBorderColor: "#fff",
+              pointBorderWidth: 2,
+              fill: false,
+              tension: 0.4,
+              borderWidth: 2,
+            },
+            {
+              label: "Expense",
+              data: [110, 120, 135, 150, 165, 180, 195, 210, 225],
+              borderColor: "#3B82F6",
+              backgroundColor: "rgba(59, 130, 246, 0.3)",
+              pointBackgroundColor: "#3B82F6",
+              pointBorderColor: "#fff",
+              pointBorderWidth: 2,
+              fill: false,
+              tension: 0.4,
+              borderWidth: 2,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            x: { display: true, grid: { display: true } },
+            y: { display: false, grid: { display: false } },
+          },
+          elements: { point: { radius: 4, hoverRadius: 6 } },
+        },
+      });
+    }
+
+    // Chart 3 setup (Green color, y-axis numbers hidden)
+    const ctx3 = canvasRef3.current?.getContext("2d");
+    if (ctx3) {
+      chartRef3.current = new Chart(ctx3, {
+        type: "line",
+        data: {
+          labels: ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"],
+          datasets: [
+            {
+              label: "New Clients",
+              data: [30, 35, 40, 50, 55, 60, 65, 70, 95],
+              borderColor: "#10B981",
+              backgroundColor: "rgba(16, 185, 129, 0.2)",
+              tension: 0.4,
+              fill: true,
+              pointBackgroundColor: "#10B981",
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: "top",
+            },
+          },
+          scales: {
+            y: {
+              display: false, // Hide y-axis numbers and grid
+              beginAtZero: false,
+              title: {
+                display: false,
+                text: "Number of Clients",
+              },
+            },
+            x: {
+              display: true,
+              grid: { display: true },
+              title: {
+                display: true,
+                text: "Year",
+              },
+            },
+          },
+        },
+      });
+    }
+
+    // Chart 4 setup (Red color, y-axis numbers hidden)
+    const ctx4 = canvasRef4.current?.getContext("2d");
+    if (ctx4) {
+      chartRef4.current = new Chart(ctx4, {
+        type: "line",
+        data: {
+          labels: ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"],
+          datasets: [
+            {
+              label: "Return Clients",
+              data: [10, 12, 15, 18, 25, 27, 30, 31, 32],
+              borderColor: "#EF4444",
+              backgroundColor: "rgba(239, 68, 68, 0.2)",
+              tension: 0.4,
+              fill: true,
+              pointBackgroundColor: "#EF4444",
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: "top",
+            },
+          },
+          scales: {
+            y: {
+              display: false, // Hide y-axis numbers and grid
+              beginAtZero: false,
+              title: {
+                display: false,
+                text: "Number of Clients",
+              },
+            },
+            x: {
+              display: true,
+              grid: { display: true },
+              title: {
+                display: true,
+                text: "Year",
+              },
+            },
+          },
+        },
+      });
+    }
+
     return () => {
       window.removeEventListener("mousemove", onMove);
-      if (chartRef.current) chartRef.current.destroy();
+      if (chartRef1.current) chartRef1.current.destroy();
+      if (chartRef2.current) chartRef2.current.destroy();
+      if (chartRef3.current) chartRef3.current.destroy();
+      if (chartRef4.current) chartRef4.current.destroy();
     };
   }, []);
 
@@ -242,113 +394,104 @@ export default function Dashboard() {
 
           {/* Chart + Transactions */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-            <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
-              <div
-                className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-                style={{
-                  background:
-                    "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
-                }}
-              />
-              <div className="relative z-10">
-                <div className="flex justify-between mb-4">
-                  <span className="text-white">Income</span>
-                  <span className="text-white">Expense</span>
-                </div>
-                <div className="h-40 flex items-end">
-                  <canvas ref={canvasRef} className="w-full h-full"></canvas>
-                </div>
-                <div className="flex justify-between text-sm text-gray-400 mt-2">
-                  <span>Mon</span>
-                  <span>Tue</span>
-                  <span>Wed</span>
-                  <span>Thu</span>
-                  <span>Fri</span>
-                  <span>Sat</span>
-                  <span>Sun</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
-              <div
-                className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-                style={{
-                  background:
-                    "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
-                }}
-              />
-              <div className="relative z-10">
-                <div className="flex justify-between mb-4">
-                  <h2 className="text-xl font-semibold text-white">My Cards</h2>
-                  <span className="text-gray-400">⋮</span>
-                </div>
-                <div className="bg-gradient-to-r from-purple-500 to-purple-600 p-4 rounded-xl mb-4 relative">
-                  <p className="text-gray-200">Balance</p>
-                  <p className="text-2xl font-bold text-white">$13,564</p>
-                  <div className="absolute bottom-2 right-2 text-gray-300">∞</div>
-                </div>
-                <div className="mb-4">
-                  <select className="bg-black/60 backdrop-blur-xl border border-white/10 w-full p-2 rounded-xl text-white focus:outline-none focus:border-blue-500/50">
-                    <option>Last week</option>
-                  </select>
-                </div>
-                <h3 className="text-gray-400 mb-2">Recent Transactions</h3>
-                <div className="space-y-2 text-sm">
-                  {[
-                    { name: "Drinkable", amount: "$10.67" },
-                    { name: "Tinder", amount: "$12.01" },
-                    { name: "Ikea", amount: "$112.43" },
-                    { name: "Netflix", amount: "$13.63" },
-                    { name: "Airbnb", amount: "$200.12" },
-                  ].map((tx, i) => (
-                    <div
-                      key={i}
-                      className="flex justify-between py-1 border-b border-white/10 last:border-b-0"
-                    >
-                      <span className="text-gray-300">{tx.name}</span>
-                      <span className="text-white font-semibold">{tx.amount}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Investment + Deposit */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {[
-              { title: "Investment", value: "$12000", percent: "+5%", color: "blue", width: "50%" },
-              { title: "Deposit", value: "$19600", percent: "+14%", color: "pink", width: "70%" },
-            ].map((item, i) => (
-              <div
-                key={i}
-                className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]"
-              >
-                <div
-                  className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{
-                    background:
-                      "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
-                  }}
-                />
+            {/* Chart 1 */}
+            <div className="flex flex-wrap relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
+              <div className="mb-10">
                 <div className="relative z-10">
-                  <p className="text-gray-400 mb-2">{item.title}</p>
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-2xl font-bold text-white">{item.value}</span>
-                    <span className="text-green-400 font-semibold">{item.percent}</span>
+                  <div
+                    className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{
+                      background:
+                        "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
+                    }}
+                  />
+                  <h3 className="text-2xl font-medium">Business</h3>
+                  <div className="flex justify-between items-center mb-4 mt-6">
+                    <div className="flex items-center gap-2">
+                      <span className="w-3 h-3 rounded-full" style={{ backgroundColor: "#EC4899" }}></span>
+                      <span className="text-white text-sm">Competitor</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="w-3 h-3 rounded-full" style={{ backgroundColor: "#3B82F6" }}></span>
+                      <span className="text-white text-sm">Our Clients</span>
+                    </div>
                   </div>
-                  <div className="w-full bg-black/40 h-2 rounded-xl overflow-hidden">
-                    <div
-                      className={`h-2 rounded-xl bg-gradient-to-r ${
-                        item.color === "blue" ? "from-blue-500 to-blue-600" : "from-pink-500 to-pink-600"
-                      }`}
-                      style={{ width: item.width }}
-                    ></div>
+                  <div className="h-80 flex items-end">
+                    <canvas ref={canvasRef1} className="w-full h-full"></canvas>
                   </div>
                 </div>
               </div>
-            ))}
+
+              {/* Chart 2 */}
+              <div className="mt-10">
+                <div className="relative z-10">
+                  <div
+                    className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{
+                      background:
+                        "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
+                    }}
+                  />
+                  <h3 className="text-2xl font-medium">Growth</h3>
+                  <div className="flex justify-between items-center mb-4 mt-6">
+                    <div className="flex items-center gap-2">
+                      <span className="w-3 h-3 rounded-full" style={{ backgroundColor: "#EC4899" }}></span>
+                      <span className="text-white text-sm">Competitor</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="w-3 h-3 rounded-full" style={{ backgroundColor: "#3B82F6" }}></span>
+                      <span className="text-white text-sm">Our Clients</span>
+                    </div>
+                  </div>
+                  <div className="h-80 flex items-end">
+                    <canvas ref={canvasRef2} className="w-full h-full"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right chart */}
+            <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
+              <div
+                className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                style={{
+                  background:
+                    "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
+                }}
+              />
+              <div className="relative z-10">
+                {/* Chart 3 */}
+                <div className="mb-10">
+                  <div className="relative z-10">
+                    <h3 className="text-2xl font-medium">New Clients</h3>
+                    <div className="flex justify-between items-center mb-4 mt-6">
+                      <div className="flex items-center gap-2">
+                        <span className="w-3 h-3 rounded-full" style={{ backgroundColor: "#10B981" }}></span>
+                        <span className="text-white text-sm">New Clients</span>
+                      </div>
+                    </div>
+                    <div className="h-80 flex items-end">
+                      <canvas ref={canvasRef3} className="w-full h-full"></canvas>
+                    </div>
+                  </div>
+                </div>
+                {/* Chart 4 */}
+                <div className="mb-10">
+                  <div className="relative z-10">
+                    <h3 className="text-2xl font-medium">Return Clients</h3>
+                    <div className="flex justify-between items-center mb-4 mt-6">
+                      <div className="flex items-center gap-2">
+                        <span className="w-3 h-3 rounded-full" style={{ backgroundColor: "#EF4444" }}></span>
+                        <span className="text-white text-sm">Return Clients</span>
+                      </div>
+                    </div>
+                    <div className="h-80 flex items-end">
+                      <canvas ref={canvasRef4} className="w-full h-full"></canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </main>

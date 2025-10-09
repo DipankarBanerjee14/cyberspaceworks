@@ -3,7 +3,9 @@
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar.js";
-import cursor from "@/public/cursor.png"; // your uploaded cursor
+import Footer from "@/components/Footer.js"
+import cursor from "@/public/cursor.png"; 
+
 
 // Dynamically import heavy sections to reduce initial bundle size
 const HomePage = dynamic(() => import("@/pages/HomePage.js"));
@@ -64,6 +66,8 @@ export default function TrandingPage() {
       >
         <Navbar />
         <HomePage />
+       
+        <Footer/>
       </div>
     </>
   );
