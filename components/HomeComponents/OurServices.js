@@ -9,6 +9,7 @@ import {
   FaBrush,
   FaTrademark,
 } from "react-icons/fa";
+import { SiGoogleanalytics } from "react-icons/si";
 
 export default function OurServicesWithWires() {
   const canvasRef = useRef(null);
@@ -52,7 +53,7 @@ export default function OurServicesWithWires() {
       desc: "Designing stunning visuals to enhance your brand identity.",
     },
     {
-      icon: <FaTrademark size={38} />,
+      icon: <SiGoogleanalytics size={38} />,
       title: "Branding",
       desc: "Developing a unique brand identity that stands out in the market.",
     },
@@ -523,7 +524,7 @@ export default function OurServicesWithWires() {
             {/* glowing core */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] rounded-lg" />
             <div className="absolute inset-0 flex items-center justify-center text-cyan-300 text-lg font-semibold tracking-wide">
-              CyberSpaceWork
+              Cyberspace-Works
             </div>
             <div className="absolute inset-0 pointer-events-none">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,255,255,0.15),transparent_70%)] animate-pulse" />
@@ -590,7 +591,7 @@ export default function OurServicesWithWires() {
   <div className="absolute inset-0 bg-gradient-to-br from-[#0f0f0f] to-[#141414]
       shadow-[0_0_15px_rgba(67,56,202,0.3),inset_0_0_15px_rgba(67,56,202,0.05)]
       backdrop-blur-xl flex flex-col items-center justify-center text-center px-5 rounded-lg">
-    <div className="text-cyan-400 mb-2"><FaTrademark size={38} /></div>
+    <div className="text-cyan-400 mb-2"><SiGoogleanalytics size={38} /></div>
     <h3 className="text-sm font-semibold text-white">Research and Analytics</h3>
     <p className="text-xs text-gray-400 mt-1 leading-tight">
      We help businesses make sharper, faster, and more confident decisions in a competitive market.

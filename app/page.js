@@ -7,14 +7,15 @@ import Navbar from "@/components/Navbar.js";
 import preloader from "@/public/preloader.gif";
 
 // Dynamically import heavy sections to reduce initial bundle size
-const HeroSection = dynamic(() => import("@/components/HeroSection.js"));
-const Technology = dynamic(() => import("@/components/Technology.js"));
-const OurServices = dynamic(() => import("@/components/OurServices.js"));
-const WhyChooseUs = dynamic(() => import("@/components/WhyChooseUs.js"));
-const Dashboard = dynamic(() => import("@/components/Dasboard.js"));
-const AboutSection = dynamic(() => import("@/components/AboutSection.js"));
-const HowWeDoIt = dynamic(() => import("@/components/HowWeDoIt.js"));
-const Testimonial = dynamic(() => import("@/components/Testimonial.js"));
+const HomePage = dynamic(() => import("@/pages/HomePage.js"))
+// const HeroSection = dynamic(() => import("@/components/HeroSection.js"));
+// const Technology = dynamic(() => import("@/components/Technology.js"));
+// const OurServices = dynamic(() => import("@/components/OurServices.js"));
+// const WhyChooseUs = dynamic(() => import("@/components/WhyChooseUs.js"));
+// const Dashboard = dynamic(() => import("@/components/Dasboard.js"));
+// const AboutSection = dynamic(() => import("@/components/AboutSection.js"));
+// const HowWeDoIt = dynamic(() => import("@/components/HowWeDoIt.js"));
+// const Testimonial = dynamic(() => import("@/components/Testimonial.js"));
 
 export default function TrandingPage() {
   const [loading, setLoading] = useState(true);
@@ -101,14 +102,15 @@ export default function TrandingPage() {
     {/* Main Page */}
     <div className="relative min-h-screen bg-black overflow-hidden">
       <Navbar />
-      <HeroSection />
+      {/* <HeroSection />
       <OurServices />
       <WhyChooseUs />
       <Dashboard />
       <AboutSection />
       <HowWeDoIt />
       <Technology />
-      <Testimonial />
+      <Testimonial /> */}
+      <HomePage/>
     </div>
   </>
 );

@@ -44,8 +44,8 @@ export default function Dashboard() {
   const topCards = [
     { title: "Years of Experience", value: "8+", color: "cyan", percentage: 80, target: 8 },
     { title: "Completed Projects", value: "500+", color: "blue", percentage: 70, target: 500 },
-    { title: "Clients", value: "100+", color: "purple", percentage: 90, target: 100 },
-    { title: "5★ Reviews", value: "5+", color: "emerald", percentage: 60, target: 5 },
+    { title: " 5* reviews", value: "100+", color: "purple", percentage: 90, target: 100 },
+    { title: "Countries served", value: "5+", color: "emerald", percentage: 60, target: 5 },
   ];
 
   useEffect(() => {
@@ -223,7 +223,7 @@ export default function Dashboard() {
                       </svg>
                       <span className="absolute inset-0 flex items-center justify-center text-white font-bold">
                         <span
-                          className="text-2xl font-extrabold bg-clip-text text-transparent gradient-animate"
+                          className="text-lg font-extrabold bg-clip-text text-transparent gradient-animate"
                           style={{
                             "--gradient": `linear-gradient(to right, ${start}, ${end})`,
                             animationPlayState: playState,

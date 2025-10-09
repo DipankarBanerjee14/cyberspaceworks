@@ -94,7 +94,7 @@ export default function TrandingPage() {
           Discover endless possibilities <br />
           in the world of{" "}
           <span className="text-blue-400 drop-shadow-[0_0_15px_rgba(59,130,246,0.8)]">
-            Trading
+           Cyber-space
           </span>
         </h2>
 
