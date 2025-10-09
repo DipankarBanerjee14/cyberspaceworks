@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar.js";
 
-import preloader from "@/public/preloader.gif";
+// import preloader from "@/public/preloader.gif";
 
 // Dynamically import heavy sections to reduce initial bundle size
 const HomePage = dynamic(() => import("@/pages/HomePage.js"))
