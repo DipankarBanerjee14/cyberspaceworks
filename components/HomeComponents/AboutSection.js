@@ -25,15 +25,12 @@ const VortaskyAISection = () => {
   }, []);
 
   const spotlightStyle = {
-  background: `radial-gradient(400px at ${coords.x}px ${coords.y}px, rgba(147,51,234,0.2), transparent 60%)`,
-  transition: "background-position 90ms linear, opacity 160ms ease",
-};
+    background: `radial-gradient(400px at ${coords.x}px ${coords.y}px, rgba(147,51,234,0.2), transparent 60%)`,
+    transition: "background-position 90ms linear, opacity 160ms ease",
+  };
 
   return (
-    <main
-      className=" relative overflow-hidden"
-      style={{ background: "#000000" }}
-    >
+    <main className="relative overflow-hidden" style={{ background: "#000000" }}>
       {/* soft global purple glow */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -44,7 +41,7 @@ const VortaskyAISection = () => {
         }}
       />
 
-      {/* radial backdrop glow - updated with purple gradient */}
+      {/* radial backdrop glow */}
       <div
         className="absolute inset-0 pointer-events-none"
         aria-hidden
@@ -54,7 +51,6 @@ const VortaskyAISection = () => {
         }}
       />
 
-     
       {/* Vortasky AI Section */}
       <section className="py-16 px-4 relative z-10">
         <div className="max-w-6xl mx-auto">
@@ -62,10 +58,9 @@ const VortaskyAISection = () => {
             About Us
           </h2>
 
-          {/* Top Row - Single Card */}
+          {/* 🔹 Top Row - Purple → White */}
           <div className="mb-12">
-            <div className="relative rounded-2xl p-8 bg-gradient-to-b from-transparent via-purple-800/60 to-white backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(147,51,234,0.5)]">
-              {/* purple → white glow - enhanced on hover */}
+            <div className="relative rounded-2xl p-8 bg-gradient-to-b from-purple-700 via-purple-500/60 to-white backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(147,51,234,0.5)]">
               <div
                 className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
                 style={{
@@ -88,8 +83,8 @@ const VortaskyAISection = () => {
                 </div>
                 <div className="flex flex-col items-center">
                   <div className="text-center mb-4 rounded-lg bg-white/10 backdrop-blur-md p-4 border border-white/10">
-                    <FaBrain className="mx-auto mb-1 text-white" size={24} />
-                    <p className="text-white font-semibold">
+                    <FaBrain className="mx-auto mb-1 text-black" size={24} />
+                    <p className="text-gray-900 font-semibold">
                       Intelligent Routing
                     </p>
                   </div>
@@ -100,32 +95,32 @@ const VortaskyAISection = () => {
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      d="M128 0 V32 M64 32 H192 M64 32 V64 M128 32 V64 M192 32 V64"
-                      stroke="white"
+                      d="M128 0 V92 M4 32 H692 M4 32 V64 M128 32 V4 M255 32 V64"
+                      stroke="black"
                       strokeWidth="1"
                     />
                   </svg>
                   <div className="flex justify-around w-full gap-4">
                     <div className="text-center rounded-lg bg-white/10 backdrop-blur-md p-4 border border-white/10 flex-1">
                       <FaQuestionCircle
-                        className="mx-auto mb-1 text-white"
+                        className="mx-auto mb-1 text-black"
                         size={24}
                       />
-                      <p className="text-gray-300">Help Centre</p>
+                      <p className="text-gray-900">Help Centre</p>
                     </div>
                     <div className="text-center rounded-lg bg-white/10 backdrop-blur-md p-4 border border-white/10 flex-1">
                       <FaEnvelope
-                        className="mx-auto mb-1 text-white"
+                        className="mx-auto mb-1 text-black"
                         size={24}
                       />
-                      <p className="text-gray-300">Email Marketing</p>
+                      <p className="text-gray-900">Email Marketing</p>
                     </div>
                     <div className="text-center rounded-lg bg-white/10 backdrop-blur-md p-4 border border-white/10 flex-1">
                       <FaHeadset
-                        className="mx-auto mb-1 text-white"
+                        className="mx-auto mb-1 text-black"
                         size={24}
                       />
-                      <p className="text-gray-300">Preferred Agent</p>
+                      <p className="text-gray-900">Preferred Agent</p>
                     </div>
                   </div>
                 </div>
@@ -133,32 +128,28 @@ const VortaskyAISection = () => {
             </div>
           </div>
 
-          {/* Bottom Row */}
+          {/* 🔹 Bottom Row - White → Purple */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
                 title: "Mission",
                 desc: "Deliver personalized experiences by speaking every customer's language.",
                 languages: ["English", "Spanish", "Bangla"],
-                avatars: true,
               },
               {
-                title:
-                  "Vission",
+                title: "Vision",
                 desc: "Vortasky AI remembers and understands conversation context to deliver truly personalized experiences.",
-                highlight: true,
               },
             ].map((item, i) => (
               <div
                 key={i}
-                className="relative rounded-2xl p-8 bg-gradient-to-b from-transparent via-purple-800/60 to-white backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg flex flex-col items-center group transition-all duration-300 hover:shadow-[0_0_30px_rgba(147,51,234,0.5)]"
+                className="relative rounded-2xl p-8 bg-gradient-to-b from-white via-purple-500/40 to-purple-700 backdrop-blur-xl border border-white/20 overflow-hidden shadow-lg flex flex-col items-center group transition-all duration-300 hover:shadow-[0_0_30px_rgba(147,51,234,0.5)]"
               >
-                {/* purple → white glow - enhanced on hover */}
                 <div
                   className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
                   style={{
                     background:
-                      "radial-gradient(circle at center, rgba(147,51,234,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
+                      "radial-gradient(circle at center, rgba(255,255,255,0.4) 0%, rgba(147,51,234,0.6) 40%, transparent 70%)",
                   }}
                 />
                 <div className="relative z-10 flex flex-col items-center w-full">
@@ -168,7 +159,7 @@ const VortaskyAISection = () => {
                     </h3>
                   )}
                   {item.desc && (
-                    <p className="text-gray-300 mb-4 text-center">
+                    <p className="text-gray-200 mb-4 text-center">
                       {item.desc}
                     </p>
                   )}
@@ -198,7 +189,7 @@ const VortaskyAISection = () => {
                           y1="10%"
                           x2="50%"
                           y2="50%"
-                          stroke="white"
+                          stroke="black"
                           strokeWidth="1"
                         />
                         <line
@@ -206,7 +197,7 @@ const VortaskyAISection = () => {
                           y1="10%"
                           x2="50%"
                           y2="50%"
-                          stroke="white"
+                          stroke="black"
                           strokeWidth="1"
                         />
                         <line
@@ -214,7 +205,7 @@ const VortaskyAISection = () => {
                           y1="90%"
                           x2="50%"
                           y2="50%"
-                          stroke="white"
+                          stroke="black"
                           strokeWidth="1"
                         />
                         <line
@@ -222,17 +213,17 @@ const VortaskyAISection = () => {
                           y1="90%"
                           x2="50%"
                           y2="50%"
-                          stroke="white"
+                          stroke="black"
                           strokeWidth="1"
                         />
                       </svg>
                       <div className="absolute top-0 left-1/4 transform -translate-x-1/2 text-center">
                         <div className="rounded-lg bg-white/10 backdrop-blur-md p-2 border border-white/10">
                           <FaDatabase
-                            className="mx-auto mb-1 text-white"
+                            className="mx-auto mb-1 text-black"
                             size={24}
                           />
-                          <p className="text-gray-300 text-sm">
+                          <p className="text-gray-900 text-sm">
                             User Experience
                           </p>
                         </div>
@@ -240,31 +231,31 @@ const VortaskyAISection = () => {
                       <div className="absolute bottom-0 left-0 transform translate-x-1/2 text-center">
                         <div className="rounded-lg bg-white/10 backdrop-blur-md p-2 border border-white/10">
                           <FaCheckCircle
-                            className="mx-auto mb-1 text-white"
+                            className="mx-auto mb-1 text-black"
                             size={24}
                           />
-                          <p className="text-gray-300 text-sm">Final Result</p>
+                          <p className="text-gray-900 text-sm">Final Result</p>
                         </div>
                       </div>
                       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-                        <FaBrain className="mx-auto text-white" size={40} />
+                        <FaBrain className="mx-auto text-black" size={40} />
                       </div>
                       <div className="absolute bottom-0 right-0 transform -translate-x-1/2 text-center">
                         <div className="rounded-lg bg-white/10 backdrop-blur-md p-2 border border-white/10">
                           <FaArrowRight
-                            className="mx-auto mb-1 text-white"
+                            className="mx-auto mb-1 text-black"
                             size={24}
                           />
-                          <p className="text-gray-300 text-sm">Data Infoflow</p>
+                          <p className="text-gray-900 text-sm">Data Infoflow</p>
                         </div>
                       </div>
                       <div className="absolute top-0 right-1/4 transform translate-x-1/2 text-center">
                         <div className="rounded-lg bg-white/10 backdrop-blur-md p-2 border border-white/10">
                           <FaBrain
-                            className="mx-auto mb-1 text-white"
+                            className="mx-auto mb-1 text-black"
                             size={24}
                           />
-                          <p className="text-gray-300 text-sm">
+                          <p className="text-gray-900 text-sm">
                             AI Knowledge
                           </p>
                         </div>
