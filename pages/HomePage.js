@@ -10,7 +10,7 @@ const Dashboard = dynamic(() => import("@/components/HomeComponents/Dasboard.js"
 const AboutSection = dynamic(() => import("@/components/HomeComponents/AboutSection.js"));
 const HowWeDoIt = dynamic(() => import("@/components/HomeComponents/HowWeDoIt.js"));
 const Testimonial = dynamic(() => import("@/components/HomeComponents/Testimonial.js"));
-
+const ContactForm = dynamic(() => import("@/components/HomeComponents/ContactForm.js"));
 export default function HomePage() {
  
  return (
@@ -25,6 +25,7 @@ export default function HomePage() {
       <AboutSection />
       <HowWeDoIt />
       <Testimonial />
+      <ContactForm/>
     </div>
   </>
 );

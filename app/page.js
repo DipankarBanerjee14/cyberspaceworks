@@ -21,11 +21,7 @@ export default function TrandingPage() {
   const [loading, setLoading] = useState(true);
 
   // Preloader logic
-  useEffect(() => {
-    const img = new window.Image();
-    img.src = preloader.src || preloader;
-    img.onload = () => setLoading(false);
-  }, []);
+  
 
   // Global cursor spotlight glow with mouse and touch support
   useEffect(() => {
@@ -67,34 +63,10 @@ export default function TrandingPage() {
     };
   }, []);
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center h-screen bg-[#141416]">
-        <img
-          src={preloader.src || preloader}
-          alt="Loading..."
-          className="w-80 h-60"
-        />
-      </div>
-    );
-  }
-
+ 
  return (
   <>
-    {/* Global custom cursor */}
-    <style jsx global>{`
-      * {
-        cursor: url("/cursor.png") 8 8, auto;
-      }
-      #cursor-spotlight {
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        z-index: 50; /* higher than any section */
-        mix-blend-mode: screen; /* makes glow visible on dark backgrounds */
-        transition: background-position 90ms linear, opacity 160ms ease;
-      }
-    `}</style>
+   
 
     {/* Global cursor spotlight (purple glow) */}
     <div id="cursor-spotlight" />
