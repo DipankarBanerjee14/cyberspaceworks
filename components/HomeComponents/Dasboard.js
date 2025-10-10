@@ -50,8 +50,8 @@ export default function Dashboard() {
   const topCards = [
     { title: "Years of Experience", value: "8+", color: "cyan", percentage: 80, target: 8 },
     { title: "Completed Projects", value: "500+", color: "blue", percentage: 70, target: 500 },
-    { title: "5* reviews", value: "100+", color: "purple", percentage: 90, target: 100 },
-    { title: "Countries served", value: "5+", color: "emerald", percentage: 60, target: 5 },
+    { title: "5⭐ Reviews", value: "100+", color: "purple", percentage: 90, target: 100 },
+    { title: "Countries Served", value: "5+", color: "emerald", percentage: 60, target: 5 },
   ];
 
   useEffect(() => {
@@ -59,8 +59,7 @@ export default function Dashboard() {
     setCoords({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
     const onMove = (e) => setCoords({ x: e.clientX, y: e.clientY });
     window.addEventListener("mousemove", onMove);
-
-// Chart 1 setup (Competitor lower trajectory)
+// Chart 1 setup 
 const ctx1 = canvasRef1.current?.getContext("2d");
 if (ctx1) {
   chartRef1.current = new Chart(ctx1, {
@@ -68,21 +67,21 @@ if (ctx1) {
     data: {
       labels: ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"],
       datasets: [
-         {
+        {
           label: "Competitor",
           data: [80, 90, 95, 100, 110, 115, 118, 120, 122],
-          borderColor: "#EF4444", 
+          borderColor: "#38BDF8",
           backgroundColor: (context) => {
             const ctx = context.chart.ctx;
             const gradient = ctx.createLinearGradient(0, 0, 0, context.chart.height);
-            gradient.addColorStop(0, "rgba(239,68,68,0.8)");  // top - strong red
-            gradient.addColorStop(1, "rgba(239,68,68,0.1)");  // bottom - faded red
+            gradient.addColorStop(0, "rgba(56,189,248,0.8)");  // top - strong sky blue
+            gradient.addColorStop(1, "rgba(56,189,248,0.1)");  // bottom - faded sky blue
             return gradient;
           },
           fill: true, 
           tension: 0.4,
           borderWidth: 3,
-          pointBackgroundColor: "#EF4444",
+          pointBackgroundColor: "#38BDF8",
           pointBorderColor: "#fff",
           pointBorderWidth: 2,
           pointRadius: 4,
@@ -124,7 +123,7 @@ if (ctx1) {
   });
 }
 
-// Chart 2 setup (Competitor lower trajectory)
+// Chart 2 setup 
 const ctx2 = canvasRef2.current?.getContext("2d");
 if (ctx2) {
   chartRef2.current = new Chart(ctx2, {
@@ -135,18 +134,18 @@ if (ctx2) {
         {
           label: "Competitor",
           data: [80, 90, 95, 100, 110, 115, 118, 120, 122],
-          borderColor: "#EF4444", 
+          borderColor: "#38BDF8",
           backgroundColor: (context) => {
             const ctx = context.chart.ctx;
             const gradient = ctx.createLinearGradient(0, 0, 0, context.chart.height);
-            gradient.addColorStop(0, "rgba(239,68,68,0.8)");  // top - strong red
-            gradient.addColorStop(1, "rgba(239,68,68,0.1)");  // bottom - faded red
+            gradient.addColorStop(0, "rgba(56,189,248,0.8)");  // top - strong sky blue
+            gradient.addColorStop(1, "rgba(56,189,248,0.1)");  // bottom - faded sky blue
             return gradient;
           },
           fill: true, 
           tension: 0.4,
           borderWidth: 3,
-          pointBackgroundColor: "#EF4444",
+          pointBackgroundColor: "#38BDF8",
           pointBorderColor: "#fff",
           pointBorderWidth: 2,
           pointRadius: 4,
@@ -187,6 +186,7 @@ if (ctx2) {
     },
   });
 }
+
 
 
    // Chart 3 setup (Green glowing bar chart)
@@ -429,7 +429,7 @@ if (ctx4) {
                   <h3 className="text-2xl font-medium">Business</h3>
                   <div className="flex justify-between items-center mb-4 mt-6">
                     <div className="flex items-center gap-2">
-                      <span className="w-3 h-3 rounded-full" style={{ backgroundColor: "#EF4444" }}></span>
+                      <span className="w-3 h-3 rounded-full" style={{ backgroundColor: "#38BDF8" }}></span>
                       <span className="text-white text-sm">Competitor</span>
                     </div>
                     <div className="flex items-center gap-2">
@@ -456,7 +456,7 @@ if (ctx4) {
                   <h3 className="text-2xl font-medium">Growth</h3>
                   <div className="flex justify-between items-center mb-4 mt-6">
                     <div className="flex items-center gap-2">
-                      <span className="w-3 h-3 rounded-full" style={{ backgroundColor: "#EF4444" }}></span>
+                      <span className="w-3 h-3 rounded-full" style={{ backgroundColor: "#38BDF8" }}></span>
                       <span className="text-white text-sm">Competitor</span>
                     </div>
                     <div className="flex items-center gap-2">
@@ -502,7 +502,7 @@ if (ctx4) {
                     <h3 className="text-2xl font-medium">Return Clients</h3>
                     <div className="flex justify-between items-center mb-4 mt-6">
                       <div className="flex items-center gap-2">
-                        <span className="w-3 h-3 rounded-full" style={{ backgroundColor: "#EF4444" }}></span>
+                        <span className="w-3 h-3 rounded-full" style={{ backgroundColor: "#FACC15" }}></span>
                         <span className="text-white text-sm">Return Clients</span>
                       </div>
                     </div>
