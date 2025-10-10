@@ -45,7 +45,7 @@ export default function DigitalMarketing() {
       <section className="max-w-5xl mx-auto text-center mb-20">
         <h1 className="text-4xl md:text-5xl font-bold mb-6">Digital Marketing</h1>
         <p className="text-lg text-gray-300 leading-relaxed">
-          At CSW, we drive your brand's online presence through strategic digital marketing. From SEO to social media, our campaigns are designed to maximize reach, engagement, and conversions.
+          {"At CSW, we drive your brand&apos;s online presence through strategic digital marketing. From SEO to social media, our campaigns are designed to maximize reach, engagement, and conversions."}
         </p>
       </section>
 
@@ -75,7 +75,7 @@ export default function DigitalMarketing() {
         </div>
       </section>
 
-      {/* ------------------ TECHNOLOGIES (Reusable Component) ------------------ */}
+      {/* ------------------ TECHNOLOGIES ------------------ */}
       <ServicesCircle
         title="Technologies We Use"
         items={technologies}

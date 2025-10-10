@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import {
   FaLayerGroup,
   FaCogs,
@@ -33,7 +34,7 @@ export default function ITSupportSection() {
 
     {/* Inner Circle */}
     <div className="relative w-32 h-32 bg-black border border-gray-700 rounded-full flex items-center justify-center text-white font-semibold tracking-widest">
-      <img src="/logo2.png" alt="Logo" className="h-25 w-auto" />
+      <Image src="/logo2.png" alt="Logo" className="h-25 w-auto" />
     </div>
   </div>
 </div>

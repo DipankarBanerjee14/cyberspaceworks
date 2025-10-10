@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import * as THREE from "three";
 
 export default function ServicesCircle({
@@ -208,7 +209,7 @@ export default function ServicesCircle({
               className="relative flex items-center justify-center rounded-full bg-black border border-gray-700 shadow-[0_0_40px_rgba(34,211,238,0.8)]"
               style={{ width: innerCircle * 2, height: innerCircle * 2 }}
             >
-              <img
+              <Image
                 src={centerLogo}
                 alt="Center Logo"
                 className="w-[65%] md:w-[75%] h-auto object-contain"

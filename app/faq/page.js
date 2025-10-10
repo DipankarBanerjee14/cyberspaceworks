@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-
 import { FaChevronDown } from "react-icons/fa";
 
 export default function FAQPage() {
@@ -21,7 +20,6 @@ export default function FAQPage() {
     { q: "Can you integrate third-party APIs?", a: "Absolutely, we can integrate a wide range of APIs to enhance functionality." },
     { q: "Do you offer cloud solutions?", a: "Yes, we provide cloud-based solutions for scalability and reliability." },
     { q: "What is your refund policy?", a: "Refund policies are defined in the contract and depend on project type and agreement terms." },
-   
   ];
 
   const [openIndex, setOpenIndex] = useState(null);
@@ -31,11 +29,12 @@ export default function FAQPage() {
     if (openIndex !== null) {
       console.log(`FAQ opened: ${faqs[openIndex].q}`);
     }
-  }, [openIndex]);
+  }, [openIndex, faqs]); // added faqs to satisfy ESLint
 
   const toggleFAQ = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
+
   return (
     <div className="min-h-screen bg-black text-white px-6 md:px-16 py-16">
       <section className="max-w-5xl mx-auto text-center mb-20">
@@ -45,8 +44,8 @@ export default function FAQPage() {
         </p>
       </section>
 
-      <section className="max-w-6xl  mx-auto mb-20">
-       <div className="space-y-4">
+      <section className="max-w-6xl mx-auto mb-20">
+        <div className="space-y-4">
           {faqs.map((faq, index) => (
             <div
               key={index}
@@ -56,13 +55,13 @@ export default function FAQPage() {
                 onClick={() => toggleFAQ(index)}
                 className="flex justify-between items-center"
               >
-                   <div
-              className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-              style={{
-                background:
-                  "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
-              }}
-            />
+                <div
+                  className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{
+                    background:
+                      "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
+                  }}
+                />
                 <h4 className="font-medium text-lg">{faq.q}</h4>
                 <FaChevronDown
                   className={`transition-transform duration-300 ${

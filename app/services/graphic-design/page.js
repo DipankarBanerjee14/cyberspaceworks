@@ -44,7 +44,7 @@ export default function GraphDesign() {
       <section className="max-w-5xl mx-auto text-center mb-20">
         <h1 className="text-4xl md:text-5xl font-bold mb-6">Graphic Design</h1>
         <p className="text-lg text-gray-300 leading-relaxed">
-          At CSW, we create visually compelling designs that strengthen your brand identity. From logos to motion graphics, our designs are crafted to captivate and communicate effectively.
+          {"At CSW, we create visually compelling designs that strengthen your brand&apos;s identity. From logos to motion graphics, our designs are crafted to captivate and communicate effectively."}
         </p>
       </section>
 
@@ -67,14 +67,14 @@ export default function GraphDesign() {
               />
               <h3 className="text-xl font-semibold mb-2">{service}</h3>
               <p className="text-gray-400 text-sm">
-                Creative {service.toLowerCase()} to elevate your brand's visual appeal.
+                Creative {service.toLowerCase()} to elevate your brand&apos;s visual appeal.
               </p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ------------------ TECHNOLOGIES (Reusable Component) ------------------ */}
+      {/* ------------------ TECHNOLOGIES ------------------ */}
       <ServicesCircle
         title="Technologies We Use"
         items={technologies}

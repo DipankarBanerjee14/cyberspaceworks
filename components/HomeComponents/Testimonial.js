@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
+import Image from "next/image";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
 import { FaArrowRight, FaTimes } from 'react-icons/fa';
@@ -138,7 +139,7 @@ export default function Testimonials() {
                 >
                   {/* Avatar + Name */}
                   <div className="w-1/2 h-full flex flex-col items-center justify-center text-center text-black">
-                    <img
+                    <Image
                       src={item.avatar}
                       alt={`${item.firstname} ${item.lastname}`}
                       className="w-24 h-24 rounded-full mb-2 object-cover border-2 border-white/40 shadow-md"
