@@ -60,195 +60,216 @@ export default function Dashboard() {
     const onMove = (e) => setCoords({ x: e.clientX, y: e.clientY });
     window.addEventListener("mousemove", onMove);
 
-    // Chart 1 setup (Increasing values)
-    const ctx1 = canvasRef1.current?.getContext("2d");
-    if (ctx1) {
-      chartRef1.current = new Chart(ctx1, {
-        type: "line",
-        data: {
-          labels: ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"],
-          datasets: [
-            {
-              label: "Income",
-              data: [100, 120, 140, 160, 180, 200, 220, 240, 260],
-              borderColor: "#EC4899",
-              backgroundColor: "rgba(236, 72, 153, 0.3)",
-              pointBackgroundColor: "#EC4899",
-              pointBorderColor: "#fff",
-              pointBorderWidth: 2,
-              fill: false,
-              tension: 0.4,
-              borderWidth: 2,
-            },
-            {
-              label: "Expense",
-              data: [110, 125, 145, 165, 185, 205, 225, 245, 265],
-              borderColor: "#3B82F6",
-              backgroundColor: "rgba(59, 130, 246, 0.3)",
-              pointBackgroundColor: "#3B82F6",
-              pointBorderColor: "#fff",
-              pointBorderWidth: 2,
-              fill: false,
-              tension: 0.4,
-              borderWidth: 2,
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: { legend: { display: false } },
-          scales: {
-            x: { display: true, grid: { display: true } },
-            y: { display: false, grid: { display: false } },
+// Chart 1 setup (Competitor lower trajectory)
+const ctx1 = canvasRef1.current?.getContext("2d");
+if (ctx1) {
+  chartRef1.current = new Chart(ctx1, {
+    type: "line",
+    data: {
+      labels: ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"],
+      datasets: [
+         {
+          label: "Competitor",
+          data: [80, 90, 95, 100, 110, 115, 118, 120, 122],
+          borderColor: "#EF4444", 
+          backgroundColor: (context) => {
+            const ctx = context.chart.ctx;
+            const gradient = ctx.createLinearGradient(0, 0, 0, context.chart.height);
+            gradient.addColorStop(0, "rgba(239,68,68,0.8)");  // top - strong red
+            gradient.addColorStop(1, "rgba(239,68,68,0.1)");  // bottom - faded red
+            return gradient;
           },
-          elements: { point: { radius: 4, hoverRadius: 6 } },
+          fill: true, 
+          tension: 0.4,
+          borderWidth: 3,
+          pointBackgroundColor: "#EF4444",
+          pointBorderColor: "#fff",
+          pointBorderWidth: 2,
+          pointRadius: 4,
+          pointHoverRadius: 6,
         },
-      });
-    }
 
-    // Chart 2 setup (Increasing values)
-    const ctx2 = canvasRef2.current?.getContext("2d");
-    if (ctx2) {
-      chartRef2.current = new Chart(ctx2, {
-        type: "line",
-        data: {
-          labels: ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"],
-          datasets: [
-            {
-              label: "Income",
-              data: [100, 115, 130, 145, 160, 175, 190, 205, 220],
-              borderColor: "#EC4899",
-              backgroundColor: "rgba(236, 72, 153, 0.3)",
-              pointBackgroundColor: "#EC4899",
-              pointBorderColor: "#fff",
-              pointBorderWidth: 2,
-              fill: false,
-              tension: 0.4,
-              borderWidth: 2,
-            },
-            {
-              label: "Expense",
-              data: [110, 120, 135, 150, 165, 180, 195, 210, 225],
-              borderColor: "#3B82F6",
-              backgroundColor: "rgba(59, 130, 246, 0.3)",
-              pointBackgroundColor: "#3B82F6",
-              pointBorderColor: "#fff",
-              pointBorderWidth: 2,
-              fill: false,
-              tension: 0.4,
-              borderWidth: 2,
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: { legend: { display: false } },
-          scales: {
-            x: { display: true, grid: { display: true } },
-            y: { display: false, grid: { display: false } },
+        {
+          label: "Our Clients",
+          data: [100, 120, 140, 160, 180, 200, 220, 240, 260],
+          borderColor: "#3B82F6",
+          backgroundColor: (context) => {
+            const ctx = context.chart.ctx;
+            const gradient = ctx.createLinearGradient(0, 0, 0, context.chart.height);
+            gradient.addColorStop(0, "rgba(59,130,246,0.9)"); // top - vivid blue
+            gradient.addColorStop(1, "rgba(59,130,246,0.1)"); // bottom - transparent
+            return gradient;
           },
-          elements: { point: { radius: 4, hoverRadius: 6 } },
+          fill: true,
+          tension: 0.4,
+          borderWidth: 3,
+          pointBackgroundColor: "#3B82F6",
+          pointBorderColor: "#fff",
+          pointBorderWidth: 2,
+          pointRadius: 4,
+          pointHoverRadius: 6,
         },
-      });
-    }
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { display: true, grid: { display: true } },
+        y: { display: false, grid: { display: false } },
+      },
+      elements: { point: { radius: 4, hoverRadius: 6 } },
+    },
+  });
+}
 
-    // Chart 3 setup (Green color, y-axis numbers hidden)
-    const ctx3 = canvasRef3.current?.getContext("2d");
-    if (ctx3) {
-      chartRef3.current = new Chart(ctx3, {
-        type: "line",
-        data: {
-          labels: ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"],
-          datasets: [
-            {
-              label: "New Clients",
-              data: [30, 35, 40, 50, 55, 60, 65, 70, 95],
-              borderColor: "#10B981",
-              backgroundColor: "rgba(16, 185, 129, 0.2)",
-              tension: 0.4,
-              fill: true,
-              pointBackgroundColor: "#10B981",
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: {
-              position: "top",
-            },
+// Chart 2 setup (Competitor lower trajectory)
+const ctx2 = canvasRef2.current?.getContext("2d");
+if (ctx2) {
+  chartRef2.current = new Chart(ctx2, {
+    type: "line",
+    data: {
+      labels: ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"],
+      datasets: [
+        {
+          label: "Competitor",
+          data: [80, 90, 95, 100, 110, 115, 118, 120, 122],
+          borderColor: "#EF4444", 
+          backgroundColor: (context) => {
+            const ctx = context.chart.ctx;
+            const gradient = ctx.createLinearGradient(0, 0, 0, context.chart.height);
+            gradient.addColorStop(0, "rgba(239,68,68,0.8)");  // top - strong red
+            gradient.addColorStop(1, "rgba(239,68,68,0.1)");  // bottom - faded red
+            return gradient;
           },
-          scales: {
-            y: {
-              display: false, // Hide y-axis numbers and grid
-              beginAtZero: false,
-              title: {
-                display: false,
-                text: "Number of Clients",
-              },
-            },
-            x: {
-              display: true,
-              grid: { display: true },
-              title: {
-                display: true,
-                text: "Year",
-              },
-            },
-          },
+          fill: true, 
+          tension: 0.4,
+          borderWidth: 3,
+          pointBackgroundColor: "#EF4444",
+          pointBorderColor: "#fff",
+          pointBorderWidth: 2,
+          pointRadius: 4,
+          pointHoverRadius: 6,
         },
-      });
-    }
 
-    // Chart 4 setup (Red color, y-axis numbers hidden)
-    const ctx4 = canvasRef4.current?.getContext("2d");
-    if (ctx4) {
-      chartRef4.current = new Chart(ctx4, {
-        type: "line",
-        data: {
-          labels: ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"],
-          datasets: [
-            {
-              label: "Return Clients",
-              data: [10, 12, 15, 18, 25, 27, 30, 31, 32],
-              borderColor: "#EF4444",
-              backgroundColor: "rgba(239, 68, 68, 0.2)",
-              tension: 0.4,
-              fill: true,
-              pointBackgroundColor: "#EF4444",
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: {
-              position: "top",
-            },
+        {
+          label: "Our Clients",
+          data: [100, 120, 140, 160, 180, 200, 220, 240, 260],
+          borderColor: "#3B82F6",
+          backgroundColor: (context) => {
+            const ctx = context.chart.ctx;
+            const gradient = ctx.createLinearGradient(0, 0, 0, context.chart.height);
+            gradient.addColorStop(0, "rgba(59,130,246,0.9)"); // top - vivid blue
+            gradient.addColorStop(1, "rgba(59,130,246,0.1)"); // bottom - transparent
+            return gradient;
           },
-          scales: {
-            y: {
-              display: false, // Hide y-axis numbers and grid
-              beginAtZero: false,
-              title: {
-                display: false,
-                text: "Number of Clients",
-              },
-            },
-            x: {
-              display: true,
-              grid: { display: true },
-              title: {
-                display: true,
-                text: "Year",
-              },
-            },
-          },
+          fill: true,
+          tension: 0.4,
+          borderWidth: 3,
+          pointBackgroundColor: "#3B82F6",
+          pointBorderColor: "#fff",
+          pointBorderWidth: 2,
+          pointRadius: 4,
+          pointHoverRadius: 6,
         },
-      });
-    }
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { display: true, grid: { display: true } },
+        y: { display: false, grid: { display: false } },
+      },
+      elements: { point: { radius: 4, hoverRadius: 6 } },
+    },
+  });
+}
+
+
+   // Chart 3 setup (Green glowing bar chart)
+const ctx3 = canvasRef3.current?.getContext("2d");
+if (ctx3) {
+  const gradient3 = ctx3.createLinearGradient(0, 0, 0, 400);
+  gradient3.addColorStop(0, "rgba(16, 185, 129, 0.9)");
+  gradient3.addColorStop(1, "rgba(16, 185, 129, 0.1)");
+
+  chartRef3.current = new Chart(ctx3, {
+    type: "bar",
+    data: {
+      labels: ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"],
+      datasets: [
+        {
+          label: "New Clients",
+          data: [30, 35, 40, 50, 55, 60, 65, 70, 95],
+          backgroundColor: gradient3,
+          borderRadius: 15,
+          borderSkipped: false,
+          borderWidth: 0,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+      },
+      scales: {
+        y: {
+          display: false,
+          grid: { display: false },
+        },
+        x: {
+          display: true,
+          grid: { display: true },
+        },
+      },
+    },
+  });
+}
+
+// Chart 4 setup (Yellow glowing bar chart)
+const ctx4 = canvasRef4.current?.getContext("2d");
+if (ctx4) {
+  const gradient4 = ctx4.createLinearGradient(0, 0, 0, 400);
+  gradient4.addColorStop(0, "rgba(250, 204, 21, 0.9)");
+  gradient4.addColorStop(1, "rgba(250, 204, 21, 0.1)");
+
+  chartRef4.current = new Chart(ctx4, {
+    type: "bar",
+    data: {
+      labels: ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"],
+      datasets: [
+        {
+          label: "Return Clients",
+          data: [10, 12, 15, 18, 25, 27, 30, 31, 32],
+          backgroundColor: gradient4,
+          borderRadius: 15,
+          borderSkipped: false,
+          borderWidth: 0,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+      },
+      scales: {
+        y: {
+          display: false,
+          grid: { display: false },
+        },
+        x: {
+          display: true,
+          grid: { display: true },
+        },
+      },
+    },
+  });
+}
 
     return () => {
       window.removeEventListener("mousemove", onMove);
@@ -408,7 +429,7 @@ export default function Dashboard() {
                   <h3 className="text-2xl font-medium">Business</h3>
                   <div className="flex justify-between items-center mb-4 mt-6">
                     <div className="flex items-center gap-2">
-                      <span className="w-3 h-3 rounded-full" style={{ backgroundColor: "#EC4899" }}></span>
+                      <span className="w-3 h-3 rounded-full" style={{ backgroundColor: "#EF4444" }}></span>
                       <span className="text-white text-sm">Competitor</span>
                     </div>
                     <div className="flex items-center gap-2">
@@ -423,7 +444,7 @@ export default function Dashboard() {
               </div>
 
               {/* Chart 2 */}
-              <div className="mt-10">
+              <div className="mb-10">
                 <div className="relative z-10">
                   <div
                     className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
@@ -435,7 +456,7 @@ export default function Dashboard() {
                   <h3 className="text-2xl font-medium">Growth</h3>
                   <div className="flex justify-between items-center mb-4 mt-6">
                     <div className="flex items-center gap-2">
-                      <span className="w-3 h-3 rounded-full" style={{ backgroundColor: "#EC4899" }}></span>
+                      <span className="w-3 h-3 rounded-full" style={{ backgroundColor: "#EF4444" }}></span>
                       <span className="text-white text-sm">Competitor</span>
                     </div>
                     <div className="flex items-center gap-2">

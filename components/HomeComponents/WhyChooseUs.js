@@ -48,22 +48,22 @@ const WhyChooseUsWithGraph = () => {
     return gradient;
   };
 
- const dataLine = {
-  labels: ["2017","2018","2019","2020","2021","2022","2023","2024","2025"],
+const dataLine = {
+  labels: ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"],
   datasets: [
     {
       label: "Google",
       data: [15, 18, 20, 25, 28, 30, 33, 35, 45],
-      borderColor: "#ff4d4d",
+      borderColor: "#6366F1", // Indigo-500
       fill: true,
       backgroundColor: (context) =>
         createGradient(
           context.chart.ctx,
-          "rgba(255,77,77,0.4)",
-          "rgba(255,77,77,0.05)"
+          "rgba(99,102,241,0.35)", // Indigo gradient start
+          "rgba(99,102,241,0.05)"  // Indigo gradient end
         ),
       tension: 0.45,
-      pointBackgroundColor: "#ff4d4d",
+      pointBackgroundColor: "#6366F1",
       pointBorderColor: "#fff",
       pointBorderWidth: 2,
       pointRadius: 5,
@@ -73,16 +73,16 @@ const WhyChooseUsWithGraph = () => {
     {
       label: "Social Media",
       data: [10, 11, 13, 17, 18, 21, 22, 23, 30],
-      borderColor: "#4da6ff",
+      borderColor: "#38BDF8", // Sky-400
       fill: true,
       backgroundColor: (context) =>
         createGradient(
           context.chart.ctx,
-          "rgba(77,166,255,0.4)",
-          "rgba(77,166,255,0.05)"
+          "rgba(56,189,248,0.35)", // Sky gradient start
+          "rgba(56,189,248,0.05)"  // Sky gradient end
         ),
       tension: 0.45,
-      pointBackgroundColor: "#4da6ff",
+      pointBackgroundColor: "#38BDF8",
       pointBorderColor: "#fff",
       pointBorderWidth: 2,
       pointRadius: 5,
@@ -121,7 +121,7 @@ const WhyChooseUsWithGraph = () => {
     },
     plugins: {
       legend: {
-        display: false, // 👈 hide Chart.js legend completely
+        display: false, 
       },
       title: {
         display: true,
@@ -245,11 +245,11 @@ const WhyChooseUsWithGraph = () => {
               {/* Minimal color indicators only */}
               <div className="flex justify-around mt-6">
                 <div className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded-full bg-[#ff4d4d]" />
+                  <span className="w-3 h-3 rounded-full bg-[#6366F1]" />
                   <p className="text-white text-sm">Google</p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded-full bg-[#4da6ff]" />
+                  <span className="w-3 h-3 rounded-full bg-[#38BDF8]" />
                   <p className="text-white text-sm">Social Media</p>
                 </div>
                 <div className="flex items-center gap-2">
