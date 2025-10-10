@@ -69,7 +69,7 @@ if (ctx1) {
       datasets: [
         {
           label: "Competitors",
-          data: [80, 90, 95, 100, 110, 115, 118, 120, 122],
+          data: [80, 90, 95, 100, 100, 115, 118, 120, 122],
           borderColor: "#2DD4BF",  
           backgroundColor: (context) => {
             const ctx = context.chart.ctx;
@@ -89,7 +89,7 @@ if (ctx1) {
         },
         {
           label: "Our Clients",
-          data: [100, 120, 140, 160, 180, 200, 220, 240, 260],
+          data: [80, 120, 140, 160, 160, 200, 220, 240, 260],
           borderColor: "#3B82F6",
           backgroundColor: (context) => {
             const ctx = context.chart.ctx;
@@ -132,7 +132,7 @@ if (ctx2) {
       datasets: [
         {
           label: "Competitors",
-          data: [80, 90, 95, 100, 110, 115, 118, 120, 122],
+          data: [80, 90, 95, 100, 100, 115, 118, 120, 122],
           borderColor: "#2DD4BF",  
           backgroundColor: (context) => {
             const ctx = context.chart.ctx;
@@ -152,7 +152,7 @@ if (ctx2) {
         },
         {
           label: "Our Clients",
-          data: [100, 120, 140, 160, 180, 200, 220, 240, 260],
+          data: [80, 120, 140, 160, 160, 200, 220, 240, 260],
           borderColor: "#3B82F6",
           backgroundColor: (context) => {
             const ctx = context.chart.ctx;

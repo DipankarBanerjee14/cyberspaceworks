@@ -10,7 +10,7 @@ import {
   FaCheckCircle,
 } from "react-icons/fa";
 
-const VortaskyAISection = () => {
+const AboutSection = () => {
   const [coords, setCoords] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -79,7 +79,7 @@ const VortaskyAISection = () => {
                 }}
               />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative z-10">
-                <div className="flex flex-col">
+                <div className="flex flex-col text-center lg:text-left">
                   <h3 className="text-xl font-semibold text-black mb-3">
                     Vortasky Intelligent Routing That Delivers
                   </h3>
@@ -87,9 +87,12 @@ const VortaskyAISection = () => {
                     Automatically route conversations to the right agent or
                     department—no delays, no confusion.
                   </p>
-                  <button className="bg-gradient-to-r from-cyan-500 to-cyan-700 text-black px-4 py-2 rounded shadow-lg shadow-cyan-500/30 hover:shadow-purple-500/50 w-fit">
-                    Get Started →
-                  </button>
+                 <div className="w-full flex justify-center md:justify-start">
+  <button className="bg-gradient-to-r from-cyan-500 to-cyan-700 text-black px-4 py-2 rounded shadow-lg  hover:shadow-cyan-700/50 w-fit">
+    Get Started →
+  </button>
+</div>
+
                 </div>
                 <div className="flex flex-col items-center">
                   <div className="text-center mb-4 rounded-lg bg-white/10 backdrop-blur-md p-4 border border-white/10">
@@ -244,4 +247,4 @@ const VortaskyAISection = () => {
   );
 };
 
-export default VortaskyAISection;
+export default AboutSection;

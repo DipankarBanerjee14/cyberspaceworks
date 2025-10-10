@@ -176,13 +176,13 @@ const dataLine = {
       <section className="py-16 relative z-10 max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
           {/* Left content */}
-          <div>
-            <p className="text-gray-500 text-sm mb-2">2. Automate billing & collections</p>
-            <div className="flex items-baseline mb-4">
+          <div className="flex justify-center md:justify-start flex-col">
+            <p className="text-gray-500 text-sm mb-2 text-center lg:text-left">2. Automate billing & collections</p>
+            <div className="flex items-baseline mb-4 ">
               <FaBolt className="text-white text-4xl mr-2" />
               <h2 className="text-5xl font-bold text-white">Why Choose Us</h2>
             </div>
-            <p className="text-gray-300 mb-8">
+            <p className="text-gray-300 mb-8 text-center lg:text-left">
               Pay suppliers & employees with a click. No data entry needed. Get paid faster with automated AR.
             </p>
 
