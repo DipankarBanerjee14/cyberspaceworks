@@ -501,7 +501,7 @@ if (ctx4) {
                     <div className="flex justify-between items-center mb-4 mt-6">
                       <div className="flex items-center gap-2">
                         <span className="w-3 h-3 rounded-full" style={{ backgroundColor: "#6366F1" }}></span>
-                        <span className="text-white text-sm">Return Clients</span>
+                        <span className="text-white text-sm">Returning Clients</span>
                       </div>
                     </div>
                     <div className="h-80 flex items-end">
