@@ -36,12 +36,10 @@ export default function Navbar() {
         </div>
 
         {/* Navbar */}
-        <nav className="text-white ">
-          <div className="relative flex items-center justify-between h-[70px] ">
-
+        <nav className="text-white">
+          <div className="relative flex items-center justify-between h-[70px]">
             {/* Left Menu */}
             <ul className="space-x-6 font-bold px-6 py-1.5 rounded-xl bg-black/10 border border-white/10 shadow-xl flex items-center backdrop-blur-sm absolute left-3 ml-4">
-              
               {/* Home */}
               <li className="relative group">
                 <Link href="#" className="transition-colors duration-300 group-hover:text-cyan-400">
@@ -62,18 +60,19 @@ export default function Navbar() {
                 {/* Dropdown Menu */}
                 <ul className="absolute left-0 mt-2 w-52 bg-black/90 border border-white/10 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 scale-95 group-hover:scale-100 transform transition-all duration-300 origin-top z-50 backdrop-blur-md">
                   {services.map((service) => (
-                    <li key={service.name}>
+                    <li key={service.name} className="relative group/submenu">
                       <Link
                         href={service.href}
-                        className="block px-4 py-2 text-sm text-white hover:text-cyan-400 hover:bg-white/10 transition-colors duration-200"
-                        
+                        className="relative block px-4 py-2 text-sm text-white hover:text-cyan-400 transition-colors duration-200 group/submenu"
                       >
+                        {/* Background sliding effect */}
+                        {/* <span className="absolute inset-0 bg-gradient-to-r from-cyan-700/50 via-cyan-400/50 to-cyan-200/50 scale-x-0 group-hover/submenu:scale-x-100 transition-transform duration-300 origin-left rounded-md z-[-1]"></span>
+                        <span className="relative group-hover/submenu:scale-105 transition-transform duration-300 inline-block"> */}
+                          {service.name}
                         
-                        {service.name}
-                        
+                        {/* Underline animation */}
+                        <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-gradient-to-r from-cyan-700 via-cyan-400 to-cyan-200 scale-x-0 group-hover/submenu:scale-x-100 transition-transform duration-300 origin-left rounded-full"></span>
                       </Link>
-                      {/* Underline animation for each service */}
-                      <span className="absolute left-4 bottom-1 w-[calc(100%-2rem)] h-[2px] bg-gradient-to-r from-cyan-700 via-cyan-400 to-cyan-200 scale-x-0 group-hover/item:scale-x-100 transition-transform duration-300 origin-left rounded-full"></span>
                     </li>
                   ))}
                 </ul>
@@ -97,7 +96,7 @@ export default function Navbar() {
 
               {/* Get a Quote Button */}
               <button
-                className="flex items-center justify-center gap-1 relative px-4 py-1 text-black cursor-pointer bg-blue-400 rounded-full shadow-[0_0_12px_rgba(0,0,0,0.4)] transition-all duration-300 hover:shadow-[0_0_16px_rgba(0,0,0,0.6)]"
+                className="flex items-center justify-center gap-1 relative px-4 py-1 text-black cursor-pointer bg-cyan-400 rounded-full shadow-[0_0_12px_rgba(0,0,0,0.4)] transition-all duration-300 hover:shadow-[0_0_16px_rgba(0,0,0,0.6)]"
               >
                 Get a Quote
               </button>

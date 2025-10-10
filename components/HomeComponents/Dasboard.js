@@ -59,7 +59,7 @@ export default function Dashboard() {
     setCoords({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
     const onMove = (e) => setCoords({ x: e.clientX, y: e.clientY });
     window.addEventListener("mousemove", onMove);
-// Chart 1 setup 
+// Chart 1 setup
 const ctx1 = canvasRef1.current?.getContext("2d");
 if (ctx1) {
   chartRef1.current = new Chart(ctx1, {
@@ -68,26 +68,25 @@ if (ctx1) {
       labels: ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"],
       datasets: [
         {
-          label: "Competitor",
+          label: "Competitors",
           data: [80, 90, 95, 100, 110, 115, 118, 120, 122],
-          borderColor: "#38BDF8",
+          borderColor: "#2DD4BF",  
           backgroundColor: (context) => {
             const ctx = context.chart.ctx;
             const gradient = ctx.createLinearGradient(0, 0, 0, context.chart.height);
-            gradient.addColorStop(0, "rgba(56,189,248,0.8)");  // top - strong sky blue
-            gradient.addColorStop(1, "rgba(56,189,248,0.1)");  // bottom - faded sky blue
+            gradient.addColorStop(0, "rgba(45,212,191,0.8)");  // top
+            gradient.addColorStop(1, "rgba(45,212,191,0.1)");  // bottom
             return gradient;
           },
-          fill: true, 
+          fill: true,
           tension: 0.4,
           borderWidth: 3,
-          pointBackgroundColor: "#38BDF8",
+          pointBackgroundColor: "#2DD4BF",
           pointBorderColor: "#fff",
           pointBorderWidth: 2,
           pointRadius: 4,
           pointHoverRadius: 6,
         },
-
         {
           label: "Our Clients",
           data: [100, 120, 140, 160, 180, 200, 220, 240, 260],
@@ -95,8 +94,8 @@ if (ctx1) {
           backgroundColor: (context) => {
             const ctx = context.chart.ctx;
             const gradient = ctx.createLinearGradient(0, 0, 0, context.chart.height);
-            gradient.addColorStop(0, "rgba(59,130,246,0.9)"); // top - vivid blue
-            gradient.addColorStop(1, "rgba(59,130,246,0.1)"); // bottom - transparent
+            gradient.addColorStop(0, "rgba(59,130,246,0.9)");
+            gradient.addColorStop(1, "rgba(59,130,246,0.1)");
             return gradient;
           },
           fill: true,
@@ -123,7 +122,7 @@ if (ctx1) {
   });
 }
 
-// Chart 2 setup 
+// Chart 2 setup
 const ctx2 = canvasRef2.current?.getContext("2d");
 if (ctx2) {
   chartRef2.current = new Chart(ctx2, {
@@ -132,26 +131,25 @@ if (ctx2) {
       labels: ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"],
       datasets: [
         {
-          label: "Competitor",
+          label: "Competitors",
           data: [80, 90, 95, 100, 110, 115, 118, 120, 122],
-          borderColor: "#38BDF8",
+          borderColor: "#2DD4BF",  
           backgroundColor: (context) => {
             const ctx = context.chart.ctx;
             const gradient = ctx.createLinearGradient(0, 0, 0, context.chart.height);
-            gradient.addColorStop(0, "rgba(56,189,248,0.8)");  // top - strong sky blue
-            gradient.addColorStop(1, "rgba(56,189,248,0.1)");  // bottom - faded sky blue
+            gradient.addColorStop(0, "rgba(45,212,191,0.8)");
+            gradient.addColorStop(1, "rgba(45,212,191,0.1)");
             return gradient;
           },
-          fill: true, 
+          fill: true,
           tension: 0.4,
           borderWidth: 3,
-          pointBackgroundColor: "#38BDF8",
+          pointBackgroundColor: "#2DD4BF",
           pointBorderColor: "#fff",
           pointBorderWidth: 2,
           pointRadius: 4,
           pointHoverRadius: 6,
         },
-
         {
           label: "Our Clients",
           data: [100, 120, 140, 160, 180, 200, 220, 240, 260],
@@ -159,8 +157,8 @@ if (ctx2) {
           backgroundColor: (context) => {
             const ctx = context.chart.ctx;
             const gradient = ctx.createLinearGradient(0, 0, 0, context.chart.height);
-            gradient.addColorStop(0, "rgba(59,130,246,0.9)"); // top - vivid blue
-            gradient.addColorStop(1, "rgba(59,130,246,0.1)"); // bottom - transparent
+            gradient.addColorStop(0, "rgba(59,130,246,0.9)");
+            gradient.addColorStop(1, "rgba(59,130,246,0.1)");
             return gradient;
           },
           fill: true,
@@ -186,8 +184,6 @@ if (ctx2) {
     },
   });
 }
-
-
 
    // Chart 3 setup (Green glowing bar chart)
 const ctx3 = canvasRef3.current?.getContext("2d");
@@ -230,12 +226,13 @@ if (ctx3) {
   });
 }
 
-// Chart 4 setup (Yellow glowing bar chart)
+// Chart 4 setup
 const ctx4 = canvasRef4.current?.getContext("2d");
 if (ctx4) {
+
   const gradient4 = ctx4.createLinearGradient(0, 0, 0, 400);
-  gradient4.addColorStop(0, "rgba(250, 204, 21, 0.9)");
-  gradient4.addColorStop(1, "rgba(250, 204, 21, 0.1)");
+  gradient4.addColorStop(0, "rgba(99,102,241,0.9)"); 
+  gradient4.addColorStop(1, "rgba(99,102,241,0.1)"); 
 
   chartRef4.current = new Chart(ctx4, {
     type: "bar",
@@ -243,7 +240,7 @@ if (ctx4) {
       labels: ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"],
       datasets: [
         {
-          label: "Return Clients",
+          label: "Returning Clients",
           data: [10, 12, 15, 18, 25, 27, 30, 31, 32],
           backgroundColor: gradient4,
           borderRadius: 15,
@@ -270,6 +267,7 @@ if (ctx4) {
     },
   });
 }
+
 
     return () => {
       window.removeEventListener("mousemove", onMove);
@@ -429,8 +427,8 @@ if (ctx4) {
                   <h3 className="text-2xl font-medium">Business</h3>
                   <div className="flex justify-between items-center mb-4 mt-6">
                     <div className="flex items-center gap-2">
-                      <span className="w-3 h-3 rounded-full" style={{ backgroundColor: "#38BDF8" }}></span>
-                      <span className="text-white text-sm">Competitor</span>
+                      <span className="w-3 h-3 rounded-full" style={{ backgroundColor: "#2DD4BF" }}></span>
+                      <span className="text-white text-sm">Competitors</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="w-3 h-3 rounded-full" style={{ backgroundColor: "#3B82F6" }}></span>
@@ -456,8 +454,8 @@ if (ctx4) {
                   <h3 className="text-2xl font-medium">Growth</h3>
                   <div className="flex justify-between items-center mb-4 mt-6">
                     <div className="flex items-center gap-2">
-                      <span className="w-3 h-3 rounded-full" style={{ backgroundColor: "#38BDF8" }}></span>
-                      <span className="text-white text-sm">Competitor</span>
+                      <span className="w-3 h-3 rounded-full" style={{ backgroundColor: "#2DD4BF" }}></span>
+                      <span className="text-white text-sm">Competitors</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="w-3 h-3 rounded-full" style={{ backgroundColor: "#3B82F6" }}></span>
@@ -499,10 +497,10 @@ if (ctx4) {
                 {/* Chart 4 */}
                 <div className="mb-10">
                   <div className="relative z-10">
-                    <h3 className="text-2xl font-medium">Return Clients</h3>
+                    <h3 className="text-2xl font-medium">Returning Clients</h3>
                     <div className="flex justify-between items-center mb-4 mt-6">
                       <div className="flex items-center gap-2">
-                        <span className="w-3 h-3 rounded-full" style={{ backgroundColor: "#FACC15" }}></span>
+                        <span className="w-3 h-3 rounded-full" style={{ backgroundColor: "#6366F1" }}></span>
                         <span className="text-white text-sm">Return Clients</span>
                       </div>
                     </div>
