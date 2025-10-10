@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { IoReorderThree } from "react-icons/io5";
+import Image from "next/image";
 import Link from "next/link";
 import {
   FaPhoneAlt,
@@ -92,28 +93,37 @@ export default function Navbar() {
             </div>
 
             {/* Center Logo */}
-           <div className="absolute left-1/2 -translate-x-1/2 top-[-12px] flex items-center justify-center">
+        <div className="absolute left-1/2 -translate-x-1/2 top-[-12px] flex items-center justify-center">
   <Link href="/">
     <div className="w-[180px] h-[70px] rounded-xl pt-2.5 bg-cyan-400 border-l-[10px] border-r-[10px] border-b-[10px] border-cyan-400 flex items-center justify-center">
-      <img src="/logo.png" alt="Logo" className="h-25 w-auto" />
+      <Image
+        src="/logo.png"
+        alt="Logo"
+        width={180}
+        height={70}
+        className="h-25 w-auto"
+        priority
+      />
     </div>
   </Link>
 </div>
 
+
             {/* Right Hamburger Icon (Mobile & Tablet) */}
-            <div className="lg:hidden flex items-center right-hamburger">
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setIsRightMenuOpen(!isRightMenuOpen);
-                  setIsLeftMenuOpen(false);
-                  setIsServicesOpen(false);
-                }}
-                className="text-3xl text-cyan-400"
-              >
-                <IoReorderThree />
-              </button>
-            </div>
+            <div className="lg:hidden flex items-center right-hamburger absolute right-10 top-1/2 -translate-y-1/2">
+  <button
+    onClick={(e) => {
+      e.stopPropagation();
+      setIsRightMenuOpen(!isRightMenuOpen);
+      setIsLeftMenuOpen(false);
+      setIsServicesOpen(false);
+    }}
+    className="text-3xl text-cyan-400"
+  >
+    <IoReorderThree />
+  </button>
+</div>
+
 
             {/* Left Menu (Desktop) */}
             <ul className="hidden lg:flex space-x-6 font-bold px-6 py-1.5 rounded-xl bg-black/10 border border-white/10 shadow-xl items-center backdrop-blur-sm absolute left-1 ml-4 left-menu-container">

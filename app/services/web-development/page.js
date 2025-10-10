@@ -61,7 +61,7 @@ export default function WebDevelopment() {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white px-6 md:px-16 py-36">
+    <div className="min-h-screen bg-black text-white px-6 md:px-16 py-16 mt-10">
       {/* ------------------ DESCRIPTION ------------------ */}
       <section className="max-w-5xl mx-auto text-center mb-20">
         <h1 className="text-4xl md:text-5xl font-bold mb-6">Web Development</h1>
