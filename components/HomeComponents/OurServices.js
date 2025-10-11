@@ -402,70 +402,78 @@ export default function OurServicesWithWires() {
 
         {/* Top three boxes */}
          <div className="flex flex-wrap justify-center gap-6 md:gap-8 mb-16">
-     {/* Web Development */}
-<div
-  ref={(el) => (boxRefs.current[0] = el)}
-  className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out"
->
-  <div className="absolute inset-0 
-    bg-gradient-to-br from-[#0f0f0f] to-[#141414] 
-    shadow-[0_0_15px_rgba(14,116,144,0.3),inset_0_0_15px_rgba(14,116,144,0.05)]
-    backdrop-blur-xl 
-    flex flex-col items-center justify-center text-center px-5 
-    transition-all duration-500 ease-out rounded-lg
-"
+
+  {/* Web Development */}
+  <div
+    ref={(el) => (boxRefs.current[0] = el)}
+    className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out"
   >
-    <div className="text-cyan-400 mb-2">
-      <FaLaptopCode size={38} />
+    <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden flex flex-col items-center justify-center text-center transition-all duration-300 shadow-[0_0_15px_rgba(14,116,144,0.3),inset_0_0_15px_rgba(14,116,144,0.05)] animate-pulseShadow">
+      <div
+        className="absolute top-0 left-0 w-40 h-40 -translate-x-20 -translate-y-20 blur-2xl opacity-40"
+        style={{ background: "radial-gradient(circle, #0E7490 0%, transparent 100%)" }}
+      />
+      <div
+        className="absolute bottom-0 right-0 w-40 h-40 translate-x-20 translate-y-20 blur-2xl opacity-40"
+        style={{ background: "radial-gradient(circle, #0E7490 0%, transparent 100%)" }}
+      />
+      <div className="text-cyan-400 mb-2 z-10">
+        <FaLaptopCode size={38} />
+      </div>
+      <h3 className="text-sm font-semibold text-white z-10">Web Development</h3>
+      <p className="text-xs text-gray-400 mt-1 leading-tight z-10">
+        Crafting responsive and dynamic <br /> websites tailored
+      </p>
     </div>
-    <h3 className="text-sm font-semibold text-white">Web Development</h3>
-    <p className="text-xs text-gray-400 mt-1 leading-tight">
-      Crafting responsive and dynamic <br /> websites tailored to your <br /> needs.
-    </p>
   </div>
-</div>
 
-
-
-    {/* App Development */}
-<div
-  ref={(el) => (boxRefs.current[1] = el)}
-  className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out "
->
-  <div className="absolute inset-0 
-    bg-gradient-to-br from-[#0f0f0f] to-[#141414] 
-    shadow-[0_0_15px_rgba(21,128,61,0.3),inset_0_0_15px_rgba(21,128,61,0.05)]
-    backdrop-blur-xl 
-    flex flex-col items-center justify-center text-center px-5 
-    transition-all duration-500 ease-out rounded-lg">
-    <div className="text-cyan-400 mb-2"><FaMobileAlt size={38} /></div>
-    <h3 className="text-sm font-semibold text-white">App Development</h3>
-    <p className="text-xs text-gray-400 mt-1 leading-tight">
-      Building innovative and  <br/>user-friendly mobile  <br/>applications.
-    </p>
+  {/* App Development */}
+  <div
+    ref={(el) => (boxRefs.current[1] = el)}
+    className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out"
+  >
+    <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden flex flex-col items-center justify-center text-center transition-all duration-300 shadow-[0_0_15px_rgba(21,128,61,0.3),inset_0_0_15px_rgba(21,128,61,0.05)] animate-pulseShadowGreen">
+      <div
+        className="absolute top-0 left-0 w-40 h-40 -translate-x-20 -translate-y-20 blur-2xl opacity-40"
+        style={{ background: "radial-gradient(circle, #15803D 0%, transparent 100%)" }}
+      />
+      <div
+        className="absolute bottom-0 right-0 w-40 h-40 translate-x-20 translate-y-20 blur-2xl opacity-40"
+        style={{ background: "radial-gradient(circle, #15803D 0%, transparent 100%)" }}
+      />
+      <div className="text-cyan-400 mb-2 z-10">
+        <FaMobileAlt size={38} />
+      </div>
+      <h3 className="text-sm font-semibold text-white z-10">App Development</h3>
+      <p className="text-xs text-gray-400 mt-1 leading-tight z-10">
+        Building innovative and <br /> user-friendly mobile <br /> applications.
+      </p>
+    </div>
   </div>
-</div>
 
-
-    
-{/* Software Development */}
-<div
-  ref={(el) => (boxRefs.current[2] = el)}
-  className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out"
->
-  <div className="absolute inset-0 
-    bg-gradient-to-br from-[#0f0f0f] to-[#141414] 
-   shadow-[0_0_15px_rgba(4,120,87,0.3),inset_0_0_15px_rgba(4,120,87,0.05)]
-    backdrop-blur-xl 
-    flex flex-col items-center justify-center text-center px-5 
-    rounded-lg">
-    <div className="text-cyan-400 mb-2"><FaCode size={38} /></div>
-    <h3 className="text-sm font-semibold text-white">Software Development</h3>
-    <p className="text-xs text-gray-400 mt-1 leading-tight">
-      Custom software solutions to  <br/>optimize your business <br/> processes.
-    </p>
+  {/* Software Development */}
+  <div
+    ref={(el) => (boxRefs.current[2] = el)}
+    className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out"
+  >
+    <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden flex flex-col items-center justify-center text-center transition-all duration-300 shadow-[0_0_15px_rgba(4,120,87,0.3),inset_0_0_15px_rgba(4,120,87,0.05)] animate-pulseShadowEmerald">
+      <div
+        className="absolute top-0 left-0 w-40 h-40 -translate-x-20 -translate-y-20 blur-2xl opacity-40"
+        style={{ background: "radial-gradient(circle, #047857 0%, transparent 100%)" }}
+      />
+      <div
+        className="absolute bottom-0 right-0 w-40 h-40 translate-x-20 translate-y-20 blur-2xl opacity-40"
+        style={{ background: "radial-gradient(circle, #047857 0%, transparent 100%)" }}
+      />
+      <div className="text-cyan-400 mb-2 z-10">
+        <FaCode size={38} />
+      </div>
+      <h3 className="text-sm font-semibold text-white z-10">Software Development</h3>
+      <p className="text-xs text-gray-400 mt-1 leading-tight z-10">
+        Custom software solutions to <br /> optimize your business <br /> processes.
+      </p>
+    </div>
   </div>
-</div>
 
 
         </div>
@@ -532,74 +540,105 @@ export default function OurServicesWithWires() {
           </div>
         </div>
 
-        {/* Bottom boxes */}
          {/* Bottom boxes */}
         <div className="flex flex-wrap justify-center gap-6 md:gap-8 mt-16">
 
-{/* UI/UX Design */}
-<div
-  ref={(el) => (boxRefs.current[3] = el)}
-  className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out "
->
-  <div className="absolute inset-0 bg-gradient-to-br from-[#0f0f0f] to-[#141414] 
-      shadow-[0_0_15px_rgba(15,118,110,0.3),inset_0_0_15px_rgba(15,118,110,0.05)] 
-      backdrop-blur-xl flex flex-col items-center justify-center text-center px-5 rounded-lg">
-    <div className="text-cyan-400 mb-2"><FaPalette size={38} /></div>
-    <h3 className="text-sm font-semibold text-white">UI/UX Design</h3>
-    <p className="text-xs text-gray-400 mt-1 leading-tight">
-      Creating intuitive and  <br/>visually appealing user <br/> interfaces.
-    </p>
-  </div>
-</div>
-{/* Digital Marketing */}
-<div
-  ref={(el) => (boxRefs.current[4] = el)}
-  className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out "
->
-  <div className="absolute inset-0 bg-gradient-to-br from-[#0f0f0f] to-[#141414]
-      shadow-[0_0_15px_rgba(3,105,161,0.3),inset_0_0_15px_rgba(3,105,161,0.05)]
-      backdrop-blur-xl flex flex-col items-center justify-center text-center px-5 rounded-lg">
-    <div className="text-cyan-400 mb-2"><FaBullhorn size={38} /></div>
-    <h3 className="text-sm font-semibold text-white">Digital Marketing</h3>
-    <p className="text-xs text-gray-400 mt-1 leading-tight">
-      Boost your online presence  <br/>with targeted marketing  <br/>strategies.
-    </p>
-  </div>
-</div>
 
-{/* Graphic Design */}
-<div
-  ref={(el) => (boxRefs.current[5] = el)}
-  className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out "
->
-  <div className="absolute inset-0 bg-gradient-to-br from-[#0f0f0f] to-[#141414]
-      shadow-[0_0_15px_rgba(29,78,216,0.3),inset_0_0_15px_rgba(29,78,216,0.05)]
-      backdrop-blur-xl flex flex-col items-center justify-center text-center px-5 rounded-lg">
-    <div className="text-cyan-400 mb-2"><FaBrush size={38} /></div>
-    <h3 className="text-sm font-semibold text-white">Graphic Design</h3>
-    <p className="text-xs text-gray-400 mt-1 leading-tight">
-      Designing stunning visuals <br/> to enhance your brand <br/> identity.
-    </p>
+ {/* UI/UX Design */}
+  <div
+    ref={(el) => (boxRefs.current[3] = el)}
+    className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out"
+  >
+    <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden flex flex-col items-center justify-center text-center transition-all duration-300 shadow-[0_0_15px_rgba(15,118,110,0.3),inset_0_0_15px_rgba(15,118,110,0.05)] animate-pulseShadowTeal">
+      <div
+        className="absolute top-0 left-0 w-40 h-40 -translate-x-20 -translate-y-20 blur-2xl opacity-40"
+        style={{ background: "radial-gradient(circle, #0F766E 0%, transparent 100%)" }}
+      />
+      <div
+        className="absolute bottom-0 right-0 w-40 h-40 translate-x-20 translate-y-20 blur-2xl opacity-40"
+        style={{ background: "radial-gradient(circle, #0F766E 0%, transparent 100%)" }}
+      />
+      <div className="text-cyan-400 mb-2 z-10">
+        <FaPalette size={38} />
+      </div>
+      <h3 className="text-sm font-semibold text-white z-10">UI/UX Design</h3>
+      <p className="text-xs text-gray-400 mt-1 leading-tight z-10">
+        Creating intuitive and <br /> visually appealing user <br /> interfaces.
+      </p>
+    </div>
   </div>
-</div>
 
-{/* Research and Analytics */}
-<div
-  ref={(el) => (boxRefs.current[6] = el)}
-  className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out"
->
-  <div className="absolute inset-0 bg-gradient-to-br from-[#0f0f0f] to-[#141414]
-      shadow-[0_0_15px_rgba(67,56,202,0.3),inset_0_0_15px_rgba(67,56,202,0.05)]
-      backdrop-blur-xl flex flex-col items-center justify-center text-center px-5 rounded-lg">
-    <div className="text-cyan-400 mb-2"><SiGoogleanalytics size={38} /></div>
-    <h3 className="text-sm font-semibold text-white">Research and Analytics</h3>
-    <p className="text-xs text-gray-400 mt-1 leading-tight">
-     We help businesses make sharper, faster, and more confident decisions in a competitive market.
-    </p>
+  {/* Digital Marketing */}
+  <div
+    ref={(el) => (boxRefs.current[4] = el)}
+    className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out"
+  >
+    <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden flex flex-col items-center justify-center text-center transition-all duration-300 shadow-[0_0_15px_rgba(3,105,161,0.3),inset_0_0_15px_rgba(3,105,161,0.05)] animate-pulseShadowSky">
+      <div
+        className="absolute top-0 left-0 w-40 h-40 -translate-x-20 -translate-y-20 blur-2xl opacity-40"
+        style={{ background: "radial-gradient(circle, #0369A1 0%, transparent 100%)" }}
+      />
+      <div
+        className="absolute bottom-0 right-0 w-40 h-40 translate-x-20 translate-y-20 blur-2xl opacity-40"
+        style={{ background: "radial-gradient(circle, #0369A1 0%, transparent 100%)" }}
+      />
+      <div className="text-cyan-400 mb-2 z-10">
+        <FaBullhorn size={38} />
+      </div>
+      <h3 className="text-sm font-semibold text-white z-10">Digital Marketing</h3>
+      <p className="text-xs text-gray-400 mt-1 leading-tight z-10">
+        Boost your online presence <br /> with targeted marketing <br /> strategies.
+      </p>
+    </div>
   </div>
-</div>
 
+  {/* Graphic Design */}
+  <div
+    ref={(el) => (boxRefs.current[5] = el)}
+    className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out"
+  >
+    <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden flex flex-col items-center justify-center text-center transition-all duration-300 shadow-[0_0_15px_rgba(29,78,216,0.3),inset_0_0_15px_rgba(29,78,216,0.05)] animate-pulseShadowBlue">
+      <div
+        className="absolute top-0 left-0 w-40 h-40 -translate-x-20 -translate-y-20 blur-2xl opacity-40"
+        style={{ background: "radial-gradient(circle, #1D4ED8 0%, transparent 100%)" }}
+      />
+      <div
+        className="absolute bottom-0 right-0 w-40 h-40 translate-x-20 translate-y-20 blur-2xl opacity-40"
+        style={{ background: "radial-gradient(circle, #1D4ED8 0%, transparent 100%)" }}
+      />
+      <div className="text-cyan-400 mb-2 z-10">
+        <FaBrush size={38} />
+      </div>
+      <h3 className="text-sm font-semibold text-white z-10">Graphic Design</h3>
+      <p className="text-xs text-gray-400 mt-1 leading-tight z-10">
+        Designing stunning visuals <br /> to enhance your <br /> brand identity.
+      </p>
+    </div>
+  </div>
 
+  {/* Research and Analytics */}
+  <div
+    ref={(el) => (boxRefs.current[6] = el)}
+    className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out"
+  >
+    <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden flex flex-col items-center justify-center text-center transition-all duration-300 shadow-[0_0_15px_rgba(67,56,202,0.3),inset_0_0_15px_rgba(67,56,202,0.05)] animate-pulseShadowIndigo">
+      <div
+        className="absolute top-0 left-0 w-40 h-40 -translate-x-20 -translate-y-20 blur-2xl opacity-40"
+        style={{ background: "radial-gradient(circle, #4338CA 0%, transparent 100%)" }}
+      />
+      <div
+        className="absolute bottom-0 right-0 w-40 h-40 translate-x-20 translate-y-20 blur-2xl opacity-40"
+        style={{ background: "radial-gradient(circle, #4338CA 0%, transparent 100%)" }}
+      />
+      <div className="text-cyan-400 mb-2 z-10">
+        <SiGoogleanalytics size={38} />
+      </div>
+      <h3 className="text-sm font-semibold text-white z-10">Research and Analytics</h3>
+      <p className="text-xs text-gray-400 mt-1 leading-tight z-10">
+        We help businesses<br/> make <br /> sharper, faster
+      </p>
+    </div>
+  </div>
           </div>
       </div>
     </section>

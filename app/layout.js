@@ -1,11 +1,11 @@
-"use client"; // required because we use useEffect
+"use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Geist, Geist_Mono, Rubik } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-
+import Loader from "@/components/Loader"; 
 import cursor from "@/public/cursor.png";
 
 // Fonts
@@ -13,12 +13,10 @@ const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
-
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
 const rubik = Rubik({
   weight: ["400", "500", "700"],
   variable: "--font-rubik",
@@ -26,33 +24,33 @@ const rubik = Rubik({
 });
 
 export default function RootLayout({ children }) {
+  const [loading, setLoading] = useState(true);
+
+  // Hide loader after page load (2s here, adjust as needed)
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Cursor spotlight effect
   useEffect(() => {
     const spotlight = document.getElementById("cursor-spotlight");
     if (!spotlight) return;
 
     const initialX = window.innerWidth / 2;
     const initialY = window.innerHeight / 2;
-    spotlight.style.background = `
-      radial-gradient(400px at ${initialX}px ${initialY}px, rgba(147,51,234,0.3), transparent 60%)
-    `;
+    spotlight.style.background = `radial-gradient(400px at ${initialX}px ${initialY}px, rgba(147,51,234,0.3), transparent 60%)`;
 
     const updateSpotlight = (x, y) => {
       requestAnimationFrame(() => {
-        spotlight.style.background = `
-          radial-gradient(400px at ${x}px ${y}px, rgba(147,51,234,0.3), transparent 60%)
-        `;
+        spotlight.style.background = `radial-gradient(400px at ${x}px ${y}px, rgba(147,51,234,0.3), transparent 60%)`;
       });
     };
 
-    const handleMouseMove = (e) => {
-      const { clientX: x, clientY: y } = e;
-      updateSpotlight(x, y);
-    };
-
+    const handleMouseMove = (e) => updateSpotlight(e.clientX, e.clientY);
     const handleTouchMove = (e) => {
       const touch = e.touches[0];
-      const { clientX: x, clientY: y } = touch;
-      updateSpotlight(x, y);
+      updateSpotlight(touch.clientX, touch.clientY);
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -72,18 +70,27 @@ export default function RootLayout({ children }) {
           cursor: `url(${cursor.src}) 16 16, auto`,
         }}
       >
-        {/* Cursor spotlight glow */}
+        {/* Optional cursor spotlight */}
         {/* <div
           id="cursor-spotlight"
           className="pointer-events-none fixed inset-0 z-0 transition-all duration-300"
         /> */}
 
-        {/* Content */}
-        <Navbar />
-        <main className="relative z-10">{children}</main>
-       
-        <Footer />
-        
+        {/* Global Preloader */}
+        {loading && (
+          <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black">
+            <Loader />
+          </div>
+        )}
+
+        {/* Main content */}
+        {!loading && (
+          <>
+            <Navbar />
+            <main className="relative z-10">{children}</main>
+            <Footer />
+          </>
+        )}
       </body>
     </html>
   );

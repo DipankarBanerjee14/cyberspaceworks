@@ -1,13 +1,19 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { FaAngleDown, FaLaptopCode, FaMobileAlt, FaCode, FaPalette, FaBullhorn, FaBrush } from "react-icons/fa";
+import OurServices from "@/components/HomeComponents/OurServices.js"; 
 import { SiGoogleanalytics } from "react-icons/si";
 
 export default function HomePage() {
+   const servicesRef = useRef(null);
   // HeroSection Component
   const HeroSection = () => {
     const canvasRef = useRef(null);
 
+const scrollToServices = () => {
+    servicesRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+ 
     useEffect(() => {
       const canvas = canvasRef.current;
       const ctx = canvas.getContext("2d");
@@ -105,79 +111,30 @@ export default function HomePage() {
             </button>
           </div>
         </main>
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 rounded-full flex justify-center">
-          <FaAngleDown className="text-cyan-400 text-4xl animate-bounce w-23" />
+        <div
+          onClick={scrollToServices}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 rounded-full flex justify-center cursor-pointer"
+        >
+          <FaAngleDown className="text-cyan-400 text-4xl animate-bounce" />
         </div>
       </div>
     );
   };
 
-  // OurServices Component
-  const OurServices = () => {
-    const boxRefs = useRef([]);
-    const chipRef = useRef(null);
-
-    const boxColors = [
-      [14, 116, 144],
-      [21, 128, 61],
-      [4, 120, 87],
-      [15, 118, 110],
-      [3, 105, 161],
-      [29, 78, 216],
-      [67, 56, 202],
-    ];
-
-    const services = [
-      { icon: <FaLaptopCode size={38} />, title: "Web Development", desc: "Crafting responsive and dynamic websites tailored to your needs." },
-      { icon: <FaMobileAlt size={38} />, title: "App Development", desc: "Building innovative and user-friendly mobile applications." },
-      { icon: <FaCode size={38} />, title: "Software Development", desc: "Custom software solutions to optimize your business processes." },
-      { icon: <FaPalette size={38} />, title: "UI/UX Design", desc: "Creating intuitive and visually appealing user interfaces." },
-      { icon: <FaBullhorn size={38} />, title: "Digital Marketing", desc: "Boost your online presence with targeted marketing strategies." },
-      { icon: <FaBrush size={38} />, title: "Graphic Design", desc: "Designing stunning visuals to enhance your brand identity." },
-      { icon: <SiGoogleanalytics size={38} />, title: "Branding", desc: "Developing a unique brand identity that stands out in the market." },
-    ];
-
-    return (
-      <section className="relative z-0 py-16 overflow-hidden max-w-7xl mx-auto">
-        <div className="relative text-center z-20">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 tracking-wide">
-            Our Services
-          </h2>
-          <div className="flex flex-wrap justify-center gap-6 md:gap-8 mb-16">
-            {services.map((service, idx) => (
-              <div key={idx} ref={(el) => (boxRefs.current[idx] = el)} className="relative group w-[220px] h-[150px] transition-transform duration-500 ease-out">
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br from-[#0f0f0f] to-[#141414] 
-                  shadow-[0_0_15px_rgba(${boxColors[idx][0]},${boxColors[idx][1]},${boxColors[idx][2]},0.3),inset_0_0_15px_rgba(${boxColors[idx][0]},${boxColors[idx][1]},${boxColors[idx][2]},0.05)]
-                  backdrop-blur-xl flex flex-col items-center justify-center text-center px-5 rounded-lg`}
-                >
-                  <div className="text-cyan-400 mb-2">{service.icon}</div>
-                  <h3 className="text-sm font-semibold text-white">{service.title}</h3>
-                  <p className="text-xs text-gray-400 mt-1 leading-tight">{service.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div ref={chipRef} className="relative w-[300px] h-[92px] bg-gradient-to-b from-[#1b1b1b] to-[#0e0e0e] rounded-lg border border-[#222] shadow-[0_18px_60px_rgba(0,0,0,0.7)] flex items-center justify-center overflow-visible mx-auto">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#1e3a8a] to-black rounded-lg opacity-40" />
-            <div className="absolute inset-0 flex items-center justify-center text-cyan-300 text-lg font-semibold tracking-wide">
-              Cyberspace Works
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  };
-
+ 
   return (
     <div className="relative min-h-screen text-white overflow-hidden">
       {/* Full radial gradient background fading to black */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_#1e3a8a_0%,_#0d1b2a_40%,_#000000_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_#1e3a8a_0%,_#0d1b2a_20%,_#000000_40%)]" />
       </div>
 
       {/* Sections */}
       <HeroSection />
+        {/* Our Services Section */}
+      <div ref={servicesRef}>
+        <OurServices />
+      </div>
     </div>
   );
 }

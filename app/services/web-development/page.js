@@ -60,8 +60,33 @@ export default function WebDevelopment() {
     { name: "radix ui", icon: <FaDraftingCompass size={22} /> },
   ];
 
+  const GlassCard = ({ title, description }) => (
+    <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
+      {/* Top-left cyan-400 glow */}
+      <div
+        className="absolute top-0 left-0 w-40 h-40 -translate-x-20 -translate-y-20 blur-2xl opacity-40"
+        style={{ background: "radial-gradient(circle, #06b6d4 0%, transparent 100%)" }}
+      />
+      {/* Bottom-right indigo-400 glow */}
+      <div
+        className="absolute bottom-0 right-0 w-40 h-40 translate-x-20 translate-y-20 blur-2xl opacity-40"
+        style={{ background: "radial-gradient(circle, #6366f1 0%, transparent 100%)" }}
+      />
+      {/* Hover glow */}
+      <div
+        className="absolute -inset-20 blur-[180px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        style={{
+          background:
+            "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
+        }}
+      />
+      <h3 className="text-xl font-semibold mb-2">{title}</h3>
+      <p className="text-gray-400 text-sm">{description}</p>
+    </div>
+  );
+
   return (
-    <div className="min-h-screen bg-black text-white px-6 md:px-16 py-16 ">
+    <div className="min-h-screen bg-black text-white px-6 md:px-16 py-16">
       {/* ------------------ DESCRIPTION ------------------ */}
       <section className="max-w-5xl mx-auto text-center mb-20">
         <h1 className="text-4xl md:text-5xl font-bold mb-6">Web Development</h1>
@@ -80,22 +105,11 @@ export default function WebDevelopment() {
         </h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {subServices.map((service, index) => (
-            <div
+            <GlassCard
               key={index}
-              className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
-              <div
-                className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-                style={{
-                  background:
-                    "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
-                }}
-              />
-              <h3 className="text-xl font-semibold mb-2">{service}</h3>
-              <p className="text-gray-400 text-sm">
-                Custom {service.toLowerCase()} solutions optimized for speed, SEO,
-                and scalability.
-              </p>
-            </div>
+              title={service}
+              description={`Custom ${service.toLowerCase()} solutions optimized for speed, SEO, and scalability.`}
+            />
           ))}
         </div>
       </section>
@@ -112,22 +126,11 @@ export default function WebDevelopment() {
         <h2 className="text-3xl font-semibold text-center mb-10">Use Cases</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {useCases.map((use, index) => (
-            <div
+            <GlassCard
               key={index}
-              className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
-              <div
-                className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-                style={{
-                  background:
-                    "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
-                }}
-              />
-              <h3 className="text-xl font-semibold mb-2">{use}</h3>
-              <p className="text-gray-400 text-sm">
-                We have helped clients in the {use.toLowerCase()} industry build
-                robust and scalable digital experiences.
-              </p>
-            </div>
+              title={use}
+              description={`We have helped clients in the ${use.toLowerCase()} industry build robust and scalable digital experiences.`}
+            />
           ))}
         </div>
       </section>

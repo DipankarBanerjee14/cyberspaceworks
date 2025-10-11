@@ -1,258 +1,216 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import * as THREE from "three";
+import React from "react";
 
-export default function ServicesCircle({
-  title = "Technologies We Use",
-  items = [],
-  centerLogo = "/logo2.png",
-}) {
-  const containerRef = useRef(null);
-  const mountRef = useRef(null);
-  const [size, setSize] = useState(700);
-
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-
-    const resize = () => {
-      const rect = el.getBoundingClientRect();
-      let s = Math.min(rect.width, 900);
-      if (window.innerWidth < 480) s = 340;
-      else if (window.innerWidth < 768) s = 480;
-      else if (window.innerWidth < 1024) s = 600;
-      else s = 750;
-      setSize(s);
-    };
-    resize();
-
-    const ro = new ResizeObserver(resize);
-    ro.observe(el);
-
-    const mount = mountRef.current;
-    if (!mount) return;
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.OrthographicCamera(
-      -size / 2,
-      size / 2,
-      size / 2,
-      -size / 2,
-      0.1,
-      1000
-    );
-    camera.position.z = 10;
-
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(size, size);
-    renderer.setPixelRatio(window.devicePixelRatio);
-    mount.appendChild(renderer.domElement);
-
-    const center = new THREE.Vector3(0, 0, 0);
-    const radius = Math.max(size / 2 - 70, 200);
-    const innerCircle = size < 480 ? 50 : size < 768 ? 65 : 80;
-    const cardWidth = size < 480 ? 80 : size < 768 ? 100 : 130;
-    const spacing = 20;
-
-    const getPos = (idx) => {
-      if (idx === 0) return new THREE.Vector3(-radius * 1.2, 0, 0);
-      if (idx === items.length - 1) return new THREE.Vector3(radius * 1.2, 0, 0);
-      const half = Math.ceil((items.length - 2) / 2);
-      if (idx > 0 && idx <= half) {
-        const startX = -((half - 1) * (cardWidth + spacing)) / 2;
-        return new THREE.Vector3(
-          startX + (idx - 1) * (cardWidth + spacing),
-          radius * 0.9,
-          0
-        );
-      }
-      const startX = -((half - 1) * (cardWidth + spacing)) / 2;
-      return new THREE.Vector3(
-        startX + (idx - half - 1) * (cardWidth + spacing),
-        -radius * 0.9,
-        0
-      );
-    };
-
-    const connectors = [];
-    items.forEach((_, idx) => {
-      const start = getPos(idx);
-      const dir = center.clone().sub(start).normalize();
-      const end = dir.clone().multiplyScalar(innerCircle).add(center);
-
-      const curve = new THREE.LineCurve3(start.clone(), end.clone());
-      const baseGeom = new THREE.BufferGeometry().setFromPoints(curve.getPoints(20));
-      const baseMat = new THREE.LineBasicMaterial({
-        color: "#3f3f46",
-        transparent: true,
-        opacity: 0.6,
-        depthWrite: false,
-      });
-      const baseLine = new THREE.Line(baseGeom, baseMat);
-      scene.add(baseLine);
-
-      const glowSegments = [];
-      for (let i = 0; i < 18; i++) {
-        const geom = new THREE.BufferGeometry();
-        const mat = new THREE.LineBasicMaterial({
-          color: "#06b6d4",
-          transparent: true,
-          opacity: 1 - i * 0.04,
-          blending: THREE.AdditiveBlending,
-          depthWrite: false,
-          linewidth: 5,
-        });
-        const seg = new THREE.Line(geom, mat);
-        seg.visible = false;
-        scene.add(seg);
-        glowSegments.push(seg);
-      }
-
-      connectors.push({ curve, t: 0, speed: 0.01, segments: glowSegments });
-    });
-
-    let animationStarted = false;
-    setTimeout(() => (animationStarted = true), 1500);
-
-    const animate = () => {
-      requestAnimationFrame(animate);
-      if (!animationStarted) {
-        renderer.render(scene, camera);
-        return;
-      }
-
-      connectors.forEach((c) => {
-        c.t += c.speed;
-        if (c.t > 1.2) c.t = 0;
-
-        c.segments.forEach((seg, i) => {
-          const tail = 0.008;
-          const spacing = 0.005;
-          const t1 = THREE.MathUtils.clamp(c.t - i * spacing, 0, 1);
-          const t2 = THREE.MathUtils.clamp(t1 - tail, 0, 1);
-          const p1 = c.curve.getPoint(t1);
-          const p2 = c.curve.getPoint(t2);
-          const g = new THREE.BufferGeometry().setFromPoints([p1, p2]);
-          seg.geometry.dispose();
-          seg.geometry = g;
-          seg.visible = t1 > 0 && t2 >= 0;
-        });
-      });
-
-      renderer.render(scene, camera);
-    };
-    animate();
-
-    const handleResize = () => {
-      resize();
-      camera.left = -size / 2;
-      camera.right = size / 2;
-      camera.top = size / 2;
-      camera.bottom = -size / 2;
-      camera.updateProjectionMatrix();
-      renderer.setSize(size, size);
-    };
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      ro.disconnect();
-      window.removeEventListener("resize", handleResize);
-      if (mount.contains(renderer.domElement)) mount.removeChild(renderer.domElement);
-      renderer.dispose();
-    };
-  }, [items, size]);
-
-  const center = { x: size / 2, y: size / 2 };
-  const innerCircle = size < 480 ? 50 : size < 768 ? 65 : 80;
-  const cardWidth = size < 480 ? 80 : size < 768 ? 100 : 130;
-  const cardHeight = size < 480 ? 60 : size < 768 ? 70 : 90;
-  const radius = Math.max(size / 2 - cardWidth / 2 - 25, 150);
-  const spacing = 20;
-
-  const getUIPos = (idx) => {
-    if (idx === 0) return { x: center.x - radius * 1.2, y: center.y };
-    if (idx === items.length - 1) return { x: center.x + radius * 1.2, y: center.y };
-    const half = Math.ceil((items.length - 2) / 2);
-    if (idx > 0 && idx <= half) {
-      const startX = center.x - ((half - 1) * (cardWidth + spacing)) / 2;
-      return { x: startX + (idx - 1) * (cardWidth + spacing), y: center.y - radius * 0.9 };
-    }
-    const startX = center.x - ((half - 1) * (cardWidth + spacing)) / 2;
-    return { x: startX + (idx - half - 1) * (cardWidth + spacing), y: center.y + radius * 0.9 };
-  };
-
+const Technologies = () => {
   return (
-    <section
-      ref={containerRef}
-      className="w-full flex justify-center items-center  bg-black relative overflow-hidden"
-    >
-      <div className="relative text-center z-10">
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 tracking-wide">
-          {title}
-        </h2>
-        <div className="relative" style={{ width: size, height: size }}>
-          <div ref={mountRef} className="absolute inset-0" />
+    <div className="flex items-center justify-center bg-black">
+      <div className="w-full max-w-[800px]">
+        <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" className="w-full">
+          <defs>
+            <linearGradient id="chipGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#2d2d2d" />
+              <stop offset="100%" stopColor="#0f0f0f" />
+            </linearGradient>
+            <linearGradient id="textGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#eeeeee" />
+              <stop offset="100%" stopColor="#888888" />
+            </linearGradient>
+            <linearGradient id="pinGradient" x1="1" y1="0" x2="0" y2="0">
+              <stop offset="0%" stopColor="#bbbbbb" />
+              <stop offset="50%" stopColor="#888888" />
+              <stop offset="100%" stopColor="#555555" />
+            </linearGradient>
+          </defs>
 
-          {/* Center Logo */}
-          <div
-            className="absolute flex items-center justify-center z-10"
-            style={{
-              left: center.x - innerCircle,
-              top: center.y - innerCircle,
-              width: innerCircle * 2,
-              height: innerCircle * 2,
-            }}
+          {/* Traces */}
+          <g id="traces">
+            {/* Left to Right Traces */}
+            <g>
+              <path d="M100 100 H200 V210 H326" className="trace-bg" />
+              <path d="M100 100 H200 V210 H326" className="trace-flow purple" />
+            </g>
+            <g>
+              <path d="M80 180 H180 V230 H326" className="trace-bg" />
+              <path d="M80 180 H180 V230 H326" className="trace-flow blue" />
+            </g>
+            <g>
+              <path d="M60 260 H150 V250 H326" className="trace-bg" />
+              <path d="M60 260 H150 V250 H326" className="trace-flow yellow" />
+            </g>
+            <g>
+              <path d="M100 350 H200 V270 H326" className="trace-bg" />
+              <path d="M100 350 H200 V270 H326" className="trace-flow green" />
+            </g>
+
+            {/* Right to Left Traces */}
+            <g>
+              <path d="M700 90 H560 V210 H474" className="trace-bg" />
+              <path d="M700 90 H560 V210 H474" className="trace-flow blue" />
+            </g>
+            <g>
+              <path d="M740 160 H580 V230 H474" className="trace-bg" />
+              <path d="M740 160 H580 V230 H474" className="trace-flow green" />
+            </g>
+            <g>
+              <path d="M720 250 H590 V250 H474" className="trace-bg" />
+              <path d="M720 250 H590 V250 H474" className="trace-flow red" />
+            </g>
+            <g>
+              <path d="M680 340 H570 V270 H474" className="trace-bg" />
+              <path d="M680 340 H570 V270 H474" className="trace-flow yellow" />
+            </g>
+
+            {/* Top Pins (6) */}
+            <g>
+              <path d="M340 100 V187" className="trace-bg" />
+              <path d="M340 100 V187" className="trace-flow green" />
+            </g>
+            <g>
+              <path d="M364 100 V187" className="trace-bg" />
+              <path d="M364 100 V187" className="trace-flow red" />
+            </g>
+            <g>
+              <path d="M388 100 V187" className="trace-bg" />
+              <path d="M388 100 V187" className="trace-flow purple" />
+            </g>
+            <g>
+              <path d="M412 100 V187" className="trace-bg" />
+              <path d="M412 100 V187" className="trace-flow blue" />
+            </g>
+            <g>
+              <path d="M436 100 V187" className="trace-bg" />
+              <path d="M436 100 V187" className="trace-flow yellow" />
+            </g>
+            <g>
+              <path d="M460 100 V187" className="trace-bg" />
+              <path d="M460 100 V187" className="trace-flow green" />
+            </g>
+
+            {/* Bottom Pins (6) */}
+            <g>
+              <path d="M340 380 V293" className="trace-bg" />
+              <path d="M340 380 V293" className="trace-flow red" />
+            </g>
+            <g>
+              <path d="M364 380 V293" className="trace-bg" />
+              <path d="M364 380 V293" className="trace-flow purple" />
+            </g>
+            <g>
+              <path d="M388 380 V293" className="trace-bg" />
+              <path d="M388 380 V293" className="trace-flow blue" />
+            </g>
+            <g>
+              <path d="M412 380 V293" className="trace-bg" />
+              <path d="M412 380 V293" className="trace-flow yellow" />
+            </g>
+            <g>
+              <path d="M436 380 V293" className="trace-bg" />
+              <path d="M436 380 V293" className="trace-flow green" />
+            </g>
+            <g>
+              <path d="M460 380 V293" className="trace-bg" />
+              <path d="M460 380 V293" className="trace-flow red" />
+            </g>
+          </g>
+
+          {/* Chip */}
+          <rect
+            x="330"
+            y="190"
+            width="140"
+            height="100"
+            rx="20"
+            ry="20"
+            fill="url(#chipGradient)"
+            stroke="#222"
+            strokeWidth="3"
+            className="drop-shadow-[0_0_6px_rgba(0,0,0,0.8)]"
+          />
+
+          {/* Left Pins (4) */}
+          {[205, 225, 245, 265].map((y, i) => (
+            <rect key={`left-${i}`} x="322" y={y} width="8" height="10" rx="2" fill="url(#pinGradient)" />
+          ))}
+
+          {/* Right Pins (4) */}
+          {[205, 225, 245, 265].map((y, i) => (
+            <rect key={`right-${i}`} x="470" y={y} width="8" height="10" rx="2" fill="url(#pinGradient)" />
+          ))}
+
+          {/* Top Pins (6) */}
+          {[336, 360, 384, 408, 430, 456].map((x, i) => (
+            <rect key={`top-${i}`} x={x} y="182" width="8" height="10" rx="2" fill="url(#pinGradient)" />
+          ))}
+
+          {/* Bottom Pins (6) */}
+          {[336, 360, 384, 408, 430, 456].map((x, i) => (
+            <rect key={`bottom-${i}`} x={x} y="290" width="8" height="10" rx="2" fill="url(#pinGradient)" />
+          ))}
+
+          {/* Loading Text */}
+          <text
+            x="400"
+            y="240"
+            fontFamily="Arial, sans-serif"
+            fontSize="22"
+            fill="url(#textGradient)"
+            textAnchor="middle"
+            alignmentBaseline="middle"
           >
-            <div
-              className="relative flex items-center justify-center rounded-full bg-black border border-gray-700 shadow-[0_0_40px_rgba(34,211,238,0.8)]"
-              style={{ width: innerCircle * 2, height: innerCircle * 2 }}
-            >
-             <Image
-               src="/logo2.png"
-               alt="Logo"
-               width={100}
-               height={100}
-               className=" w-[65%] md:w-[75%] h-auto object-contain"
-             />
-               
-            
-            </div>
-          </div>
+            Loading
+          </text>
 
-          {/* Outer Tech Cards */}
-          {items.map((s, idx) => {
-            const { x, y } = getUIPos(idx);
-            return (
-              <div
-                key={s.name}
-                className="absolute flex items-center justify-center"
-                style={{
-                  left: x - cardWidth / 2,
-                  top: y - cardHeight / 2,
-                  width: cardWidth,
-                  height: cardHeight,
-                }}
-              >
-                <div
-                  className="w-full h-full rounded-xl flex flex-col items-center justify-center px-1.5 py-1 backdrop-blur-xl transition-transform duration-300"
-                  style={{
-                    background:
-                      "linear-gradient(180deg, rgba(31,31,31,0.9), rgba(17,17,17,0.8))",
-                    boxShadow: "0 0 6px 0.5px rgba(34,211,238,0.8)",
-                  }}
-                >
-                  <div className="text-cyan-400 mb-1">{s.icon}</div>
-                  <span className="text-[10px] sm:text-xs font-medium text-white text-center">
-                    {s.name}
-                  </span>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+          {/* Circles */}
+          {[
+            { cx: 100, cy: 100 },
+            { cx: 80, cy: 180 },
+            { cx: 60, cy: 260 },
+            { cx: 100, cy: 350 },
+            { cx: 700, cy: 90 },
+            { cx: 740, cy: 160 },
+            { cx: 720, cy: 250 },
+            { cx: 680, cy: 340 },
+            { cx: 340, cy: 100 },
+            { cx: 364, cy: 100 },
+            { cx: 388, cy: 100 },
+            { cx: 412, cy: 100 },
+            { cx: 436, cy: 100 },
+            { cx: 460, cy: 100 },
+            { cx: 340, cy: 380 },
+            { cx: 364, cy: 380 },
+            { cx: 388, cy: 380 },
+            { cx: 412, cy: 380 },
+            { cx: 436, cy: 380 },
+            { cx: 460, cy: 380 },
+          ].map(({ cx, cy }, i) => (
+            <circle key={i} cx={cx} cy={cy} r="5" fill="black" />
+          ))}
+
+          {/* Inline SVG animation */}
+          <style>
+            {`
+              .trace-bg { stroke: #333; stroke-width: 1.8; fill: none; }
+              .trace-flow {
+                stroke-width: 1.8;
+                fill: none;
+                stroke-dasharray: 40 400;
+                stroke-dashoffset: 438;
+                filter: drop-shadow(0 0 6px currentColor);
+                animation: flow 3s cubic-bezier(0.5,0,0.9,1) infinite;
+              }
+              .yellow { stroke: #ffea00; color: #ffea00; }
+              .blue { stroke: #00ccff; color: #00ccff; }
+              .green { stroke: #00ff15; color: #00ff15; }
+              .purple { stroke: #9900ff; color: #9900ff; }
+              .red { stroke: #ff3300; color: #ff3300; }
+              @keyframes flow { to { stroke-dashoffset: 0; } }
+            `}
+          </style>
+        </svg>
       </div>
-    </section>
+    </div>
   );
-}
+};
+
+export default Technologies;

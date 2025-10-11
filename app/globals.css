@@ -131,8 +131,40 @@ html, body, #__next {
   0% { background-position: 0% 0%; }
   100% { background-position: 100% 100%; }
 }
-@keyframes pulse {
-  0% { opacity: 1; }
-  50% { opacity: 0.5; }
-  100% { opacity: 1; }
+/* ----------------- Pulse Shadow Animations ----------------- */
+@keyframes pulseShadow {
+  0%, 100% { box-shadow: 0 0 5px rgba(14,116,144,0.3), inset 0 0 5px rgba(14,116,144,0.05); }
+  50% { box-shadow: 0 0 10px rgba(14,116,144,0.6), inset 0 0 10px rgba(14,116,144,0.1); }
 }
+@keyframes pulseShadowGreen {
+  0%, 100% { box-shadow: 0 0 5px rgba(21,128,61,0.3), inset 0 0 5px rgba(21,128,61,0.05); }
+  50% { box-shadow: 0 0 10px rgba(21,128,61,0.6), inset 0 0 10px rgba(21,128,61,0.1); }
+}
+@keyframes pulseShadowEmerald {
+  0%, 100% { box-shadow: 0 0 5px rgba(4,120,87,0.3), inset 0 0 5px rgba(4,120,87,0.05); }
+  50% { box-shadow: 0 0 10px rgba(4,120,87,0.6), inset 0 0 10px rgba(4,120,87,0.1); }
+}
+@keyframes pulseShadowTeal {
+  0%, 100% { box-shadow: 0 0 5px rgba(15,118,110,0.3), inset 0 0 5px rgba(15,118,110,0.05); }
+  50% { box-shadow: 0 0 10px rgba(15,118,110,0.6), inset 0 0 10px rgba(15,118,110,0.1); }
+}
+@keyframes pulseShadowSky {
+  0%, 100% { box-shadow: 0 0 5px rgba(3,105,161,0.3), inset 0 0 5px rgba(3,105,161,0.05); }
+  50% { box-shadow: 0 0 10px rgba(3,105,161,0.6), inset 0 0 10px rgba(3,105,161,0.1); }
+}
+@keyframes pulseShadowBlue {
+  0%, 100% { box-shadow: 0 0 5px rgba(29,78,216,0.3), inset 0 0 5px rgba(29,78,216,0.05); }
+  50% { box-shadow: 0 0 10px rgba(29,78,216,0.6), inset 0 0 10px rgba(29,78,216,0.1); }
+}
+@keyframes pulseShadowIndigo {
+  0%, 100% { box-shadow: 0 0 5px rgba(67,56,202,0.3), inset 0 0 5px rgba(67,56,202,0.05); }
+  50% { box-shadow: 0 0 10px rgba(67,56,202,0.6), inset 0 0 10px rgba(67,56,202,0.1); }
+}
+
+.animate-pulseShadow { animation: pulseShadow 2s ease-in-out infinite; }
+.animate-pulseShadowGreen { animation: pulseShadowGreen 2s ease-in-out infinite; }
+.animate-pulseShadowEmerald { animation: pulseShadowEmerald 2s ease-in-out infinite; }
+.animate-pulseShadowTeal { animation: pulseShadowTeal 2s ease-in-out infinite; }
+.animate-pulseShadowSky { animation: pulseShadowSky 2s ease-in-out infinite; }
+.animate-pulseShadowBlue { animation: pulseShadowBlue 2s ease-in-out infinite; }
+.animate-pulseShadowIndigo { animation: pulseShadowIndigo 2s ease-in-out infinite; }

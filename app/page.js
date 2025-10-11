@@ -22,7 +22,7 @@ export default function HomePage() {
     <div className="relative min-h-screen bg-black overflow-hidden">
     
       <HeroSection />
-      <OurServices />
+     
       <WhyChooseUs />
       <OurClients/>
       <Dashboard />
