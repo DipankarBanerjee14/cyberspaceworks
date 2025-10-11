@@ -242,7 +242,7 @@ export default function Navbar() {
 
               {/* Contact */}
               <li className="relative group">
-                <Link href="/contact" className="transition-colors duration-300 group-hover:text-cyan-400">
+                <Link href="/contact-us" className="transition-colors duration-300 group-hover:text-cyan-400">
                   Contact
                 </Link>
                 <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-gradient-to-r from-cyan-700 via-cyan-400 to-cyan-200 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full"></span>

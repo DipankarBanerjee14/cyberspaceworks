@@ -87,6 +87,7 @@ export default function RootLayout({ children }) {
         {!loading && (
           <>
             <Navbar />
+           
             <main className="relative z-10">{children}</main>
             <Footer />
           </>

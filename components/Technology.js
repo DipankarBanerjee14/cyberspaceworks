@@ -1,12 +1,107 @@
+
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+const Technologies = ({ technologies = [] }) => {
+  // Map technologies to items, preserving both name and icon
+  const items = Array.isArray(technologies)
+    ? technologies.map((tech) => ({ name: tech.name, icon: tech.icon }))
+    : [];
 
-const Technologies = () => {
+  const traces = [
+    { d: "M100 70 H200 V210 H326" },
+    { d: "M80 150 H180 V230 H326" },
+    { d: "M60 230 H150 V250 H326" },
+    { d: "M100 320 H200 V270 H326" },
+    { d: "M700 60 H560 V210 H474" },
+    { d: "M740 130 H580 V230 H474" },
+    { d: "M720 220 H590 V250 H474" },
+    { d: "M680 310 H570 V270 H474" },
+    { d: "M364 70 V187" },
+    { d: "M436 70 V187" },
+    { d: "M364 410 V293" },
+    { d: "M436 410 V293" },
+  ].slice(0, items.length);
+
+  const positions = [
+    { x: 100, y: 70 },
+    { x: 80, y: 150 },
+    { x: 60, y: 230 },
+    { x: 100, y: 320 },
+    { x: 700, y: 60 },
+    { x: 740, y: 130 },
+    { x: 720, y: 220 },
+    { x: 680, y: 310 },
+    { x: 364, y: 70 },
+    { x: 436, y: 70 },
+    { x: 364, y: 410 },
+    { x: 436, y: 410 },
+  ].slice(0, items.length);
+
+  const pathRefs = useRef(Array(traces.length).fill(null));
+  const glowRefs = useRef(
+    Array.from({ length: traces.length }, () => Array(18).fill(null))
+  );
+  const [started, setStarted] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setStarted(true), 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const ts = Array(traces.length).fill(0);
+    const speed = 0.02;
+    const tail = 0.008;
+    const spacing = 0.005;
+
+    const animate = () => {
+      if (!started) {
+        requestAnimationFrame(animate);
+        return;
+      }
+
+      for (let c = 0; c < traces.length; c++) {
+        ts[c] += speed;
+        if (ts[c] > 1.2) ts[c] = 0;
+
+        const path = pathRefs.current[c];
+        if (!path) continue;
+
+        const len = path.getTotalLength();
+
+        for (let i = 0; i < 18; i++) {
+          let t1 = ts[c] - i * spacing;
+          t1 = Math.max(0, Math.min(1, t1));
+
+          let t2 = t1 - tail;
+          t2 = Math.max(0, Math.min(1, t2));
+
+          const p1 = path.getPointAtLength(t1 * len);
+          const p2 = path.getPointAtLength(t2 * len);
+
+          const newD = `M${p2.x} ${p2.y} L${p1.x} ${p1.y}`;
+          glowRefs.current[c][i].setAttribute("d", newD);
+
+          const visible = t1 > 0;
+          glowRefs.current[c][i].style.visibility = visible ? "visible" : "hidden";
+        }
+      }
+
+      requestAnimationFrame(animate);
+    };
+
+    animate();
+  }, [started]);
+
   return (
-    <div className="flex items-center justify-center bg-black">
-      <div className="w-full max-w-[800px]">
-        <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" className="w-full">
+    <div className="flex flex-col items-center justify-center bg-black">
+      <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 tracking-wide">
+        Technologies We Use
+      </h2>
+      <div className="w-full max-w-[800px] relative">
+        <svg viewBox="0 0 800 560" xmlns="http://www.w3.org/2000/svg" className="w-full">
           <defs>
             <linearGradient id="chipGradient" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="#2d2d2d" />
@@ -23,98 +118,37 @@ const Technologies = () => {
             </linearGradient>
           </defs>
 
-          {/* Traces */}
+          <style>
+            {`
+              .trace-bg { stroke: #333; stroke-width: 1.8; fill: none; }
+            `}
+          </style>
+
           <g id="traces">
-            {/* Left to Right Traces */}
-            <g>
-              <path d="M100 100 H200 V210 H326" className="trace-bg" />
-              <path d="M100 100 H200 V210 H326" className="trace-flow purple" />
-            </g>
-            <g>
-              <path d="M80 180 H180 V230 H326" className="trace-bg" />
-              <path d="M80 180 H180 V230 H326" className="trace-flow blue" />
-            </g>
-            <g>
-              <path d="M60 260 H150 V250 H326" className="trace-bg" />
-              <path d="M60 260 H150 V250 H326" className="trace-flow yellow" />
-            </g>
-            <g>
-              <path d="M100 350 H200 V270 H326" className="trace-bg" />
-              <path d="M100 350 H200 V270 H326" className="trace-flow green" />
-            </g>
-
-            {/* Right to Left Traces */}
-            <g>
-              <path d="M700 90 H560 V210 H474" className="trace-bg" />
-              <path d="M700 90 H560 V210 H474" className="trace-flow blue" />
-            </g>
-            <g>
-              <path d="M740 160 H580 V230 H474" className="trace-bg" />
-              <path d="M740 160 H580 V230 H474" className="trace-flow green" />
-            </g>
-            <g>
-              <path d="M720 250 H590 V250 H474" className="trace-bg" />
-              <path d="M720 250 H590 V250 H474" className="trace-flow red" />
-            </g>
-            <g>
-              <path d="M680 340 H570 V270 H474" className="trace-bg" />
-              <path d="M680 340 H570 V270 H474" className="trace-flow yellow" />
-            </g>
-
-            {/* Top Pins (6) */}
-            <g>
-              <path d="M340 100 V187" className="trace-bg" />
-              <path d="M340 100 V187" className="trace-flow green" />
-            </g>
-            <g>
-              <path d="M364 100 V187" className="trace-bg" />
-              <path d="M364 100 V187" className="trace-flow red" />
-            </g>
-            <g>
-              <path d="M388 100 V187" className="trace-bg" />
-              <path d="M388 100 V187" className="trace-flow purple" />
-            </g>
-            <g>
-              <path d="M412 100 V187" className="trace-bg" />
-              <path d="M412 100 V187" className="trace-flow blue" />
-            </g>
-            <g>
-              <path d="M436 100 V187" className="trace-bg" />
-              <path d="M436 100 V187" className="trace-flow yellow" />
-            </g>
-            <g>
-              <path d="M460 100 V187" className="trace-bg" />
-              <path d="M460 100 V187" className="trace-flow green" />
-            </g>
-
-            {/* Bottom Pins (6) */}
-            <g>
-              <path d="M340 380 V293" className="trace-bg" />
-              <path d="M340 380 V293" className="trace-flow red" />
-            </g>
-            <g>
-              <path d="M364 380 V293" className="trace-bg" />
-              <path d="M364 380 V293" className="trace-flow purple" />
-            </g>
-            <g>
-              <path d="M388 380 V293" className="trace-bg" />
-              <path d="M388 380 V293" className="trace-flow blue" />
-            </g>
-            <g>
-              <path d="M412 380 V293" className="trace-bg" />
-              <path d="M412 380 V293" className="trace-flow yellow" />
-            </g>
-            <g>
-              <path d="M436 380 V293" className="trace-bg" />
-              <path d="M436 380 V293" className="trace-flow green" />
-            </g>
-            <g>
-              <path d="M460 380 V293" className="trace-bg" />
-              <path d="M460 380 V293" className="trace-flow red" />
-            </g>
+            {traces.map((trace, idx) => (
+              <g key={idx}>
+                <path ref={(r) => (pathRefs.current[idx] = r)} d={trace.d} className="trace-bg" />
+                {Array.from({ length: 18 }).map((_, sidx) => (
+                  <path
+                    key={sidx}
+                    ref={(r) => (glowRefs.current[idx][sidx] = r)}
+                    d=""
+                    style={{
+                      stroke: "#22d3ee", // Tailwind cyan-400
+                      color: "#22d3ee", // Tailwind cyan-400
+                      strokeWidth: 1.8, // Consistent stroke width
+                      opacity: 1, // Consistent opacity for same glow size
+                      filter: "drop-shadow(0 0 6px #22d3ee)",
+                      fill: "none",
+                      mixBlendMode: "lighten",
+                      visibility: "hidden",
+                    }}
+                  />
+                ))}
+              </g>
+            ))}
           </g>
 
-          {/* Chip */}
           <rect
             x="330"
             y="190"
@@ -128,86 +162,71 @@ const Technologies = () => {
             className="drop-shadow-[0_0_6px_rgba(0,0,0,0.8)]"
           />
 
-          {/* Left Pins (4) */}
           {[205, 225, 245, 265].map((y, i) => (
             <rect key={`left-${i}`} x="322" y={y} width="8" height="10" rx="2" fill="url(#pinGradient)" />
           ))}
 
-          {/* Right Pins (4) */}
           {[205, 225, 245, 265].map((y, i) => (
             <rect key={`right-${i}`} x="470" y={y} width="8" height="10" rx="2" fill="url(#pinGradient)" />
           ))}
 
-          {/* Top Pins (6) */}
-          {[336, 360, 384, 408, 430, 456].map((x, i) => (
+          {[360, 432].map((x, i) => (
             <rect key={`top-${i}`} x={x} y="182" width="8" height="10" rx="2" fill="url(#pinGradient)" />
           ))}
 
-          {/* Bottom Pins (6) */}
-          {[336, 360, 384, 408, 430, 456].map((x, i) => (
+          {[360, 432].map((x, i) => (
             <rect key={`bottom-${i}`} x={x} y="290" width="8" height="10" rx="2" fill="url(#pinGradient)" />
           ))}
-
-          {/* Loading Text */}
-          <text
-            x="400"
-            y="240"
-            fontFamily="Arial, sans-serif"
-            fontSize="22"
-            fill="url(#textGradient)"
-            textAnchor="middle"
-            alignmentBaseline="middle"
-          >
-            Loading
-          </text>
-
-          {/* Circles */}
-          {[
-            { cx: 100, cy: 100 },
-            { cx: 80, cy: 180 },
-            { cx: 60, cy: 260 },
-            { cx: 100, cy: 350 },
-            { cx: 700, cy: 90 },
-            { cx: 740, cy: 160 },
-            { cx: 720, cy: 250 },
-            { cx: 680, cy: 340 },
-            { cx: 340, cy: 100 },
-            { cx: 364, cy: 100 },
-            { cx: 388, cy: 100 },
-            { cx: 412, cy: 100 },
-            { cx: 436, cy: 100 },
-            { cx: 460, cy: 100 },
-            { cx: 340, cy: 380 },
-            { cx: 364, cy: 380 },
-            { cx: 388, cy: 380 },
-            { cx: 412, cy: 380 },
-            { cx: 436, cy: 380 },
-            { cx: 460, cy: 380 },
-          ].map(({ cx, cy }, i) => (
-            <circle key={i} cx={cx} cy={cy} r="5" fill="black" />
-          ))}
-
-          {/* Inline SVG animation */}
-          <style>
-            {`
-              .trace-bg { stroke: #333; stroke-width: 1.8; fill: none; }
-              .trace-flow {
-                stroke-width: 1.8;
-                fill: none;
-                stroke-dasharray: 40 400;
-                stroke-dashoffset: 438;
-                filter: drop-shadow(0 0 6px currentColor);
-                animation: flow 3s cubic-bezier(0.5,0,0.9,1) infinite;
-              }
-              .yellow { stroke: #ffea00; color: #ffea00; }
-              .blue { stroke: #00ccff; color: #00ccff; }
-              .green { stroke: #00ff15; color: #00ff15; }
-              .purple { stroke: #9900ff; color: #9900ff; }
-              .red { stroke: #ff3300; color: #ff3300; }
-              @keyframes flow { to { stroke-dashoffset: 0; } }
-            `}
-          </style>
         </svg>
+
+        {items.map((item, idx) => {
+          const { x, y } = positions[idx];
+          return (
+            <div
+              key={idx}
+              className="absolute flex items-center justify-center z-10"
+              style={{
+                left: `${(x / 800) * 100}%`,
+                top: `${(y / 560) * 100}%`,
+                transform: "translate(-50%, -50%)",
+              }}
+            >
+              <div
+                className="w-[60px] h-[60px] rounded-xl flex flex-col items-center justify-center px-1.5 py-1 backdrop-blur-xl transition-transform duration-300"
+                style={{
+                  background: "linear-gradient(180deg, rgba(31,31,31,0.9), rgba(17,17,17,0.8))",
+                  boxShadow: "0 0 6px 0.5px rgba(34,211,238,0.8)",
+                }}
+              >
+                {item.icon && <div className="text-cyan-400 mb-1">{item.icon}</div>}
+                <span className="text-[8px] font-medium text-cyan-400 text-center">{item.name}</span>
+              </div>
+            </div>
+          );
+        })}
+
+        <div
+          className="absolute z-10"
+          style={{
+            left: `${(400 / 800) * 100}%`,
+            top: `${(240 / 560) * 100}%`,
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          <div
+          
+          >
+             <Image
+                                src="/logo2.png"
+                                alt="Logo"
+                                width={180}
+                                height={70}
+                                className="h-25 w-auto"
+                                priority
+                              />
+            
+          </div>
+        </div>
       </div>
     </div>
   );
