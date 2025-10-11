@@ -96,5 +96,43 @@ html, body, #__next {
   animation: gradientShift 15s ease infinite;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scaleY(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out;
+}
 
 
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+.animate-gradientShift {
+  animation: gradientShift 15s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
+}
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}

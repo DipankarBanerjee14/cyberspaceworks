@@ -209,11 +209,15 @@ export default function ServicesCircle({
               className="relative flex items-center justify-center rounded-full bg-black border border-gray-700 shadow-[0_0_40px_rgba(34,211,238,0.8)]"
               style={{ width: innerCircle * 2, height: innerCircle * 2 }}
             >
-              <Image
-                src={centerLogo}
-                alt="Center Logo"
-                className="w-[65%] md:w-[75%] h-auto object-contain"
-              />
+             <Image
+               src="/logo2.png"
+               alt="Logo"
+               width={100}
+               height={100}
+               className=" w-[65%] md:w-[75%] h-auto object-contain"
+             />
+               
+            
             </div>
           </div>
 

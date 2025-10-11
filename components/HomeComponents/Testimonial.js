@@ -139,11 +139,14 @@ export default function Testimonials() {
                 >
                   {/* Avatar + Name */}
                   <div className="w-1/2 h-full flex flex-col items-center justify-center text-center text-black">
-                    <Image
-                      src={item.avatar}
-                      alt={`${item.firstname} ${item.lastname}`}
-                      className="w-24 h-24 rounded-full mb-2 object-cover border-2 border-white/40 shadow-md"
-                    />
+                  <Image
+  src={item.avatar}
+  alt={`${item.firstname} ${item.lastname}`}
+  width={96}
+  height={96}
+  className="w-24 h-24 rounded-full mb-2 object-cover border-2 border-white/40 shadow-md"
+/>
+
                     <h4 className="text-lg font-semibold">{item.firstname}</h4>
                     <h4 className="text-lg font-semibold">{item.lastname}</h4>
                     <p className="text-sm mt-2 text-gray-800">{item.position}</p>

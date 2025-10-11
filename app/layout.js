@@ -5,6 +5,7 @@ import { Geist, Geist_Mono, Rubik } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
 import cursor from "@/public/cursor.png";
 
 // Fonts
@@ -80,7 +81,9 @@ export default function RootLayout({ children }) {
         {/* Content */}
         <Navbar />
         <main className="relative z-10">{children}</main>
+       
         <Footer />
+        
       </body>
     </html>
   );

@@ -374,7 +374,7 @@ export default function OurServicesWithWires() {
   return (
     <section
   ref={containerRef}
-  className="relative z-0 py-16 bg-black overflow-hidden max-w-7xl mx-auto"
+  className="relative z-0 py-16  overflow-hidden max-w-7xl mx-auto bg-black"
 >
 
       <canvas
@@ -384,14 +384,14 @@ export default function OurServicesWithWires() {
       />
        {/* Cyan blurred background glow */}
       <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
-        <div className="w-[200px] h-[50px] rounded-full blur-[300px] bg-cyan-400 opacity-20" />
+        <div className="w-[200px] h-[40px] rounded-full blur-[300px] bg-cyan-400 opacity-10" />
       </div>
 
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle at 50% 40%, rgba(14,186,199,0.12), transparent 45%)",
+            "radial-gradient(circle at 50% 50%, rgba(14,186,199,0.12), transparent 45%)",
         }}
       />
 

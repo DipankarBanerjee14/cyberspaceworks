@@ -34,7 +34,14 @@ export default function ITSupportSection() {
 
     {/* Inner Circle */}
     <div className="relative w-32 h-32 bg-black border border-gray-700 rounded-full flex items-center justify-center text-white font-semibold tracking-widest">
-      <Image src="/logo2.png" alt="Logo" className="h-25 w-auto" />
+    <Image
+  src="/logo2.png"
+  alt="Logo"
+  width={100}
+  height={100}
+  className="h-25 w-auto object-contain"
+/>
+
     </div>
   </div>
 </div>
