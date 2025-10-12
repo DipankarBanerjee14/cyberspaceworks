@@ -41,7 +41,7 @@ const Footer = () => {
             </h3>
             <ul className="space-y-2 text-slate-900 text-sm sm:text-base">
               <li>
-                <Link href="about-us" className="hover:text-slate-700 transition">
+                <Link href="/about-us" className="hover:text-slate-700 transition">
                   About Us
                 </Link>
               </li>
@@ -145,17 +145,59 @@ const Footer = () => {
               Get In Touch
             </h3>
             <p className="text-slate-900 text-sm sm:text-base">
-              +91 7980715765
-            </p>
-            <p className="text-slate-900 text-sm sm:text-base">
-              cyberspaceworksofficial@gmail.com
-            </p>
+  <a
+    href="tel:+917980715765"
+    className="hover:text-slate-700 transition"
+  >
+    +91 7980715765
+  </a>
+</p>
+<p className="text-slate-900 text-sm sm:text-base">
+  <a
+    href="mailto:cyberspaceworksofficial@gmail.com"
+    className="hover:text-slate-700 transition"
+  >
+    cyberspaceworksofficial@gmail.com
+  </a>
+</p>
+
+            {/* Social Media Links */}
             <div className="flex justify-center sm:justify-start space-x-4 mt-4 text-black text-lg sm:text-xl">
-              <FaFacebookF className="cursor-pointer hover:scale-110 transition" />
-              <FaInstagram className="cursor-pointer hover:scale-110 transition" />
-              <FaWhatsapp className="cursor-pointer hover:scale-110 transition" />
-              <FaMapMarkerAlt className="cursor-pointer hover:scale-110 transition" />
-              <FaLinkedin className="cursor-pointer hover:scale-110 transition" />
+              <a
+                href="https://www.facebook.com/profile.php?id=100086774724799"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaFacebookF className="cursor-pointer hover:scale-110 transition" />
+              </a>
+              <a
+                href="https://www.instagram.com/cyberspaceworks"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaInstagram className="cursor-pointer hover:scale-110 transition" />
+              </a>
+              <a
+                href="https://wa.me/917980715765"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaWhatsapp className="cursor-pointer hover:scale-110 transition" />
+              </a>
+              <a
+                href="https://www.google.com/maps/place/Cyberspace+Works+-+Website,+Software+and+App+Developer+in+Howrah,+Kolkata/@22.6434765,88.3408238,716m/data=!3m2!1e3!4b1!4m6!3m5!1s0x39f89dd56c959339:0x59f91e11a807e487!8m2!3d22.6434765!4d88.3433987!16s%2Fg%2F11tfxl7lfx?authuser=0&entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D" 
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaMapMarkerAlt className="cursor-pointer hover:scale-110 transition" />
+              </a>
+              <a
+                href="https://www.linkedin.com/company/cyberspace-works"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaLinkedin className="cursor-pointer hover:scale-110 transition" />
+              </a>
             </div>
           </div>
         </div>

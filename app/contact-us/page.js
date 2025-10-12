@@ -230,10 +230,10 @@ const ContactUs = () => {
 
           {/* Social Media Icons */}
           <div className="flex justify-center sm:justify-start space-x-4 mt-4 text-cyan-400 text-lg sm:text-xl">
-            <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.facebook.com/profile.php?id=100086774724799" target="_blank" rel="noopener noreferrer">
               <FaFacebookF className="cursor-pointer hover:scale-110 transition" />
             </a>
-            <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.instagram.com/cyberspaceworks" target="_blank" rel="noopener noreferrer">
               <FaInstagram className="cursor-pointer hover:scale-110 transition" />
             </a>
             <a href="https://wa.me/917980715765" target="_blank" rel="noopener noreferrer">
@@ -246,7 +246,7 @@ const ContactUs = () => {
             >
               <FaMapMarkerAlt className="cursor-pointer hover:scale-110 transition" />
             </a>
-            <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/company/cyberspace-works" target="_blank" rel="noopener noreferrer">
               <FaLinkedin className="cursor-pointer hover:scale-110 transition" />
             </a>
           </div>

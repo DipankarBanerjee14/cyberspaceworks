@@ -82,7 +82,7 @@ export default function Navbar() {
     { name: "WhatsApp", icon: <FaWhatsapp />, link: "https://wa.me/7980715765" },
     { name: "Location", icon: <FaMapMarkerAlt />, link: "https://www.google.com/maps/place/Cyberspace+Works+-+Website,+Software+and+App+Developer+in+Howrah,+Kolkata/@22.6434765,88.3408238,716m/data=!3m2!1e3!4b1!4m6!3m5!1s0x39f89dd56c959339:0x59f91e11a807e487!8m2!3d22.6434765!4d88.3433987!16s%2Fg%2F11tfxl7lfx?authuser=0&entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D" },
     { name: "Instagram", icon: <FaInstagram />, link: "https://www.instagram.com/cyberspaceworks" },
-    { name: "LinkedIn", icon: <FaLinkedin />, link: "https://linkedin.com" },
+    { name: "LinkedIn", icon: <FaLinkedin />, link: "https://www.linkedin.com/company/cyberspace-works" },
     { name: "Facebook", icon: <FaFacebookF />, link: "https://www.facebook.com/profile.php?id=100086774724799" },
   ];
 
