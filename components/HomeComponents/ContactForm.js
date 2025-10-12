@@ -65,22 +65,23 @@ const TerritorySection = () => {
         {/* Header Section */}
         <div className="lg:w-1/2 space-y-4 text-center lg:text-left">
           <h1 className="text-4xl font-bold mb-4 leading-snug">
-            Know Your Territory <br /> Before The Hunt
+          Let's Transform <br/>Your Vision into Reality
+
           </h1>
           <p className="text-gray-300">
-            Be aware of other &lsquo;predators&rsquo; & your strategy for a strike. <br />
-            Organize, strategize, and delegate with precision.
+           We understand your idea and what it means to you. <br/>To make it a reality, we'll be happy to help you.
           </p>
           <p className="text-gray-300">
-            Fill the form below and let our Marketing team identify <br />
-            your blue ocean strategy for a perfect take down.
+           Fill in the form and let our team send a quotation  that <br/>will include plans, strategies and technologies  with a <br/>price like no other in the market.
           </p>
+          <div className="mt-6">
         <Link
     href="/contact-us"
     className="px-6 py-3 rounded-full bg-blue-500 hover:bg-blue-600 transition shadow-lg font-medium"
   >
     Contact Us
   </Link>
+  </div>
         </div>
 
         {/* Form Section */}

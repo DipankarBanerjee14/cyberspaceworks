@@ -41,12 +41,12 @@ const Footer = () => {
             </h3>
             <ul className="space-y-2 text-slate-900 text-sm sm:text-base">
               <li>
-                <Link href="#" className="hover:text-slate-700 transition">
+                <Link href="about-us" className="hover:text-slate-700 transition">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-slate-700 transition">
+                <Link href="/contact-us" className="hover:text-slate-700 transition">
                   Contact Us
                 </Link>
               </li>
