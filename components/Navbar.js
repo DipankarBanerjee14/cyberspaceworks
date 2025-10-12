@@ -77,13 +77,13 @@ export default function Navbar() {
   ];
 
   const socialLinks = [
-    { name: "Call", icon: <FaPhoneAlt />, link: "tel:+1234567890" },
-    { name: "Mail", icon: <FaEnvelope />, link: "mailto:contact@example.com" },
-    { name: "WhatsApp", icon: <FaWhatsapp />, link: "https://wa.me/1234567890" },
-    { name: "Location", icon: <FaMapMarkerAlt />, link: "https://maps.google.com" },
-    { name: "Instagram", icon: <FaInstagram />, link: "https://instagram.com/example" },
-    { name: "LinkedIn", icon: <FaLinkedin />, link: "https://linkedin.com/company/example" },
-    { name: "Facebook", icon: <FaFacebookF />, link: "https://facebook.com/example" },
+    { name: "Call", icon: <FaPhoneAlt />, link: "tel:7980715765" },
+    { name: "Mail", icon: <FaEnvelope />, link: "mailto:cyberspaceworksofficial@gmail.com" },
+    { name: "WhatsApp", icon: <FaWhatsapp />, link: "https://wa.me/7980715765" },
+    { name: "Location", icon: <FaMapMarkerAlt />, link: "https://www.google.com/maps/place/Cyberspace+Works+-+Website,+Software+and+App+Developer+in+Howrah,+Kolkata/@22.6434765,88.3408238,716m/data=!3m2!1e3!4b1!4m6!3m5!1s0x39f89dd56c959339:0x59f91e11a807e487!8m2!3d22.6434765!4d88.3433987!16s%2Fg%2F11tfxl7lfx?authuser=0&entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D" },
+    { name: "Instagram", icon: <FaInstagram />, link: "https://www.instagram.com/cyberspaceworks" },
+    { name: "LinkedIn", icon: <FaLinkedin />, link: "https://linkedin.com" },
+    { name: "Facebook", icon: <FaFacebookF />, link: "https://www.facebook.com/profile.php?id=100086774724799" },
   ];
 
   // Close hamburger menus when clicking or touching outside or scrolling
@@ -150,7 +150,7 @@ const [isServicesOpenMobile, setIsServicesOpenMobile] = useState(false);
 
          {/* Left Hamburger (Mobile) */}
 <div
-  className="lg:hidden flex items-center left-hamburger fixed  left-8 z-50 group"
+  className="lg:hidden flex items-center left-hamburger fixed  left-8 z-50 group bg-black/30 border border-white/10 shadow-xl rounded-md"
   onMouseEnter={() => {
     setIsLeftMenuOpen(true);
     setIsRightMenuOpen(false);
@@ -180,7 +180,7 @@ const [isServicesOpenMobile, setIsServicesOpenMobile] = useState(false);
 
             {/* Right Hamburger (Mobile) */}
             <div
-              className="lg:hidden flex items-center right-hamburger absolute right-10 top-1/2 -translate-y-1/2 group"
+              className="lg:hidden flex items-center right-hamburger absolute right-10 top-1/2 -translate-y-1/2 group bg-black/30 border border-white/10 shadow-xl rounded-md"
               onMouseEnter={() => {
                 setIsRightMenuOpen(true);
                 setIsLeftMenuOpen(false);
@@ -219,7 +219,7 @@ const [isServicesOpenMobile, setIsServicesOpenMobile] = useState(false);
                 </button>
 
                 <div
-                  className={`absolute left-0 mt-2 w-[900px] bg-[#161320]/95 border border-white/10 rounded-2xl shadow-2xl transition-all duration-300 ease-in-out origin-top z-[999] ${
+                  className={`absolute left-0 mt-2 w-[900px]  bg-black bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10 border border-gray-100 rounded-2xl transition-all duration-300 ease-in-out origin-top z-[999] ${
                     isServicesOpen
                       ? "opacity-100 scale-100 pointer-events-auto"
                       : "opacity-0 scale-95 pointer-events-none"
@@ -230,7 +230,7 @@ const [isServicesOpenMobile, setIsServicesOpenMobile] = useState(false);
                       <Link
                         key={service.name}
                         href={service.href}
-                        className="flex items-start gap-3 p-3 rounded-lg transition-all duration-300 transform hover:bg-white/10 hover:scale-[1.03] hover:shadow-[0_0_15px_rgba(0,255,255,0.3)]"
+                        className="flex items-start gap-3 p-3 rounded-lg transition-all duration-300 transform hover:bg-white/10 hover:scale-[1.03] hover:shadow-[0_0_15px_rgba(0,0,0,0.3)]"
                       >
                         <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-black/50 border border-white/10 text-xl text-cyan-400">
                           {service.icon}

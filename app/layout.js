@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Rubik } from "next/font/google";
-import Head from "next/head";
+// import Head from "next/head";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -27,13 +27,13 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <Head>
+      <head>
         <link rel="icon" type="image/png" href="/logo2.png" />
         <title>
           Cyberspace Works - Website, Software and App Developer in Howrah,
           Kolkata
         </title>
-      </Head>
+      </head>
       <body
         className={`${rubik.variable} antialiased relative min-h-screen bg-black overflow-x-hidden`}
         style={{

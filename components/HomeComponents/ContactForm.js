@@ -9,43 +9,53 @@ const ContactSection = () => {
     name: "",
     email: "",
     contact: "",
-    countryCode: "+91", // ✅ default country code
+    countryCode: "+91",
     website: "",
-    service: "Social Media Marketing",
+    service: "Web Development",
     requirement: "",
-    revenue: "Less than $5,000",
   });
 
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
+  // ✅ Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  // ✅ Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setMessage("");
 
     try {
-      // Simulate API request
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-
-      setMessage("✅ Thank you! Our team will contact you soon.");
-      setFormData({
-        name: "",
-        email: "",
-        contact: "",
-        countryCode: "+91", // keep default
-        website: "",
-        service: "Social Media Marketing", // consistent reset
-        requirement: "",
-        revenue: "Less than $5,000",
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
       });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setMessage("✅ Message sent successfully!");
+        setFormData({
+          name: "",
+          email: "",
+          contact: "",
+          countryCode: "+91",
+          website: "",
+          service: "Web Development",
+          requirement: "",
+        });
+      } else {
+        setMessage(`❌ Failed: ${data.error || "Something went wrong."}`);
+      }
     } catch (error) {
-      setMessage("❌ Something went wrong. Please try again.");
+      console.error(error);
+      setMessage("❌ An error occurred. Please try again.");
     } finally {
       setLoading(false);
     }

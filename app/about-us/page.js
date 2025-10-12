@@ -43,13 +43,13 @@ const AboutUs = () => {
     <h1 className="text-4xl lg:text-5xl font-bold">
       Empowering Businesses <br /> Through Technology
     </h1>
-    <p className="text-gray-300">
+    <p className="text-gray-300 mb-5">
       We are an end-to-end no-code agency committed to helping businesses achieve their goals efficiently.
     </p>
   <div>
   <Link
     href="/contact-us"
-    className="px-6 py-3 rounded-full bg-blue-500 hover:bg-blue-600 transition shadow-lg font-medium"
+    className="px-6 py-3 rounded-full bg-blue-500 hover:bg-blue-600 transition shadow-lg font-medium "
   >
     Contact Us
   </Link>
@@ -181,23 +181,15 @@ const AboutUs = () => {
   {/* What We Do Section */}
 <div className="max-w-6xl mx-auto px-6 lg:px-0 py-16 flex flex-col lg:flex-row gap-10 items-start">
   {/* Left Content */}
-  <div className="relative flex-1 bg-gray-900 rounded-3xl p-8 shadow-lg group">
-    {/* Glows */}
+  <div className="relative flex-1  rounded-2xl p-8 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 group hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
     <div
-      className="absolute top-0 left-0 w-40 h-40 -translate-x-20 -translate-y-20 blur-2xl opacity-40"
-      style={{ background: "radial-gradient(circle, #06b6d4 0%, transparent 50%)" }}
-    />
-    <div
-      className="absolute bottom-0 right-0 w-40 h-40 translate-x-20 translate-y-20 blur-2xl opacity-40"
-      style={{ background: "radial-gradient(circle, #6366f1 0%, transparent 50%)" }}
-    />
-    {/* <div
-      className="absolute -inset-20 blur-[180px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-      style={{
-        background:
-          "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
-      }}
-    /> */}
+        className="absolute inset-0 pointer-events-none"
+        aria-hidden
+        style={{
+          background:
+            "radial-gradient(circle at 50% 50%, rgba(14,186,199,0.35), transparent 40%)",
+        }}
+      />
     <h2 className="text-3xl font-semibold mb-4">
       What We Do Best with the Power of No-Code/Low-Code Development
     </h2>
