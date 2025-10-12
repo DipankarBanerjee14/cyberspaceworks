@@ -199,58 +199,88 @@ const ContactUs = () => {
 
       {/* Contact Info & Map */}
       <div className="grid lg:grid-cols-2 gap-8 relative z-10 mt-16 px-8">
-        <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 flex flex-col gap-3 h-full">
-          <h3 className="text-2xl font-semibold mb-3 text-cyan-400">
-            Contact Information
-          </h3>
-          <p className="text-gray-300 font-bold">Cyberspace Works</p>
-          {/* Phone */}
-          <p className="text-gray-400 flex items-center gap-2">
-            <IoCallOutline />
-            <a href="tel:+917980715765" className="hover:underline">
-              +91 7980715765
-            </a>
-          </p>
+      <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 flex flex-col gap-3 h-full">
+  {/* ✅ Gradient overlay — make sure it's visible */}
+  <div
+    className="absolute inset-0 pointer-events-none z-0"
+    aria-hidden="true"
+    style={{
+      background:
+        "radial-gradient(circle at 50% 50%, rgba(14,186,199,0.45), transparent 80%)",
+    }}
+  />
 
-          {/* Email */}
-          <p className="text-gray-400 flex items-center gap-2">
-            <IoMailOutline />
-            <a href="mailto:cyberspaceworksofficial@gmail.com" className="hover:underline">
-              cyberspaceworksofficial@gmail.com
-            </a>
-          </p>
+  {/* ✅ Content layered above the gradient */}
+  <div className="relative z-10">
+    <h3 className="text-2xl font-semibold mb-3 text-cyan-400">
+      Contact Information
+    </h3>
+    <p className="text-gray-300 font-bold">Cyberspace Works</p>
 
-          {/* Address */}
-          <p className="text-gray-400 flex items-center gap-2">
-            <IoLocationOutline />
-            <span>
-              Kolkata 19, Krishna Chatterjee Ln, Bally, Howrah, West Bengal 711201
-            </span>
-          </p>
+    {/* Phone */}
+    <p className="text-gray-400 flex items-center gap-2 mt-3">
+      <IoCallOutline />
+      <a href="tel:+917980715765" className="hover:underline">
+        +91 7980715765
+      </a>
+    </p>
 
-          {/* Social Media Icons */}
-          <div className="flex justify-center sm:justify-start space-x-4 mt-4 text-cyan-400 text-lg sm:text-xl">
-            <a href="https://www.facebook.com/profile.php?id=100086774724799" target="_blank" rel="noopener noreferrer">
-              <FaFacebookF className="cursor-pointer hover:scale-110 transition" />
-            </a>
-            <a href="https://www.instagram.com/cyberspaceworks" target="_blank" rel="noopener noreferrer">
-              <FaInstagram className="cursor-pointer hover:scale-110 transition" />
-            </a>
-            <a href="https://wa.me/917980715765" target="_blank" rel="noopener noreferrer">
-              <FaWhatsapp className="cursor-pointer hover:scale-110 transition" />
-            </a>
-            <a
-              href="https://www.google.com/maps/place/Cyberspace+Works+-+Website,+Software+and+App+Developer+in+Howrah,+Kolkata/@22.6434765,88.3408238,716m/data=!3m2!1e3!4b1!4m6!3m5!1s0x39f89dd56c959339:0x59f91e11a807e487!8m2!3d22.6434765!4d88.3433987!16s%2Fg%2F11tfxl7lfx?authuser=0&entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaMapMarkerAlt className="cursor-pointer hover:scale-110 transition" />
-            </a>
-            <a href="https://www.linkedin.com/company/cyberspace-works" target="_blank" rel="noopener noreferrer">
-              <FaLinkedin className="cursor-pointer hover:scale-110 transition" />
-            </a>
-          </div>
-        </div>
+    {/* Email */}
+    <p className="text-gray-400 flex items-center gap-2 mt-3">
+      <IoMailOutline />
+      <a
+        href="mailto:cyberspaceworksofficial@gmail.com"
+        className="hover:underline"
+      >
+        cyberspaceworksofficial@gmail.com
+      </a>
+    </p>
+
+    {/* Address */}
+    <p className="text-gray-400 flex items-center gap-2 mt-3">
+      <IoLocationOutline />
+      <span>
+        Kolkata 19, Krishna Chatterjee Ln, Bally, Howrah, West Bengal 711201
+      </span>
+    </p>
+
+    {/* Social Media Icons */}
+    <div className="flex justify-center sm:justify-start space-x-4 mt-4 text-cyan-400 text-lg sm:text-xl">
+      <a
+        href="https://www.facebook.com/profile.php?id=100086774724799"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <FaFacebookF className="cursor-pointer hover:scale-110 transition" />
+      </a>
+      <a
+        href="https://www.instagram.com/cyberspaceworks"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <FaInstagram className="cursor-pointer hover:scale-110 transition" />
+      </a>
+      <a href="https://wa.me/917980715765" target="_blank" rel="noopener noreferrer">
+        <FaWhatsapp className="cursor-pointer hover:scale-110 transition" />
+      </a>
+      <a
+        href="https://www.google.com/maps/place/Cyberspace+Works+-+Website,+Software+and+App+Developer+in+Howrah,+Kolkata/@22.6434765,88.3408238,716m/data=!3m2!1e3!4b1!4m6!3m5!1s0x39f89dd56c959339:0x59f91e11a807e487!8m2!3d22.6434765!4d88.3433987!16s%2Fg%2F11tfxl7lfx"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <FaMapMarkerAlt className="cursor-pointer hover:scale-110 transition" />
+      </a>
+      <a
+        href="https://www.linkedin.com/company/cyberspace-works"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <FaLinkedin className="cursor-pointer hover:scale-110 transition" />
+      </a>
+    </div>
+  </div>
+</div>
+
 
         <div className="rounded-2xl overflow-hidden border border-white/10 shadow-lg h-full">
           <iframe
