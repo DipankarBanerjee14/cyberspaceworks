@@ -95,7 +95,7 @@ const Technologies = ({ technologies = [] }) => {
     };
 
     animate();
-  }, [started]);
+  });
 
   return (
     <div className="flex flex-col items-center justify-center bg-black py-12">
@@ -212,7 +212,7 @@ const Technologies = ({ technologies = [] }) => {
 
       {/* SM & MD screens: swiper */}
       <div className="block lg:hidden w-full max-w-md z-10">
-         {/* Left fade */}
+        {/* Left fade */}
         <div className="hidden lg:block pointer-events-none absolute top-0 left-0 h-full w-100 bg-gradient-to-r from-black to-transparent z-10"></div>
 
         {/* Right fade */}

@@ -30,7 +30,6 @@ const ContactUs = () => {
 
     try {
       await new Promise((resolve) => setTimeout(resolve, 1500));
-
       setMessage("✅ Thank you! Our team will contact you soon.");
       setFormData({
         name: "",
@@ -51,7 +50,6 @@ const ContactUs = () => {
 
   return (
     <section className="relative py-20 bg-black text-white px-6 overflow-hidden">
-      {/* Gradient Overlay */}
       <div
         className="absolute inset-0 pointer-events-none"
         aria-hidden
@@ -61,10 +59,9 @@ const ContactUs = () => {
         }}
       />
 
-      {/* Heading & Intro */}
       <div className="max-w-3xl mx-auto text-center mb-16 relative z-10">
         <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-snug">
-          Let's Transform Your <br/> Vision into Reality
+          Let&apos;s Transform Your <br /> Vision into Reality
         </h2>
         <p className="text-gray-300 text-lg leading-relaxed mb-4">
           We understand your idea and what it means to you. To make it a reality,
@@ -73,7 +70,7 @@ const ContactUs = () => {
         <p className="text-gray-300 text-lg leading-relaxed">
           Fill in the form below, and our team will send a detailed quotation
           including <span className="text-cyan-400 font-semibold">plans, strategies,</span> and{" "}
-          <span className="text-cyan-400 font-semibold">cutting-edge technologies</span> —
+          <span className="text-cyan-400 font-semibold">cutting-edge technologies</span> &mdash;
           all at a price unmatched in the market.
         </p>
       </div>
@@ -166,9 +163,7 @@ const ContactUs = () => {
             </div>
 
             {message && (
-              <p className="text-center text-sm mt-4 text-black font-medium">
-                {message}
-              </p>
+              <p className="text-center text-sm mt-4 text-black font-medium">{message}</p>
             )}
           </form>
         </div>
@@ -176,7 +171,6 @@ const ContactUs = () => {
 
       {/* Contact Info & Map */}
       <div className="grid lg:grid-cols-2 gap-8 relative z-10 mt-16 px-8">
-        {/* Contact Info */}
         <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 flex flex-col gap-3 h-full">
           <h3 className="text-2xl font-semibold mb-3 text-cyan-400">
             Contact Information
@@ -192,11 +186,10 @@ const ContactUs = () => {
             <IoLocationOutline /> Kolkata 19, Krishna Chatterjee Ln, Bally, Howrah, West Bengal 711201
           </p>
           <p className="text-gray-400 mt-2 italic">
-            “Unlock Your Potential with No-Code Solutions.”
+            &ldquo;Unlock Your Potential with No-Code Solutions.&rdquo;
           </p>
         </div>
 
-        {/* Map */}
         <div className="rounded-2xl overflow-hidden border border-white/10 shadow-lg h-full">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3116.5100779555523!2d88.33852777576645!3d22.64347642643196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f89dd56c959339%3A0x59f91e11a807e487!2sCyberspace%20Works%20-%20Website%2C%20Software%20and%20App%20Developer%20in%20Howrah%2C%20Kolkata!5e1!3m2!1sen!2sin!4v1760195925843!5m2!1sen!2sin"
