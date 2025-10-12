@@ -200,7 +200,7 @@ const ContactUs = () => {
       {/* Contact Info & Map */}
       <div className="grid lg:grid-cols-2 gap-8 relative z-10 mt-16 px-8">
       <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 flex flex-col gap-3 h-full">
-  {/* ✅ Gradient overlay — make sure it's visible */}
+  {/* Gradient overlay — make sure it's visible */}
   <div
     className="absolute inset-0 pointer-events-none z-0"
     aria-hidden="true"
@@ -210,7 +210,7 @@ const ContactUs = () => {
     }}
   />
 
-  {/* ✅ Content layered above the gradient */}
+  {/* Content layered above the gradient */}
   <div className="relative z-10">
     <h3 className="text-2xl font-semibold mb-3 text-cyan-400">
       Contact Information

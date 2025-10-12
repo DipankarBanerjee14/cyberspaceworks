@@ -22,6 +22,7 @@ const GlassCard = ({ title, description }) => {
             "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
         }}
       />
+      
       <h3 className="text-xl font-semibold mb-2">{title}</h3>
       <p className="text-gray-400 text-sm">{description}</p>
     </div>

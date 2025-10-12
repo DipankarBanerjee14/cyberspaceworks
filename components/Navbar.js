@@ -218,13 +218,29 @@ const [isServicesOpenMobile, setIsServicesOpenMobile] = useState(false);
                   </span>
                 </button>
 
-                <div
-                  className={`absolute left-0 mt-2 w-[900px]  bg-black bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10 border border-gray-100 rounded-2xl transition-all duration-300 ease-in-out origin-top z-[999] ${
-                    isServicesOpen
-                      ? "opacity-100 scale-100 pointer-events-auto"
-                      : "opacity-0 scale-95 pointer-events-none"
-                  } backdrop-blur-lg flex overflow-hidden p-6`}
-                >
+               <div
+  className={`absolute left-0 w-[900px] rounded-xl 
+    bg-black backdrop-blur-xl border border-white/10  
+    transition-all duration-300 ease-in-out origin-top 
+    z-[999] backdrop-filter  mt-6
+    
+    ${isServicesOpen
+      ? "opacity-100 scale-100 pointer-events-auto"
+      : "opacity-0 scale-95 pointer-events-none"
+    } 
+    flex overflow-hidden p-6`}
+>
+ {/* Top-left cyan-400 glow */}
+      <div
+        className="absolute top-0 left-0 w-40 h-40 -translate-x-20 -translate-y-20 blur-2xl opacity-40"
+        style={{ background: "radial-gradient(circle, #06b6d4 0%, transparent 100%)" }}
+      />
+      {/* Bottom-right indigo-400 glow */}
+      <div
+        className="absolute bottom-0 right-0 w-40 h-40 translate-x-20 translate-y-20 blur-2xl opacity-40"
+        style={{ background: "radial-gradient(circle, #6366f1 0%, transparent 100%)" }}
+      />
+    
                   <div className="grid grid-cols-3 gap-6 w-full">
                     {services.map((service) => (
                       <Link
