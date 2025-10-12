@@ -1,8 +1,10 @@
 "use client";
+/* eslint-disable react/no-unescaped-entities */
 
 import React, { useState } from "react";
 import Link from "next/link";
-const TerritorySection = () => {
+
+const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -38,7 +40,7 @@ const TerritorySection = () => {
         contact: "",
         countryCode: "+91", // keep default
         website: "",
-        service: "Web Development",
+        service: "Social Media Marketing", // consistent reset
         requirement: "",
         revenue: "Less than $5,000",
       });
@@ -50,44 +52,47 @@ const TerritorySection = () => {
   };
 
   return (
-    <section className="relative py-20 bg-black text-white  px-6">
-       <div
-  className="absolute inset-0 pointer-events-none"
-  aria-hidden
-  style={{
-    background:
-      "radial-gradient(circle at 50% 50%, rgba(14,186,199,0.45), transparent 40%)",
-  }}
-/>
+    <section className="relative py-20 bg-black text-white px-6">
+      {/* Gradient Background */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        aria-hidden
+        style={{
+          background:
+            "radial-gradient(circle at 50% 50%, rgba(14,186,199,0.45), transparent 40%)",
+        }}
+      />
 
       <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-8 relative z-10">
-           
         {/* Header Section */}
         <div className="lg:w-1/2 space-y-4 text-center lg:text-left">
           <h1 className="text-4xl font-bold mb-4 leading-snug">
-          Let's Transform <br/>Your Vision into Reality
-
+            Let's Transform <br /> Your Vision into Reality
           </h1>
           <p className="text-gray-300">
-           We understand your idea and what it means to you. <br/>To make it a reality, we'll be happy to help you.
+            We understand your idea and what it means to you. <br /> To make it
+            a reality, we'll be happy to help you.
           </p>
           <p className="text-gray-300">
-           Fill in the form and let our team send a quotation  that <br/>will include plans, strategies and technologies  with a <br/>price like no other in the market.
+            Fill in the form and let our team send a quotation that <br /> will
+            include plans, strategies and technologies with a <br /> price like
+            no other in the market.
           </p>
           <div className="mt-6">
-        <Link
-    href="/contact-us"
-    className="px-6 py-3 rounded-full bg-blue-500 hover:bg-blue-600 transition shadow-lg font-medium"
-  >
-    Contact Us
-  </Link>
-  </div>
+            <Link
+              href="/contact-us"
+              className="px-6 py-3 rounded-full bg-blue-500 hover:bg-blue-600 transition shadow-lg font-medium"
+            >
+              Contact Us
+            </Link>
+          </div>
         </div>
 
         {/* Form Section */}
         <div className="lg:w-1/2">
           <div className="bg-cyan-400/80 rounded-xl p-6 sm:p-8 shadow-lg text-black">
             <form className="space-y-6" onSubmit={handleSubmit}>
+              {/* Name + Email */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <input
                   type="text"
@@ -109,7 +114,7 @@ const TerritorySection = () => {
                 />
               </div>
 
-              {/* ✅ Country Code + Contact */}
+              {/* Country Code + Contact */}
               <div className="flex gap-3">
                 <input
                   type="text"
@@ -134,7 +139,7 @@ const TerritorySection = () => {
               {/* Service Selection */}
               <div>
                 <label className="block mb-1 text-sm text-black font-medium">
-                  Service you&apos;re interested in
+                  {"Service you're interested in"}
                 </label>
                 <select
                   name="service"
@@ -175,7 +180,7 @@ const TerritorySection = () => {
                 </button>
               </div>
 
-              {/* Message */}
+              {/* Response Message */}
               {message && (
                 <p className="text-center text-sm mt-4 text-black font-medium">
                   {message}
@@ -189,4 +194,4 @@ const TerritorySection = () => {
   );
 };
 
-export default TerritorySection;
+export default ContactSection;

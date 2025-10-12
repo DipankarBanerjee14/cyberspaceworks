@@ -1,35 +1,85 @@
 "use client";
+/* eslint-disable react/no-unescaped-entities */
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { FaChevronDown } from "react-icons/fa";
 
 export default function FAQPage() {
-  const faqs = [
-    { q: "What services does CSW offer?", a: "We provide Web Development, App Development, Software Development, UI/UX Design, Digital Marketing, Graphic Design, and Research & Analytics services." },
-    { q: "How can I contact CSW?", a: "You can contact us via email at info@csw.com or through our contact form on the website." },
-    { q: "Do you provide custom software solutions?", a: "Yes, we specialize in creating custom software solutions tailored to your business needs." },
-    { q: "What technologies do you use?", a: "We use React.js, Node.js, Next.js, Flutter, MongoDB, WordPress, Wix, Tailwind CSS, and many more modern technologies." },
-    { q: "Can you redesign my existing website?", a: "Absolutely! We provide UI/UX redesign services to enhance the look, feel, and performance of your website." },
-    { q: "Do you offer mobile app development?", a: "Yes, we develop high-performance mobile apps for both Android and iOS using React Native and Flutter." },
-    { q: "How long does a typical project take?", a: "Project timelines vary depending on complexity, but we provide detailed estimates during consultation." },
-    { q: "Do you provide SEO services?", a: "Yes, our digital marketing services include SEO, SEM, social media marketing, and content marketing." },
-    { q: "Can I track the progress of my project?", a: "Yes, we provide regular updates and milestones to ensure transparency throughout the development process." },
-    { q: "What is your pricing model?", a: "We offer flexible pricing depending on project scope, complexity, and client requirements. Contact us for a quote." },
-    { q: "Do you sign NDAs?", a: "Yes, we ensure complete confidentiality and are happy to sign NDAs with our clients." },
-    { q: "Do you provide post-launch support?", a: "Yes, we offer maintenance and support services after project launch." },
-    { q: "Can you integrate third-party APIs?", a: "Absolutely, we can integrate a wide range of APIs to enhance functionality." },
-    { q: "Do you offer cloud solutions?", a: "Yes, we provide cloud-based solutions for scalability and reliability." },
-    { q: "What is your refund policy?", a: "Refund policies are defined in the contract and depend on project type and agreement terms." },
-  ];
+  // ✅ useMemo to prevent ESLint dependency warning
+  const faqs = useMemo(
+    () => [
+      {
+        q: "What services does CSW offer?",
+        a: "We provide Web Development, App Development, Software Development, UI/UX Design, Digital Marketing, Graphic Design, and Research & Analytics services.",
+      },
+      {
+        q: "How can I contact CSW?",
+        a: "You can contact us via email at info@csw.com or through our contact form on the website.",
+      },
+      {
+        q: "Do you provide custom software solutions?",
+        a: "Yes, we specialize in creating custom software solutions tailored to your business needs.",
+      },
+      {
+        q: "What technologies do you use?",
+        a: "We use React.js, Node.js, Next.js, Flutter, MongoDB, WordPress, Wix, Tailwind CSS, and many more modern technologies.",
+      },
+      {
+        q: "Can you redesign my existing website?",
+        a: "Absolutely! We provide UI/UX redesign services to enhance the look, feel, and performance of your website.",
+      },
+      {
+        q: "Do you offer mobile app development?",
+        a: "Yes, we develop high-performance mobile apps for both Android and iOS using React Native and Flutter.",
+      },
+      {
+        q: "How long does a typical project take?",
+        a: "Project timelines vary depending on complexity, but we provide detailed estimates during consultation.",
+      },
+      {
+        q: "Do you provide SEO services?",
+        a: "Yes, our digital marketing services include SEO, SEM, social media marketing, and content marketing.",
+      },
+      {
+        q: "Can I track the progress of my project?",
+        a: "Yes, we provide regular updates and milestones to ensure transparency throughout the development process.",
+      },
+      {
+        q: "What’s your pricing model?",
+        a: "We offer flexible pricing depending on project scope, complexity, and client requirements. Contact us for a quote.",
+      },
+      {
+        q: "Do you sign NDAs?",
+        a: "Yes, we ensure complete confidentiality and are happy to sign NDAs with our clients.",
+      },
+      {
+        q: "Do you provide post-launch support?",
+        a: "Yes, we offer maintenance and support services after project launch.",
+      },
+      {
+        q: "Can you integrate third-party APIs?",
+        a: "Absolutely, we can integrate a wide range of APIs to enhance functionality.",
+      },
+      {
+        q: "Do you offer cloud solutions?",
+        a: "Yes, we provide cloud-based solutions for scalability and reliability.",
+      },
+      {
+        q: "What’s your refund policy?",
+        a: "Refund policies are defined in the contract and depend on project type and agreement terms.",
+      },
+    ],
+    []
+  );
 
   const [openIndex, setOpenIndex] = useState(null);
 
-  // Optional effect when a FAQ opens
+  // Log when a FAQ opens (no ESLint warnings now)
   useEffect(() => {
     if (openIndex !== null) {
       console.log(`FAQ opened: ${faqs[openIndex].q}`);
     }
-  }, [openIndex, faqs]); // added faqs to satisfy ESLint
+  }, [openIndex, faqs]);
 
   const toggleFAQ = (index) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -37,13 +87,17 @@ export default function FAQPage() {
 
   return (
     <div className="min-h-screen bg-black text-white px-6 md:px-16 py-16">
+      {/* Header Section */}
       <section className="max-w-5xl mx-auto text-center mb-20">
-        <h1 className="text-4xl md:text-5xl font-bold mb-6">Frequently Asked Questions</h1>
+        <h1 className="text-4xl md:text-5xl font-bold mb-6">
+          Frequently Asked Questions
+        </h1>
         <p className="text-lg text-gray-300 leading-relaxed">
           Click on a question to reveal the answer.
         </p>
       </section>
 
+      {/* FAQ Section */}
       <section className="max-w-6xl mx-auto mb-20">
         <div className="space-y-4">
           {faqs.map((faq, index) => (
@@ -53,7 +107,7 @@ export default function FAQPage() {
             >
               <div
                 onClick={() => toggleFAQ(index)}
-                className="flex justify-between items-center"
+                className="flex justify-between items-center relative z-10"
               >
                 <div
                   className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
@@ -70,7 +124,7 @@ export default function FAQPage() {
                 />
               </div>
               {openIndex === index && (
-                <p className="mt-4 text-gray-300">{faq.a}</p>
+                <p className="mt-4 text-gray-300 relative z-10">{faq.a}</p>
               )}
             </div>
           ))}
