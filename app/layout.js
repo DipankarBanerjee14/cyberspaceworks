@@ -64,6 +64,10 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
+      <head>
+   <link rel="icon" type="image/png" href="/logo2.png" />
+  <title>Cyberspace Works - Website, Software and App Developer in Howrah, Kolkata</title>
+</head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${rubik.variable} antialiased relative min-h-screen bg-black overflow-x-hidden`}
         style={{

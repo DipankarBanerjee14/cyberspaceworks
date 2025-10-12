@@ -1,10 +1,12 @@
-
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+import "swiper/css";
+
 const Technologies = ({ technologies = [] }) => {
-  // Map technologies to items, preserving both name and icon
   const items = Array.isArray(technologies)
     ? technologies.map((tech) => ({ name: tech.name, icon: tech.icon }))
     : [];
@@ -96,20 +98,18 @@ const Technologies = ({ technologies = [] }) => {
   }, [started]);
 
   return (
-    <div className="flex flex-col items-center justify-center bg-black">
-      <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 tracking-wide">
+    <div className="flex flex-col items-center justify-center bg-black py-12">
+      <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 tracking-wide text-center">
         Technologies We Use
       </h2>
-      <div className="w-full max-w-[800px] relative">
+
+      {/* LG and above: circuit */}
+      <div className="hidden lg:block w-full max-w-[800px] relative">
         <svg viewBox="0 0 800 560" xmlns="http://www.w3.org/2000/svg" className="w-full">
           <defs>
             <linearGradient id="chipGradient" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="#2d2d2d" />
               <stop offset="100%" stopColor="#0f0f0f" />
-            </linearGradient>
-            <linearGradient id="textGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#eeeeee" />
-              <stop offset="100%" stopColor="#888888" />
             </linearGradient>
             <linearGradient id="pinGradient" x1="1" y1="0" x2="0" y2="0">
               <stop offset="0%" stopColor="#bbbbbb" />
@@ -119,9 +119,7 @@ const Technologies = ({ technologies = [] }) => {
           </defs>
 
           <style>
-            {`
-              .trace-bg { stroke: #333; stroke-width: 1.8; fill: none; }
-            `}
+            {`.trace-bg { stroke: #333; stroke-width: 1.8; fill: none; }`}
           </style>
 
           <g id="traces">
@@ -134,10 +132,8 @@ const Technologies = ({ technologies = [] }) => {
                     ref={(r) => (glowRefs.current[idx][sidx] = r)}
                     d=""
                     style={{
-                      stroke: "#22d3ee", // Tailwind cyan-400
-                      color: "#22d3ee", // Tailwind cyan-400
-                      strokeWidth: 1.8, // Consistent stroke width
-                      opacity: 1, // Consistent opacity for same glow size
+                      stroke: "#22d3ee",
+                      strokeWidth: 1.8,
                       filter: "drop-shadow(0 0 6px #22d3ee)",
                       fill: "none",
                       mixBlendMode: "lighten",
@@ -165,15 +161,12 @@ const Technologies = ({ technologies = [] }) => {
           {[205, 225, 245, 265].map((y, i) => (
             <rect key={`left-${i}`} x="322" y={y} width="8" height="10" rx="2" fill="url(#pinGradient)" />
           ))}
-
           {[205, 225, 245, 265].map((y, i) => (
             <rect key={`right-${i}`} x="470" y={y} width="8" height="10" rx="2" fill="url(#pinGradient)" />
           ))}
-
           {[360, 432].map((x, i) => (
             <rect key={`top-${i}`} x={x} y="182" width="8" height="10" rx="2" fill="url(#pinGradient)" />
           ))}
-
           {[360, 432].map((x, i) => (
             <rect key={`bottom-${i}`} x={x} y="290" width="8" height="10" rx="2" fill="url(#pinGradient)" />
           ))}
@@ -213,20 +206,33 @@ const Technologies = ({ technologies = [] }) => {
             transform: "translate(-50%, -50%)",
           }}
         >
-          <div
-          
-          >
-             <Image
-                                src="/logo2.png"
-                                alt="Logo"
-                                width={180}
-                                height={70}
-                                className="h-25 w-auto"
-                                priority
-                              />
-            
-          </div>
+          <Image src="/logo2.png" alt="Logo" width={180} height={70} className="h-25 w-auto" priority />
         </div>
+      </div>
+
+      {/* SM & MD screens: swiper */}
+      <div className="block lg:hidden w-full max-w-md z-10">
+         {/* Left fade */}
+        <div className="hidden lg:block pointer-events-none absolute top-0 left-0 h-full w-100 bg-gradient-to-r from-black to-transparent z-10"></div>
+
+        {/* Right fade */}
+        <div className="hidden lg:block pointer-events-none absolute top-0 right-0 h-full w-100 bg-gradient-to-l from-black to-transparent z-10"></div>
+
+        <Swiper
+          spaceBetween={16}
+          slidesPerView={2}
+          autoplay={{ delay: 1000 }}
+          modules={[Autoplay]}
+        >
+          {items.map((item, idx) => (
+            <SwiperSlide key={idx} className="flex justify-center">
+              <div className="w-32 h-32 rounded-xl flex flex-col items-center justify-center px-2 py-2 backdrop-blur-xl bg-gradient-to-b from-gray-800 to-gray-900 shadow-lg">
+                {item.icon && <div className="text-cyan-400 mb-1">{item.icon}</div>}
+                <span className="text-xs font-medium text-cyan-400 text-center">{item.name}</span>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </div>
   );

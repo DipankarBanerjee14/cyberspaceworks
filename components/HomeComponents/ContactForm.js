@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-
+import Link from "next/link";
 const TerritorySection = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -75,13 +75,12 @@ const TerritorySection = () => {
             Fill the form below and let our Marketing team identify <br />
             your blue ocean strategy for a perfect take down.
           </p>
-          <button
-            type=""
-            disabled={loading}
-            className="py-2 px-8 bg-blue-500 hover:bg-blue-600 text-black font-semibold rounded-full duration-300 cursor-pointer shadow-lg shadow-black/50 hover:brightness-110 transition"
-          >
-            Contact Us
-          </button>
+        <Link
+    href="/contact-us"
+    className="px-6 py-3 rounded-full bg-blue-500 hover:bg-blue-600 transition shadow-lg font-medium"
+  >
+    Contact Us
+  </Link>
         </div>
 
         {/* Form Section */}

@@ -132,6 +132,7 @@ export default function Navbar() {
       setIsServicesOpen(false);
     }, 200);
   };
+const [isServicesOpenMobile, setIsServicesOpenMobile] = useState(false);
 
   return (
     <>
@@ -245,7 +246,7 @@ export default function Navbar() {
               </li>
 
               <li className="relative group">
-                <Link href="/about" className="transition-colors duration-300 group-hover:text-cyan-400">
+                <Link href="/about-us" className="transition-colors duration-300 group-hover:text-cyan-400">
                   About
                 </Link>
                 <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-gradient-to-r from-cyan-700 via-cyan-400 to-cyan-200 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full"></span>
@@ -260,7 +261,7 @@ export default function Navbar() {
 
               <li>
                 <Link
-                  href="/quote"
+                  href="/contact-us"
                   className="flex items-center justify-center gap-1 px-4 py-1 text-black bg-cyan-400 rounded-full shadow-[0_0_12px_rgba(0,0,0,0.4)] transition-all duration-300 hover:shadow-[0_0_16px_rgba(0,0,0,0.6)]"
                 >
                   Get a Quote
@@ -281,56 +282,68 @@ export default function Navbar() {
               </div>
             </ul>
 
-            {/* Left Side Menu (Mobile) */}
-            <div
-              className={`lg:hidden left-menu-container-mobile fixed top-0 left-0 h-full w-64 bg-black/90 border-r border-cyan-400/20 backdrop-blur-xl transform transition-transform duration-300 z-[9999] ${
-                isLeftMenuOpen ? "translate-x-0" : "-translate-x-full"
-              }`}
+       {/* Left Side Menu (Mobile) */}
+<div
+  className={`lg:hidden left-menu-container-mobile fixed top-0 left-0 h-full w-64 bg-black/90 border-r border-cyan-400/20 backdrop-blur-xl transform transition-transform duration-300 z-[9999] ${
+    isLeftMenuOpen ? "translate-x-0" : "-translate-x-full"
+  }`}
+>
+  <div className="flex flex-col p-6 space-y-4 text-white">
+    <Link
+      href="/"
+      className="hover:text-cyan-400"
+      onClick={() => setIsLeftMenuOpen(false)}
+    >
+      Home
+    </Link>
+
+    {/* Mobile Services Dropdown */}
+    <div className="relative">
+      <div
+        onClick={() => setIsServicesOpenMobile(!isServicesOpenMobile)} // <-- mobile state
+        className="flex items-center justify-between cursor-pointer hover:text-cyan-400"
+      >
+        <span>Services</span>
+        <span className="text-xs">
+          {isServicesOpenMobile ? <FaAngleUp /> : <FaAngleDown />}
+        </span>
+      </div>
+
+      <div
+        className={`overflow-hidden transition-all duration-300 ${
+          isServicesOpenMobile ? "max-h-[500px] mt-2" : "max-h-0"
+        }`}
+      >
+        <div className="flex flex-col space-y-2 pl-3 border-l border-cyan-400/20">
+          {services.map((service) => (
+            <Link
+              key={service.name}
+              href={service.href}
+              className="flex items-center gap-2 hover:text-cyan-400 text-sm"
+              onClick={() => setIsServicesOpenMobile(false)} // Close dropdown only
             >
-              <div className="flex flex-col p-6 space-y-4 text-white">
-                <Link href="/" className="hover:text-cyan-400">Home</Link>
+              <span className="text-cyan-400 text-base">{service.icon}</span>
+              {service.name}
+            </Link>
+          ))}
+        </div>
+      </div>
+    </div>
 
-                <div className="relative">
-                  <div
-                    onClick={() => setIsServicesOpen(!isServicesOpen)}
-                    className="flex items-center justify-between cursor-pointer hover:text-cyan-400"
-                  >
-                    <span>Services</span>
-                    <span className="text-xs">{isServicesOpen ? <FaAngleUp /> : <FaAngleDown />}</span>
-                  </div>
+    <Link href="/about-us" className="hover:text-cyan-400" onClick={() => setIsLeftMenuOpen(false)}>About</Link>
+    <Link href="/contact-us" className="hover:text-cyan-400" onClick={() => setIsLeftMenuOpen(false)}>Contact</Link>
+    
+    <Link
+      href="/quote"
+      className="flex items-center justify-center gap-1 px-4 py-1 text-black bg-cyan-400 rounded-full shadow-[0_0_12px_rgba(0,0,0,0.4)] transition-all duration-300 hover:shadow-[0_0_16px_rgba(0,0,0,0.6)]"
+      onClick={() => setIsLeftMenuOpen(false)}
+    >
+      Get a Quote
+    </Link>
+  
+  </div>
+</div>
 
-                  <div
-                    className={`overflow-hidden transition-all duration-300 ${
-                      isServicesOpen ? "max-h-[500px] mt-2" : "max-h-0"
-                    }`}
-                  >
-                    <div className="flex flex-col space-y-2 pl-3 border-l border-cyan-400/20">
-                      {services.map((service) => (
-                        <Link
-                          key={service.name}
-                          href={service.href}
-                          className="flex items-center gap-2 hover:text-cyan-400 text-sm"
-                        >
-                          <span className="text-cyan-400 text-base">{service.icon}</span>
-                          {service.name}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                <Link href="/about" className="hover:text-cyan-400">About</Link>
-                <Link href="/contact-us" className="hover:text-cyan-400">Contact</Link>
-                
-                <Link
-                  href="/quote"
-                  className="flex items-center justify-center gap-1 px-4 py-1 text-black bg-cyan-400 rounded-full shadow-[0_0_12px_rgba(0,0,0,0.4)] transition-all duration-300 hover:shadow-[0_0_16px_rgba(0,0,0,0.6)]"
-                >
-                  Get a Quote
-                </Link>
-              
-              </div>
-            </div>
 
             {/* Right Side Menu (Mobile) */}
             <div
