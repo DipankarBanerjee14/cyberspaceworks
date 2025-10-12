@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { IoReorderThree } from "react-icons/io5";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,26 +13,28 @@ import {
   FaFacebookF,
   FaAngleDown,
   FaAngleUp,
-  FaCode,
+  FaLaptopCode,
   FaMobileAlt,
-  FaDesktop,
+  FaCode,
   FaPalette,
-  FaChartLine,
-  FaPaintBrush,
-  FaSearch,
+  FaBullhorn,
+  FaBrush,
+  FaTrademark,
+
 } from "react-icons/fa";
-import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
+import { SiGoogleanalytics } from "react-icons/si";
 
 export default function Navbar() {
   const [isLeftMenuOpen, setIsLeftMenuOpen] = useState(false);
   const [isRightMenuOpen, setIsRightMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const closeTimeoutRef = useRef(null);
 
   // Services data
   const services = [
     {
       name: "Web Development",
-      icon: <FaCode />,
+      icon: <FaLaptopCode />,
       subtext: "Custom, scalable web apps",
       href: "/services/web-development",
     },
@@ -44,7 +46,7 @@ export default function Navbar() {
     },
     {
       name: "Software Development",
-      icon: <FaDesktop />,
+      icon: <FaCode />,
       subtext: "Tailored enterprise solutions",
       href: "/services/software-development",
     },
@@ -56,19 +58,19 @@ export default function Navbar() {
     },
     {
       name: "Digital Marketing",
-      icon: <FaChartLine />,
+      icon: <FaBullhorn />,
       subtext: "Boost your brand visibility",
       href: "/services/digital-marketing",
     },
     {
       name: "Graphic Design",
-      icon: <FaPaintBrush />,
+      icon: <FaBrush />,
       subtext: "Creative branding visuals",
       href: "/services/graphic-design",
     },
     {
       name: "Research & Analytics",
-      icon: <FaSearch />,
+      icon: <SiGoogleanalytics />,
       subtext: "Data-driven insights",
       href: "/services/research-and-analytics",
     },
@@ -84,11 +86,11 @@ export default function Navbar() {
     { name: "Facebook", icon: <FaFacebookF />, link: "https://facebook.com/example" },
   ];
 
-  // Handle click outside for hamburger menus only
+  // Close hamburger menus when clicking or touching outside or scrolling
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      const leftMenu = document.querySelector(".left-menu-container");
-      const rightMenu = document.querySelector(".right-menu-container");
+    const handleClickOrTouchOutside = (event) => {
+      const leftMenu = document.querySelector(".left-menu-container-mobile");
+      const rightMenu = document.querySelector(".right-menu-container-mobile");
       const leftButton = document.querySelector(".left-hamburger");
       const rightButton = document.querySelector(".right-hamburger");
 
@@ -103,19 +105,33 @@ export default function Navbar() {
       }
     };
 
-    document.addEventListener("click", handleClickOutside);
-    return () => document.removeEventListener("click", handleClickOutside);
-  }, []);
-
-  // Handle scroll to close services dropdown
-  useEffect(() => {
     const handleScroll = () => {
-      setIsServicesOpen(false);
+      setIsLeftMenuOpen(false);
+      setIsRightMenuOpen(false);
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    document.addEventListener("mousedown", handleClickOrTouchOutside);
+    document.addEventListener("touchstart", handleClickOrTouchOutside);
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOrTouchOutside);
+      document.removeEventListener("touchstart", handleClickOrTouchOutside);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
+
+  // Services dropdown hover logic
+  const handleMouseEnter = () => {
+    if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+    setIsServicesOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    closeTimeoutRef.current = setTimeout(() => {
+      setIsServicesOpen(false);
+    }, 200);
+  };
 
   return (
     <>
@@ -130,20 +146,20 @@ export default function Navbar() {
         {/* Navbar */}
         <nav className="text-white">
           <div className="relative flex items-center justify-between h-[70px] px-4">
-            {/* Left Hamburger (Mobile) */}
-            <div className="lg:hidden flex items-center left-hamburger">
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setIsLeftMenuOpen(!isLeftMenuOpen);
-                  setIsRightMenuOpen(false);
-                  setIsServicesOpen(false);
-                }}
-                className="text-3xl text-cyan-400"
-              >
-                <IoReorderThree />
-              </button>
-            </div>
+
+         {/* Left Hamburger (Mobile) */}
+<div
+  className="lg:hidden flex items-center left-hamburger fixed  left-8 z-50 group"
+  onMouseEnter={() => {
+    setIsLeftMenuOpen(true);
+    setIsRightMenuOpen(false);
+  }}
+>
+  <button className="text-3xl text-cyan-400">
+    <IoReorderThree />
+  </button>
+</div>
+
 
             {/* Center Logo */}
             <div className="absolute left-1/2 -translate-x-1/2 top-[-12px] flex items-center justify-center">
@@ -162,23 +178,21 @@ export default function Navbar() {
             </div>
 
             {/* Right Hamburger (Mobile) */}
-            <div className="lg:hidden flex items-center right-hamburger absolute right-10 top-1/2 -translate-y-1/2">
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setIsRightMenuOpen(!isRightMenuOpen);
-                  setIsLeftMenuOpen(false);
-                  setIsServicesOpen(false);
-                }}
-                className="text-3xl text-cyan-400"
-              >
+            <div
+              className="lg:hidden flex items-center right-hamburger absolute right-10 top-1/2 -translate-y-1/2 group"
+              onMouseEnter={() => {
+                setIsRightMenuOpen(true);
+                setIsLeftMenuOpen(false);
+              }}
+            >
+              <button className="text-3xl text-cyan-400">
                 <IoReorderThree />
               </button>
             </div>
 
             {/* Left Menu (Desktop) */}
             <ul className="hidden lg:flex space-x-6 font-bold px-6 py-1.5 rounded-xl bg-black/10 border border-white/10 shadow-xl items-center backdrop-blur-sm absolute left-1 ml-4 left-menu-container">
-              {/* Home */}
+
               <li className="relative group">
                 <Link href="/" className="transition-colors duration-300 group-hover:text-cyan-400">
                   Home
@@ -186,54 +200,50 @@ export default function Navbar() {
                 <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-gradient-to-r from-cyan-700 via-cyan-400 to-cyan-200 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full"></span>
               </li>
 
-              {/* Services Mega Dropdown - Wrapped for unified hover */}
-              <li className="relative">
-                <div
-                  className="relative"
-                  onMouseEnter={() => setIsServicesOpen(true)}
-                  onMouseLeave={() => setIsServicesOpen(false)}
+              {/* Services Dropdown */}
+              <li
+                className="relative services-dropdown-container"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
+                <button
+                  className={`transition-colors duration-300 flex items-center gap-1 cursor-pointer ${
+                    isServicesOpen ? "text-cyan-400" : "text-white"
+                  }`}
                 >
-               <button
-  className={`transition-colors duration-300 flex items-center gap-1 cursor-pointer services-button ${
-    isServicesOpen ? "text-cyan-400" : "text-white"
-  }`}
->
-  Services
-  <span className="text-xs mt-[2px]">
-    {isServicesOpen ? <FaAngleUp /> : <FaAngleDown />}
-  </span>
-</button>
+                  Services
+                  <span className="text-xs mt-[2px]">
+                    {isServicesOpen ? <FaAngleUp /> : <FaAngleDown />}
+                  </span>
+                </button>
 
-            <div
-  className={`absolute left-0 mt-2 w-[900px] bg-[#161320]/95 border border-white/10 rounded-2xl shadow-2xl transition-all duration-700 ease-in-out origin-top z-50 ${
-    isServicesOpen
-      ? "opacity-100 scale-100 pointer-events-auto"
-      : "opacity-0 scale-95 pointer-events-none"
-  } backdrop-blur-lg flex overflow-hidden p-6`}
->
-  <div className="grid grid-cols-3 gap-6 w-full">
-    {services.map((service, index) => (
-      <Link
-        key={service.name}
-        href={service.href}
-        className={`flex items-start gap-3 p-3 rounded-lg transition-all duration-300 transform hover:bg-white/10 hover:scale-[1.03] hover:shadow-[0_0_15px_rgba(0,255,255,0.3)] col-span-1`}
-        onClick={() => setIsServicesOpen(false)}
-      >
-        <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-black/50 border border-white/10 text-xl text-cyan-400">
-          {service.icon}
-        </div>
-        <div>
-          <p className="font-semibold text-white text-sm">{service.name}</p>
-          <p className="text-gray-400 text-xs">{service.subtext}</p>
-        </div>
-      </Link>
-    ))}
-  </div>
-</div>
+                <div
+                  className={`absolute left-0 mt-2 w-[900px] bg-[#161320]/95 border border-white/10 rounded-2xl shadow-2xl transition-all duration-300 ease-in-out origin-top z-[999] ${
+                    isServicesOpen
+                      ? "opacity-100 scale-100 pointer-events-auto"
+                      : "opacity-0 scale-95 pointer-events-none"
+                  } backdrop-blur-lg flex overflow-hidden p-6`}
+                >
+                  <div className="grid grid-cols-3 gap-6 w-full">
+                    {services.map((service) => (
+                      <Link
+                        key={service.name}
+                        href={service.href}
+                        className="flex items-start gap-3 p-3 rounded-lg transition-all duration-300 transform hover:bg-white/10 hover:scale-[1.03] hover:shadow-[0_0_15px_rgba(0,255,255,0.3)]"
+                      >
+                        <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-black/50 border border-white/10 text-xl text-cyan-400">
+                          {service.icon}
+                        </div>
+                        <div>
+                          <p className="font-semibold text-white text-sm">{service.name}</p>
+                          <p className="text-gray-400 text-xs">{service.subtext}</p>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               </li>
 
-              {/* About */}
               <li className="relative group">
                 <Link href="/about" className="transition-colors duration-300 group-hover:text-cyan-400">
                   About
@@ -241,7 +251,6 @@ export default function Navbar() {
                 <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-gradient-to-r from-cyan-700 via-cyan-400 to-cyan-200 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full"></span>
               </li>
 
-              {/* Contact */}
               <li className="relative group">
                 <Link href="/contact-us" className="transition-colors duration-300 group-hover:text-cyan-400">
                   Contact
@@ -249,19 +258,17 @@ export default function Navbar() {
                 <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-gradient-to-r from-cyan-700 via-cyan-400 to-cyan-200 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full"></span>
               </li>
 
-              {/* Get a Quote */}
               <li>
                 <Link
                   href="/quote"
                   className="flex items-center justify-center gap-1 px-4 py-1 text-black bg-cyan-400 rounded-full shadow-[0_0_12px_rgba(0,0,0,0.4)] transition-all duration-300 hover:shadow-[0_0_16px_rgba(0,0,0,0.6)]"
-                  onClick={() => setIsServicesOpen(false)}
                 >
                   Get a Quote
                 </Link>
               </li>
             </ul>
 
-            {/* Right Menu - Social Icons (Desktop) */}
+            {/* Right Menu - Social Icons */}
             <ul className="hidden lg:flex space-x-3 font-bold px-6 py-1 rounded-xl bg-black/10 border border-white/10 shadow-xl items-center backdrop-blur-sm absolute right-12 top-1/2 -translate-y-1/2 mr-4 right-menu-container">
               <div className="flex items-center space-x-3 mr-6">
                 {socialLinks.map((item) => (
@@ -273,6 +280,78 @@ export default function Navbar() {
                 ))}
               </div>
             </ul>
+
+            {/* Left Side Menu (Mobile) */}
+            <div
+              className={`lg:hidden left-menu-container-mobile fixed top-0 left-0 h-full w-64 bg-black/90 border-r border-cyan-400/20 backdrop-blur-xl transform transition-transform duration-300 z-[9999] ${
+                isLeftMenuOpen ? "translate-x-0" : "-translate-x-full"
+              }`}
+            >
+              <div className="flex flex-col p-6 space-y-4 text-white">
+                <Link href="/" className="hover:text-cyan-400">Home</Link>
+
+                <div className="relative">
+                  <div
+                    onClick={() => setIsServicesOpen(!isServicesOpen)}
+                    className="flex items-center justify-between cursor-pointer hover:text-cyan-400"
+                  >
+                    <span>Services</span>
+                    <span className="text-xs">{isServicesOpen ? <FaAngleUp /> : <FaAngleDown />}</span>
+                  </div>
+
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ${
+                      isServicesOpen ? "max-h-[500px] mt-2" : "max-h-0"
+                    }`}
+                  >
+                    <div className="flex flex-col space-y-2 pl-3 border-l border-cyan-400/20">
+                      {services.map((service) => (
+                        <Link
+                          key={service.name}
+                          href={service.href}
+                          className="flex items-center gap-2 hover:text-cyan-400 text-sm"
+                        >
+                          <span className="text-cyan-400 text-base">{service.icon}</span>
+                          {service.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <Link href="/about" className="hover:text-cyan-400">About</Link>
+                <Link href="/contact-us" className="hover:text-cyan-400">Contact</Link>
+                
+                <Link
+                  href="/quote"
+                  className="flex items-center justify-center gap-1 px-4 py-1 text-black bg-cyan-400 rounded-full shadow-[0_0_12px_rgba(0,0,0,0.4)] transition-all duration-300 hover:shadow-[0_0_16px_rgba(0,0,0,0.6)]"
+                >
+                  Get a Quote
+                </Link>
+              
+              </div>
+            </div>
+
+            {/* Right Side Menu (Mobile) */}
+            <div
+              className={`lg:hidden right-menu-container-mobile fixed top-0 right-0 h-full w-64 bg-black/90 border-l border-cyan-400/20 backdrop-blur-xl transform transition-transform duration-300 z-[9999] ${
+                isRightMenuOpen ? "translate-x-0" : "translate-x-full"
+              }`}
+            >
+              <div className="flex flex-col p-6 space-y-4 text-white">
+                {socialLinks.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.link}
+                    className="flex items-center gap-2 text-lg hover:text-cyan-400"
+                  >
+                    <span className="text-cyan-400 text-base">{item.icon}</span>
+                    <span>{item.name}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
           </div>
         </nav>
       </header>

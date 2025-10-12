@@ -8,7 +8,7 @@ const Loader = () => {
     <StyledWrapper>
       <div className="loader">
         <div className="box">
-          <div className="h-25 w-auto">
+          <div className="h-30 w-auto">
             {/* Use PNG with next/image */}
             <Image  src="/logo2.png"
                     alt="Logo"  
