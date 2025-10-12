@@ -1,10 +1,13 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef,useEffect } from 'react';
 import Image from "next/image";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
 import { FaArrowRight, FaTimes } from 'react-icons/fa';
+import Image1 from '@/public/images1.jpg';
+import Image2 from '@/public/images2.jpg';
+import Image3 from '@/public/images3.jpg';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
@@ -13,73 +16,85 @@ const testimonials = [
     firstname: 'Tom',
     lastname: 'Ford',
     position: 'CEO, Iennep',
-    testimonial:
-      'Their design process was smooth and easy to follow. Highly recommend.',
-    avatar: 'https://randomuser.me/api/portraits/men/11.jpg',
+    testimonial: 'Their design process was smooth and easy to follow. Highly recommend.',
+    avatar: Image1,
   },
   {
     firstname: 'Devid',
     lastname: 'Dee',
     position: 'CEO, Deepstack',
-    testimonial:
-      'Impressive results in record time. These guys know what they’re doing.',
-    avatar: 'https://randomuser.me/api/portraits/men/32.jpg',
+    testimonial: 'Impressive results in record time. These guys know what they’re doing.',
+    avatar: Image2,
   },
   {
     firstname: 'Jacob',
     lastname: 'Thomason',
     position: 'CEO, Rentpost',
-    testimonial:
-      'Very professional team that delivered beyond expectations!',
-    avatar: 'https://randomuser.me/api/portraits/men/56.jpg',
+    testimonial: 'Very professional team that delivered beyond expectations!',
+    avatar: Image3,
   },
   {
     firstname: 'Jenny',
     lastname: 'Mark',
     position: 'CEO, Cofi',
-    testimonial:
-      'Loved working with them. Great results and support throughout.',
-    avatar: 'https://randomuser.me/api/portraits/women/22.jpg',
+    testimonial: 'Loved working with them. Great results and support throughout.',
+    avatar: Image1,
   },
   {
     firstname: 'Olivia',
     lastname: 'Stone',
     position: 'Founder, BlueSky',
-    testimonial:
-      'The attention to detail and creativity blew my mind. Excellent job!',
-    avatar: 'https://randomuser.me/api/portraits/women/47.jpg',
+    testimonial: 'The attention to detail and creativity blew my mind. Excellent job!',
+    avatar: Image2,
   },
   {
     firstname: 'Lucas',
     lastname: 'Gray',
     position: 'Tech Lead, Novex',
-    testimonial:
-      'Their innovative ideas helped us scale faster than expected.',
-    avatar: 'https://randomuser.me/api/portraits/men/64.jpg',
+    testimonial: 'Their innovative ideas helped us scale faster than expected.',
+    avatar: Image3,
   },
   {
     firstname: 'Isabella',
     lastname: 'Moore',
     position: 'CTO, CloudSync',
-    testimonial:
-      'Smooth collaboration and stunning results. Would love to work again!',
-    avatar: 'https://randomuser.me/api/portraits/women/66.jpg',
+    testimonial: 'Smooth collaboration and stunning results. Would love to work again!',
+    avatar: Image1,
   },
   {
     firstname: 'Ethan',
     lastname: 'Brown',
     position: 'CEO, Zenith Corp',
-    testimonial:
-      'The team’s dedication and professionalism stand out from the crowd.',
-    avatar: 'https://randomuser.me/api/portraits/men/70.jpg',
+    testimonial: 'The team’s dedication and professionalism stand out from the crowd.',
+    avatar: Image2,
   },
 ];
+
+// Hook to get window width
+const useWindowSize = () => {
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1024);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return windowWidth;
+};
+
+
+const getSlideWidth = (windowWidth, isActive) => {
+  if (windowWidth < 640) return isActive ? 300 : 180; // sm
+  if (windowWidth < 768) return isActive ? 400 : 220; // md
+  return isActive ? 500 : 250; // lg and above fallback
+};
 
 export default function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(null);
   const prevRef = useRef(null);
   const nextRef = useRef(null);
-
+ const windowWidth = useWindowSize(); 
   return (
     <section className="relative bg-black text-black px-6 py-16 overflow-hidden">
       <h2 className="text-4xl font-bold text-center mb-12 text-white relative z-10">
@@ -104,19 +119,19 @@ export default function Testimonials() {
         />
 
         <Swiper
-          modules={[Navigation, Autoplay]}
+          modules={[ Autoplay]}
           spaceBetween={20}
           slidesPerView="auto"
           autoplay={{
             delay: 2500,
             disableOnInteraction: false,
           }}
-          onInit={(swiper) => {
-            swiper.params.navigation.prevEl = prevRef.current;
-            swiper.params.navigation.nextEl = nextRef.current;
-            swiper.navigation.init();
-            swiper.navigation.update();
-          }}
+          // onInit={(swiper) => {
+          //   swiper.params.navigation.prevEl = prevRef.current;
+          //   swiper.params.navigation.nextEl = nextRef.current;
+          //   swiper.navigation.init();
+          //   swiper.navigation.update();
+          // }}
           grabCursor
         >
           {testimonials.map((item, index) => {
@@ -125,11 +140,16 @@ export default function Testimonials() {
             return (
               <SwiperSlide
                 key={index}
+                className={`
+                  transition-all duration-300
+                  sm:w-[180px] md:w-[220px]
+                `}
                 style={{
-                  width: isActive ? '500px' : '250px',
+                  width: `${getSlideWidth(windowWidth, isActive)}px`, // Add 'px' unit
                   transition: 'width 0.3s ease',
                 }}
               >
+
                 <div
                   className={`h-[250px] bg-cyan-400/80 backdrop-blur-xl border border-white/10 rounded-xl p-4 relative overflow-hidden transition-all duration-300 ${
                     isActive

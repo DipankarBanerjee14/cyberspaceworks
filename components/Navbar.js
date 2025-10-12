@@ -12,6 +12,7 @@ import {
   FaLinkedin,
   FaFacebookF,
   FaAngleDown,
+  FaAngleUp,
   FaCode,
   FaMobileAlt,
   FaDesktop,
@@ -20,6 +21,7 @@ import {
   FaPaintBrush,
   FaSearch,
 } from "react-icons/fa";
+import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
 
 export default function Navbar() {
   const [isLeftMenuOpen, setIsLeftMenuOpen] = useState(false);
@@ -117,7 +119,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="w-full fixed top-0 z-20">
+      <header className="w-full fixed top-0 z-50">
         {/* Neon top strip */}
         <div className="relative h-[10px] bg-cyan-400">
           <div className="absolute bottom-0 left-0 w-full h-[4px] bg-cyan-400 shadow-[0_0_15px_#00ffff]">
@@ -191,44 +193,43 @@ export default function Navbar() {
                   onMouseEnter={() => setIsServicesOpen(true)}
                   onMouseLeave={() => setIsServicesOpen(false)}
                 >
-                  <button
-                    className={`transition-colors duration-300 flex items-center gap-1 cursor-pointer services-button ${
-                      isServicesOpen ? "text-cyan-400" : "text-white"
-                    }`}
-                  >
-                    Services
-                    <span className="text-xs mt-[2px]"><FaAngleDown /></span>
-                  </button>
+               <button
+  className={`transition-colors duration-300 flex items-center gap-1 cursor-pointer services-button ${
+    isServicesOpen ? "text-cyan-400" : "text-white"
+  }`}
+>
+  Services
+  <span className="text-xs mt-[2px]">
+    {isServicesOpen ? <FaAngleUp /> : <FaAngleDown />}
+  </span>
+</button>
 
-                  {/* Mega Menu */}
-                  <div
-                    className={`absolute left-0 mt-2 w-[900px] bg-[#161320]/95 border border-white/10 rounded-2xl shadow-2xl transition-all duration-700 ease-in-out origin-top z-50 ${
-                      isServicesOpen
-                        ? "opacity-100 scale-100 pointer-events-auto"
-                        : "opacity-0 scale-95 pointer-events-none"
-                    } backdrop-blur-lg flex overflow-hidden p-6`}
-                  >
-                    <div className="grid grid-cols-3 gap-6 w-full">
-                      {services.map((service, index) => (
-                        <Link
-                          key={service.name}
-                          href={service.href}
-                          className={`flex items-start gap-3 p-3 rounded-lg transition-all duration-300 transform hover:bg-white/10 hover:scale-[1.03] hover:shadow-[0_0_15px_rgba(0,255,255,0.3)] ${
-                            index === 6 ? "col-span-3" : "col-span-1"
-                          }`}
-                          onClick={() => setIsServicesOpen(false)} // Close on link click
-                        >
-                          <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-black/50 border border-white/10 text-xl text-cyan-400">
-                            {service.icon}
-                          </div>
-                          <div>
-                            <p className="font-semibold text-white text-sm">{service.name}</p>
-                            <p className="text-gray-400 text-xs">{service.subtext}</p>
-                          </div>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
+            <div
+  className={`absolute left-0 mt-2 w-[900px] bg-[#161320]/95 border border-white/10 rounded-2xl shadow-2xl transition-all duration-700 ease-in-out origin-top z-50 ${
+    isServicesOpen
+      ? "opacity-100 scale-100 pointer-events-auto"
+      : "opacity-0 scale-95 pointer-events-none"
+  } backdrop-blur-lg flex overflow-hidden p-6`}
+>
+  <div className="grid grid-cols-3 gap-6 w-full">
+    {services.map((service, index) => (
+      <Link
+        key={service.name}
+        href={service.href}
+        className={`flex items-start gap-3 p-3 rounded-lg transition-all duration-300 transform hover:bg-white/10 hover:scale-[1.03] hover:shadow-[0_0_15px_rgba(0,255,255,0.3)] col-span-1`}
+        onClick={() => setIsServicesOpen(false)}
+      >
+        <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-black/50 border border-white/10 text-xl text-cyan-400">
+          {service.icon}
+        </div>
+        <div>
+          <p className="font-semibold text-white text-sm">{service.name}</p>
+          <p className="text-gray-400 text-xs">{service.subtext}</p>
+        </div>
+      </Link>
+    ))}
+  </div>
+</div>
                 </div>
               </li>
 

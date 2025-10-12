@@ -2,61 +2,155 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { FaFacebookF, FaInstagram, FaWhatsapp, FaMapMarkerAlt, FaLinkedin } from "react-icons/fa";
-import logo from "..//public/logo.png";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaWhatsapp,
+  FaMapMarkerAlt,
+  FaLinkedin,
+} from "react-icons/fa";
+import logo from "../public/logo.png";
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear(); 
+  const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-cyan-400 text-white py-10 px-6 border-t border-white/20">
-      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row justify-around gap-10 flex-wrap">
+    <footer className="bg-black text-white py-8 px-6 sm:px-6">
+      <div className="max-w-6xl mx-auto bg-cyan-400 text-black rounded-3xl p-6 sm:p-8 md:p-10 flex flex-col gap-8">
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 md:gap-10 text-center sm:text-left">
+          {/* Logo & About */}
+          <div className="flex flex-col items-center sm:items-start">
+            <Image
+              src={logo}
+              alt="logo"
+              width={120}
+              height={120}
+              className="cursor-pointer w-24 sm:w-32 md:w-36"
+            />
+            <p className="mt-3 text-slate-900 leading-relaxed text-sm sm:text-base max-w-[220px] sm:max-w-[250px]">
+              Discover endless possibilities in the world of{" "}
+              <span className="font-semibold text-black">Cyber-space</span>
+            </p>
+          </div>
 
-        {/* Logo & About */}
-        <div className="w-full md:w-[250px] text-center lg:text-left">
-          <Image
-            src={logo}
-            alt="logo"
-            className="h-30 w-auto cursor-pointer mx-auto lg:mx-0"
-          />
-          <p className="mt-2 text-slate-800">
-            Discover endless possibilities in the world of <span className="text-black font-medium">Cyber-space</span>
-          </p>
-        </div>
+          {/* Useful Links */}
+          <div>
+            <h3 className="text-base sm:text-lg font-semibold mb-3 text-black">
+              Useful Links
+            </h3>
+            <ul className="space-y-2 text-slate-900 text-sm sm:text-base">
+              <li>
+                <Link href="#" className="hover:text-slate-700 transition">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="hover:text-slate-700 transition">
+                  Contact Us
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/privacy-policy"
+                  className="hover:text-slate-700 transition"
+                >
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/terms-and-conditions"
+                  className="hover:text-slate-700 transition"
+                >
+                  Terms & Conditions
+                </Link>
+              </li>
+              <li>
+                <Link href="/faq" className="hover:text-slate-700 transition">
+                  FAQ
+                </Link>
+              </li>
+            </ul>
+          </div>
 
-        {/* Useful Links */}
-        <div className="w-full md:w-[180px] text-center lg:text-left">
-          <h3 className="text-lg font-semibold mb-3 text-black">Useful Links</h3>
-          <ul className="space-y-2 text-slate-800">
-            <li><Link href="" className="hover:text-slate-600 transition">About Us</Link></li>
-            <li><Link href="" className="hover:text-slate-600 transition">Contact Us</Link></li>
-            <li><Link href="privacy-policy" className="hover:text-slate-600 transition">Privacy Policy</Link></li>
-            <li><Link href="terms-and-conditions" className="hover:text-slate-600 transition">Terms & Conditions</Link></li>
-            <li><Link href="faq" className="hover:text-slate-600 transition">FAQ</Link></li>
-          </ul>
-        </div>
+          {/* Services */}
+          <div>
+            <h3 className="text-base sm:text-lg font-semibold mb-3 text-black">
+              Services
+            </h3>
+            <ul className="space-y-2 text-slate-900 text-sm sm:text-base">
+              <li>
+                <Link
+                  href="/services/web-development"
+                  className="hover:text-slate-700 transition"
+                >
+                  Web Development
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services/app-development"
+                  className="hover:text-slate-700 transition"
+                >
+                  App Development
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services/software-development"
+                  className="hover:text-slate-700 transition"
+                >
+                  Software Development
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services/ui-ux-design"
+                  className="hover:text-slate-700 transition"
+                >
+                  UI/UX Design
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services/digital-marketing"
+                  className="hover:text-slate-700 transition"
+                >
+                  Digital Marketing
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services/graphic-design"
+                  className="hover:text-slate-700 transition"
+                >
+                  Graphic Design
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services/research-and-analytics"
+                  className="hover:text-slate-700 transition"
+                >
+                  Research and Analytics
+                </Link>
+              </li>
+            </ul>
+          </div>
 
-        {/* Services */}
-        <div className="w-full md:w-[180px] text-center lg:text-left">
-          <h3 className="text-lg font-semibold mb-3 text-black">Services</h3>
-          <ul className="space-y-2 text-slate-800">
-            <li><Link href="/services/web-development" className="hover:text-slate-600 transition">Web Development</Link></li>
-            <li><Link href="/services/app-development" className="hover:text-slate-600 transition">App Development</Link></li>
-            <li><Link href="/services/software-development" className="hover:text-slate-600 transition">Software Development</Link></li>
-            <li><Link href="/services/ui-ux-design" className="hover:text-slate-600 transition">UI/UX Design</Link></li>
-            <li><Link href="/services/digital-marketing" className="hover:text-slate-600 transition">Digital Marketing</Link></li>
-            <li><Link href="/services/graphic-design" className="hover:text-slate-600 transition">Graphic Design</Link></li>
-            <li><Link href="/services/research-and-analytics" className="hover:text-slate-600 transition">Research and Analytics</Link></li>
-          </ul>
-        </div>
-
-        {/* Contact */}
-        <div className="w-full md:w-[220px] text-center lg:text-left">
-          <h3 className="text-lg font-semibold mb-3 text-black">Get In Touch</h3>
-          <div className="mt-4 space-y-2">
-            <p><span className="text-slate-800">+91 7980715765</span></p>
-            <p><span className="text-slate-800">cyberspaceworksofficial@gmsil.com</span></p>
-            <div className="flex justify-center md:justify-start space-x-4 mt-4 text-black text-xl">
+          {/* Contact */}
+          <div>
+            <h3 className="text-base sm:text-lg font-semibold mb-3 text-black">
+              Get In Touch
+            </h3>
+            <p className="text-slate-900 text-sm sm:text-base">
+              +91 7980715765
+            </p>
+            <p className="text-slate-900 text-sm sm:text-base">
+              cyberspaceworksofficial@gmail.com
+            </p>
+            <div className="flex justify-center sm:justify-start space-x-4 mt-4 text-black text-lg sm:text-xl">
               <FaFacebookF className="cursor-pointer hover:scale-110 transition" />
               <FaInstagram className="cursor-pointer hover:scale-110 transition" />
               <FaWhatsapp className="cursor-pointer hover:scale-110 transition" />
@@ -65,11 +159,11 @@ const Footer = () => {
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Bottom text */}
-      <div className="mt-10 text-center text-slate-900 text-sm border-t border-white/10 pt-4">
-        © {currentYear} Cyberspace Works. All Rights Reserved.
+        {/* Bottom Text */}
+        <div className="text-center text-slate-900 text-xs sm:text-sm border-t border-gray-300/30 pt-4">
+          © {currentYear} Cyberspace Works. All Rights Reserved.
+        </div>
       </div>
     </footer>
   );

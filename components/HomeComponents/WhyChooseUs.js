@@ -173,7 +173,8 @@ const dataLine = {
         }}
       />
 
-      <section className="py-16 relative z-10 max-w-6xl mx-auto">
+      <section className="py-16 relative z-10 px-6 ">
+        <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
           {/* Left content */}
           <div className="flex justify-center md:justify-start flex-col">
@@ -294,6 +295,7 @@ const dataLine = {
               description="Access pre-approved credit instantly, in your workflow."
             />
           </CardWrapper>
+        </div>
         </div>
       </section>
     </main>

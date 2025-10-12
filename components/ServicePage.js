@@ -6,7 +6,7 @@ import Technologies from "@/components/Technology"; // Ensure correct import
 
 const ServicePage = ({ title, description, subServices, useCases, technologies }) => {
   return (
-    <div className="min-h-screen bg-black text-white px-6 md:px-16 py-26">
+    <div className="min-h-screen bg-black text-white px-6 md:px-16 py-26 z-10">
       <div
         className="absolute inset-0 pointer-events-none"
         aria-hidden

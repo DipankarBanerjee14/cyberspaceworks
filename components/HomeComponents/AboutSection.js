@@ -62,7 +62,7 @@ const AboutSection = () => {
       /> */}
 
       {/* Vortasky AI Section */}
-      <section className="py-16 px-4 relative z-10">
+      <section className="py-16 px-6 relative z-10">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12 text-white">
             About Us
@@ -114,27 +114,35 @@ const AboutSection = () => {
                     />
                   </svg>
                   <div className="flex justify-around w-full gap-4">
-                    <div className="text-center rounded-lg bg-white/10 backdrop-blur-md p-4 border border-white/10 flex-1">
-                      <FaQuestionCircle
-                        className="mx-auto mb-1 text-black"
-                        size={24}
-                      />
-                      <p className="text-gray-900">Help Centre</p>
-                    </div>
-                    <div className="text-center rounded-lg bg-white/10 backdrop-blur-md p-4 border border-white/10 flex-1">
-                      <FaEnvelope
-                        className="mx-auto mb-1 text-black"
-                        size={24}
-                      />
-                      <p className="text-gray-900">Email Marketing</p>
-                    </div>
-                    <div className="text-center rounded-lg bg-white/10 backdrop-blur-md p-4 border border-white/10 flex-1">
-                      <FaHeadset
-                        className="mx-auto mb-1 text-black"
-                        size={24}
-                      />
-                      <p className="text-gray-900">Preferred Agent</p>
-                    </div>
+                  {/* Card 1 — shift slightly left on mobile/tablet */}
+  <div className="text-center rounded-lg bg-white/10 backdrop-blur-md p-4 border border-white/10 
+                  w-[85%] sm:w-[75%] md:w-[65%] 
+                  -translate-x-6 sm:-translate-x-6 md:-translate-x-8 lg:translate-x-0">
+    <FaQuestionCircle className="mx-auto mb-1 text-black" size={24} />
+    <p className="text-gray-900">Help Centre</p>
+  </div>
+
+  {/* Card 2 — centered on mobile/tablet */}
+  <div
+  className="text-center rounded-lg bg-white/10 backdrop-blur-md p-4 border border-white/10 
+             w-[85%] sm:w-[75%] md:w-[65%] 
+             -translate-x-8 sm:-translate-x-10 md:-translate-x-9 lg:translate-x-0"
+>
+  <FaEnvelope className="mx-auto mb-1 text-black" size={24} />
+  <p className="text-gray-900">Email Marketing</p>
+</div>
+
+
+  {/* Card 3 — shift slightly right on mobile/tablet */}
+  <div
+  className="text-center rounded-lg bg-white/10 backdrop-blur-md p-4 border border-white/10 
+             w-[85%] sm:w-[75%] md:w-[65%] 
+             -translate-x-10 sm:-translate-x-6 md:-translate-x-8 lg:translate-x-0"
+>
+  <FaHeadset className="mx-auto mb-1 text-black" size={24} />
+  <p className="text-gray-900">Preferred Agent</p>
+</div>
+
                   </div>
                 </div>
               </div>
