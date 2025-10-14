@@ -5,28 +5,27 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, FreeMode } from "swiper/modules";
 import "swiper/css";
 
-import tempcon from "../../public/tempcon.png";
-import Solinas from "../../public/Solinas.png";
-import sofyrus from "../../public/sofyrus.png";
-import Sidepath from "../../public/Sidepath.png";
-import Scoop from "../../public/Scoop.png";
-import S_IB from "../../public/S_IB.png";
-import roshni_sanghvi from "../../public/roshni_sanghvi.png";
-import Rise_hydroponics from "../../public/Rise_hydroponics.png";
-import rentpost from "../../public/rentpost.png";
-import quodeck from "../../public/quodeck.png";
+import google from "../../public/google.png";
+import Vercel from "../../public/Vercel.png";
+import meta from "../../public/meta.png";
+import hostinger from "../../public/hostinger.png";
+import Digital from "../../public/Digital.png";
+import growthshark from "../../public/growthshark.png";
+import adobe from "../../public/adobe.png";
+import aws from "../../public/aws.png";
+
+;
 
 const logos = [
-  tempcon,
-  Solinas,
-  sofyrus,
-  Sidepath,
-  Scoop,
-  S_IB,
-  roshni_sanghvi,
-  Rise_hydroponics,
-  rentpost,
-  quodeck,
+  google,
+  Vercel,
+  meta,
+  hostinger,
+  Digital,
+  growthshark,
+  adobe,
+  aws ,
+
 ];
 
 const LogoSection = () => {

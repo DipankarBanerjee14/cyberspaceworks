@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 
 // Dynamically import heavy sections to reduce initial bundle size
 const HeroSection = dynamic(() => import("@/components/HomeComponents/HeroSection.js"));
-const OurServices = dynamic(() => import("@/components/HomeComponents/OurServices.js"));
+// const OurServices = dynamic(() => import("@/components/HomeComponents/OurServices.js"));
 const WhyChooseUs = dynamic(() => import("@/components/HomeComponents/WhyChooseUs.js"));
 const OurClients = dynamic(() => import("@/components/HomeComponents/OurClients.js"));
 const Dashboard = dynamic(() => import("@/components/HomeComponents/Dashboard.js"));

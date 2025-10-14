@@ -5,34 +5,70 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, FreeMode } from "swiper/modules";
 import "swiper/css";
 
-import tempcon from "../../public/tempcon.png";
-import Solinas from "../../public/Solinas.png";
-import sofyrus from "../../public/sofyrus.png";
-import Sidepath from "../../public/Sidepath.png";
-import Scoop from "../../public/Scoop.png";
+import english from "../../public/english.png";
+import bewakoof from "../../public/bewakoof.png";
+import emolifi from "../../public/emolifi.png";
+import Everkind from "../../public/Everkind.png";
+import growthshark from "../../public/growthshark.png";
 import S_IB from "../../public/S_IB.png";
-import roshni_sanghvi from "../../public/roshni_sanghvi.png";
-import Rise_hydroponics from "../../public/Rise_hydroponics.png";
-import rentpost from "../../public/rentpost.png";
-import quodeck from "../../public/quodeck.png";
+import hrp from "../../public/hrp.webp";
+import hypergetshop from "../../public/hypergetshop.png";
+import icons8 from "../../public/icons8.png";
+import itcosmetics from "../../public/itcosmetics.png";
+import keyaseth from "../../public/keyaseth.png";
+import kruti from "../../public/kruti.webp";
+import mechanic from "../../public/mechanic.png";
+import mfine from "../../public/mfine.png";
+import myhealthcare from "../../public/myhealthcare.png";
+import nextprotocol from "../../public/nextprotocol.png";
+import peakdesign from "../../public/peakdesign.png";
+import petaversa from "../../public/petaversa.png";
+import phajil from "../../public/phajil.webp";
+import poolz from "../../public/poolz.png";
+import space from "../../public/space.png";
+import spythar from "../../public/spythar.png";
+import sroutsocial from "../../public/spythar.png";
+import traveloka from "../../public/traveloka.webp";
+import VoiceMap from "../../public/VoiceMap.png";
+import workday from "../../public/workday.png";
+import yesstyle from "../../public/yesstyle.png";
 
 const logos = [
-  tempcon,
-  Solinas,
-  sofyrus,
-  Sidepath,
-  Scoop,
+  bewakoof,
+  Everkind,
+  growthshark,
+  emolifi,
+  english,
   S_IB,
-  roshni_sanghvi,
-  Rise_hydroponics,
-  rentpost,
-  quodeck,
+  icons8,
+  hrp,
+  itcosmetics,
+  hypergetshop,
+  keyaseth,
+  kruti,
+  mechanic,
+  mfine,
+  myhealthcare,
+  nextprotocol,
+  peakdesign,
+  phajil,
+  petaversa,
+  poolz,
+  space,
+  spythar,
+  sroutsocial,
+  traveloka,
+  VoiceMap,
+  workday,
+  yesstyle
 ];
 
 const LogoSection = () => {
   return (
-    <section className="mt-12 relative z-10 px-6 mb-16">
+    <section className="mt-12 relative z-10 px-6 mb-16 ">
+     
       <div className="flex items-center gap-6 max-w-6xl mx-auto">
+        
         {/* Heading */}
         <div className="w-1/3">
           <h2 className="text-3xl lg:text-4xl font-bold text-white">
@@ -41,7 +77,8 @@ const LogoSection = () => {
         </div>
 
         {/* Logo Slider */}
-        <div className="w-2/3 relative">
+        <div className="w-2/3 relative ">
+        
            {/* Left fade */}
               <div className="hidden lg:block pointer-events-none absolute top-0 left-0 h-full w-34 bg-gradient-to-r from-black to-transparent z-10"></div>
 
@@ -69,7 +106,7 @@ const LogoSection = () => {
                   src={logo}
                   alt={`Logo ${i + 1}`}
                   height={56}
-                  className="h-14 w-auto opacity-50 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-500"
+                  className="h-14 w-30 opacity-50 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-500"
                 />
               </SwiperSlide>
             ))}
