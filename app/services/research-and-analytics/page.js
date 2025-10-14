@@ -5,21 +5,57 @@ import ServicePage from "@/components/ServicePage";
 
 export default function ResearchAndAnalytics() {
   const subServices = [
-    "Data Analysis",
-    "Market Research",
-    "Business Intelligence",
-    "Predictive Analytics",
-    "Data Visualization",
-    "Customer Insights",
+    {
+      title: "Data Analysis",
+      description: "Transform raw data into meaningful insights through structured analysis and modeling.",
+    },
+    {
+      title: "Market Research",
+      description: "Comprehensive market studies that uncover customer needs, trends, and opportunities.",
+    },
+    {
+      title: "Business Intelligence",
+      description: "Build smart dashboards and BI tools for data-driven decision-making.",
+    },
+    {
+      title: "Predictive Analytics",
+      description: "Forecast future outcomes using machine learning models and historical data.",
+    },
+    {
+      title: "Data Visualization",
+      description: "Communicate insights effectively with visually compelling dashboards and charts.",
+    },
+    {
+      title: "Customer Insights",
+      description: "Understand your audience’s behavior to improve retention and engagement strategies.",
+    },
   ];
 
   const useCases = [
-    "Sales Forecasting",
-    "Customer Segmentation",
-    "Market Trend Analysis",
-    "Operational Efficiency",
-    "Risk Assessment",
-    "Campaign Performance",
+    {
+      title: "Sales Forecasting",
+      description: "Predict sales performance to plan inventory, marketing, and growth strategies effectively.",
+    },
+    {
+      title: "Customer Segmentation",
+      description: "Identify key customer groups based on behavior and demographics for targeted marketing.",
+    },
+    {
+      title: "Market Trend Analysis",
+      description: "Analyze emerging trends to adapt quickly to market demands and stay competitive.",
+    },
+    {
+      title: "Operational Efficiency",
+      description: "Use analytics to detect bottlenecks and improve process efficiency across departments.",
+    },
+    {
+      title: "Risk Assessment",
+      description: "Predict and mitigate potential risks with data-backed evaluation models.",
+    },
+    {
+      title: "Campaign Performance",
+      description: "Track, measure, and optimize digital marketing campaigns with data-driven insights.",
+    },
   ];
 
   const technologies = [

@@ -3,6 +3,15 @@
 
 import React from "react";
 import Image from "next/image";
+import {
+  FaLaptopCode,
+  FaMobileAlt,
+  FaCode,
+  FaPalette,
+  FaBullhorn,
+  FaBrush,
+} from "react-icons/fa";
+import { SiGoogleanalytics } from "react-icons/si";
 import Link from "next/link";
 const values = [
   {
@@ -44,7 +53,7 @@ const AboutUs = () => {
       Empowering Businesses <br /> Through Technology
     </h1>
     <p className="text-gray-300 mb-5">
-      We are an end-to-end no-code agency committed to helping businesses achieve their goals efficiently.
+      We provide end-to-end support and are committed to helping businesses achieve their goals efficiently.
     </p>
   <div>
   <Link
@@ -178,35 +187,75 @@ const AboutUs = () => {
         </div>
       </div> */}
 
-  {/* What We Do Section */}
-<div className="max-w-6xl mx-auto px-6 lg:px-0 py-16 flex flex-col lg:flex-row gap-10 items-start">
+
+{/* What We Do Section */}
+<div className="max-w-6xl mx-auto px-6 lg:px-0 py-16 flex flex-col gap-10 items-start">
   {/* Left Content */}
-  <div className="relative flex-1  rounded-2xl p-8 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 group hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
+  <div className="relative rounded-2xl p-8 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
     <div
-        className="absolute inset-0 pointer-events-none"
-        aria-hidden
-        style={{
-          background:
-            "radial-gradient(circle at 50% 50%, rgba(14,186,199,0.35), transparent 40%)",
-        }}
-      />
-    <h2 className="text-3xl font-semibold mb-4">
-      What We Do Best with the Power of No-Code/Low-Code Development
+      className="absolute inset-0 pointer-events-none"
+      aria-hidden
+      style={{
+        background:
+          "radial-gradient(circle at 50% 50%, rgba(14,186,199,0.35), transparent 40%)",
+      }}
+    />
+    <h2 className="text-3xl font-semibold mb-4 text-white">
+      Your Vision, Powered by Innovation.
     </h2>
     <p className="text-gray-400 mb-6">
-      At Innovatech, we specialize in creating intuitive apps and websites using no-code/low-code solutions. From concept to implementation, we ensure rapid delivery and seamless integration.
+      Discover the boundless potential of your online presence with Cyberspace Works – where innovation meets imagination, and web development is elevated to an art form. Our journey is fueled by innovation and guided by your unique goals. We believe in the power of collaboration, working closely with you to understand your needs and aspirations. Whether you’re a startup striving for a digital debut or an established business aiming to revamp your online presence, we are your trusted partner on this transformative journey. We’re not just here to build websites or apps; we’re here to build your success. At Cyberspace Works, we merge cutting-edge technology with visionary design to create web solutions that not only impress but also drive growth.
     </p>
-    <ul className="list-disc list-inside text-gray-400 mb-6 space-y-2">
-      <li>Build Custom Websites and Mobile Apps</li>
-      <li>Automate Your Business Processes with Ease</li>
-      <li>Seamlessly Integrate Your Systems and Tools</li>
-    </ul>
-    <Link
-    href="/contact-us"
-    className="px-6 py-3 rounded-full bg-blue-500 hover:bg-blue-600 transition shadow-lg font-medium"
-  >
-    Contact Us
-  </Link>
+
+    {/* Our Services Cards */}
+    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+      {[
+        {
+          title: "Web Development",
+          icon: <FaLaptopCode className="text-cyan-400 text-4xl mb-3 mx-auto" />,
+          desc: "Crafting high-performance, visually stunning websites tailored for your business.",
+        },
+        {
+          title: "App Development",
+          icon: <FaMobileAlt className="text-cyan-400 text-4xl mb-3 mx-auto" />,
+          desc: "Building intuitive, scalable, and engaging mobile experiences.",
+        },
+        {
+          title: "Software Development",
+          icon: <FaCode className="text-cyan-400 text-4xl mb-3 mx-auto" />,
+          desc: "Custom software solutions engineered to streamline operations and drive growth.",
+        },
+        {
+          title: "UI/UX Design",
+          icon: <FaPalette className="text-cyan-400 text-4xl mb-3 mx-auto" />,
+          desc: "Designing sleek, user-focused interfaces that enhance experience and usability.",
+        },
+        {
+          title: "Graphic Design",
+          icon: <FaBrush className="text-cyan-400 text-4xl mb-3 mx-auto" />,
+          desc: "Transforming ideas into powerful visuals that leave a lasting impression.",
+        },
+        {
+          title: "Digital Marketing",
+          icon: <FaBullhorn className="text-cyan-400 text-4xl mb-3 mx-auto" />,
+          desc: "Boosting brand visibility and engagement through strategic online campaigns.",
+        },
+        {
+          title: "Research & Analytics",
+          icon: <SiGoogleanalytics className="text-cyan-400 text-4xl mb-3 mx-auto" />,
+          desc: "Delivering data-driven insights to fuel smarter decisions and business innovation.",
+        },
+      ].map((service, index) => (
+        <div
+          key={index}
+          className="box-bg bg-gradient-to-br from-[#0b223f]/70 to-[#06263f]/50 border border-white/10 rounded-xl p-6 text-center hover:scale-105 transition shadow-lg backdrop-blur"
+        >
+          {service.icon}
+          <h3 className="text-xl font-semibold text-white mb-2">{service.title}</h3>
+          <p className="text-gray-400 text-sm">{service.desc}</p>
+        </div>
+      ))}
+    </div>
   </div>
 </div>
 

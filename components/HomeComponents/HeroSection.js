@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FaAngleDown, FaLaptopCode, FaMobileAlt, FaCode, FaPalette, FaBullhorn, FaBrush } from "react-icons/fa";
 import OurServices from "@/components/HomeComponents/OurServices.js"; 
+import Link from "next/link";
 import { SiGoogleanalytics } from "react-icons/si";
 
 export default function HomePage() {
@@ -91,24 +92,26 @@ const scrollToServices = () => {
         <canvas ref={canvasRef} className="absolute inset-0 w-full h-full z-0" />
         <main className="relative z-10 flex flex-col items-center justify-center h-[calc(100vh-100px)] text-center px-4 pt-30">
           <h2 className="text-4xl md:text-6xl font-extrabold leading-tight">
-            Discover endless possibilities <br />
-            in the world of{" "}
+            Discover Endless Possibilities <br />
+            in the{" "}
             <span className="text-blue-400 drop-shadow-[0_0_15px_rgba(59,130,246,0.8)]">
               Cyber-space
             </span>
           </h2>
           <p className="mt-4 max-w-2xl text-gray-300">
-            Step into the world of trading excellence and seize every opportunity
-            with our advanced platform, expert guidance, and strategic insights
-            for unrivaled financial success.
+           Step into the Cyber-space and seize every opportunity with our services,<br/> expert guidance, and strategic insights for unrivaled financial success.
           </p>
           <div className="mt-6 flex gap-4">
-            <button className="px-6 py-3 rounded-full bg-blue-500 hover:bg-blue-600 transition shadow-lg font-medium">
-              Start Trading
-            </button>
-            <button className="px-6 py-3 rounded-full bg-gray-700 hover:bg-gray-600 transition font-medium">
-              Try Demo
-            </button>
+             <Link
+             href="/contact-us"
+              className="px-6 py-3 rounded-full bg-blue-500 hover:bg-blue-600 transition shadow-lg font-medium">
+             Contact Us
+            </Link>
+            <Link
+             href="/about-us"
+             className="px-6 py-3 rounded-full bg-gray-700 hover:bg-gray-600 transition font-medium">
+              About Us
+            </Link>
           </div>
         </main>
         <div

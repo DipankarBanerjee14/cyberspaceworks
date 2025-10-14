@@ -7,7 +7,7 @@ import {
   FaPalette,
   FaBullhorn,
   FaBrush,
-  FaTrademark,
+
 } from "react-icons/fa";
 import { SiGoogleanalytics } from "react-icons/si";
 

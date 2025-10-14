@@ -7,21 +7,57 @@ import ServicePage from "@/components/ServicePage";
 
 export default function GraphicDesign() {
   const subServices = [
-    "Logo & Branding Design",
-    "Social Media Creatives",
-    "Print Design (Brochures, Posters)",
-    "Packaging Design",
-    "Infographics & Illustrations",
-    "Marketing Collateral Design",
+    {
+      title: "Logo & Branding Design",
+      description: "Create timeless logos and complete brand identities that communicate your company’s values.",
+    },
+    {
+      title: "Social Media Creatives",
+      description: "Design engaging posts, stories, and ad creatives tailored to your brand’s tone and audience.",
+    },
+    {
+      title: "Print Design (Brochures, Posters)",
+      description: "High-quality print designs like brochures, flyers, and posters that make an impact offline.",
+    },
+    {
+      title: "Packaging Design",
+      description: "Attractive packaging designs that enhance brand recognition and consumer appeal.",
+    },
+    {
+      title: "Infographics & Illustrations",
+      description: "Simplify complex information with clean, visually appealing infographics and illustrations.",
+    },
+    {
+      title: "Marketing Collateral Design",
+      description: "Design pitch decks, business cards, and promotional materials that strengthen brand presence.",
+    },
   ];
 
   const useCases = [
-    "Brand Identity Creation",
-    "Advertising Campaigns",
-    "Event & Product Launch Design",
-    "E-commerce Visual Design",
-    "Corporate Presentations",
-    "Digital Art & Illustrations",
+    {
+      title: "Brand Identity Creation",
+      description: "Build a memorable visual identity that reflects your mission and differentiates your brand.",
+    },
+    {
+      title: "Advertising Campaigns",
+      description: "Visually compelling ad designs that attract attention and drive audience engagement.",
+    },
+    {
+      title: "Event & Product Launch Design",
+      description: "Promotional materials and graphics to elevate your next event or product reveal.",
+    },
+    {
+      title: "E-commerce Visual Design",
+      description: "Eye-catching banners and product images that boost online sales and conversion rates.",
+    },
+    {
+      title: "Corporate Presentations",
+      description: "Design professional pitch decks and presentations that leave a lasting impression.",
+    },
+    {
+      title: "Digital Art & Illustrations",
+      description: "Unique, creative digital artwork and illustrations that add personality to your brand.",
+    },
   ];
 
   const technologies = [

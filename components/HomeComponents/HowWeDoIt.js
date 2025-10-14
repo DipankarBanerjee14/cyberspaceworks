@@ -1,12 +1,9 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import {
-  FaLayerGroup,
-  FaCogs,
-  FaProjectDiagram,
-  FaChartLine,
-} from "react-icons/fa";
+
+import { FaChartLine, FaTools, FaRocket } from "react-icons/fa";
+import { FiTrendingUp } from "react-icons/fi";
 
 export default function ITSupportSection() {
   return (
@@ -18,7 +15,7 @@ export default function ITSupportSection() {
          How We Do It
         </h2>
         <p className="text-gray-400 max-w-2xl mx-auto text-base md:text-lg">
-          We solve, automate, and support your tech from day one to never-let-you-down.
+          We craft, solve, and support your tech from day one to never-let-you-down.
         </p>
       </div>
 
@@ -68,13 +65,12 @@ export default function ITSupportSection() {
            <h3 className="absolute -top-10 -left-6 md:-left-16 text-4xl font-light text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-400 to-cyan-600 px-6 lg:px-0">
             01
           </h3>
-          <FaLayerGroup className="text-4xl text-cyan-400 mb-4" />
+          <FaChartLine  className="text-4xl text-cyan-400 mb-4" />
           <h4 className="text-lg font-semibold mb-2">
-            Stack Audit & Assessment
+            Business Analysis & Tech Assessment
           </h4>
           <p className="text-gray-400 text-sm leading-relaxed max-w-sm">
-            We audit your systems, find what’s broken or bloated, and identify
-            exactly what’s slowing you down. No fluff. Just facts.
+            We analyze your business, find the best tech and tools to use, and create a researched visualization. No fluff. Just facts.
           </p>
         </div>
 
@@ -83,13 +79,12 @@ export default function ITSupportSection() {
           <h3 className="absolute -top-10 -right-6 md:-right-16 text-4xl font-light text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-400 to-cyan-600 px-6 lg:px-0">
             02
           </h3>
-          <FaCogs className="text-4xl text-cyan-400 mb-4" />
+          <FaTools  className="text-4xl text-cyan-400 mb-4" />
           <h4 className="text-lg font-semibold mb-2">
-            Custom Strategy & Solution Design
+           Project Execution and Crafting the Best You Can Get
           </h4>
           <p className="text-gray-400 text-sm leading-relaxed max-w-sm">
-            We build a clear plan with tools, automations, and support aligned
-            to your workflow. Smart, scalable, and future-ready.
+            We start working on the project with the best and latest tech and tools available, maintaining quality.
           </p>
         </div>
 
@@ -98,13 +93,12 @@ export default function ITSupportSection() {
           <h3 className="absolute bottom-30 -left-6 md:-left-16 text-4xl font-light text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-400 to-cyan-600 px-6 lg:px-0">
             03
           </h3>
-          <FaProjectDiagram className="text-4xl text-cyan-400 mb-4" />
+          <FaRocket className="text-4xl text-cyan-400 mb-4" />
           <h4 className="text-lg font-semibold mb-2">
-            Full Setup & Seamless Integration
+           DTD: Deployment, Test and Delivery
           </h4>
           <p className="text-gray-400 text-sm leading-relaxed max-w-sm">
-            We deploy your stack, integrate it all, and keep it running smooth
-            with zero surprises and documented support.
+            After completion, we deploy the project, test rigorously to every scenario and when passed, we deliver it to you.
           </p>
         </div>
 
@@ -113,7 +107,7 @@ export default function ITSupportSection() {
          <h3 className="absolute bottom-30 -right-6 md:-right-16 text-4xl font-light text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-400 to-cyan-600 px-6 lg:px-0">
             04
           </h3>
-          <FaChartLine className="text-4xl text-cyan-400 mb-4" />
+          <FiTrendingUp  className="text-4xl text-cyan-400 mb-4" />
           <h4 className="text-lg font-semibold mb-2">
             Monitor, Optimize, and Scale
           </h4>

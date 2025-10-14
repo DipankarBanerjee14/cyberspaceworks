@@ -9,6 +9,7 @@ import {
   FaArrowRight,
   FaCheckCircle,
 } from "react-icons/fa";
+import { FaLightbulb, FaHandshake, FaCogs,  } from "react-icons/fa";
 
 const AboutSection = () => {
   const [coords, setCoords] = useState({ x: 0, y: 0 });
@@ -81,11 +82,10 @@ const AboutSection = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative z-10">
                 <div className="flex flex-col text-center lg:text-left">
                   <h3 className="text-xl font-semibold text-black mb-3">
-                    Vortasky Intelligent Routing That Delivers
+                    At Cyberspace Works, we combine innovation, design, and technology to create digital solutions that drive real results. 
                   </h3>
                   <p className="text-gray-900 mb-4">
-                    Automatically route conversations to the right agent or
-                    department—no delays, no confusion.
+                   Our team of experts specializes in web, app, and software development—empowering businesses to grow smarter, faster, and stronger. With a focus on user experience, performance, and reliability, we turn complex challenges into seamless digital experiences that deliver measurable success.
                   </p>
                  <div className="w-full flex justify-center md:justify-start">
   <button className="bg-gradient-to-r from-cyan-500 to-cyan-700 text-black px-4 py-2 rounded shadow-lg  hover:shadow-cyan-700/50 w-fit">
@@ -96,9 +96,9 @@ const AboutSection = () => {
                 </div>
                 <div className="flex flex-col items-center">
                   <div className="text-center mb-4 rounded-lg bg-white/10 backdrop-blur-md p-4 border border-white/10">
-                    <FaBrain className="mx-auto mb-1 text-black" size={24} />
+                    <FaLightbulb className="mx-auto mb-1 text-black" size={24} />
                     <p className="text-gray-900 font-semibold">
-                      Intelligent Routing
+                      Our Solution
                     </p>
                   </div>
                   <svg
@@ -118,8 +118,8 @@ const AboutSection = () => {
   <div className="text-center rounded-lg bg-white/10 backdrop-blur-md p-4 border border-white/10 
                   w-[85%] sm:w-[75%] md:w-[65%] 
                   -translate-x-6 sm:-translate-x-6 md:-translate-x-8 lg:translate-x-0">
-    <FaQuestionCircle className="mx-auto mb-1 text-black" size={24} />
-    <p className="text-gray-900">Help Centre</p>
+    <FaHandshake className="mx-auto mb-1 text-black" size={24} />
+    <p className="text-gray-900">Client First</p>
   </div>
 
   {/* Card 2 — centered on mobile/tablet */}
@@ -128,8 +128,8 @@ const AboutSection = () => {
              w-[85%] sm:w-[75%] md:w-[65%] 
              -translate-x-8 sm:-translate-x-10 md:-translate-x-9 lg:translate-x-0"
 >
-  <FaEnvelope className="mx-auto mb-1 text-black" size={24} />
-  <p className="text-gray-900">Email Marketing</p>
+  <FaCogs className="mx-auto mb-1 text-black" size={24} />
+  <p className="text-gray-900">Best Tech and Tools</p>
 </div>
 
 
@@ -139,8 +139,8 @@ const AboutSection = () => {
              w-[85%] sm:w-[75%] md:w-[65%] 
              -translate-x-10 sm:-translate-x-6 md:-translate-x-8 lg:translate-x-0"
 >
-  <FaHeadset className="mx-auto mb-1 text-black" size={24} />
-  <p className="text-gray-900">Preferred Agent</p>
+  <FaHeadset  className="mx-auto mb-1 text-black" size={24} />
+  <p className="text-gray-900">24/7 Support</p>
 </div>
 
                   </div>
@@ -154,12 +154,12 @@ const AboutSection = () => {
             {[
               {
                 title: "Mission",
-                desc: "Deliver personalized experiences by speaking every customer's language.",
+                desc: "To empower businesses through innovative digital solutions that blend creativity, technology, and strategy—helping brands grow, connect, and succeed in the digital world.",
                 languages: ["English", "Spanish", "Bangla"],
               },
               {
                 title: "Vision",
-                desc: "Vortasky AI remembers and understands conversation context to deliver truly personalized experiences.",
+                desc: "To become a global leader in digital transformation, setting new standards in web, app, and software development through innovation, excellence, and client success.",
               },
             ].map((item, i) => (
               <div

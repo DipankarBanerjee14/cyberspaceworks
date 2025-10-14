@@ -12,6 +12,16 @@ import {
   Legend,
   Filler,
 } from "chart.js";
+import {
+  FaLightbulb,
+  FaCogs,
+  FaBullseye,
+  FaHandshake,
+  FaClock,
+  FaShieldAlt,
+  FaPaintBrush,
+  FaGlobeAmericas,
+} from "react-icons/fa";
 import { Line } from "react-chartjs-2";
 
 ChartJS.register(
@@ -178,45 +188,46 @@ const dataLine = {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
           {/* Left content */}
           <div className="flex justify-center md:justify-start flex-col">
-            <p className="text-gray-500 text-sm mb-2 text-center lg:text-left">2. Automate billing & collections</p>
-            <div className="flex items-baseline mb-4 ">
+           
+            <div className="flex items-baseline mb-4 lg:text-left text-center">
               <FaBolt className="text-white text-4xl mr-2" />
-              <h2 className="text-5xl font-bold text-white">Why Choose Us</h2>
+              <h2 className="text-5xl font-bold text-white ">Why <span>Choose Us</span></h2>
             </div>
             <p className="text-gray-300 mb-8 text-center lg:text-left">
-              Pay suppliers & employees with a click. No data entry needed. Get paid faster with automated AR.
+              At Cyberspace Works, we go beyond just delivering digital solutions — we build experiences that drive growth. Our team of passionate developers, designers, and strategists work hand in hand to craft innovative, user-focused, and result-driven products. From concept to launch, we ensure every project reflects precision, creativity, and measurable impact. With transparent communication, on-time delivery, and cutting-edge technology, we’re the digital partner you can rely on to bring your vision to life.
+
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <CardWrapper>
                 <CardContent
-                  icon={<FaBolt className="text-white" size={20} />}
-                  title="Get paid faster."
-                  description="Boost cash flow and save time with automated receivables."
+                  icon={<FaLightbulb className="text-white" size={20} />}
+                  title="Innovative Solutions"
+                  description="Smart, modern, and scalable digital products."
                 />
               </CardWrapper>
 
               <CardWrapper>
                 <CardContent
-                  icon={<FaBolt className="text-white" size={20} />}
-                  title="Simplify payments."
-                  description="Manage and automate all payments in one secure place."
+                  icon={<FaCogs className="text-white" size={20} />}
+                  title="Full-Cycle Development"
+                  description="From concept to deployment, we handle all."
                 />
               </CardWrapper>
 
               <CardWrapper>
                 <CardContent
-                  icon={<FaBolt className="text-white" size={20} />}
-                  title="Automate invoices."
-                  description="Automatically generate invoices and reminders with AI."
+                  icon={<FaBullseye className="text-white" size={20} />}
+                  title=" Result-Driven Approach"
+                  description=" Focused on outcomes, not just output."
                 />
               </CardWrapper>
 
               <CardWrapper>
                 <CardContent
-                  icon={<FaBolt className="text-white" size={20} />}
-                  title="Track performance."
-                  description="Monitor all transactions and analytics in one dashboard."
+                  icon={<FaHandshake className="text-white" size={20} />}
+                  title="Client-Centric Process"
+                  description=" Your goals guide every project decision."
                 />
               </CardWrapper>
             </div>
@@ -259,6 +270,10 @@ const dataLine = {
                 </div>
               </div>
             </div>
+            <p className=" mt-20">
+              Clients come to us because we turn ideas into impactful digital <br/>experiences — fast, reliable, and beautifully built.
+
+            </p>
           </div>
         </div>
 
@@ -266,33 +281,33 @@ const dataLine = {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-3">
           <CardWrapper>
             <CardContent
-              icon={<FaBolt className="text-white" size={20} />}
-              title="Pay anyone, anywhere"
-              description="Save up to 1 day per week with automated payments."
+              icon={<FaClock className="text-white" size={20} />}
+              title=" On-Time Delivery"
+              description="We deliver quality work, always on schedule."
             />
           </CardWrapper>
 
           <CardWrapper>
             <CardContent
-              icon={<FaBolt className="text-white" size={20} />}
-              title="Get paid faster."
-              description="Boost cash flow and save time with automated receivables."
+              icon={<FaShieldAlt className="text-white" size={20} />}
+              title="Reliable & Secure"
+              description="Built with performance, safety, and trust."
             />
           </CardWrapper>
 
           <CardWrapper>
             <CardContent
-              icon={<FaBolt className="text-white" size={20} />}
-              title="Automate bookkeeping."
-              description="Keep your books up-to-date with auto reconciliation."
+              icon={<FaPaintBrush className="text-white" size={20} />}
+              title="Creative Expertise"
+              description="Designs that inspire, engage, and convert."
             />
           </CardWrapper>
 
           <CardWrapper>
             <CardContent
-              icon={<FaBolt className="text-white" size={20} />}
-              title="Access working capital."
-              description="Access pre-approved credit instantly, in your workflow."
+              icon={<FaGlobeAmericas className="text-white" size={20} />}
+              title="Global Experience"
+              description="Serving startups and enterprises worldwide."
             />
           </CardWrapper>
         </div>

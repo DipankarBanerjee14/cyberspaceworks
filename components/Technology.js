@@ -185,7 +185,7 @@ const Technologies = ({ technologies = [] }) => {
               }}
             >
               <div
-                className="w-[60px] h-[60px] rounded-xl flex flex-col items-center justify-center px-1.5 py-1 backdrop-blur-xl transition-transform duration-300"
+                className="w-[65px] h-[60px] rounded-xl flex flex-col items-center justify-center px-1.5 py-1 backdrop-blur-xl transition-transform duration-300"
                 style={{
                   background: "linear-gradient(180deg, rgba(31,31,31,0.9), rgba(17,17,17,0.8))",
                   boxShadow: "0 0 6px 0.5px rgba(34,211,238,0.8)",

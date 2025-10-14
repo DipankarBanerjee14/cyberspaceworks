@@ -194,7 +194,7 @@ const pathname = usePathname();
             </div>
 
             {/* Left Menu (Desktop) */}
-            <ul className="hidden lg:flex space-x-6 font-bold px-6 py-1.5 rounded-xl bg-black/10 border border-white/10 shadow-xl items-center backdrop-blur-sm absolute left-1 ml-4 left-menu-container">
+            <ul className="hidden lg:flex space-x-6 font-bold px-6 py-1.5 rounded-xl bg-black/10 border border-white/10 shadow-xl items-center backdrop-blur-sm absolute left-3 ml-4 left-menu-container">
 
               <li className="relative group">
                 <Link  href="/"
