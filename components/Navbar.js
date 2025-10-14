@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { IoReorderThree } from "react-icons/io5";
 import Image from "next/image";
 import Link from "next/link";
@@ -133,6 +134,7 @@ export default function Navbar() {
     }, 200);
   };
 const [isServicesOpenMobile, setIsServicesOpenMobile] = useState(false);
+const pathname = usePathname();
 
   return (
     <>
@@ -195,7 +197,10 @@ const [isServicesOpenMobile, setIsServicesOpenMobile] = useState(false);
             <ul className="hidden lg:flex space-x-6 font-bold px-6 py-1.5 rounded-xl bg-black/10 border border-white/10 shadow-xl items-center backdrop-blur-sm absolute left-1 ml-4 left-menu-container">
 
               <li className="relative group">
-                <Link href="/" className="transition-colors duration-300 group-hover:text-cyan-400">
+                <Link  href="/"
+      className={`transition-colors duration-300 ${
+        pathname === "/" ? "text-cyan-400" : "hover:text-cyan-400"
+      }`}>
                   Home
                 </Link>
                 <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-gradient-to-r from-cyan-700 via-cyan-400 to-cyan-200 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full"></span>
@@ -208,9 +213,9 @@ const [isServicesOpenMobile, setIsServicesOpenMobile] = useState(false);
                 onMouseLeave={handleMouseLeave}
               >
                 <button
-                  className={`transition-colors duration-300 flex items-center gap-1 cursor-pointer ${
-                    isServicesOpen ? "text-cyan-400" : "text-white"
-                  }`}
+                   className={`transition-colors duration-300 flex items-center gap-1 cursor-pointer ${
+        pathname.startsWith("/services") ? "text-cyan-400" : "text-white hover:text-cyan-400"
+      }`}
                 >
                   Services
                   <span className="text-xs mt-[2px]">
@@ -262,14 +267,20 @@ const [isServicesOpenMobile, setIsServicesOpenMobile] = useState(false);
               </li>
 
               <li className="relative group">
-                <Link href="/about-us" className="transition-colors duration-300 group-hover:text-cyan-400">
+                <Link href="/about-us"
+      className={`transition-colors duration-300 ${
+        pathname === "/about-us" ? "text-cyan-400" : "hover:text-cyan-400"
+      }`}>
                   About
                 </Link>
                 <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-gradient-to-r from-cyan-700 via-cyan-400 to-cyan-200 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full"></span>
               </li>
 
               <li className="relative group">
-                <Link href="/contact-us" className="transition-colors duration-300 group-hover:text-cyan-400">
+                <Link  href="/contact-us"
+      className={`transition-colors duration-300 ${
+        pathname === "/contact-us" ? "text-cyan-400" : "hover:text-cyan-400"
+      }`}>
                   Contact
                 </Link>
                 <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-gradient-to-r from-cyan-700 via-cyan-400 to-cyan-200 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full"></span>
