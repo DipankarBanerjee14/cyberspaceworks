@@ -235,16 +235,22 @@ const pathname = usePathname();
     } 
     flex overflow-hidden p-6`}
 >
- {/* Top-left cyan-400 glow */}
-      <div
-        className="absolute top-0 left-0 w-40 h-40 -translate-x-20 -translate-y-20 blur-2xl opacity-40"
-        style={{ background: "radial-gradient(circle, #06b6d4 0%, transparent 100%)" }}
-      />
-      {/* Bottom-right indigo-400 glow */}
-      <div
-        className="absolute bottom-0 right-0 w-40 h-40 translate-x-20 translate-y-20 blur-2xl opacity-40"
-        style={{ background: "radial-gradient(circle, #6366f1 0%, transparent 100%)" }}
-      />
+{/* Top-left cyan-400 large glow */}
+<div
+  className="absolute top-0 left-0 w-[300px] h-[300px] -translate-x-32 -translate-y-32 blur-[160px] opacity-60 pointer-events-none"
+  style={{
+    background: "radial-gradient(circle, #06b6d4 0%, transparent 100%)",
+  }}
+/>
+
+{/* Bottom-right indigo-400 large glow */}
+<div
+  className="absolute bottom-0 right-0 w-[300px] h-[300px] translate-x-32 translate-y-32 blur-[160px] opacity-60 pointer-events-none"
+  style={{
+    background: "radial-gradient(circle, #6366f1 0%, transparent 100%)",
+  }}
+/>
+
     
                   <div className="grid grid-cols-3 gap-6 w-full">
                     {services.map((service) => (

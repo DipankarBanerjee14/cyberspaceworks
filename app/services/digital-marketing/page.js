@@ -122,18 +122,7 @@ export default function DigitalMarketing() {
       title: "Podcast Marketing",
       description: " Promoting a business through podcast advertising, launching a branded podcast, or securing guest appearances.",
     },
-     {
-      title: "Conversion Rate Optimization (CRO)",
-      description: " Systematically testing and improving website elements (like headlines, forms, and buttons) to increase the percentage of visitors who become customers.",
-    },
-     {
-      title: "Conversion Rate Optimization (CRO)",
-      description: " Systematically testing and improving website elements (like headlines, forms, and buttons) to increase the percentage of visitors who become customers.",
-    },
-     {
-      title: "Conversion Rate Optimization (CRO)",
-      description: " Systematically testing and improving website elements (like headlines, forms, and buttons) to increase the percentage of visitors who become customers.",
-    },
+   
 
   ];
 
