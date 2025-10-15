@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import {
   FaBrain,
   FaDatabase,
@@ -88,9 +89,12 @@ const AboutSection = () => {
                    Our team of experts specializes in web, app, and software development—empowering businesses to grow smarter, faster, and stronger. With a focus on user experience, performance, and reliability, we turn complex challenges into seamless digital experiences that deliver measurable success.
                   </p>
                  <div className="w-full flex justify-center md:justify-start">
-  <button className="bg-gradient-to-r from-cyan-500 to-cyan-700 text-black px-4 py-2 rounded shadow-lg  hover:shadow-cyan-700/50 w-fit">
-    Get Started →
-  </button>
+            <Link
+              href="/about-us"
+              className="bg-gradient-to-r from-cyan-500 to-cyan-700 text-black px-4 py-2 rounded shadow-lg  hover:shadow-cyan-700/50 w-fit"
+            >
+              Read More →
+            </Link>
 </div>
 
                 </div>
@@ -155,7 +159,7 @@ const AboutSection = () => {
               {
                 title: "Mission",
                 desc: "To empower businesses through innovative digital solutions that blend creativity, technology, and strategy—helping brands grow, connect, and succeed in the digital world.",
-                languages: ["English", "Spanish", "Bangla"],
+                // languages: ["English", "Spanish", "Bangla"],
               },
               {
                 title: "Vision",
@@ -184,7 +188,7 @@ const AboutSection = () => {
                       {item.desc}
                     </p>
                   )}
-                  {item.languages && (
+                  {/* {item.languages && (
                     <div className="space-y-2 mb-4 w-full max-w-xs">
                       {item.languages.map((lang, j) => (
                         <div
@@ -196,55 +200,55 @@ const AboutSection = () => {
                         </div>
                       ))}
                     </div>
-                  )}
+                  )} */}
 
-                  {!item.languages && (
-                    <div className="relative w-full h-64 mt-4">
+                  {/* {!item.languages && (
+                    <div className="relative w-full h-64 mt-4"> */}
         {/* Connection Lines */}
-  <svg className="absolute inset-0 w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+  {/* <svg className="absolute inset-0 w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
     <line x1="25%" y1="25%" x2="50%" y2="50%" stroke="black" strokeWidth="1" />
     <line x1="75%" y1="25%" x2="50%" y2="50%" stroke="black" strokeWidth="1" />
     <line x1="25%" y1="75%" x2="50%" y2="50%" stroke="black" strokeWidth="1" />
     <line x1="75%" y1="75%" x2="50%" y2="50%" stroke="black" strokeWidth="1" />
-  </svg>
+  </svg> */}
                   {/* Center Brain */}
-  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+  {/* <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
     <FaBrain className="mx-auto text-black" size={40} />
-  </div>
+  </div> */}
 
   {/* Top Left - User Experience */}
-  <div className="absolute top-[10%] left-[15%] transform -translate-x-1/2 text-center">
+  {/* <div className="absolute top-[10%] left-[15%] transform -translate-x-1/2 text-center">
     <div className="rounded-lg bg-white/10 backdrop-blur-md p-3 border border-white/10">
       <FaDatabase className="mx-auto mb-1 text-black" size={24} />
       <p className="text-gray-900 text-sm">User Experience</p>
     </div>
-  </div>
+  </div> */}
 
   {/* Top Right - AI Knowledge */}
-  <div className="absolute top-[10%] right-[15%] transform translate-x-1/2 text-center">
+  {/* <div className="absolute top-[10%] right-[15%] transform translate-x-1/2 text-center">
     <div className="rounded-lg bg-white/10 backdrop-blur-md p-3 border border-white/10">
       <FaBrain className="mx-auto mb-1 text-black" size={24} />
       <p className="text-gray-900 text-sm">AI Knowledge</p>
     </div>
-  </div>
+  </div> */}
 
   {/* Bottom Left - Final Result */}
-  <div className="absolute bottom-[10%] left-[15%] transform -translate-x-1/2 text-center">
+  {/* <div className="absolute bottom-[10%] left-[15%] transform -translate-x-1/2 text-center">
     <div className="rounded-lg bg-white/10 backdrop-blur-md p-3 border border-white/10">
       <FaCheckCircle className="mx-auto mb-1 text-black" size={24} />
       <p className="text-gray-900 text-sm">Final Result</p>
     </div>
-  </div>
+  </div> */}
 
   {/* Bottom Right - Data Inflow */}
-  <div className="absolute bottom-[10%] right-[15%] transform translate-x-1/2 text-center">
+  {/* <div className="absolute bottom-[10%] right-[15%] transform translate-x-1/2 text-center">
     <div className="rounded-lg bg-white/10 backdrop-blur-md p-3 border border-white/10">
       <FaArrowRight className="mx-auto mb-1 text-black" size={24} />
       <p className="text-gray-900 text-sm">Data Inflow</p>
     </div>
-  </div>
-                    </div>
-                  )}
+  </div> */}
+                    {/* </div>
+                  )} */}
                 </div>
               </div>
             ))}

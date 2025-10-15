@@ -60,6 +60,7 @@ function drawStars() {
         trailAlpha *= 1 - (t.y - fadeStart) / (fadeEnd - fadeStart);
         trailAlpha = Math.max(trailAlpha, 0);
       }
+      
       ctx.fillStyle = `rgba(255,255,255,${trailAlpha})`;
       ctx.beginPath();
       ctx.arc(t.x, t.y, star.size, 0, Math.PI * 2);
@@ -206,7 +207,7 @@ const AboutButton = styled(Link)`
 
 const ContactButton = styled(Link)`
   --white: #ffe7ff;
-  --bg: #080808;
+  --bg: #26C6DA;
   --radius: 100px;
   outline: none;
   cursor: pointer;
@@ -225,8 +226,8 @@ const ContactButton = styled(Link)`
 
   .wrap {
     font-size: 15px; /* Reduced font size */
-    font-weight: 300;
-    color: rgba(255, 255, 255, 0.7);
+    font-weight: 400;
+    color: rgba(0, 0, 0, 1);
     padding: 18px 25px; /* Reduced padding */
     border-radius: inherit;
     position: relative;

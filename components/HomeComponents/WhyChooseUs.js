@@ -234,14 +234,14 @@ const dataLine = {
           </div>
 
           {/* Chart Section */}
-          <div className="relative rounded-2xl p-8 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
-            <div
+          <div className="relative rounded-2xl p-8 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_5px_rgba(0,150,255,0.5)]">
+            {/* <div
               className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
               style={{
                 background:
                   "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
               }}
-            />
+            /> */}
             <div className="relative z-10">
               <div className="flex justify-between items-end mb-4">
                 <div>

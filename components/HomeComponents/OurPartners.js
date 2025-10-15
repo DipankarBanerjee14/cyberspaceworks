@@ -44,33 +44,36 @@ const LogoSection = () => {
           {/* Right fade */}
           <div className="hidden lg:block pointer-events-none absolute top-0 right-0 h-full w-34 bg-gradient-to-l from-black to-transparent z-10"></div>
 
-          <Swiper
-            slidesPerView="auto"
-            spaceBetween={50}
-            loop={true}
-            speed={4000}
-            autoplay={{
-              delay: 0,
-              disableOnInteraction: false,
-            }}
-            freeMode={true}
-            allowTouchMove={false}
-            modules={[Autoplay, FreeMode]}
-          >
-            {[...logos, ...logos, ...logos].map((logo, i) => (
-              <SwiperSlide
-                key={i}
-                className="!w-auto flex justify-center items-center transition-all duration-300 transform hover:scale-110 cursor-pointer"
-              >
-                <Image
-                  src={logo}
-                  alt={`Logo ${i + 1}`}
-                  height={56} // fixed height from previous code
-                  className="w-auto object-contain transition-all duration-500"
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
+ <Swiper
+  slidesPerView="auto"
+  spaceBetween={50}
+  loop={true}
+  speed={4000}
+  autoplay={{
+    delay: 0,                 // no delay between slides
+    disableOnInteraction: false, // don't stop autoplay on click/tap
+    pauseOnMouseEnter: false,    // don't pause on hover
+  }}
+  freeMode={true}
+  allowTouchMove={false}       // prevents dragging
+  modules={[Autoplay, FreeMode]}
+>
+  {[...logos, ...logos, ...logos].map((logo, i) => (
+    <SwiperSlide
+      key={i}
+      className="!w-auto flex justify-center items-center transition-all duration-300 transform hover:scale-110 cursor-pointer"
+    >
+      <Image
+        src={logo}
+        alt={`Logo ${i + 1}`}
+        height={56}
+        className="w-auto object-contain transition-all duration-500"
+      />
+    </SwiperSlide>
+  ))}
+</Swiper>
+
+
         </div>
       </div>
     </section>

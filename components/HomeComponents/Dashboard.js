@@ -414,16 +414,10 @@ if (ctx4) {
           {/* Chart + Transactions */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
             {/* Chart 1 */}
-            <div className="flex flex-wrap relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
+            <div className="flex flex-wrap relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_5px_rgba(0,150,255,0.5)]">
               <div className="mb-10">
                 <div className="relative z-10">
-                  <div
-                    className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{
-                      background:
-                        "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
-                    }}
-                  />
+                 
                   <h3 className="text-2xl font-medium">Business</h3>
                   <div className="flex justify-between items-center mb-4 mt-6">
                     <div className="flex items-center gap-2">
@@ -444,13 +438,7 @@ if (ctx4) {
               {/* Chart 2 */}
               <div className="mb-10">
                 <div className="relative z-10">
-                  <div
-                    className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{
-                      background:
-                        "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
-                    }}
-                  />
+                  
                   <h3 className="text-2xl font-medium">Growth</h3>
                   <div className="flex justify-between items-center mb-4 mt-6">
                     <div className="flex items-center gap-2">
@@ -470,14 +458,8 @@ if (ctx4) {
             </div>
 
             {/* Right chart */}
-            <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
-              <div
-                className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-                style={{
-                  background:
-                    "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
-                }}
-              />
+            <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_5px_rgba(0,150,255,0.5)]">
+             
               <div className="relative z-10">
                 {/* Chart 3 */}
                 <div className="mb-10">

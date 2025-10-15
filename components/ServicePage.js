@@ -13,18 +13,20 @@ const ServicePage = ({ title, description, subServices, useCases, technologies }
   <Pattern />
 
       {/* --- Radial Backgrounds --- */}
+    
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle at 50% 85%, rgba(14,186,199,0.45), transparent 30%)",
+            "radial-gradient(circle at 50% 17%, rgba(14,186,199,0.45), transparent 20)",
         }}
       />
+
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle at 50% 20%, rgba(14,186,199,0.45), transparent 25%)",
+            "radial-gradient(circle at 50% 70%, rgba(14,186,199,0.45), transparent 25%)",
         }}
       />
 

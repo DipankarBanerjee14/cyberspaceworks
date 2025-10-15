@@ -95,16 +95,17 @@ const LogoSection = () => {
           >
             {[...logos, ...logos, ...logos].map((logo, i) => (
               <SwiperSlide
-                key={i}
-                className="!w-auto flex justify-center items-center transition-all duration-300 transform hover:scale-110 cursor-pointer"
-              >
-                <Image
-                  src={logo}
-                  alt={`Logo ${i + 1}`}
-                  height={56}
-                  className="h-14 w-30 transition-all duration-500"
-                />
-              </SwiperSlide>
+  key={i}
+  className="!w-auto flex justify-center items-center transition-all duration-300 transform hover:scale-110 cursor-pointer"
+>
+  <Image
+    src={logo}
+    alt={`Logo ${i + 1}`}
+    height={80}
+    className="h-14 w-auto transition-all duration-500"
+  />
+</SwiperSlide>
+
             ))}
           </Swiper>
         </div>
