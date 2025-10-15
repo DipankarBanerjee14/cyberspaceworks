@@ -190,8 +190,27 @@ const AboutUs = () => {
 
 {/* What We Do Section */}
 <div className="max-w-6xl mx-auto px-6 lg:px-0 py-16 flex flex-col gap-10 items-start">
+  
   {/* Left Content */}
   <div className="relative rounded-2xl p-8 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
+  {/* Top-left cyan-400 glow */}
+      <div
+        className="absolute top-0 left-0 w-60 h-60 -translate-x-20 -translate-y-20 blur-2xl opacity-40"
+        style={{ background: "radial-gradient(circle, #06b6d4 0%, transparent 100%)" }}
+      />
+      {/* Bottom-right indigo-400 glow */}
+      <div
+        className="absolute bottom-0 right-0 w-60 h-60 translate-x-20 translate-y-20 blur-2xl opacity-40"
+        style={{ background: "radial-gradient(circle, #6366f1 0%, transparent 100%)" }}
+      />
+      {/* Hover glow */}
+      {/* <div
+        className="absolute -inset-20 blur-[180px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        style={{
+          background:
+            "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
+        }}
+      /> */}
     <div
       className="absolute inset-0 pointer-events-none"
       aria-hidden
