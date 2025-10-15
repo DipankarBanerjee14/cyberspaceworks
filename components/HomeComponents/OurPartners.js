@@ -14,8 +14,6 @@ import growthshark from "../../public/growthshark.png";
 import adobe from "../../public/adobe.png";
 import aws from "../../public/aws.png";
 
-;
-
 const logos = [
   google,
   Vercel,
@@ -24,8 +22,7 @@ const logos = [
   Digital,
   growthshark,
   adobe,
-  aws ,
-
+  aws,
 ];
 
 const LogoSection = () => {
@@ -35,17 +32,18 @@ const LogoSection = () => {
         {/* Heading */}
         <div className="w-1/3">
           <h2 className="text-3xl lg:text-4xl font-bold text-white">
-           Our Partners
+            Our Partners
           </h2>
         </div>
 
         {/* Logo Slider */}
         <div className="w-2/3 relative">
-           {/* Left fade */}
-              <div className="hidden lg:block pointer-events-none absolute top-0 left-0 h-full w-34 bg-gradient-to-r from-black to-transparent z-10"></div>
+          {/* Left fade */}
+          <div className="hidden lg:block pointer-events-none absolute top-0 left-0 h-full w-34 bg-gradient-to-r from-black to-transparent z-10"></div>
 
-             {/* Right fade */}
-             <div className="hidden lg:block pointer-events-none absolute top-0 right-0 h-full w-34 bg-gradient-to-l from-black to-transparent z-10"></div>
+          {/* Right fade */}
+          <div className="hidden lg:block pointer-events-none absolute top-0 right-0 h-full w-34 bg-gradient-to-l from-black to-transparent z-10"></div>
+
           <Swiper
             slidesPerView="auto"
             spaceBetween={50}
@@ -67,8 +65,8 @@ const LogoSection = () => {
                 <Image
                   src={logo}
                   alt={`Logo ${i + 1}`}
-                  height={56}
-                  className="h-14 w-auto opacity-50 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-500"
+                  height={56} // fixed height from previous code
+                  className="w-auto object-contain transition-all duration-500"
                 />
               </SwiperSlide>
             ))}

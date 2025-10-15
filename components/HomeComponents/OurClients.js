@@ -6,7 +6,7 @@ import { Autoplay, FreeMode } from "swiper/modules";
 import "swiper/css";
 
 import english from "../../public/english.png";
-import bewakoof from "../../public/bewakoof.png";
+import bewakoof from "../../public/bewakoof.jpg";
 import emolifi from "../../public/emolifi.png";
 import Everkind from "../../public/Everkind.png";
 import growthshark from "../../public/growthshark.png";
@@ -14,20 +14,20 @@ import S_IB from "../../public/S_IB.png";
 import hrp from "../../public/hrp.webp";
 import hypergetshop from "../../public/hypergetshop.png";
 import icons8 from "../../public/icons8.png";
-import itcosmetics from "../../public/itcosmetics.png";
+// import itcosmetics from "../../public/itcosmetics.png";
 import keyaseth from "../../public/keyaseth.png";
 import kruti from "../../public/kruti.webp";
 import mechanic from "../../public/mechanic.png";
 import mfine from "../../public/mfine.png";
 import myhealthcare from "../../public/myhealthcare.png";
-import nextprotocol from "../../public/nextprotocol.png";
-import peakdesign from "../../public/peakdesign.png";
+// import nextprotocol from "../../public/nextprotocol.png";
+// import peakdesign from "../../public/peakdesign.png";
 import petaversa from "../../public/petaversa.png";
 import phajil from "../../public/phajil.webp";
-import poolz from "../../public/poolz.png";
+// import poolz from "../../public/poolz.png";
 import space from "../../public/space.png";
 import spythar from "../../public/spythar.png";
-import sroutsocial from "../../public/spythar.png";
+import sroutsocial from "../../public/sroutsocial.png";
 import traveloka from "../../public/traveloka.webp";
 import VoiceMap from "../../public/VoiceMap.png";
 import workday from "../../public/workday.png";
@@ -42,18 +42,16 @@ const logos = [
   S_IB,
   icons8,
   hrp,
-  itcosmetics,
   hypergetshop,
   keyaseth,
   kruti,
   mechanic,
   mfine,
   myhealthcare,
-  nextprotocol,
-  peakdesign,
+  
   phajil,
   petaversa,
-  poolz,
+  
   space,
   spythar,
   sroutsocial,

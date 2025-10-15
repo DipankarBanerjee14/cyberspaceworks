@@ -3,10 +3,15 @@ import React from "react";
 import GlassCard from "@/components/GlassCard";
 import SectionLayout from "@/components/SectionLayout";
 import Technologies from "@/components/Technology";
+import Pattern from "@/components/Pattern"; 
 
 const ServicePage = ({ title, description, subServices, useCases, technologies }) => {
   return (
     <div className="relative min-h-screen bg-black text-white px-6 md:px-16 py-26 z-10 overflow-hidden">
+      {/* --- FULL PAGE PATTERN --- */}
+      
+  <Pattern />
+
       {/* --- Radial Backgrounds --- */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -37,6 +42,7 @@ const ServicePage = ({ title, description, subServices, useCases, technologies }
           <GlassCard key={i} title={service.title} description={service.description} />
         )}
       />
+
 
       {/* --- TECHNOLOGIES --- */}
       <Technologies technologies={technologies} />
