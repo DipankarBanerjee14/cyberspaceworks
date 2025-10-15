@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
 import {
   FaLaptopCode,
@@ -49,7 +49,7 @@ const values = [
   {
     title: "Commitment to Excellence",
     description:
-      "Our unwavering drive for excellence motivates us to consistently improve, innovate, and exceed expectations in every project we take on.",
+      "Our unwavering drive for excellence relentlessly motivates us to consistently improve, innovate, and exceed expectations in every project we take on.",
     icon: <FaGem className="text-cyan-400 text-4xl mb-3 mx-auto" />,
   },
 ];
@@ -76,14 +76,14 @@ const services = [
     desc: "Designing sleek, user-focused interfaces that enhance experience and usability.",
   },
   {
-    title: "Graphic Design",
-    icon: <FaBrush className="text-cyan-400 text-4xl mb-3 mx-auto" />,
-    desc: "Transforming ideas into powerful visuals that leave a lasting impression.",
-  },
-  {
     title: "Digital Marketing",
     icon: <FaBullhorn className="text-cyan-400 text-4xl mb-3 mx-auto" />,
     desc: "Boosting brand visibility and engagement through strategic online campaigns.",
+  },
+  {
+    title: "Graphic Design",
+    icon: <FaBrush className="text-cyan-400 text-4xl mb-3 mx-auto" />,
+    desc: "Transforming ideas into powerful visuals that leave a lasting impression.",
   },
   {
     title: "Research & Analytics",
@@ -93,6 +93,14 @@ const services = [
 ];
 
 const AboutUs = () => {
+  const swiperRef = useRef(null);
+
+  // Handle card click without stopping Swiper
+  const handleCardClick = (service) => {
+    console.log(`Clicked on ${service.title}`);
+    // Add your desired action here, e.g., open a modal, navigate, etc.
+  };
+
   return (
     <section className="bg-black text-white py-16 px-6">
       <div className="max-w-6xl mx-auto">
@@ -155,10 +163,9 @@ const AboutUs = () => {
                       "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
                   }}
                 />
-                {/* Icon */}
-                <div className="mb-4">{val.icon}</div>
                 <h3 className="font-semibold text-xl mb-2 relative z-10">{val.title}</h3>
                 <p className="text-gray-400 relative z-10">{val.description}</p>
+                <div className="mt-4">{val.icon}</div>
               </div>
             ))}
           </div>
@@ -183,10 +190,9 @@ const AboutUs = () => {
                       "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
                   }}
                 />
-                {/* Icon */}
-                <div className="mb-4">{val.icon}</div>
                 <h3 className="font-semibold text-xl mb-2 relative z-10">{val.title}</h3>
                 <p className="text-gray-400 relative z-10">{val.description}</p>
+                <div className="mt-4">{val.icon}</div>
               </div>
             ))}
           </div>
@@ -217,35 +223,40 @@ const AboutUs = () => {
           <div className="relative w-full">
             <div className="pointer-events-none absolute top-0 left-0 h-full w-24 bg-gradient-to-r from-black to-transparent z-10"></div>
             <div className="pointer-events-none absolute top-0 right-0 h-full w-24 bg-gradient-to-l from-black to-transparent z-10"></div>
+<Swiper
+  onSwiper={(swiper) => (swiperRef.current = swiper)}
+  slidesPerView="auto"
+  spaceBetween={50}
+  loop={true}
+  speed={4000}
+  autoplay={{
+    delay: 0,
+    disableOnInteraction: false, // keeps autoplay after drag
+    pauseOnMouseEnter: false,
+  }}
+  allowTouchMove={true}  // enable drag
+  grabCursor={true}      // show grabbing cursor
+  freeMode={false}       // ❌ disable freeMode for continuous autoplay
+  modules={[Autoplay]}
+  className="relative z-20 mySwiper"
+>
+  {[...services, ...services, ...services].map((service, index) => (
+    <SwiperSlide
+      key={index}
+      className="!w-[280px] flex justify-center items-center cursor-pointer"
+    >
+      <div
+        className="box-bg bg-gradient-to-br from-[#0b223f]/70 to-[#06263f]/50 border border-white/10 rounded-xl p-6 text-center shadow-lg backdrop-blur flex flex-col items-center justify-between w-full h-[200px] transition-transform duration-300 hover:scale-95"
+        onClick={() => handleCardClick(service)}
+      >
+        {service.icon}
+        <h3 className="text-xl font-semibold text-white mb-2">{service.title}</h3>
+        <p className="text-gray-400 text-sm">{service.desc}</p>
+      </div>
+    </SwiperSlide>
+  ))}
+</Swiper>
 
-            <Swiper
-              slidesPerView="auto"
-              spaceBetween={50}
-              loop={true}
-              speed={4000}
-              autoplay={{
-                delay: 0,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: false,
-              }}
-              freeMode={true}
-              allowTouchMove={false}
-              modules={[Autoplay, FreeMode]}
-              className="relative z-20 mySwiper"
-            >
-              {[...services, ...services, ...services].map((service, index) => (
-                <SwiperSlide
-                  key={index}
-                  className="!w-[280px] flex justify-center items-center cursor-pointer"
-                >
-                  <div className="box-bg bg-gradient-to-br from-[#0b223f]/70 to-[#06263f]/50 border border-white/10 rounded-xl p-6 text-center shadow-lg backdrop-blur flex flex-col items-center justify-between w-full h-[200px] transition-transform duration-300 hover:scale-95">
-                    {service.icon}
-                    <h3 className="text-xl font-semibold text-white mb-2">{service.title}</h3>
-                    <p className="text-gray-400 text-sm">{service.desc}</p>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
           </div>
         </div>
       </div>

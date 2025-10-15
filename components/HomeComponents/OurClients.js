@@ -89,8 +89,10 @@ const LogoSection = () => {
               delay: 0,
               disableOnInteraction: false,
             }}
-            freeMode={true}
-            allowTouchMove={false}
+            allowTouchMove={true}  // enable drag
+            grabCursor={true}      // show grabbing cursor
+            freeMode={false}    
+           
             modules={[Autoplay, FreeMode]}
           >
             {[...logos, ...logos, ...logos].map((logo, i) => (
