@@ -8,7 +8,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Loader from "@/components/Loader";
 import cursor from "@/public/cursor.png";
-
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 // Fonts
 const rubik = Rubik({
   weight: ["400", "500", "700"],
@@ -54,6 +55,8 @@ export default function RootLayout({ children }) {
           <>
             <Navbar />
             <main className="relative z-10">{children}</main>
+            <Analytics />
+            <SpeedInsights />
             <Footer />
           </>
         )}
