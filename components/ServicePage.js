@@ -34,29 +34,23 @@ const ServicePage = ({ title, description, subServices, useCases, technologies }
         title="Service Offerings"
         items={subServices}
         renderItem={(service, i) => (
-          <GlassCard
-            key={i}
-            title={service.title}
-            description={service.description}
-          />
+          <GlassCard key={i} title={service.title} description={service.description} />
         )}
       />
 
       {/* --- TECHNOLOGIES --- */}
       <Technologies technologies={technologies} />
 
-      {/* --- USE CASES --- */}
-      <SectionLayout
-        title="Use Cases"
-        items={useCases}
-        renderItem={(useCase, i) => (
-          <GlassCard
-            key={i}
-            title={useCase.title}
-            description={useCase.description}
-          />
-        )}
-      />
+      {/* --- USE CASES (conditionally rendered) --- */}
+      {useCases && useCases.length > 0 && (
+        <SectionLayout
+          title="Use Cases"
+          items={useCases}
+          renderItem={(useCase, i) => (
+            <GlassCard key={i} title={useCase.title} description={useCase.description} />
+          )}
+        />
+      )}
     </div>
   );
 };
