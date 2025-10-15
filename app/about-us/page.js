@@ -105,8 +105,8 @@ const AboutUs = () => {
     <section className="bg-black text-white py-16 px-6">
       <div className="max-w-6xl mx-auto">
         {/* Hero Section */}
-        <div className="grid lg:grid-cols-2 items-center gap-10 relative bg-black/10 p-10 rounded-2xl shadow-lg">
-          <div className="flex flex-col gap-4">
+        <div className="grid lg:grid-cols-2 items-center gap-10 relative bg-black/10 rounded-2xl shadow-lg ">
+          <div className="flex flex-col gap-4 lg:text-left text-center">
             <h1 className="text-4xl lg:text-5xl font-bold">
               Empowering Businesses <br /> Through Technology
             </h1>

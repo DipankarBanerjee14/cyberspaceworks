@@ -35,45 +35,20 @@ export default function HomePage() {
         });
       }
 function drawStars() {
-  // Semi-transparent overlay before clearing to make tails visible
-  ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   stars.forEach((star) => {
-    // Initialize trail array for each star
-    if (!star.trail) star.trail = [];
-
-    // Add current position to trail
-    star.trail.push({ x: star.x, y: star.y });
-    if (star.trail.length > 8) star.trail.shift(); // tail length
-
-    // Define fade parameters for trails (same as stars)
-    const fadeStart = canvas.height * 0.6;
-    const fadeEnd = canvas.height;
-
-    // Draw the tail with same color and fading as star
-    star.trail.forEach((t, i) => {
-      let trailAlpha = (i + 1) / star.trail.length * 0.6; // subtle tail
-      // Apply same fading logic to trail based on y-position
-      if (t.y > fadeStart) {
-        trailAlpha *= 1 - (t.y - fadeStart) / (fadeEnd - fadeStart);
-        trailAlpha = Math.max(trailAlpha, 0);
-      }
-      
-      ctx.fillStyle = `rgba(255,255,255,${trailAlpha})`;
-      ctx.beginPath();
-      ctx.arc(t.x, t.y, star.size, 0, Math.PI * 2);
-      ctx.fill();
-    });
-
-    // Original star drawing logic
     let alpha = 1;
+
+    const fadeStart = canvas.height * 0.6; // start fading at 60% height
+    const fadeEnd = canvas.height; // fully faded at bottom
+
     if (star.y > fadeStart) {
       alpha = 1 - (star.y - fadeStart) / (fadeEnd - fadeStart);
       alpha = Math.max(alpha, 0);
     }
-    ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+
+    ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
     ctx.beginPath();
     ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
     ctx.fill();
@@ -85,12 +60,14 @@ function updateStars() {
     if (star.fall) {
       star.y += star.speed * 6;
       star.x += star.speed * 2;
+
       if (star.y > canvas.height) {
         star.y = 0;
         star.x = Math.random() * canvas.width;
       }
     } else {
       star.y += star.speed * 0.3;
+
       if (star.y > canvas.height) {
         star.y = 0;
         star.x = Math.random() * canvas.width;
