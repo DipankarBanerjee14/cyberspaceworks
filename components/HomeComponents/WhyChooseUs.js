@@ -166,7 +166,7 @@ const dataLine = {
 
   const CardContent = ({ icon, title, description, className = "" }) => (
     <div className={`relative z-10 ${className}`}>
-      <div className="mb-4 bg-blue-900 rounded-md inline-flex p-2 text-cyan-400">{icon}</div>
+      <div className="mb-4 bg-cyan-400 rounded-md inline-flex p-2 text-black">{icon}</div>
       <h3 className="text-white text-lg font-semibold mb-2 leading-tight">{title}</h3>
       <p className="text-gray-400 text-sm leading-relaxed">{description}</p>
     </div>
@@ -201,7 +201,7 @@ const dataLine = {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <CardWrapper>
                 <CardContent
-                  icon={<FaLightbulb className="text-white" size={20} />}
+                  icon={<FaLightbulb className="text-black" size={20} />}
                   title="Innovative Solutions"
                   description="Smart, modern, and scalable digital products."
                 />
@@ -209,7 +209,7 @@ const dataLine = {
 
               <CardWrapper>
                 <CardContent
-                  icon={<FaCogs className="text-white" size={20} />}
+                  icon={<FaCogs className="text-black" size={20} />}
                   title="Full-Cycle Development"
                   description="From concept to deployment, we handle all."
                 />
@@ -217,7 +217,7 @@ const dataLine = {
 
               <CardWrapper>
                 <CardContent
-                  icon={<FaBullseye className="text-white" size={20} />}
+                  icon={<FaBullseye className="text-black" size={20} />}
                   title=" Result-Driven Approach"
                   description=" Focused on outcomes, not just output."
                 />
@@ -225,7 +225,7 @@ const dataLine = {
 
               <CardWrapper>
                 <CardContent
-                  icon={<FaHandshake className="text-white" size={20} />}
+                  icon={<FaHandshake className="text-black" size={20} />}
                   title="Client-Centric Process"
                   description=" Your goals guide every project decision."
                 />
@@ -281,7 +281,7 @@ const dataLine = {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-3">
           <CardWrapper>
             <CardContent
-              icon={<FaClock className="text-white" size={20} />}
+              icon={<FaClock className="text-black" size={20} />}
               title=" On-Time Delivery"
               description="We deliver quality work, always on schedule."
             />
@@ -289,7 +289,7 @@ const dataLine = {
 
           <CardWrapper>
             <CardContent
-              icon={<FaShieldAlt className="text-white" size={20} />}
+              icon={<FaShieldAlt className="text-black" size={20} />}
               title="Reliable & Secure"
               description="Built with performance, safety, and trust."
             />
@@ -297,7 +297,7 @@ const dataLine = {
 
           <CardWrapper>
             <CardContent
-              icon={<FaPaintBrush className="text-white" size={20} />}
+              icon={<FaPaintBrush className="text-black" size={20} />}
               title="Creative Expertise"
               description="Designs that inspire, engage, and convert."
             />
@@ -305,7 +305,7 @@ const dataLine = {
 
           <CardWrapper>
             <CardContent
-              icon={<FaGlobeAmericas className="text-white" size={20} />}
+              icon={<FaGlobeAmericas className="text-black" size={20} />}
               title="Global Experience"
               description="Serving startups and enterprises worldwide."
             />

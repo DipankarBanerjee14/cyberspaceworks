@@ -1,9 +1,10 @@
 "use client";
 
-import React from "react";
+import dynamic from "next/dynamic";
 import styled from "styled-components";
 import Image from "next/image";
 
+// Make Loader client-only to prevent SSR mismatch
 const Loader = () => {
   return (
     <StyledWrapper>
@@ -89,11 +90,6 @@ const StyledWrapper = styled.div`
     padding: 20%;
   }
 
-  .loader .logo img {
-    width: 100%;
-    height: auto;
-  }
-
   @keyframes ripple {
     0% {
       transform: scale(1);
@@ -110,4 +106,4 @@ const StyledWrapper = styled.div`
   }
 `;
 
-export default Loader;
+export default dynamic(() => Promise.resolve(Loader), { ssr: false });

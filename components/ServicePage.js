@@ -7,10 +7,12 @@ import Pattern from "@/components/Pattern";
 
 const ServicePage = ({ title, description, subServices, useCases, technologies }) => {
   return (
-    <div className="relative min-h-screen bg-black text-white px-6 md:px-16 py-26 z-10 overflow-hidden">
-      {/* --- FULL PAGE PATTERN --- */}
+    <div className="relative min-h-screen">
+       {/* --- FULL PAGE PATTERN --- */}
       
   <Pattern />
+    <div className=" bg-black text-white px-6 md:px-16 py-26 z-10 overflow-hidden">
+     
 
       {/* --- Radial Backgrounds --- */}
     
@@ -59,6 +61,7 @@ const ServicePage = ({ title, description, subServices, useCases, technologies }
           )}
         />
       )}
+    </div>
     </div>
   );
 };
