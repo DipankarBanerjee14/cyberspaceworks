@@ -14,7 +14,7 @@ import DynamicCanonical from "@/components/DynamicCanonical";
 
 export const metadata = {
 
-    title: "Cyberspace Works - Website, Software, App Developer | In Kolkata, India",
+    title: "Cyberspace Works - Website, Software, App Developer | In Howrah, Kolkata, India",
     description:
       "Website, Software, App Developer | Digital Marketing | Graphics Designing | Business Research & Analysis | In Howrah, Kolkata",
     keywords:
