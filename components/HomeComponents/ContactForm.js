@@ -73,7 +73,7 @@ const ContactSection = () => {
         }}
       />
 
-      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-8 relative z-10">
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 relative z-10">
         {/* Header Section */}
         <div className="lg:w-1/2 space-y-4 text-center lg:text-left">
           <h1 className="text-4xl font-bold mb-4 leading-snug">
@@ -91,7 +91,7 @@ const ContactSection = () => {
           <div className="mt-6">
             <Link
               href="/contact-us"
-              className="px-6 py-3 rounded-full bg-blue-500 hover:bg-blue-600 transition shadow-lg font-medium"
+              className="px-6 py-3 rounded-full bg-cyan-400 hover:bg-cyan-600 transition shadow-lg font-medium text-black"
             >
               Contact Us
             </Link>

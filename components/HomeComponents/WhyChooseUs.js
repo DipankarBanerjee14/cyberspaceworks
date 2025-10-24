@@ -173,18 +173,18 @@ const dataLine = {
   );
 
   return (
-    <main className="relative overflow-hidden" style={{ background: "#000000" }}>
+    <main className="relative " style={{ background: "#000000" }}>
       <div
         className="absolute inset-0 pointer-events-none"
         aria-hidden
         style={{
           background:
-            "radial-gradient(circle at 50% 50%, rgba(14,186,199,0.18), transparent 60%)",
+            "radial-gradient(circle at 50% 50%, rgba(14,186,199,0.18), transparent 50%)",
         }}
       />
 
-      <section className="py-16 relative z-10 px-6 ">
-        <div className="max-w-6xl mx-auto">
+      <section className="pt-15 relative z-10 px-6 ">
+        <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
           {/* Left content */}
           <div className="flex justify-center md:justify-start flex-col">

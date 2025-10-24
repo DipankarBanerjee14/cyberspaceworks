@@ -64,14 +64,14 @@ const AboutSection = () => {
       /> */}
 
       {/* Vortasky AI Section */}
-      <section className="py-16 px-6 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12 text-white">
+      <section className="pt-15 px-6 relative z-10">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-12 text-white">
             About Us
           </h2>
 
           {/* 🔹 Top Row - Purple → White */}
-          <div className="mb-12">
+          <div className="mb-10">
             <div className="relative rounded-2xl p-8 bg-gradient-to-b from-cyan-900 via-cyan-700 to-cyan-400 backdrop-blur-xl  overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,255,255,0.5)]">
               <div
                 className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
@@ -154,7 +154,7 @@ const AboutSection = () => {
           </div>
 
           {/* 🔹 Bottom Row - White → Cyan */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pb-10">
             {[
               {
                 title: "Mission",

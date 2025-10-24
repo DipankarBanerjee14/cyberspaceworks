@@ -141,7 +141,7 @@ function updateStars() {
   };
 
   return (
-    <div className="relative min-h-screen text-white overflow-hidden">
+    <div className="relative  text-white overflow-hidden">
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_#1e3a8a_0%,_#0d1b2a_20%,_#000000_40%)]" />
       </div>
@@ -158,15 +158,15 @@ function updateStars() {
 const AboutButton = styled(Link)`
   padding: 15px 25px; /* Balanced vertical and horizontal padding */
   text-transform: uppercase;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.2; /* Ensures proper text vertical alignment */
-  color: #ffffff80;
+  color: #000000;
   text-shadow: none;
-  background: transparent;
+  background: #ffffff;
   cursor: pointer;
-  border: 1px solid #ffffff80;
+  border: 1px solid #000000;
   transition: 0.5s ease;
   user-select: none;
   text-decoration: none;

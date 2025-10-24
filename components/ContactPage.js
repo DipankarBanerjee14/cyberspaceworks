@@ -77,7 +77,7 @@ const ContactUs = () => {
         }}
       />
 
-      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-8 relative z-10">
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 relative z-10">
         {/* Header Section */}
         <div className="lg:w-1/2 space-y-4 text-center lg:text-left">
           <h1 className="text-4xl font-bold mb-4 leading-snug">
@@ -198,7 +198,7 @@ const ContactUs = () => {
       </div>
 
       {/* Contact Info & Map */}
-      <div className="grid lg:grid-cols-2 gap-8 relative z-10 mt-16 max-w-6xl mx-auto">
+      <div className="grid lg:grid-cols-2 gap-8 relative z-10 mt-16 max-w-7xl mx-auto">
       <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 flex flex-col gap-3 h-full hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
   {/* Gradient overlay — make sure it's visible */}
   {/* <div
@@ -255,7 +255,7 @@ const ContactUs = () => {
     </p>
 
     {/* Social Media Icons */}
-    <div className="flex justify-center sm:justify-start space-x-4 mt-4 text-cyan-400 text-lg sm:text-xl">
+    <div className="flex justify-start space-x-4 mt-4 text-cyan-400 text-lg sm:text-xl">
       <a
         href="https://www.facebook.com/profile.php?id=100086774724799"
         target="_blank"

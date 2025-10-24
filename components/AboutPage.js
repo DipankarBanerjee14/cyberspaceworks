@@ -105,16 +105,9 @@ const AboutUs = () => {
 
   return (
      <>
-      {/* ✅ Add SEO Component Here */}
-       <SEO
-        title="About — CyberSpaceWorks"
-        description="About page description"
-        keywords="about, cyber, agency"
-        canonical="https://cyberspaceworks.com/about"
-        ogImage="https://cyberspaceworks.com/logo.png"
-      />
-    <section className="bg-black text-white py-16 px-6">
-      <div className="max-w-6xl mx-auto">
+      
+    <section className="bg-black text-white pt-10 px-6">
+      <div className="max-w-7xl mx-auto">
         {/* Hero Section */}
         <div className="grid lg:grid-cols-2 items-center gap-10 relative bg-black/10 rounded-2xl shadow-lg ">
           <div className="flex flex-col gap-4 lg:text-left text-center">
@@ -127,7 +120,7 @@ const AboutUs = () => {
             <div>
               <Link
                 href="/contact-us"
-                className="px-6 py-3 rounded-full bg-blue-500 hover:bg-blue-600 transition shadow-lg font-medium"
+                className="px-6 py-3 rounded-full bg-cyan-400 hover:bg-cyan-600 transition shadow-lg font-medium text-black"
               >
                 Contact Us
               </Link>
@@ -148,7 +141,8 @@ const AboutUs = () => {
         </div>
 
         {/* Values Section */}
-        <div className="max-w-6xl mx-auto px-6 lg:px-0 py-16">
+        
+        <div className="">
           <h2 className="text-3xl font-semibold text-center mb-10">Our Value</h2>
           <p className="text-gray-400 text-center mb-12">
             As a company, we prioritize a customer-first mindset, innovation, and integrity. Through collaboration and commitment to excellence, <br /> we deliver impactful solutions that exceed expectations.
@@ -167,13 +161,13 @@ const AboutUs = () => {
                   className="absolute bottom-0 right-0 w-40 h-40 translate-x-20 translate-y-20 blur-2xl opacity-40"
                   style={{ background: "radial-gradient(circle, #6366f1 0%, transparent 100%)" }}
                 />
-                <div
+                {/* <div
                   className="absolute -inset-20 blur-[180px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   style={{
                     background:
                       "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
                   }}
-                />
+                /> */}
                 <h3 className="font-semibold text-xl mb-2 relative z-10">{val.title}</h3>
                 <p className="text-gray-400 relative z-10">{val.description}</p>
                 <div className="mt-4">{val.icon}</div>
@@ -194,13 +188,13 @@ const AboutUs = () => {
                   className="absolute bottom-0 right-0 w-40 h-40 translate-x-20 translate-y-20 blur-2xl opacity-40"
                   style={{ background: "radial-gradient(circle, #6366f1 0%, transparent 100%)" }}
                 />
-                <div
+                {/* <div
                   className="absolute -inset-20 blur-[180px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   style={{
                     background:
                       "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
                   }}
-                />
+                /> */}
                 <h3 className="font-semibold text-xl mb-2 relative z-10">{val.title}</h3>
                 <p className="text-gray-400 relative z-10">{val.description}</p>
                 <div className="mt-4">{val.icon}</div>
@@ -208,9 +202,9 @@ const AboutUs = () => {
             ))}
           </div>
         </div>
-
+     
         {/* What We Do Section */}
-        <div className="max-w-6xl mx-auto px-6 lg:px-0 py-16 flex flex-col gap-10 items-start">
+        <div className=" pt-20 flex flex-col gap-10 items-start">
           <div className="relative rounded-2xl p-8 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
             <div
               className="absolute top-0 left-0 w-60 h-60 -translate-x-20 -translate-y-20 blur-2xl opacity-40"
@@ -231,7 +225,7 @@ const AboutUs = () => {
           </div>
 
           {/* Services Swiper */}
-          <div className="relative w-full">
+          <div className="relative w-full pt-10 pb-20">
             <div className="pointer-events-none absolute top-0 left-0 h-full w-24 bg-gradient-to-r from-black to-transparent z-10"></div>
             <div className="pointer-events-none absolute top-0 right-0 h-full w-24 bg-gradient-to-l from-black to-transparent z-10"></div>
 <Swiper

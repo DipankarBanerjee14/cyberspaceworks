@@ -23,6 +23,8 @@ import {
   FaTrademark,
 
 } from "react-icons/fa";
+import { IoCallOutline, IoMailOutline, IoLocationOutline } from "react-icons/io5";
+import { HomeIcon, Cog6ToothIcon, InformationCircleIcon, PhoneIcon, PlayIcon } from "@heroicons/react/24/solid";
 import { SiGoogleanalytics } from "react-icons/si";
 
 export default function Navbar() {
@@ -140,7 +142,7 @@ const pathname = usePathname();
     <>
       <header className="w-full fixed top-0 z-50">
         {/* Neon top strip */}
-        <div className="relative h-[10px] bg-cyan-400">
+        <div className="relative h-[10px] bg-cyan-400 lg:block hidden">
           <div className="absolute bottom-0 left-0 w-full h-[4px] bg-cyan-400 shadow-[0_0_15px_#00ffff]">
             <div className="absolute left-1/2 -translate-x-1/2 w-[175px] h-full"></div>
           </div>
@@ -165,7 +167,7 @@ const pathname = usePathname();
 
 
             {/* Center Logo */}
-            <div className="absolute left-1/2 -translate-x-1/2 top-[-12px] flex items-center justify-center">
+            <div className="absolute left-1/2 -translate-x-1/2 top-[-12px] items-center justify-center lg:block hidden">
               <Link href="/">
                 <div className="w-[180px] h-[70px] rounded-xl pt-2.5 bg-cyan-400 border-l-[10px] border-r-[10px] border-b-[10px] border-cyan-400 flex items-center justify-center">
                   <Image
@@ -295,7 +297,7 @@ const pathname = usePathname();
               <li>
                 <Link
                   href="/contact-us"
-                  className="flex items-center justify-center gap-1 px-4 py-1 text-black bg-cyan-400 rounded-full shadow-[0_0_12px_rgba(0,0,0,0.4)] transition-all duration-300 hover:shadow-[0_0_16px_rgba(0,0,0,0.6)]"
+                  className="flex items-center justify-center gap-1 px-4 py-1 text-black bg-cyan-400 rounded-full shadow-[0_0_12px_rgba(0,0,0,0.4)] transition-all duration-300 hover:shadow-[0_0_16px_rgba(0,0,0,0.6)] "
                 >
                   Get a Quote
                 </Link>
@@ -315,68 +317,70 @@ const pathname = usePathname();
               </div>
             </ul>
 
-       {/* Left Side Menu (Mobile) */}
+    {/* Left Side Menu (Mobile) */}
 <div
   className={`lg:hidden left-menu-container-mobile fixed top-0 left-0 h-full w-64 bg-black/90 border-r border-cyan-400/20 backdrop-blur-xl transform transition-transform duration-300 z-[9999] ${
     isLeftMenuOpen ? "translate-x-0" : "-translate-x-full"
   }`}
 >
-  <div className="flex flex-col p-6 space-y-4 text-white">
-    <Link
-      href="/"
-      className="hover:text-cyan-400"
-      onClick={() => setIsLeftMenuOpen(false)}
-    >
-      Home
-    </Link>
+  <div className="flex flex-col p-6 space-y-6 text-white">
+    
+    {/* ===== Logo & Info Section ===== */}
+    <div className="flex flex-col items-start space-y-2">
+      {/* Logo */}
+      <Link href="/" onClick={() => setIsLeftMenuOpen(false)}>
+        <img src="/logo2.png" alt="Logo" className="w-32 h-auto flex justify-center" />
+      </Link>
 
-    {/* Mobile Services Dropdown */}
-    <div className="relative">
-      <div
-        onClick={() => setIsServicesOpenMobile(!isServicesOpenMobile)} // <-- mobile state
-        className="flex items-center justify-between cursor-pointer hover:text-cyan-400"
-      >
-        <span>Services</span>
-        <span className="text-xs">
-          {isServicesOpenMobile ? <FaAngleUp /> : <FaAngleDown />}
-        </span>
-      </div>
+      {/* Paragraph */}
+      <p className="text-sm text-gray-300">
+        Cyberspace Works - Website, Software, App Developer | Digital Marketing | Graphics Design | UI/UX | Research & Analysis
+      </p>
 
-      <div
-        className={`overflow-hidden transition-all duration-300 ${
-          isServicesOpenMobile ? "max-h-[500px] mt-2" : "max-h-0"
-        }`}
-      >
-        <div className="flex flex-col space-y-2 pl-3 border-l border-cyan-400/20">
-          {services.map((service) => (
-            <Link
-              key={service.name}
-              href={service.href}
-              className="flex items-center gap-2 hover:text-cyan-400 text-sm"
-              onClick={() => setIsServicesOpenMobile(false)} // Close dropdown only
-            >
-              <span className="text-cyan-400 text-base">{service.icon}</span>
-              {service.name}
-            </Link>
-          ))}
-        </div>
-      </div>
+      {/* Phone */}
+         <p className="text-gray-400 flex items-center gap-2 mt-3">
+           <IoCallOutline />
+           <a href="tel:+917980715765" className="hover:underline">
+             +91 7980715765
+           </a>
+         </p>
+     
+         {/* Email */}
+         <p className="text-gray-400 flex items-center gap-2 mt-3">
+           <IoMailOutline />
+           <a
+             href="mailto:cyberspaceworksofficial@gmail.com"
+             className="hover:underline"
+           >
+             cyberspaceworks
+             official@gmail.com
+           </a>
+         </p>
+     
+         {/* Address */}
+         <p className="text-gray-400 flex items-center gap-2 mt-3">
+           <IoLocationOutline />
+            <a
+             href="https://maps.app.goo.gl/QABsaPuw5qL3BwRa7"
+             className="hover:underline"
+           >
+             Kolkata 19, Krishna Chatterjee Ln, Bally, Howrah, West Bengal 711201
+           </a>
+         </p>
     </div>
 
-    <Link href="/about-us" className="hover:text-cyan-400" onClick={() => setIsLeftMenuOpen(false)}>About</Link>
-    <Link href="/contact-us" className="hover:text-cyan-400" onClick={() => setIsLeftMenuOpen(false)}>Contact</Link>
-    
-    <Link
-      href="/quote"
-      className="flex items-center justify-center gap-1 px-4 py-1 text-black bg-cyan-400 rounded-full shadow-[0_0_12px_rgba(0,0,0,0.4)] transition-all duration-300 hover:shadow-[0_0_16px_rgba(0,0,0,0.6)]"
-      onClick={() => setIsLeftMenuOpen(false)}
-    >
-      Get a Quote
-    </Link>
-  
+    {/* ===== Get a Quote Button ===== */}
+    <div className="mt-auto">
+      <Link
+        href="/quote"
+        className="flex items-center justify-center gap-1 px-4 py-1 text-black bg-cyan-400 rounded-full shadow-[0_0_12px_rgba(0,0,0,0.4)] transition-all duration-300 hover:shadow-[0_0_16px_rgba(0,0,0,0.6)]"
+        onClick={() => setIsLeftMenuOpen(false)}
+      >
+        Get a Quote
+      </Link>
+    </div>
   </div>
 </div>
-
 
             {/* Right Side Menu (Mobile) */}
             <div
@@ -401,6 +405,76 @@ const pathname = usePathname();
           </div>
         </nav>
       </header>
+       {/* Mobile & Tablet Bottom Navigation */}
+      <div className="lg:hidden fixed bottom-2 left-1/2 -translate-x-1/2 w-[330px] mx-auto bg-black/10 border border-white/10 shadow-xl backdrop-blur-sm rounded-2xl z-50 block">
+        {/* FAB */}
+        <div className="absolute -top-6 left-1/2 -translate-x-1/2">
+          <Link href="/"
+         className="bg-cyan-400  rounded-full p-2 shadow-lg w-14 h-14 flex items-center justify-center overflow-hidden">
+          <Image
+            src="/logo2.png"
+            alt="Floating Button"
+            width={100}
+            height={100}
+            className="object-cover h-18"
+          />
+        </Link>
+        </div>
+
+        {/* Bottom nav items */}
+        <div className="flex justify-around items-center py-3">
+          {/* Dropdown Menu - Positioned above the nav */}
+      <div
+        className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 bg-gray-900/95 backdrop-blur-sm border border-cyan-400/20 rounded-lg shadow-xl overflow-hidden transition-all duration-300 ease-in-out ${
+          isServicesOpen
+            ? 'opacity-100 visible scale-100'
+            : 'opacity-0 invisible scale-95 pointer-events-none'
+        }`}
+        style={{ transformOrigin: 'bottom' }}
+        onMouseEnter={() => setIsServicesOpen(false)}
+        onMouseLeave={() => setIsServicesOpen(false)}
+      >
+        <div className="py-2">
+          {services.map((service) => (
+            <Link
+              key={service.name}
+              href={service.href}
+              className="flex items-center gap-3 px-4 py-2 text-sm text-gray-300 hover:text-cyan-400 hover:bg-cyan-400/10 transition-colors"
+              onClick={() => setIsServicesOpen(false)}
+            >
+              <span className="text-lg">{service.icon}</span>
+              {service.name}
+            </Link>
+          ))}
+        </div>
+      </div>
+          <Link href="/" className="flex flex-col items-center text-cyan-400 hover:text-cyan-500">
+            <HomeIcon className="w-6 h-6" />
+            <span className="text-xs mt-1">Home</span>
+          </Link>
+        {/* Services with Hover Trigger */}
+        <div
+          className="flex flex-col items-center text-cyan-400 hover:text-cyan-500 transition-colors cursor-pointer"
+           onMouseEnter={handleMouseEnter}
+           onMouseLeave={handleMouseLeave}
+        >
+            <Link href="/service" className="flex flex-col items-center text-cyan-400 hover:text-cyan-500">
+            <Cog6ToothIcon className="w-6 h-6" />
+            <span className="text-xs mt-1">Services</span>
+          </Link>
+        
+        </div>
+          <div className="w-12" /> {/* Center gap for FAB */}
+          <Link href="/about-us" className="flex flex-col items-center text-cyan-400 hover:text-cyan-500">
+            <InformationCircleIcon className="w-6 h-6" />
+            <span className="text-xs mt-1">About</span>
+          </Link>
+          <Link href="/contact-us" className="flex flex-col items-center text-cyan-400 hover:text-cyan-500">
+            <PhoneIcon className="w-6 h-6" />
+            <span className="text-xs mt-1">Contact</span>
+          </Link>
+        </div>
+      </div>
     </>
   );
 }

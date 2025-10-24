@@ -96,7 +96,8 @@ export default function Testimonials() {
   const nextRef = useRef(null);
  const windowWidth = useWindowSize(); 
   return (
-    <section className="relative bg-black text-black px-6 py-16 overflow-hidden">
+    <section className="relative  text-black px-6 py-5 overflow-hidden">
+      <div className='max-w-7xl mx-auto'>
       <h2 className="text-4xl font-bold text-center mb-12 text-white relative z-10">
         What <span className="text-[#0ebac7]">People</span> Say About Us
       </h2>
@@ -123,7 +124,7 @@ export default function Testimonials() {
           spaceBetween={20}
           slidesPerView="auto"
           autoplay={{
-            delay: 2500,
+            delay: 1000,
             disableOnInteraction: false,
           }}
           // onInit={(swiper) => {
@@ -194,6 +195,7 @@ export default function Testimonials() {
             );
           })}
         </Swiper>
+      </div>
       </div>
     </section>
   );

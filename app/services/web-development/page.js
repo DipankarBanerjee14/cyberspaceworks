@@ -35,12 +35,15 @@ export const metadata = {
   },
 };
 
-export default function AboutPage() {
+export default function Web() {
   return (
     <>
+    
       {/* ✅ Client Component for dynamic canonical */}
       <DynamicCanonical />
-      <WebDevelopment />
+     
+        <WebDevelopment />
+      
     </>
   );
 }

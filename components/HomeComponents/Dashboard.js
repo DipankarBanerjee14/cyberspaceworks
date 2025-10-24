@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import Head from "next/head";
 import Chart from "chart.js/auto";
-
+import Card from "@/components/Card"
 // Counter component with smooth animation
 function Counter({ target, start }) {
   const [count, setCount] = useState(0);
@@ -295,9 +295,7 @@ if (ctx4) {
 
   return (
     <>
-      <Head>
-        <title>Dashboard</title>
-      </Head>
+      
       <style jsx>{`
         @keyframes gradientFade {
           from {
@@ -328,7 +326,7 @@ if (ctx4) {
           animation-delay: 0s;
         }
       `}</style>
-      <main className="relative overflow-hidden p-6" style={{ background: "#000" }}>
+      <main className="relative overflow-hidden " style={{ background: "#000" }}>
         <div
           className="absolute inset-0 pointer-events-none"
           aria-hidden
@@ -336,9 +334,11 @@ if (ctx4) {
             background: "radial-gradient(circle at 50% 50%, rgba(14,186,199,0.18), transparent 60%)",
           }}
         />
-        <div className="relative z-10 max-w-6xl mx-auto">
+        <div className="px-6 pt-15 relative z-10">
+          <div  className=" max-w-7xl mx-auto">
           {/* Top Cards */}
-          <div ref={cardsRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+          <Card/>
+          {/* <div ref={cardsRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
             {topCards.map((item, i) => {
               const { start, end } = getGradientStops(item.color);
               const targetOffset = 2 * Math.PI * 36 * (1 - (item.percentage || 100) / 100);
@@ -409,12 +409,12 @@ if (ctx4) {
                 </div>
               );
             })}
-          </div>
+          </div> */}
 
           {/* Chart + Transactions */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
             {/* Chart 1 */}
-            <div className="flex flex-wrap relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_5px_rgba(0,150,255,0.5)]">
+            <div className="flex flex-wrap relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_5px_rgba(0,150,255,0.5)] ">
               <div className="mb-10">
                 <div className="relative z-10">
                  
@@ -493,6 +493,7 @@ if (ctx4) {
                 </div>
               </div>
             </div>
+          </div>
           </div>
         </div>
       </main>

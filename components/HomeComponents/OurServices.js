@@ -11,51 +11,41 @@ import {
 } from "react-icons/fa";
 import { SiGoogleanalytics } from "react-icons/si";
 
-const Pattern = () => {
-  return (
-    <StyledWrapper>
-      <div className="container" />
-    </StyledWrapper>
-  );
-};
 
-const StyledWrapper = styled.div`
+const Pattern = () => <StyledPattern />;
+
+const StyledPattern = styled.div`
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
-  height: 100%; /* full-page height */
-  pointer-events: none; /* ensures clicks pass through */
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  background-color: #000;
+  background-image: radial-gradient(rgba(103, 232, 249, 0.4) 10%, transparent 10%);
+  background-size: 11px 11px;
+  opacity: 0.5;
 
-  .container {
-    width: 100%;
-    height: 100%;
-    background-color: #000; /* full black background */
-    background-image: radial-gradient(rgba(255, 255, 255, 0.3) 10%, transparent 1%);
-    background-size: 11px 11px;
+  /* Smooth fade: transparent top → visible middle → fade out bottom */
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 20%,
+    black 80%,
+    transparent 100%
+  );
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
 
-    /* fade from top to bottom: transparent at top, opaque in middle, transparent at bottom */
-    -webkit-mask-image: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 1) 20%,
-      rgba(0, 0, 0, 1) 80%,
-      rgba(0, 0, 0, 0) 100%
-    );
-    -webkit-mask-repeat: no-repeat;
-    -webkit-mask-size: cover;
-    mask-image: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 1) 20%,
-      rgba(0, 0, 0, 1) 80%,
-      rgba(0, 0, 0, 0) 100%
-    );
-    mask-repeat: no-repeat;
-    mask-size: cover;
-
-    opacity: 0.4; /* adjust visibility of the pattern */
-  }
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 20%,
+    black 80%,
+    transparent 100%
+  );
+  -webkit-mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
 `;
 
 export default function OurServicesWithWires() {
@@ -419,11 +409,14 @@ export default function OurServicesWithWires() {
   }, []);
 
   return (
+   
+      
     <section
       ref={containerRef}
-      className="relative z-0 py-16 overflow-hidden max-w-7xl mx-auto bg-black"
-    >
-      <Pattern />
+      className="relative z-0 py-16  bg-black w-full min-h-screen"
+    > 
+<Pattern />
+     
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full pointer-events-none"
@@ -441,9 +434,11 @@ export default function OurServicesWithWires() {
             "radial-gradient(circle at 50% 50%, rgba(14,186,199,0.12), transparent 45%)",
         }}
       />
-
-      <div className="relative text-center z-10">
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 tracking-wide">
+      
+      <div className="relative text-center z-10 ">
+        
+         <div className="max-w-7xl mx-auto">
+        <h2 className="text-4xl font-bold text-white mb-12 tracking-wide">
           Our Services
         </h2>
 
@@ -682,7 +677,9 @@ export default function OurServicesWithWires() {
             </div>
           </div>
         </div>
+        </div>
       </div>
     </section>
+  
   );
 }
