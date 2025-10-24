@@ -413,7 +413,7 @@ export default function OurServicesWithWires() {
       
     <section
       ref={containerRef}
-      className="relative z-0 py-16  bg-black w-full min-h-screen"
+      className="relative z-0 py-16  bg-black w-full "
     > 
 <Pattern />
      
