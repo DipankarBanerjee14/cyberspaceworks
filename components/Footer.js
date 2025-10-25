@@ -40,6 +40,11 @@ const Footer = () => {
               Useful Links
             </h3>
             <ul className="space-y-2 text-slate-900 text-sm sm:text-base">
+               <li>
+                <Link href="/services" className="hover:text-slate-700 transition">
+                  Services
+                </Link>
+              </li>
               <li>
                 <Link href="/about-us" className="hover:text-slate-700 transition">
                   About Us
