@@ -63,8 +63,8 @@ const logos = [
 
 const LogoSection = () => {
   return (
-    <section className="mt-12 relative z-10 px-6 mb-16">
-      <div className="flex items-center gap-6 max-w-6xl mx-auto">
+    <section className="pt-15 relative z-10  px-6 ">
+      <div className="flex items-center gap-6 max-w-7xl mx-auto">
         {/* Heading */}
         <div className="w-1/3">
           <h2 className="text-3xl lg:text-4xl font-bold text-white">
@@ -84,7 +84,7 @@ const LogoSection = () => {
             slidesPerView="auto"
             spaceBetween={50}
             loop={true}
-            speed={4000}
+            speed={3000}
             autoplay={{
               delay: 0,
               disableOnInteraction: false,
@@ -98,7 +98,7 @@ const LogoSection = () => {
             {[...logos, ...logos, ...logos].map((logo, i) => (
               <SwiperSlide
   key={i}
-  className="!w-auto flex justify-center items-center transition-all duration-300 transform hover:scale-110 cursor-pointer"
+  className="!w-auto flex justify-center items-center transition-all duration-300 transform hover:scale-110 cursor-pointer py-5"
 >
   <Image
     src={logo}

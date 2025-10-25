@@ -53,7 +53,7 @@ export default function HomePage() {
   return (
     <> 
     <DynamicCanonical />
-    <main className="relative min-h-screen bg-black overflow-hidden">
+    <main className="relative min-h-screen  bg-black overflow-hidden ">
       <HeroSection />
       <WhyChooseUs />
       <OurClients />

@@ -98,13 +98,13 @@ const Technologies = ({ technologies = [] }) => {
   });
 
   return (
-    <div className="flex flex-col items-center justify-center bg-black py-12">
-      <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 tracking-wide text-center">
+    <div className="flex flex-col items-center justify-center py-12 z-0 ">
+      <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 tracking-wide text-center z-10">
         Technologies We Use
       </h2>
 
       {/* LG and above: circuit */}
-      <div className="hidden lg:block w-full max-w-[800px] relative">
+      <div className="hidden lg:block w-full max-w-[800px] relative z-10">
         <svg viewBox="0 0 800 560" xmlns="http://www.w3.org/2000/svg" className="w-full">
           <defs>
             <linearGradient id="chipGradient" x1="0" y1="0" x2="0" y2="1">

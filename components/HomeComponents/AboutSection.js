@@ -10,6 +10,7 @@ import {
   FaArrowRight,
   FaCheckCircle,
 } from "react-icons/fa";
+import { FaBullseye, FaEye } from "react-icons/fa";
 import { FaLightbulb, FaHandshake, FaCogs,  } from "react-icons/fa";
 
 const AboutSection = () => {
@@ -64,14 +65,14 @@ const AboutSection = () => {
       /> */}
 
       {/* Vortasky AI Section */}
-      <section className="py-16 px-6 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12 text-white">
+      <section className="pt-15 px-6 relative z-10">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-12 text-white">
             About Us
           </h2>
 
           {/* 🔹 Top Row - Purple → White */}
-          <div className="mb-12">
+          <div className="mb-10">
             <div className="relative rounded-2xl p-8 bg-gradient-to-b from-cyan-900 via-cyan-700 to-cyan-400 backdrop-blur-xl  overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,255,255,0.5)]">
               <div
                 className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
@@ -121,7 +122,7 @@ const AboutSection = () => {
                   {/* Card 1 — shift slightly left on mobile/tablet */}
   <div className="text-center rounded-lg bg-white/10 backdrop-blur-md p-4 border border-white/10 
                   w-[85%] sm:w-[75%] md:w-[65%] 
-                  -translate-x-6 sm:-translate-x-6 md:-translate-x-8 lg:translate-x-0">
+                  -translate-x-0 sm:-translate-x-6 md:-translate-x-8 lg:translate-x-0">
     <FaHandshake className="mx-auto mb-1 text-black" size={24} />
     <p className="text-gray-900">Client First</p>
   </div>
@@ -130,7 +131,7 @@ const AboutSection = () => {
   <div
   className="text-center rounded-lg bg-white/10 backdrop-blur-md p-4 border border-white/10 
              w-[85%] sm:w-[75%] md:w-[65%] 
-             -translate-x-8 sm:-translate-x-10 md:-translate-x-9 lg:translate-x-0"
+             -translate-x-0 sm:-translate-x-10 md:-translate-x-9 lg:translate-x-0"
 >
   <FaCogs className="mx-auto mb-1 text-black" size={24} />
   <p className="text-gray-900">Best Tech and Tools</p>
@@ -141,7 +142,7 @@ const AboutSection = () => {
   <div
   className="text-center rounded-lg bg-white/10 backdrop-blur-md p-4 border border-white/10 
              w-[85%] sm:w-[75%] md:w-[65%] 
-             -translate-x-10 sm:-translate-x-6 md:-translate-x-8 lg:translate-x-0"
+             -translate-x-1 sm:-translate-x-6 md:-translate-x-8 lg:translate-x-0"
 >
   <FaHeadset  className="mx-auto mb-1 text-black" size={24} />
   <p className="text-gray-900">24/7 Support</p>
@@ -154,40 +155,47 @@ const AboutSection = () => {
           </div>
 
           {/* 🔹 Bottom Row - White → Cyan */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
-              {
-                title: "Mission",
-                desc: "To empower businesses through innovative digital solutions that blend creativity, technology, and strategy—helping brands grow, connect, and succeed in the digital world.",
-                // languages: ["English", "Spanish", "Bangla"],
-              },
-              {
-                title: "Vision",
-                desc: "To become a global leader in digital transformation, setting new standards in web, app, and software development through innovation, excellence, and client success.",
-              },
-            ].map((item, i) => (
-              <div
-                key={i}
-                className="relative rounded-2xl p-8 bg-gradient-to-b from-cyan-400 via-cyan-700 to-cyan-950 backdrop-blur-xl  overflow-hidden shadow-lg flex flex-col items-center group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,255,255,0.5)]"
-              >
-                <div
-                  className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{
-                    background:
-                      "radial-gradient(circle at center, rgba(255,255,255,0.4) 0%, rgba(0,255,255,0.6) 40%, transparent 70%)",
-                  }}
-                />
-                <div className="relative z-10 flex flex-col items-center w-full">
-                  {item.title && (
-                    <h3 className="text-xl font-semibold text-b;ack mb-3 text-center text-black">
-                      {item.title}
-                    </h3>
-                  )}
-                  {item.desc && (
-                    <p className="text-gray-900 mb-4 text-center">
-                      {item.desc}
-                    </p>
-                  )}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pb-10">
+          {[
+  {
+    icon: FaBullseye,
+    title: "Our Mission",
+    desc: "To empower businesses through innovative digital solutions that blend creativity, technology, and strategy—helping brands grow, connect, and succeed in the digital world.",
+  },
+  {
+    icon: FaEye,
+    title: "Our Vision",
+    desc: "To become a global leader in digital transformation, setting new standards in web, app, and software development through innovation, excellence, and client success.",
+  },
+].map((item, i) => (
+  <div
+    key={i}
+    className="relative rounded-2xl p-8 bg-gradient-to-b from-cyan-400 via-cyan-700 to-cyan-950 backdrop-blur-xl overflow-hidden shadow-lg flex flex-col items-center group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,255,255,0.5)]"
+  >
+    <div
+      className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+      style={{
+        background:
+          "radial-gradient(circle at center, rgba(255,255,255,0.4) 0%, rgba(0,255,255,0.6) 40%, transparent 70%)",
+      }}
+    />
+    <div className="relative z-10 flex flex-col items-center w-full">
+      {item.icon && (
+        <div className="text-4xl text-black mb-4">
+          <item.icon />
+        </div>
+      )}
+      {item.title && (
+        <h3 className="text-xl font-semibold text-black mb-3 text-center">
+          {item.title}
+        </h3>
+      )}
+      {item.desc && (
+        <p className="text-gray-900 mb-4 text-center">
+          {item.desc}
+        </p>
+      )}
+  
                   {/* {item.languages && (
                     <div className="space-y-2 mb-4 w-full max-w-xs">
                       {item.languages.map((lang, j) => (

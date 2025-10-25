@@ -173,25 +173,25 @@ const dataLine = {
   );
 
   return (
-    <main className="relative overflow-hidden" style={{ background: "#000000" }}>
+    <main className="relative " style={{ background: "#000000" }}>
       <div
         className="absolute inset-0 pointer-events-none"
         aria-hidden
         style={{
           background:
-            "radial-gradient(circle at 50% 50%, rgba(14,186,199,0.18), transparent 60%)",
+            "radial-gradient(circle at 50% 50%, rgba(14,186,199,0.18), transparent 50%)",
         }}
       />
 
-      <section className="py-16 relative z-10 px-6 ">
-        <div className="max-w-6xl mx-auto">
+      <section className="pt-15 relative z-10 px-6 ">
+        <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
           {/* Left content */}
           <div className="flex justify-center md:justify-start flex-col">
            
             <div className="flex items-baseline mb-4 lg:text-left text-center">
-              <FaBolt className="text-white text-4xl mr-2" />
-              <h2 className="text-5xl font-bold text-white ">Why <span>Choose Us</span></h2>
+              <FaBolt className="text-white text-3xl mr-2 " />
+              <h2 className=" font-bold text-white text-4xl">Why <span className="text-cyan-400">Choose Us</span></h2>
             </div>
             <p className="text-gray-300 mb-8 text-center lg:text-left">
               At Cyberspace Works, we go beyond just delivering digital solutions — we build experiences that drive growth. Our team of passionate developers, designers, and strategists work hand in hand to craft innovative, user-focused, and result-driven products. From concept to launch, we ensure every project reflects precision, creativity, and measurable impact. With transparent communication, on-time delivery, and cutting-edge technology, we’re the digital partner you can rely on to bring your vision to life.

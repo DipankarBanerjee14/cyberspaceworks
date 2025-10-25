@@ -27,11 +27,11 @@ const logos = [
 
 const LogoSection = () => {
   return (
-    <section className="mt-12 relative z-10 px-6 mb-16">
-      <div className="flex items-center gap-6 max-w-6xl mx-auto">
+    <section className="mt-12 relative z-10 px-6 pt-2">
+      <div className="flex items-center gap-6 max-w-7xl mx-auto">
         {/* Heading */}
         <div className="w-1/3">
-          <h2 className="text-3xl lg:text-4xl font-bold text-white">
+          <h2 className="lg:text-4xl  font-bold text-white text-3xl">
             Our Partners
           </h2>
         </div>
@@ -63,7 +63,7 @@ const LogoSection = () => {
   {[...logos, ...logos, ...logos].map((logo, i) => (
     <SwiperSlide
       key={i}
-      className="!w-auto flex justify-center items-center transition-all duration-300 transform hover:scale-110 cursor-pointer"
+      className="!w-auto flex justify-center items-center transition-all duration-300 transform hover:scale-110 cursor-pointer py-4"
     >
       <Image
         src={logo}

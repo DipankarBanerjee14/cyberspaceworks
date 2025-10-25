@@ -1,39 +1,27 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-const Pattern = () => {
-  return (
-    <StyledWrapper>
-      <div className="container" />
-    </StyledWrapper>
-  );
-};
+const Pattern = () => <StyledPattern />;
 
-const StyledWrapper = styled.div`
+const StyledPattern = styled.div`
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%; /* full-page height */
-  pointer-events: none; /* ensures clicks pass through */
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-color: #000;
+  background-image: radial-gradient(rgba(103, 232, 249, 0.4) 10%, transparent 10%);
+  background-size: 11px 11px;
 
-  .container {
-    width: 100%;
-    height: 50%;
-    background-color: #000; /* full black background */
-    background-image: radial-gradient(rgba(255, 255, 255, 0.3) 10%, transparent 1%);
-    background-size: 11px 11px;
+  /* Fade out smoothly after 50% from top */
+  mask-image: linear-gradient(to bottom, #000 50%, transparent 100%);
+  mask-size: 100% 60%;
+  mask-repeat: no-repeat;
 
-    /* fade from top to bottom */
-    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
-    -webkit-mask-repeat: no-repeat;
-    -webkit-mask-size: cover;
-    mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
-    mask-repeat: no-repeat;
-    mask-size: cover;
+  -webkit-mask-image: linear-gradient(to bottom, #000 50%, transparent 100%);
+  -webkit-mask-size: 100% 60%;
+  -webkit-mask-repeat: no-repeat;
 
-    opacity: 0.6; /* adjust visibility of the pattern */
-  }
+  opacity: 0.6;
 `;
 
 export default Pattern;

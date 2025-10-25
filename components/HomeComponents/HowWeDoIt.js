@@ -7,11 +7,11 @@ import { FiTrendingUp } from "react-icons/fi";
 
 export default function ITSupportSection() {
   return (
-    <section className="relative bg-black text-white py-16 px-6  z-0">
+    <section className="relative bg-black text-white pt-12 px-6  z-0">
        <div className="max-w-6xl mx-auto">
       {/* Headings */}
       <div className="text-center mb-20">
-        <h2 className="text-4xl md:text-5xl font-semibold mb-4">
+        <h2 className="text-4xl font-bold mb-4">
          How We Do It
         </h2>
         <p className="text-gray-400 max-w-2xl mx-auto text-base md:text-lg">
@@ -75,8 +75,8 @@ export default function ITSupportSection() {
         </div>
 
         {/* Top Right */}
-        <div className="flex flex-col items-center  text-center relative z-10 max-w-3xl mx-auto lg:pb-0 pb-15">
-          <h3 className="absolute -top-10 -right-6 md:-right-16 text-4xl font-light text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-400 to-cyan-600 px-6 lg:px-0">
+        <div className="flex flex-col items-center  text-center relative z-10 max-w-3xl mx-auto lg:pb-0 pb-15 lg:mb-0 mb-10">
+          <h3 className="absolute -top-10 -right-6 md:-right-10 text-4xl font-light text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-400 to-cyan-600 px-6 lg:px-0">
             02
           </h3>
           <FaTools  className="text-4xl text-cyan-400 mb-4" />
@@ -89,7 +89,7 @@ export default function ITSupportSection() {
         </div>
 
         {/* Bottom Left */}
-        <div className="flex flex-col items-center text-center  relative z-10 max-w-3xl mx-auto lg:pt-0 pt-15">
+        <div className="flex flex-col items-center text-center  relative z-10 max-w-3xl mx-auto lg:pt-0 lg:mt-0 mt-2">
           <h3 className="absolute bottom-30 -left-6 md:-left-16 text-4xl font-light text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-400 to-cyan-600 px-6 lg:px-0">
             03
           </h3>
@@ -104,7 +104,7 @@ export default function ITSupportSection() {
 
         {/* Bottom Right */}
         <div className="flex flex-col items-center text-center  relative z-10 max-w-3xl mx-auto">
-         <h3 className="absolute bottom-30 -right-6 md:-right-16 text-4xl font-light text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-400 to-cyan-600 px-6 lg:px-0">
+         <h3 className="absolute bottom-30 -right-6 md:-right-20 text-4xl font-light text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-400 to-cyan-600 px-6 lg:px-0">
             04
           </h3>
           <FiTrendingUp  className="text-4xl text-cyan-400 mb-4" />

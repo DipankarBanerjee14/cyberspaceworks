@@ -16,7 +16,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-black text-white py-8 px-6 sm:px-6">
-      <div className="max-w-6xl mx-auto bg-gradient-to-r from-cyan-400 via-cyan-400/90 to-cyan-400/70 text-black rounded-3xl p-6 sm:p-8 md:p-10 flex flex-col gap-8">
+      <div className="max-w-7xl mx-auto bg-gradient-to-r from-cyan-400 via-cyan-400/90 to-cyan-400/70 text-black rounded-3xl p-6 sm:p-8 md:p-10 flex flex-col gap-8">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 md:gap-10 text-center sm:text-left">
           {/* Logo & About */}

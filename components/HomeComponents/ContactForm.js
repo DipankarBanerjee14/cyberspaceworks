@@ -73,25 +73,25 @@ const ContactSection = () => {
         }}
       />
 
-      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-8 relative z-10">
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 relative z-10">
         {/* Header Section */}
         <div className="lg:w-1/2 space-y-4 text-center lg:text-left">
           <h1 className="text-4xl font-bold mb-4 leading-snug">
-            Let's Transform <br /> Your Vision into Reality
+            Let's <span className="text-cyan-400">Transform </span><br /> Your <span className="text-cyan-400">Vision</span> into Reality
           </h1>
           <p className="text-gray-300">
-            We understand your idea and what it means to you. <br /> To make it
-            a reality, we'll be happy to help you.
+            We understand your idea and what it means <br /> to you.  To make it
+            a reality, we&apos;ll be happy to help you.
           </p>
           <p className="text-gray-300">
-            Fill in the form and let our team send a quotation that <br /> will
-            include plans, strategies and technologies with a <br /> price like
+            Fill in the form and let our team send a <br />quotation that  will
+            include plans, <br />strategies and technologies with a  price like
             no other in the market.
           </p>
           <div className="mt-6">
             <Link
               href="/contact-us"
-              className="px-6 py-3 rounded-full bg-blue-500 hover:bg-blue-600 transition shadow-lg font-medium"
+              className="px-6 py-3 rounded-full bg-cyan-400 hover:bg-cyan-600 transition shadow-lg font-medium text-black"
             >
               Contact Us
             </Link>

@@ -67,7 +67,7 @@ const ContactUs = () => {
   };
 
   return (
-    <section className="relative py-30 bg-black text-white px-6 overflow-hidden">
+    <section className="relative pt-20 pb-18 lg:pt-30 bg-black text-white px-6 overflow-hidden">
       <div
         className="absolute inset-0 pointer-events-none"
         aria-hidden
@@ -77,19 +77,19 @@ const ContactUs = () => {
         }}
       />
 
-      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-8 relative z-10">
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 relative z-10">
         {/* Header Section */}
         <div className="lg:w-1/2 space-y-4 text-center lg:text-left">
-          <h1 className="text-4xl font-bold mb-4 leading-snug">
-            Let&apos;s Transform <br /> Your Vision into Reality
+          <h1 className="text-4xl lg:text-5xl font-bold mb-4 leading-snug">
+            Let&apos;s <span className="text-cyan-400">Transform </span><br /> Your <span className="text-cyan-400">Vision </span>into Reality
           </h1>
           <p className="text-gray-300">
-            We understand your idea and what it means to you. <br /> To make it
+            We understand your idea and what it means <br /> to you.  To make it
             a reality, we&apos;ll be happy to help you.
           </p>
           <p className="text-gray-300">
-            Fill in the form and let our team send a quotation that <br /> will
-            include plans, strategies and technologies with a <br /> price like
+            Fill in the form and let our team send a <br />quotation that  will
+            include plans, <br />strategies and technologies with a  price like
             no other in the market.
           </p>
         </div>
@@ -198,7 +198,7 @@ const ContactUs = () => {
       </div>
 
       {/* Contact Info & Map */}
-      <div className="grid lg:grid-cols-2 gap-8 relative z-10 mt-16 max-w-6xl mx-auto">
+      <div className="grid lg:grid-cols-2 gap-8 relative z-10 mt-16 max-w-7xl mx-auto">
       <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 flex flex-col gap-3 h-full hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
   {/* Gradient overlay — make sure it's visible */}
   {/* <div
@@ -255,7 +255,7 @@ const ContactUs = () => {
     </p>
 
     {/* Social Media Icons */}
-    <div className="flex justify-center sm:justify-start space-x-4 mt-4 text-cyan-400 text-lg sm:text-xl">
+    <div className="flex justify-start space-x-4 mt-4 text-cyan-400 text-lg sm:text-xl">
       <a
         href="https://www.facebook.com/profile.php?id=100086774724799"
         target="_blank"

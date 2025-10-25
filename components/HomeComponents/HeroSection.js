@@ -97,11 +97,11 @@ function updateStars() {
     return (
       <div className="relative w-full h-screen text-white overflow-hidden">
         <canvas ref={canvasRef} className="absolute inset-0 w-full h-full z-0" />
-        <main className="relative z-10 flex flex-col items-center justify-center h-[calc(100vh-100px)] text-center px-4 pt-30">
+        <main className="relative z-10 flex flex-col items-center justify-center h-[calc(100vh-100px)] text-center px-4 lg:pt-30 pt-3">
           <h2 className="text-4xl md:text-6xl font-extrabold leading-tight">
             Discover Endless Possibilities <br />
             in the{" "}
-            <span className="text-blue-400 drop-shadow-[0_0_15px_rgba(59,130,246,0.8)]">
+            <span className="text-cyan-400 drop-shadow-[0_0_15px_rgba(59,130,246,0.8)]">
               Cyber-space
             </span>
           </h2>
@@ -141,7 +141,7 @@ function updateStars() {
   };
 
   return (
-    <div className="relative min-h-screen text-white overflow-hidden">
+    <div className="relative  text-white overflow-hidden">
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_#1e3a8a_0%,_#0d1b2a_20%,_#000000_40%)]" />
       </div>
@@ -158,15 +158,15 @@ function updateStars() {
 const AboutButton = styled(Link)`
   padding: 15px 25px; /* Balanced vertical and horizontal padding */
   text-transform: uppercase;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.2; /* Ensures proper text vertical alignment */
-  color: #ffffff80;
+  color: #ffffff;
   text-shadow: none;
   background: transparent;
   cursor: pointer;
-  border: 1px solid #ffffff80;
+  border: 1px solid #ffffff;
   transition: 0.5s ease;
   user-select: none;
   text-decoration: none;
