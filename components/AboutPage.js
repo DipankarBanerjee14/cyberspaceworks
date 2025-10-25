@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react";
 import Image from "next/image";
-import SEO from "@/components/SEO"
+
 import {
   FaLaptopCode,
   FaMobileAlt,
