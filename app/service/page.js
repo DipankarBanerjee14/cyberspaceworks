@@ -91,29 +91,16 @@ export default function ServicesPage() {
           </div>
         </div>
 
-       {/* Our Services Section */}
-<section className="pt-10 pb-15">
-  <h2 className="text-center text-3xl md:text-4xl font-bold mb-13">
+      {/* Our Services Section */}
+<section className="pt-10 pb-20">
+  <h2 className="text-center text-3xl md:text-4xl font-bold mb-16">
     Our <span className="text-cyan-400">Services</span>
   </h2>
 
-  {/* First Row - 4 Cards */}
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 max-w-7xl mx-auto">
+    {/* First 4 cards */}
     {services.slice(0, 4).map((service, index) => (
-      <ServiceCardSketch
-        key={index}
-        icon={service.icon}
-        title={service.name}
-        desc={service.desc}
-        href={service.href}
-      />
-    ))}
-  </div>
-
-  {/* Second Row - 3 Cards (Centered) */}
-  <div className="mt-12 flex lg:flex-row flex-col justify-center gap-10 lg:max-w-5xl mx-auto lg:px-6 px-0">
-    {services.slice(4).map((service, index) => (
-      <div key={index}>
+      <div key={index} className="w-full h-full max-w-[300px]">
         <ServiceCardSketch
           icon={service.icon}
           title={service.name}
@@ -122,6 +109,20 @@ export default function ServicesPage() {
         />
       </div>
     ))}
+ </div>
+    {/* Centered 3 cards */}
+    <div className="mt-12 flex lg:flex-row flex-col justify-center gap-10 lg:max-w-5xl mx-auto lg:px-6 px-0"> {/* left spacer for centering */}
+    {services.slice(4).map((service, index) => (
+      <div key={index + 4} className="w-full h-full max-w-[300px]">
+        <ServiceCardSketch
+          icon={service.icon}
+          title={service.name}
+          desc={service.desc}
+          href={service.href}
+        />
+      </div>
+    ))}
+  
   </div>
 </section>
 
