@@ -49,7 +49,7 @@ export default function Navbar() {
     { name: "Call", icon: <FaPhoneAlt />, link: "tel:7980715765" },
     { name: "Mail", icon: <FaEnvelope />, link: "mailto:cyberspaceworksofficial@gmail.com" },
     { name: "WhatsApp", icon: <FaWhatsapp />, link: "https://wa.me/7980715765" },
-    { name: "Location", icon: <FaMapMarkerAlt />, link: "https://www.google.com/maps/place/Cyberspace+Works" },
+    { name: "Location", icon: <FaMapMarkerAlt />, link: "https://maps.app.goo.gl/Js9GiAJvnopVrJgB8" },
     { name: "Instagram", icon: <FaInstagram />, link: "https://www.instagram.com/cyberspaceworks" },
     { name: "LinkedIn", icon: <FaLinkedin />, link: "https://www.linkedin.com/company/cyberspace-works" },
     { name: "Facebook", icon: <FaFacebookF />, link: "https://www.facebook.com/profile.php?id=100086774724799" },
@@ -330,11 +330,23 @@ const isActive = (href) => {
 {/* Mobile & Tablet Bottom Navigation */}
 <div className="lg:hidden fixed bottom-4 left-1/2 -translate-x-1/2 w-[350px] mx-auto bg-black/10 border border-white/10 shadow-xl backdrop-blur-sm rounded-2xl z-50">
   {/* FAB */}
-  <div className="absolute -top-6 left-1/2 -translate-x-1/2">
-    <Link href="/" className="bg-cyan-400 rounded-full p-2 shadow-lg w-14 h-14 flex items-center justify-center overflow-hidden">
-      <Image src="/logo2.png" alt="Logo" width={100} height={100} className="object-cover h-18" />
-    </Link>
-  </div>
+ 
+{/* Floating Action Button (FAB) */}
+<div className="absolute -top-6 left-1/2 -translate-x-1/2 z-50">
+  <Link 
+    href="/" 
+    className="bg-cyan-400 rounded-full p-2 shadow-lg w-14 h-14 flex items-center justify-center overflow-hidden cursor-pointer"
+  >
+    <Image 
+      src="/logo2.png" 
+      alt="Logo" 
+      width={65} 
+      height={65} 
+      className="object-cover w-auto h-16"
+    />
+  </Link>
+</div>
+
 
   {/* Bottom nav items */}
   <div className="flex justify-around items-center py-3 relative">

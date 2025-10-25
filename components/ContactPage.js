@@ -248,10 +248,13 @@ const ContactUs = () => {
 
     {/* Address */}
     <p className="text-gray-400 flex items-center gap-2 mt-3">
-      <IoLocationOutline />
-      <span>
-        Kolkata 19, Krishna Chatterjee Ln, Bally, Howrah, West Bengal 711201
-      </span>
+      <IoLocationOutline className="mt-1 size-5"/>
+      <a
+    href="https://maps.app.goo.gl/QABsaPuw5qL3BwRa7"
+    className="hover:underline leading-snug text-center"
+  >
+    Kolkata 19, Krishna Chatterjee Ln, Bally, Howrah, West Bengal 711201
+  </a>
     </p>
 
     {/* Social Media Icons */}
