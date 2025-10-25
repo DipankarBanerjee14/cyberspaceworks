@@ -99,7 +99,7 @@ export default function Testimonials() {
     <section className="relative  text-black px-6 py-5 overflow-hidden">
       <div className='max-w-7xl mx-auto'>
       <h2 className="text-4xl font-bold text-center mb-12 text-white relative z-10">
-        What <span className="text-[#0ebac7]">People</span> Say About Us
+        What <span className="text-cyan-400">People</span> Say About Us
       </h2>
 
       <div className="relative overflow-hidden z-10">

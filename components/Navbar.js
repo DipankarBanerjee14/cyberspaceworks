@@ -269,27 +269,43 @@ const isActive = (href) => {
                   <p className="text-sm text-gray-300">
                     Cyberspace Works - Website, Software, App Developer | Digital Marketing | Graphics Design | UI/UX | Research & Analysis
                   </p>
-                  <p className="text-gray-400 flex items-center gap-2 mt-3">
-                    <IoCallOutline />
-                    <a href="tel:+917980715765" className="hover:underline">+91 7980715765</a>
-                  </p>
-                  <p className="text-gray-400 flex items-center gap-2 mt-3">
-                    <IoMailOutline />
-                    <a href="mailto:cyberspaceworksofficial@gmail.com" className="hover:underline">cyberspaceworks
-                      official@gmail.com</a>
-                  </p>
-                  <p className="text-gray-400 flex items-center gap-2 mt-3">
-                    <IoLocationOutline />
-                    <a href="https://maps.app.goo.gl/QABsaPuw5qL3BwRa7" className="hover:underline">
-                      Kolkata 19, Krishna Chatterjee Ln, Bally, Howrah, West Bengal 711201
-                    </a>
-                  </p>
+                 <p className="text-gray-400 flex items-start gap-2 mt-3">
+  <IoCallOutline className="text-cyan-400 mt-1" />
+  <a
+    href="tel:+917980715765"
+    className="hover:underline leading-snug pl-6"
+  >
+    +91 7980715765
+  </a>
+</p>
+
+<p className="text-gray-400 flex items-start gap-2 mt-3">
+  <IoMailOutline className="text-cyan-400 mt-1 size-5" />
+  <a
+    href="mailto:cyberspaceworksofficial@gmail.com"
+    className="hover:underline leading-snug text-center"
+  >
+    cyberspaceworks
+    official@gmail.com
+  </a>
+</p>
+
+<p className="text-gray-400 flex items-start gap-2 mt-3">
+  <IoLocationOutline className="text-cyan-400 mt-1 size-12" />
+  <a
+    href="https://maps.app.goo.gl/QABsaPuw5qL3BwRa7"
+    className="hover:underline leading-snug text-center"
+  >
+    Kolkata 19, Krishna Chatterjee Ln, Bally, Howrah, West Bengal 711201
+  </a>
+</p>
+
                 </div>
                 <div className="mt-auto">
                   <Link href="/contact-us"
                     className="flex items-center justify-center gap-1 px-4 py-1 text-black bg-cyan-400 rounded-full shadow-[0_0_12px_rgba(0,0,0,0.4)] transition-all duration-300 hover:shadow-[0_0_16px_rgba(0,0,0,0.6)]"
                     onClick={() => setIsLeftMenuOpen(false)}>
-                    Get a Quote
+                    Get a Free Quote
                   </Link>
                 </div>
               </div>
@@ -311,129 +327,98 @@ const isActive = (href) => {
           </div>
         </nav>
       </header>
-
-      {/* Mobile & Tablet Bottom Navigation */}
-      <div className="lg:hidden fixed bottom-2 left-1/2 -translate-x-1/2 w-[330px] mx-auto bg-black/10 border border-white/10 shadow-xl backdrop-blur-sm rounded-2xl z-50">
-        {/* FAB */}
-        <div className="absolute -top-6 left-1/2 -translate-x-1/2">
-          <Link href="/" className="bg-cyan-400 rounded-full p-2 shadow-lg w-14 h-14 flex items-center justify-center overflow-hidden">
-            <Image src="/logo2.png" alt="Logo" width={100} height={100} className="object-cover h-18" />
-          </Link>
-        </div>
-
-        {/* Bottom nav items */}
-        <div className="flex justify-around items-center py-3 relative">
-
-          {/* Home */}
-          <Link href="/" className="flex flex-col items-center group relative">
-            <HomeIcon className={`w-6 h-6 transition-colors ${isActive("/") ? "text-cyan-400" : "text-cyan-400 group-hover:text-cyan-300"}`} />
-            <span className={`text-xs mt-1 transition-colors ${isActive("/") ? "text-cyan-400" : "text-cyan-400 group-hover:text-cyan-300"}`}>Home</span>
-            {/* Hover underline */}
-            <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-gradient-to-r from-cyan-700 via-cyan-400 to-cyan-200 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center rounded-full"></span>
-            {/* Active underline */}
-            {isActive("/") && <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-cyan-400 rounded-full"></span>}
-          </Link>
-
- {/* Services (with dropdown + close button) */}
-<div
-  className="relative"
-  onMouseEnter={() => setIsServicesOpenMobile(true)}
-  onMouseLeave={() => setIsServicesOpenMobile(false)}
->
-  <div className="flex flex-col items-center group relative cursor-pointer">
-    <Cog6ToothIcon
-      className={`w-6 h-6 transition-colors ${
-        pathname.startsWith("/services")
-          ? "text-cyan-400"
-          : "text-cyan-400 group-hover:text-cyan-300"
-      }`}
-    />
-
-    {/* Services text – clickable */}
-    <Link
-      href="/services"
-      className={`text-xs mt-1 transition-colors ${
-        pathname.startsWith("/services")
-          ? "text-cyan-400"
-          : "text-cyan-400 group-hover:text-cyan-300"
-      }`}
-    >
-      Services
+{/* Mobile & Tablet Bottom Navigation */}
+<div className="lg:hidden fixed bottom-4 left-1/2 -translate-x-1/2 w-[350px] mx-auto bg-black/10 border border-white/10 shadow-xl backdrop-blur-sm rounded-2xl z-50">
+  {/* FAB */}
+  <div className="absolute -top-6 left-1/2 -translate-x-1/2">
+    <Link href="/" className="bg-cyan-400 rounded-full p-2 shadow-lg w-14 h-14 flex items-center justify-center overflow-hidden">
+      <Image src="/logo2.png" alt="Logo" width={100} height={100} className="object-cover h-18" />
     </Link>
-
-    {/* Hover underline */}
-    <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-gradient-to-r from-cyan-700 via-cyan-400 to-cyan-200 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center rounded-full"></span>
-
-    {/* Active underline */}
-    {pathname.startsWith("/services") && (
-      <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-cyan-400 rounded-full"></span>
-    )}
   </div>
 
-  {/* Dropdown menu */}
-  <div
-    className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 bg-gray-900/95 backdrop-blur-sm border border-cyan-400/20 rounded-lg shadow-xl overflow-hidden transition-all duration-300 ease-in-out origin-bottom ${
-      isServicesOpenMobile
-        ? "opacity-100 scale-100"
-        : "opacity-0 scale-95 pointer-events-none"
-    }`}
-    onMouseEnter={() => setIsServicesOpenMobile(true)} // keep open when hovering dropdown
-    onMouseLeave={() => setIsServicesOpenMobile(false)}
-  >
-    {/* CLOSE BUTTON */}
-    <button
-      onClick={() => setIsServicesOpenMobile(false)}
-      className="absolute top-2 right-2 p-1 rounded-full hover:bg-cyan-400/20 transition-colors"
-      aria-label="Close services menu"
-    >
-      <XMarkIcon className="w-5 h-5 text-cyan-400 cursor-pointer" />
-    </button>
+  {/* Bottom nav items */}
+  <div className="flex justify-around items-center py-3 relative">
 
-    <div className="py-2 pt-8"> {/* pt-8 gives space for the X button */}
-      {services.map((service) => {
-        const active = pathname === service.href;
-        return (
+    {/* Home */}
+    <Link href="/" className="flex flex-col items-center relative">
+      <HomeIcon className={`w-6 h-6 ${isActive("/") ? "text-cyan-400" : "text-cyan-100"}`} />
+      <span className={`text-xs mt-1 ${isActive("/") ? "text-cyan-400" : "text-cyan-100"}`}>Home</span>
+    </Link>
+
+    {/* Services */}
+    <div className="relative">
+      <div
+        className="flex flex-col items-center relative cursor-pointer"
+        onClick={() => setIsServicesOpenMobile(prev => !prev)}
+        onMouseEnter={() => setIsServicesOpenMobile(true)}
+      >
+        <Cog6ToothIcon
+          className={`w-6 h-6 ${pathname.startsWith("/service") ? "text-cyan-400" : "text-cyan-100"}`}
+        />
+        <span className={`text-xs mt-1 ${pathname.startsWith("/service") ? "text-cyan-400" : "text-cyan-100"}`}>Services</span>
+      </div>
+
+      {/* Dropdown */}
+      <div
+        className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-52 bg-gray-900/95 backdrop-blur-sm border border-cyan-400/20 rounded-xl shadow-xl overflow-hidden transition-all duration-300 ease-in-out origin-bottom z-[9999]
+          ${isServicesOpenMobile ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-95 pointer-events-none"}`}
+        onMouseEnter={() => setIsServicesOpenMobile(true)}
+      >
+        <button
+          onClick={() => setIsServicesOpenMobile(false)}
+          className="absolute top-2 right-2 p-1 rounded-full hover:bg-cyan-400/20 transition-colors"
+          aria-label="Close services menu"
+        >
+          <XMarkIcon className="w-5 h-5 text-cyan-400 cursor-pointer" />
+        </button>
+
+        <div className="py-2 pt-8">
+        {/* Service Page */}
           <Link
-            key={service.name}
-            href={service.href}
+            href="/service"
             onClick={() => setIsServicesOpenMobile(false)}
-            className={`flex items-center gap-3 px-4 py-2 text-sm transition-colors relative ${
-              active
-                ? "text-cyan-400 bg-cyan-400/10"
-                : "text-gray-300 hover:text-cyan-400 hover:bg-cyan-400/10"
-            }`}
+            className="flex items-center gap-3 px-4 py-2 text-sm text-cyan-100 font-semibold hover:text-cyan-400 hover:bg-cyan-400/10 transition-colors"
           >
-            <span className="text-lg">{service.icon}</span>
-            {service.name}
-            {active && (
-              <span className="absolute inset-x-0 bottom-0 h-0.5 bg-cyan-400"></span>
-            )}
+            <span className="text-lg text-cyan-400"><Cog6ToothIcon /></span>
+            Service Page
           </Link>
-        );
-      })}
+
+          {/* Subservices */}
+          {services.map((service) => (
+            <Link
+              key={service.name}
+              href={service.href}
+              onClick={() => setIsServicesOpenMobile(false)}
+              className={`flex items-center gap-3 px-4 py-2 text-sm relative transition-colors
+                ${pathname === service.href
+                  ? "text-cyan-400 bg-cyan-400/10"
+                  : "text-gray-100 hover:text-cyan-400 hover:bg-cyan-400/10"
+                }`}
+            >
+              <span className="text-lg text-cyan-400">{service.icon}</span>
+              {service.name}
+            </Link>
+          ))}
+        </div>
+      </div>
     </div>
+
+    <div className="w-12" /> {/* FAB gap */}
+
+    {/* About */}
+    <Link href="/about-us" className="flex flex-col items-center relative">
+      <InformationCircleIcon className={`w-6 h-6 ${isActive("/about-us") ? "text-cyan-400" : "text-cyan-100"}`} />
+      <span className={`text-xs mt-1 ${isActive("/about-us") ? "text-cyan-400" : "text-cyan-100"}`}>About</span>
+    </Link>
+
+    {/* Contact */}
+    <Link href="/contact-us" className="flex flex-col items-center relative">
+      <PhoneIcon className={`w-6 h-6 ${isActive("/contact-us") ? "text-cyan-400" : "text-cyan-100"}`} />
+      <span className={`text-xs mt-1 ${isActive("/contact-us") ? "text-cyan-400" : "text-cyan-100"}`}>Contact</span>
+    </Link>
   </div>
 </div>
 
-          <div className="w-12" /> {/* FAB gap */}
-
-          {/* About */}
-          <Link href="/about-us" className="flex flex-col items-center group relative">
-            <InformationCircleIcon className={`w-6 h-6 transition-colors ${isActive("/about-us") ? "text-cyan-400" : "text-cyan-400 group-hover:text-cyan-300"}`} />
-            <span className={`text-xs mt-1 transition-colors ${isActive("/about-us") ? "text-cyan-400" : "text-cyan-400 group-hover:text-cyan-300"}`}>About</span>
-            <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-gradient-to-r from-cyan-700 via-cyan-400 to-cyan-200 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center rounded-full"></span>
-            {isActive("/about-us") && <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-cyan-400 rounded-full"></span>}
-          </Link>
-
-          {/* Contact */}
-          <Link href="/contact-us" className="flex flex-col items-center group relative">
-            <PhoneIcon className={`w-6 h-6 transition-colors ${isActive("/contact-us") ? "text-cyan-400" : "text-cyan-400 group-hover:text-cyan-300"}`} />
-            <span className={`text-xs mt-1 transition-colors ${isActive("/contact-us") ? "text-cyan-400" : "text-cyan-400 group-hover:text-cyan-300"}`}>Contact</span>
-            <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-gradient-to-r from-cyan-700 via-cyan-400 to-cyan-200 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center rounded-full"></span>
-            {isActive("/contact-us") && <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-cyan-400 rounded-full"></span>}
-          </Link>
-        </div>
-      </div>
     </>
   );
 }

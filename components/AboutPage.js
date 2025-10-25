@@ -106,13 +106,13 @@ const AboutUs = () => {
   return (
      <>
       
-    <section className="bg-black text-white pt-10 px-6">
+    <section className="bg-black text-white lg:pt-10 px-6 pt-20">
       <div className="max-w-7xl mx-auto">
         {/* Hero Section */}
         <div className="grid lg:grid-cols-2 items-center gap-10 relative bg-black/10 rounded-2xl shadow-lg ">
           <div className="flex flex-col gap-4 lg:text-left text-center">
             <h1 className="text-4xl lg:text-5xl font-bold">
-              Empowering Businesses <br /> Through Technology
+              Empowering <span className="text-cyan-400">Businesses</span> <br /> Through <span className="text-cyan-400">Technology</span> 
             </h1>
             <p className="text-gray-300 mb-5">
               We provide end-to-end support and are committed to helping businesses achieve their goals efficiently.
@@ -251,7 +251,7 @@ const AboutUs = () => {
       className="!w-[280px] flex justify-center items-center cursor-pointer"
     >
       <div
-        className="box-bg bg-gradient-to-br from-[#0b223f]/70 to-[#06263f]/50 border border-white/10 rounded-xl p-6 text-center shadow-lg backdrop-blur flex flex-col items-center justify-between w-full h-[200px] transition-transform duration-300 hover:scale-95"
+        className="box-bg bg-gradient-to-br from-[#0b223f]/70 to-[#06263f]/50 border border-white/10 rounded-2xl p-6 text-center shadow-lg backdrop-blur flex flex-col items-center justify-between w-full h-[200px] transition-transform duration-300 hover:scale-95"
         onClick={() => handleCardClick(service)}
       >
         {service.icon}

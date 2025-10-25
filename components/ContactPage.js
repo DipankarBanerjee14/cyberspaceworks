@@ -80,8 +80,8 @@ const ContactUs = () => {
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 relative z-10">
         {/* Header Section */}
         <div className="lg:w-1/2 space-y-4 text-center lg:text-left">
-          <h1 className="text-4xl font-bold mb-4 leading-snug">
-            Let&apos;s Transform <br /> Your Vision into Reality
+          <h1 className="text-4xl lg:text-5xl font-bold mb-4 leading-snug">
+            Let&apos;s <span className="text-cyan-400">Transform </span><br /> Your <span className="text-cyan-400">Vision </span>into Reality
           </h1>
           <p className="text-gray-300">
             We understand your idea and what it means to you. <br /> To make it

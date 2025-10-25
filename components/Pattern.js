@@ -14,11 +14,11 @@ const StyledPattern = styled.div`
 
   /* Fade out smoothly after 50% from top */
   mask-image: linear-gradient(to bottom, #000 50%, transparent 100%);
-  mask-size: 100% 55%;
+  mask-size: 100% 60%;
   mask-repeat: no-repeat;
 
   -webkit-mask-image: linear-gradient(to bottom, #000 50%, transparent 100%);
-  -webkit-mask-size: 100% 55%;
+  -webkit-mask-size: 100% 60%;
   -webkit-mask-repeat: no-repeat;
 
   opacity: 0.6;

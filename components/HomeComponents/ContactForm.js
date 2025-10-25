@@ -77,7 +77,7 @@ const ContactSection = () => {
         {/* Header Section */}
         <div className="lg:w-1/2 space-y-4 text-center lg:text-left">
           <h1 className="text-4xl font-bold mb-4 leading-snug">
-            Let's Transform <br /> Your Vision into Reality
+            Let's <span className="text-cyan-400">Transform </span><br /> Your <span className="text-cyan-400">Vision</span> into Reality
           </h1>
           <p className="text-gray-300">
             We understand your idea and what it means to you. <br /> To make it
