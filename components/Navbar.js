@@ -432,7 +432,7 @@ const isActive = (href) => {
         className="flex items-center gap-3 px-4 py-2 text-sm text-cyan-100 font-semibold transition-colors duration-300 hover:text-cyan-400 hover:bg-cyan-400/10"
       >
         <span className="text-lg text-cyan-400"><Cog6ToothIcon /></span>
-        Services Page
+        Our Services
       </Link>
 
       {/* Subservices */}

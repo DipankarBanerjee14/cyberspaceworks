@@ -49,7 +49,7 @@ export default function ServicesPage() {
   );
 
   return (
-    <main className="bg-black text-white lg:pt-10 px-6 pt-20">
+    <main className="bg-black text-white lg:pt-10 px-6 pt-20 pb-5">
       <div className="max-w-7xl mx-auto">
         {/* Hero Section */}
         <div className="grid lg:grid-cols-2 items-center gap-10 relative bg-black/10 rounded-2xl shadow-lg">

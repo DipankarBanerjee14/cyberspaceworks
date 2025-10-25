@@ -67,7 +67,7 @@ const ContactUs = () => {
   };
 
   return (
-    <section className="relative py-30 bg-black text-white px-6 overflow-hidden">
+    <section className="relative pt-20 pb-18 lg:pt-30 bg-black text-white px-6 overflow-hidden">
       <div
         className="absolute inset-0 pointer-events-none"
         aria-hidden
