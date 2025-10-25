@@ -176,9 +176,9 @@ const isActive = (href) => {
     onMouseLeave={handleMouseLeave}>
   
   <Link 
-    href="/service" 
+    href="/services" 
     className={`flex items-center gap-1 transition-colors duration-300 ${
-      pathname.startsWith("/service") ? "text-cyan-400" : "text-white hover:text-cyan-400"
+      pathname.startsWith("/services") ? "text-cyan-400" : "text-white hover:text-cyan-400"
     }`}>
     Services
     <span className="text-xs mt-[2px]">{isServicesOpen ? <FaAngleUp /> : <FaAngleDown />}</span>
@@ -186,7 +186,7 @@ const isActive = (href) => {
 
   {/* Underline: Solid when ANY /service* page */}
   <span className={`absolute left-0 -bottom-1 w-full h-[2px] rounded-full transition-transform duration-300 origin-left ${
-    pathname.startsWith("/service") 
+    pathname.startsWith("/services") 
       ? "bg-cyan-400 scale-x-100" 
       : "bg-gradient-to-r from-cyan-700 via-cyan-400 to-cyan-200 scale-x-0 group-hover:scale-x-100"
   }`}>
@@ -339,83 +339,192 @@ const isActive = (href) => {
   {/* Bottom nav items */}
   <div className="flex justify-around items-center py-3 relative">
 
-    {/* Home */}
-    <Link href="/" className="flex flex-col items-center relative">
-      <HomeIcon className={`w-6 h-6 ${isActive("/") ? "text-cyan-400" : "text-cyan-100"}`} />
-      <span className={`text-xs mt-1 ${isActive("/") ? "text-cyan-400" : "text-cyan-100"}`}>Home</span>
-    </Link>
 
-    {/* Services */}
-    <div className="relative">
-      <div
-        className="flex flex-col items-center relative cursor-pointer"
-        onClick={() => setIsServicesOpenMobile(prev => !prev)}
-        onMouseEnter={() => setIsServicesOpenMobile(true)}
-      >
-        <Cog6ToothIcon
-          className={`w-6 h-6 ${pathname.startsWith("/service") ? "text-cyan-400" : "text-cyan-100"}`}
-        />
-        <span className={`text-xs mt-1 ${pathname.startsWith("/service") ? "text-cyan-400" : "text-cyan-100"}`}>Services</span>
-      </div>
+ 
+{/* Home */}
+<Link
+  href="/"
+  className="flex flex-col items-center relative group"
+>
+  <HomeIcon
+    className={`w-6 h-6 transition-colors duration-300 ${
+      isActive("/") 
+        ? "text-cyan-400" 
+        : "text-cyan-100 group-hover:text-cyan-400"
+    }`}
+  />
+  <span
+    className={`text-xs mt-1 transition-colors duration-300 ${
+      isActive("/") 
+        ? "text-cyan-400" 
+        : "text-cyan-100 group-hover:text-cyan-400"
+    }`}
+  >
+    Home
+  </span>
 
-      {/* Dropdown */}
-      <div
-        className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-52 bg-gray-900/95 backdrop-blur-sm border border-cyan-400/20 rounded-xl shadow-xl overflow-hidden transition-all duration-300 ease-in-out origin-bottom z-[9999]
-          ${isServicesOpenMobile ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-95 pointer-events-none"}`}
-        onMouseEnter={() => setIsServicesOpenMobile(true)}
+  {/* Hover underline */}
+  {!isActive("/") && (
+    <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-gradient-to-r from-cyan-700 via-cyan-400 to-cyan-200 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center rounded-full"></span>
+  )}
+
+  {/* Active underline */}
+  {isActive("/") && (
+    <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-cyan-400 rounded-full"></span>
+  )}
+</Link>
+
+      
+ {/* Services */}
+<div className="relative">
+  <div
+    className="flex flex-col items-center relative cursor-pointer group"
+    onClick={() => setIsServicesOpenMobile(prev => !prev)}
+    onMouseEnter={() => window.innerWidth >= 1024 && setIsServicesOpenMobile(true)}
+    onMouseLeave={() => window.innerWidth >= 1024 && setIsServicesOpenMobile(false)}
+  >
+    <Cog6ToothIcon
+      className={`w-6 h-6 transition-colors duration-300 ${
+        pathname.startsWith("/services")
+          ? "text-cyan-400"
+          : "text-cyan-100 group-hover:text-cyan-400"
+      }`}
+    />
+    <span
+      className={`text-xs mt-1 transition-colors duration-300 ${
+        pathname.startsWith("/services")
+          ? "text-cyan-400"
+          : "text-gray-100 group-hover:text-cyan-400"
+      }`}
+    >
+      Services
+    </span>
+
+    {/* Hover underline for inactive */}
+    {!pathname.startsWith("/services") && (
+      <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-gradient-to-r from-cyan-700 via-cyan-400 to-cyan-200 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center rounded-full"></span>
+    )}
+
+    {/* Active underline */}
+    {pathname.startsWith("/services") && (
+      <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-cyan-400 rounded-full"></span>
+    )}
+  </div>
+
+  {/* Dropdown */}
+  <div
+    className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-52 bg-gray-900/95 backdrop-blur-sm border border-cyan-400/20 rounded-xl shadow-xl overflow-hidden transition-all duration-300 ease-in-out origin-bottom z-[9999]
+      ${isServicesOpenMobile ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-95 pointer-events-none"}`}
+  >
+    <button
+      onClick={() => setIsServicesOpenMobile(false)}
+      className="absolute top-2 right-2 p-1 rounded-full hover:bg-cyan-400/20 transition-colors"
+      aria-label="Close services menu"
+    >
+      <XMarkIcon className="w-5 h-5 text-cyan-400 cursor-pointer" />
+    </button>
+
+    <div className="py-2 pt-8">
+      {/* Service Page */}
+      <Link
+        href="/services"
+        onClick={() => setIsServicesOpenMobile(false)}
+        className="flex items-center gap-3 px-4 py-2 text-sm text-cyan-100 font-semibold transition-colors duration-300 hover:text-cyan-400 hover:bg-cyan-400/10"
       >
-        <button
+        <span className="text-lg text-cyan-400"><Cog6ToothIcon /></span>
+        Services Page
+      </Link>
+
+      {/* Subservices */}
+      {services.map((service) => (
+        <Link
+          key={service.name}
+          href={service.href}
           onClick={() => setIsServicesOpenMobile(false)}
-          className="absolute top-2 right-2 p-1 rounded-full hover:bg-cyan-400/20 transition-colors"
-          aria-label="Close services menu"
+          className={`flex items-center gap-3 px-4 py-2 text-sm relative transition-colors duration-300
+            ${pathname === service.href
+              ? "text-cyan-400 bg-cyan-400/10"
+              : "text-gray-100 hover:text-cyan-400 hover:bg-cyan-400/10"
+            }`}
         >
-          <XMarkIcon className="w-5 h-5 text-cyan-400 cursor-pointer" />
-        </button>
-
-        <div className="py-2 pt-8">
-        {/* Service Page */}
-          <Link
-            href="/service"
-            onClick={() => setIsServicesOpenMobile(false)}
-            className="flex items-center gap-3 px-4 py-2 text-sm text-cyan-100 font-semibold hover:text-cyan-400 hover:bg-cyan-400/10 transition-colors"
-          >
-            <span className="text-lg text-cyan-400"><Cog6ToothIcon /></span>
-            Service Page
-          </Link>
-
-          {/* Subservices */}
-          {services.map((service) => (
-            <Link
-              key={service.name}
-              href={service.href}
-              onClick={() => setIsServicesOpenMobile(false)}
-              className={`flex items-center gap-3 px-4 py-2 text-sm relative transition-colors
-                ${pathname === service.href
-                  ? "text-cyan-400 bg-cyan-400/10"
-                  : "text-gray-100 hover:text-cyan-400 hover:bg-cyan-400/10"
-                }`}
-            >
-              <span className="text-lg text-cyan-400">{service.icon}</span>
-              {service.name}
-            </Link>
-          ))}
-        </div>
-      </div>
+          <span className="text-lg text-cyan-400">{service.icon}</span>
+          {service.name}
+        </Link>
+      ))}
     </div>
+  </div>
+</div>
+
 
     <div className="w-12" /> {/* FAB gap */}
 
-    {/* About */}
-    <Link href="/about-us" className="flex flex-col items-center relative">
-      <InformationCircleIcon className={`w-6 h-6 ${isActive("/about-us") ? "text-cyan-400" : "text-cyan-100"}`} />
-      <span className={`text-xs mt-1 ${isActive("/about-us") ? "text-cyan-400" : "text-cyan-100"}`}>About</span>
-    </Link>
+ {/* About */}
+<Link
+  href="/about-us"
+  className="flex flex-col items-center relative group"
+>
+  <InformationCircleIcon
+    className={`w-6 h-6 transition-colors duration-300 ${
+      isActive("/about-us")
+        ? "text-cyan-400"
+        : "text-cyan-100 group-hover:text-cyan-400"
+    }`}
+  />
+  <span
+    className={`text-xs mt-1 transition-colors duration-300 ${
+      isActive("/about-us")
+        ? "text-cyan-400"
+        : "text-gray-100 group-hover:text-cyan-400"
+    }`}
+  >
+    About
+  </span>
 
-    {/* Contact */}
-    <Link href="/contact-us" className="flex flex-col items-center relative">
-      <PhoneIcon className={`w-6 h-6 ${isActive("/contact-us") ? "text-cyan-400" : "text-cyan-100"}`} />
-      <span className={`text-xs mt-1 ${isActive("/contact-us") ? "text-cyan-400" : "text-cyan-100"}`}>Contact</span>
-    </Link>
+  {/* Hover underline for inactive */}
+  {!isActive("/about-us") && (
+    <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-gradient-to-r from-cyan-700 via-cyan-400 to-cyan-200 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center rounded-full"></span>
+  )}
+
+  {/* Active underline */}
+  {isActive("/about-us") && (
+    <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-cyan-400 rounded-full"></span>
+  )}
+</Link>
+
+{/* Contact */}
+<Link
+  href="/contact-us"
+  className="flex flex-col items-center relative group"
+>
+  <PhoneIcon
+    className={`w-6 h-6 transition-colors duration-300 ${
+      isActive("/contact-us")
+        ? "text-cyan-400"
+        : "text-cyan-100 group-hover:text-cyan-400"
+    }`}
+  />
+  <span
+    className={`text-xs mt-1 transition-colors duration-300 ${
+      isActive("/contact-us")
+        ? "text-cyan-400"
+        : "text-gray-100 group-hover:text-cyan-400"
+    }`}
+  >
+    Contact
+  </span>
+
+  {/* Hover underline for inactive */}
+  {!isActive("/contact-us") && (
+    <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-gradient-to-r from-cyan-700 via-cyan-400 to-cyan-200 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center rounded-full"></span>
+  )}
+
+  {/* Active underline */}
+  {isActive("/contact-us") && (
+    <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-cyan-400 rounded-full"></span>
+  )}
+</Link>
+
+
   </div>
 </div>
 
