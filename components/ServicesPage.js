@@ -1,5 +1,5 @@
 "use client";
-import { FaLaptopCode, FaMobileAlt, FaCode, FaPalette, FaBullhorn, FaBrush, FaQuoteLeft } from "react-icons/fa";
+import { FaLaptopCode, FaMobileAlt, FaCode, FaPalette, FaBullhorn, FaBrush,  } from "react-icons/fa";
 import { SiGoogleanalytics } from "react-icons/si";
 import Testimonials from "@/components/HomeComponents/Testimonial";
 import Link from "next/link";
@@ -59,19 +59,22 @@ export default function ServicesPage() {
               That <span className="text-cyan-400">Stand Out</span>
             </h1>
             <p className="text-gray-400 max-w-2xl mb-8">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi.
+               Our Professional Services will Ensure that Your Business Stands Out among the Vast Space of Competitors in the Internet.
             </p>
             <div className="flex flex-row gap-2 justify-center lg:justify-start">
-             <a href="tel:+917980715765">
+             <a href="https://calendly.com/banerjeedip761/consultancy-meet"
+             target="_blank"
+          
+             > 
   <button className="bg-cyan-500 text-black px-6 py-3 rounded-full font-medium hover:bg-cyan-400 transition cursor-pointer">
-    Book Free Call
+    Book a Free Consultancy
   </button>
 </a>
 
               
               <Link href="/contact-us"
                className="border border-cyan-500 text-cyan-400 px-6 py-3 rounded-full font-medium hover:bg-cyan-500 hover:text-black transition">
-                Get Free Quote
+                Get a Free Quote
               </Link>
             </div>
           </section>

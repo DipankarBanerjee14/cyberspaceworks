@@ -2,38 +2,38 @@
 import ServicesPage from "@/components/ServicesPage";
 import DynamicCanonical from "@/components/DynamicCanonical"; 
 // ✅ Server Component metadata
-// export const metadata = {
-//   title: "About Cyberspace Works - IT Agency in Kolkata, India",
-//   description:
-//     "Learn about Cyberspace Works, a leading Kolkata-based agency specializing in high-impact Web, App, and Software Development since 2022.",
-//     keywords:
-//       "Our story, company mission, team background, leadership team, Cyberspace Works history, why choose us, corporate values, Web development, App Development, Software Development, UI/UX Designer, Graphics Designer, Digital Marketing, Research and Analytics expertise, certified Web developer, App Developer, Software Developer, UI/UX Designer, Graphics Designer, Digital Marketing Expert, Research and Analytics Expert, decades of experience, industry leaders, Cyberspace Works, Howrah, Kolkata location, local Web development, App Development, Software Development, UI/UX Designer, Graphics Designer, Digital Marketing, Research and Analytics provider",
-//   openGraph: {
-//     type: "website",
-//     title: "About Cyberspace Works - IT Agency in Kolkata, India",
-//     description:
-//       "Learn about Cyberspace Works, a leading Kolkata-based agency specializing in high-impact Web, App, and Software Development since 2022.",
-//     images: ["/logo.png"],
-//   },
-//   twitter: {
-//     card: "summary_large_image",
-//     title: "About Cyberspace Works - IT Agency in Kolkata, India",
-//     description:
-//       "Learn about Cyberspace Works, a leading Kolkata-based agency specializing in high-impact Web, App, and Software Development since 2022.",
-//     images: ["/logo.png"],
-//   },
-//   robots: {
-//     index: true,
-//     follow: true,
-//     googleBot: {
-//       index: true,
-//       follow: true,
-//     },
-//   },
-//   icons: {
-//     icon: "/favicon.ico",
-//   },
-// };
+export const metadata = {
+  title: "Expert IT Services | in Howrah, Kolkata, India | Cyberspace Works",
+  description:
+    "Explore our full suite of professional services, including Web, App, and Software Development. Get expert help and a free quote today!",
+    keywords:
+      "Web Development, App Development, Software Development, UI/UX Designing, Graphics Designing, Digital Marketing, Research and Analytics services, professional services, Hire Web Developer, App Developer, Software Developer, UI/UX Designer, Graphics Designer, Digital Marketer, Research and Analytics Expert, Web Development, App Development, Software Development, UI/UX Designing, Graphics Designing, Digital Marketing, Research and Analytics pricing, Web Development, App Development, Software Development, UI/UX Designing, Graphics Designing, Digital Marketing, Research and Analytics quote, book Web Development, App Development, Software Development, UI/UX Designing, Graphics Designing, Digital Marketing, Research and Analytics, consult with Web Developer, App Developer, Software Developer, UI/UX Designer, Graphics Designer, Digital Marketer, Research and Analytics Expert, Web Development, App Development, Software Development, UI/UX Designing, Graphics Designing, Digital Marketing, Research and Analytics in Howrah, Kolkata, India, best Web Developer, App Developer, Software Developer, UI/UX Designer, Graphics Designer, Digital Marketer, Research and Analytics Expert near me, local Web Development, App Development, Software Development, UI/UX Designing, Graphics Designing, Digital Marketing, Research and Analytics services provider, Web Development, App Development, Software Development, UI/UX Designing, Graphics Designing, Digital Marketing, Research and Analytics experts in Howrah, Kolkata, India, How much doesWeb Development, App Development, Software Development, UI/UX Designing, Graphics Designing, Digital Marketing, Research and Analytics services cost?, specialized Web Development, App Development, Software Development, UI/UX Designing, Graphics Designing, Digital Marketing, Research and Analytics services, compare Web Development, App Development, Software Development, UI/UX Designing, Graphics Designing, Digital Marketing, Research and Analytics services plans, dedicated Web Developer, App Developer, Software Developer, UI/UX Designer, Graphics Designer, Digital Marketer, Research and Analytics Expert team",
+  openGraph: {
+    type: "website",
+    title: "Expert IT Services | in Howrah, Kolkata, India | Cyberspace Works",
+    description:
+      "Explore our full suite of professional services, including Web, App, and Software Development. Get expert help and a free quote today!",
+    images: ["/logo.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Expert IT Services | in Howrah, Kolkata, India | Cyberspace Works",
+    description:
+      "Explore our full suite of professional services, including Web, App, and Software Development. Get expert help and a free quote today!",
+    images: ["/logo.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
+};
 
 export default function Services() {
   return (

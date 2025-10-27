@@ -20,14 +20,7 @@ const ServicePage = ({
       {/* CONTENT – NO bg-black, pattern already provides it */}
       <div className="relative text-white px-6 pt-26 pb-15">
       <div className="max-w-7xl mx-auto">
-        {/* Radial glows (on top of pattern) */}
-        {/* <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(circle at 50% 17%, rgba(14,186,199,0.45), transparent 20%)",
-          }}
-        /> */}
+        
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
