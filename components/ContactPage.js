@@ -1,7 +1,15 @@
 "use client";
+/* eslint-disable react/no-unescaped-entities */
 
 import React, { useState } from "react";
-import { IoCallOutline, IoMailOutline, IoLocationOutline } from "react-icons/io5";
+import Link from "next/link";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+import {
+  IoCallOutline,
+  IoMailOutline,
+  IoLocationOutline,
+} from "react-icons/io5";
 import {
   FaFacebookF,
   FaInstagram,
@@ -14,24 +22,54 @@ const ContactUs = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    contact: "",
     countryCode: "+91",
+    contact: "",
     service: "Web Development",
     requirement: "",
   });
 
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [contactError, setContactError] = useState("");
 
-  // Handle input changes
+  // Email validation
+  const handleEmailChange = (e) => {
+    const value = e.target.value;
+    setFormData((prev) => ({ ...prev, email: value }));
+
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    setEmailError(regex.test(value) ? "" : "Please enter a valid email");
+  };
+
+  // Contact: only digits, max 10
+  const handleContactChange = (e) => {
+    const value = e.target.value.replace(/\D/g, "").slice(0, 10);
+    setFormData((prev) => ({ ...prev, contact: value }));
+
+    if (value.length !== 10) {
+      setContactError("Contact number must be exactly 10 digits");
+    } else {
+      setContactError("");
+    }
+  };
+
+  // Generic input handler
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Handle form submission
+  // Form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Final validation
+    if (emailError || contactError || formData.contact.length !== 10) {
+      setMessage("Please fix the errors above before submitting.");
+      return;
+    }
+
     setLoading(true);
     setMessage("");
 
@@ -45,22 +83,23 @@ const ContactUs = () => {
       const data = await res.json();
 
       if (res.ok) {
-        setMessage("✅ Message sent successfully!");
+        setMessage("Message sent successfully!");
         setFormData({
           name: "",
           email: "",
-          contact: "",
           countryCode: "+91",
-          website: "",
+          contact: "",
           service: "Web Development",
           requirement: "",
         });
+        setEmailError("");
+        setContactError("");
       } else {
-        setMessage(`❌ Failed: ${data.error || "Something went wrong."}`);
+        setMessage(`Failed: ${data.error || "Something went wrong."}`);
       }
     } catch (error) {
       console.error(error);
-      setMessage("❌ An error occurred. Please try again.");
+      setMessage("An error occurred. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -68,9 +107,10 @@ const ContactUs = () => {
 
   return (
     <section className="relative pt-20 pb-18 lg:pt-30 bg-black text-white px-6 overflow-hidden">
+      {/* Gradient Background */}
       <div
         className="absolute inset-0 pointer-events-none"
-        aria-hidden
+        aria-hidden="true"
         style={{
           background:
             "radial-gradient(circle at 50% 20%, rgba(14,186,199,0.35), transparent 40%)",
@@ -81,16 +121,18 @@ const ContactUs = () => {
         {/* Header Section */}
         <div className="lg:w-1/2 space-y-4 text-center lg:text-left">
           <h1 className="text-4xl lg:text-5xl font-bold mb-4 leading-snug">
-            Let&apos;s <span className="text-cyan-400">Transform </span><br /> Your <span className="text-cyan-400">Vision </span>into Reality
+            Let's <span className="text-cyan-400">Transform </span><br /> Your{" "}
+            <span className="text-cyan-400">Vision </span>into Reality
           </h1>
           <p className="text-gray-300">
-            We understand your idea and what it means <br /> to you.  To make it
-            a reality, we&apos;ll be happy to help you.
+            We understand your idea and what it means <br /> to you. To make it
+            a reality, we'll be happy to help you.
           </p>
           <p className="text-gray-300">
-            Fill in the form and let our team send a <br />quotation that  will
-            include plans, <br />strategies and technologies with a  price like
-            no other in the market.
+            Fill in the form and let our team send a <br />
+            quotation that will include plans, <br />
+            strategies and technologies with a price like no other in the
+            market.
           </p>
         </div>
 
@@ -109,43 +151,82 @@ const ContactUs = () => {
                   required
                   className="p-3 rounded bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-400 outline-none"
                 />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Work Email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="p-3 rounded bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-400 outline-none"
-                />
+                <div className="flex flex-col">
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Work Email"
+                    value={formData.email}
+                    onChange={handleEmailChange}
+                    required
+                    className={`p-3 rounded bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-400 outline-none ${
+                      emailError ? "border-red-500 border" : ""
+                    }`}
+                  />
+                  {emailError && (
+                    <span className="text-red-500 text-sm mt-1">{emailError}</span>
+                  )}
+                </div>
               </div>
 
               {/* Country Code + Contact */}
-              <div className="flex gap-3">
-                <input
-                  type="text"
-                  name="countryCode"
-                  placeholder="Country Code"
-                  value={formData.countryCode}
-                  onChange={handleChange}
-                  required
-                  className="w-1/5 p-3 rounded bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-400 outline-none"
-                />
-                <input
-                  type="tel"
-                  name="contact"
-                  placeholder="Contact or WhatsApp Number"
-                  value={formData.contact}
-                  onChange={handleChange}
-                  required
-                  className="w-4/5 p-3 rounded bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-400 outline-none"
-                />
+              <div className="grid lg:grid-cols-2 grid-cols-1 gap-4">
+                {/* Country Code with PhoneInput */}
+                <div>
+                  <PhoneInput
+                    country="in"
+                    value={formData.countryCode}
+                    onChange={(code) =>
+                      setFormData((prev) => ({ ...prev, countryCode: `+${code}` }))
+                    }
+                    inputProps={{ name: "countryCode", required: true }}
+                    enableSearch
+                    countryCodeEditable={false}
+                    containerStyle={{ width: "100%" }}
+                    buttonStyle={{
+                      backgroundColor: "#1F2937",
+                      border: "1px solid #374151",
+                      borderRight: "none",
+                      borderRadius: "0.25rem 0 0 0.25rem",
+                      padding: "0 10px",
+                    }}
+                    inputStyle={{
+                      width: "100%",
+                      height: "48px",
+                      border: "1px solid #374151",
+                      borderRadius: "0.25rem",
+                      paddingLeft: "65px",
+                      fontSize: "16px",
+                      backgroundColor: "#1F2937",
+                      color: "#fff",
+                    }}
+                    dropdownStyle={{ color: "#000" }}
+                  />
+                </div>
+
+                {/* Contact Number */}
+                <div className="flex flex-col">
+                  <input
+                    type="tel"
+                    name="contact"
+                    placeholder="Contact or WhatsApp Number"
+                    value={formData.contact}
+                    onChange={handleContactChange}
+                    required
+                    className={`w-full p-3 rounded bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-400 outline-none ${
+                      contactError ? "border-red-500 border" : ""
+                    }`}
+                  />
+                  {contactError && (
+                    <span className="text-red-500 text-sm mt-1">{contactError}</span>
+                  )}
+                </div>
               </div>
 
               {/* Service Selection */}
               <div>
                 <label className="block mb-1 text-sm text-black font-medium">
-                  Service you&apos;re interested in
+                  Service you're interested in
                 </label>
                 <select
                   name="service"
@@ -163,7 +244,7 @@ const ContactUs = () => {
                 </select>
               </div>
 
-              {/* Requirement Textarea */}
+              {/* Requirement */}
               <div>
                 <textarea
                   name="requirement"
@@ -172,15 +253,15 @@ const ContactUs = () => {
                   onChange={handleChange}
                   className="w-full p-3 rounded bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-400 outline-none"
                   placeholder="Briefly discuss your requirement"
-                ></textarea>
+                />
               </div>
 
               {/* Submit Button */}
               <div className="flex items-center justify-center">
                 <button
                   type="submit"
-                  disabled={loading}
-                  className="py-2 px-8 bg-gray-300 hover:bg-gray-400 text-black font-semibold rounded-full duration-300 cursor-pointer shadow-lg shadow-black/50 hover:brightness-110 transition"
+                  disabled={loading || emailError || contactError || formData.contact.length !== 10}
+                  className="py-2 px-8 bg-gray-300 hover:bg-gray-400 text-black font-semibold rounded-full duration-300 cursor-pointer shadow-lg shadow-black/50 hover:brightness-110 transition disabled:opacity-50 disabled:cursor-not-allowed border border-white/40"
                 >
                   {loading ? "Submitting..." : "Submit"}
                 </button>
@@ -199,101 +280,70 @@ const ContactUs = () => {
 
       {/* Contact Info & Map */}
       <div className="grid lg:grid-cols-2 gap-8 relative z-10 mt-16 max-w-7xl mx-auto">
-      <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 flex flex-col gap-3 h-full hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
-  {/* Gradient overlay — make sure it's visible */}
-  {/* <div
-    className="absolute inset-0 pointer-events-none z-0"
-    aria-hidden="true"
-    style={{
-      background:
-        "radial-gradient(circle at 50% 50%, rgba(14,186,199,0.45), transparent 80%)",
-    }}
-  /> */}
- {/* Top-left cyan-400 glow */}
-      <div
-        className="absolute top-0 left-0 w-60 h-60 -translate-x-20 -translate-y-20 blur-2xl opacity-40"
-        style={{ background: "radial-gradient(circle, #06b6d4 0%, transparent 100%)" }}
-      />
-      {/* Bottom-right indigo-400 glow */}
-      <div
-        className="absolute bottom-0 right-0 w-60 h-60 translate-x-20 translate-y-20 blur-2xl opacity-40"
-        style={{ background: "radial-gradient(circle, #6366f1 0%, transparent 100%)" }}
-      />
-     
-  {/* Content layered above the gradient */}
-  <div className="relative z-10">
-    <h3 className="text-2xl font-semibold mb-3 text-cyan-400">
-      Contact Information
-    </h3>
-    <p className="text-gray-300 font-bold">Cyberspace Works</p>
+        <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 flex flex-col gap-3 h-full hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
+          {/* Glow Effects */}
+          <div
+            className="absolute top-0 left-0 w-60 h-60 -translate-x-20 -translate-y-20 blur-2xl opacity-40"
+            style={{ background: "radial-gradient(circle, #06b6d4 0%, transparent 100%)" }}
+          />
+          <div
+            className="absolute bottom-0 right-0 w-60 h-60 translate-x-20 translate-y-20 blur-2xl opacity-40"
+            style={{ background: "radial-gradient(circle, #6366f1 0%, transparent 100%)" }}
+          />
 
-    {/* Phone */}
-    <p className="text-gray-400 flex items-center gap-2 mt-3">
-      <IoCallOutline />
-      <a href="tel:+917980715765" className="hover:underline">
-        +91 7980715765
-      </a>
-    </p>
+          <div className="relative z-10">
+            <h3 className="text-2xl font-semibold mb-3 text-cyan-400">
+              Contact Information
+            </h3>
+            <p className="text-gray-300 font-bold">Cyberspace Works</p>
 
-    {/* Email */}
-    <p className="text-gray-400 flex items-center gap-2 mt-3">
-      <IoMailOutline />
-      <a
-        href="mailto:cyberspaceworksofficial@gmail.com"
-        className="hover:underline"
-      >
-        cyberspaceworksofficial@gmail.com
-      </a>
-    </p>
+            <p className="text-gray-400 flex items-center gap-2 mt-3">
+              <IoCallOutline />
+              <a href="tel:+917980715765" className="hover:underline">
+                +91 7980715765
+              </a>
+            </p>
 
-    {/* Address */}
-    <p className="text-gray-400 flex items-center gap-2 mt-3">
-      <IoLocationOutline className="mt-1 size-5"/>
-      <a
-    href="https://maps.app.goo.gl/QABsaPuw5qL3BwRa7"
-    className="hover:underline leading-snug text-center"
-  >
-    Kolkata 19, Krishna Chatterjee Ln, Bally, Howrah, West Bengal 711201
-  </a>
-    </p>
+            <p className="text-gray-400 flex items-center gap-2 mt-3">
+              <IoMailOutline />
+              <a
+                href="mailto:cyberspaceworksofficial@gmail.com"
+                className="hover:underline"
+              >
+                cyberspaceworksofficial@gmail.com
+              </a>
+            </p>
 
-    {/* Social Media Icons */}
-    <div className="flex justify-start space-x-4 mt-4 text-cyan-400 text-lg sm:text-xl">
-      <a
-        href="https://www.facebook.com/profile.php?id=100086774724799"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <FaFacebookF className="cursor-pointer hover:scale-110 transition" />
-      </a>
-      <a
-        href="https://www.instagram.com/cyberspaceworks"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <FaInstagram className="cursor-pointer hover:scale-110 transition" />
-      </a>
-      <a href="https://wa.me/917980715765" target="_blank" rel="noopener noreferrer">
-        <FaWhatsapp className="cursor-pointer hover:scale-110 transition" />
-      </a>
-      <a
-        href="https://www.google.com/maps/place/Cyberspace+Works+-+Website,+Software+and+App+Developer+in+Howrah,+Kolkata/@22.6434765,88.3408238,716m/data=!3m2!1e3!4b1!4m6!3m5!1s0x39f89dd56c959339:0x59f91e11a807e487!8m2!3d22.6434765!4d88.3433987!16s%2Fg%2F11tfxl7lfx"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <FaMapMarkerAlt className="cursor-pointer hover:scale-110 transition" />
-      </a>
-      <a
-        href="https://www.linkedin.com/company/cyberspace-works"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <FaLinkedin className="cursor-pointer hover:scale-110 transition" />
-      </a>
-    </div>
-  </div>
-</div>
+            <p className="text-gray-400 flex items-center gap-2 mt-3">
+              <IoLocationOutline className="mt-1 size-5" />
+              <a
+                href="https://maps.app.goo.gl/Zhr74TSE7FecFKFm7"
+                target="_blank"
+                className="hover:underline leading-snug"
+              >
+                Kolkata 19, Krishna Chatterjee Ln, Bally, Howrah, West Bengal 711201
+              </a>
+            </p>
 
+            <div className="flex justify-start space-x-4 mt-4 text-cyan-400 text-lg sm:text-xl">
+              <a href="https://www.facebook.com/profile.php?id=100086774724799" target="_blank" rel="noopener noreferrer">
+                <FaFacebookF className="cursor-pointer hover:scale-110 transition" />
+              </a>
+              <a href="https://www.instagram.com/cyberspaceworks" target="_blank" rel="noopener noreferrer">
+                <FaInstagram className="cursor-pointer hover:scale-110 transition" />
+              </a>
+              <a href="https://wa.me/917980715765" target="_blank" rel="noopener noreferrer">
+                <FaWhatsapp className="cursor-pointer hover:scale-110 transition" />
+              </a>
+              <a href="https://maps.app.goo.gl/Zhr74TSE7FecFKFm7" target="_blank" rel="noopener noreferrer">
+                <FaMapMarkerAlt className="cursor-pointer hover:scale-110 transition" />
+              </a>
+              <a href="https://www.linkedin.com/company/cyberspace-works" target="_blank" rel="noopener noreferrer">
+                <FaLinkedin className="cursor-pointer hover:scale-110 transition" />
+              </a>
+            </div>
+          </div>
+        </div>
 
         <div className="rounded-2xl overflow-hidden border border-white/10 shadow-lg h-full">
           <iframe
