@@ -173,8 +173,9 @@ const ContactSection = () => {
   country="in"
   value={formData.countryCode}
   onChange={(code) =>
-    setFormData((prev) => ({ ...prev, countryCode: code }))
-  }
+  setFormData((prev) => ({ ...prev, countryCode: `+${code}` }))
+}
+
   inputProps={{ name: "countryCode", required: true }}
   enableSearch
   countryCodeEditable

@@ -5,44 +5,56 @@ export async function POST(req) {
     const body = await req.json();
     const { name, email, countryCode, contact, service, requirement } = body;
 
+    // -------------------------------
+    // Validation
+    // -------------------------------
     if (!name || !email || !countryCode || !contact || !service || !requirement) {
-      return new Response(JSON.stringify({ error: "All fields are required" }), {
-        status: 400,
-        headers: { "Content-Type": "application/json" },
-      });
+      return new Response(
+        JSON.stringify({ error: "All fields are required" }),
+        { status: 400, headers: { "Content-Type": "application/json" } }
+      );
     }
 
+    // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      return new Response(JSON.stringify({ error: "Please enter a valid email address" }), {
-        status: 400,
-        headers: { "Content-Type": "application/json" },
-      });
+      return new Response(
+        JSON.stringify({ error: "Invalid email format" }),
+        { status: 400, headers: { "Content-Type": "application/json" } }
+      );
     }
 
+    // Contact number validation
     if (!/^\d{10}$/.test(contact)) {
-      return new Response(JSON.stringify({ error: "Contact number must be exactly 10 digits" }), {
-        status: 400,
-        headers: { "Content-Type": "application/json" },
-      });
+      return new Response(
+        JSON.stringify({ error: "Contact number must be exactly 10 digits" }),
+        { status: 400, headers: { "Content-Type": "application/json" } }
+      );
     }
 
+    // Country Code validation
     if (!countryCode.startsWith("+")) {
-      return new Response(JSON.stringify({ error: "Invalid country code" }), {
-        status: 400,
-        headers: { "Content-Type": "application/json" },
-      });
+      return new Response(
+        JSON.stringify({ error: "Invalid country code" }),
+        { status: 400, headers: { "Content-Type": "application/json" } }
+      );
     }
 
+    // -------------------------------
+    // Environment Variables
+    // -------------------------------
     const { EMAIL_HOST, EMAIL_USER, EMAIL_PASS, CONTACT_EMAIL_TO } = process.env;
     if (!EMAIL_HOST || !EMAIL_USER || !EMAIL_PASS || !CONTACT_EMAIL_TO) {
-      console.error("Missing email env vars");
-      return new Response(JSON.stringify({ error: "Server email configuration missing" }), {
-        status: 500,
-        headers: { "Content-Type": "application/json" },
-      });
+      console.error("Missing email environment variables");
+      return new Response(
+        JSON.stringify({ error: "Server email configuration missing" }),
+        { status: 500, headers: { "Content-Type": "application/json" } }
+      );
     }
 
+    // -------------------------------
+    // Nodemailer Transport
+    // -------------------------------
     const transporter = nodemailer.createTransport({
       host: EMAIL_HOST,
       port: 465,
@@ -51,6 +63,9 @@ export async function POST(req) {
       tls: { rejectUnauthorized: false },
     });
 
+    // -------------------------------
+    // Email Template
+    // -------------------------------
     const mailOptions = {
       from: `"Contact Form" <${EMAIL_USER}>`,
       to: CONTACT_EMAIL_TO,
@@ -58,7 +73,7 @@ export async function POST(req) {
       subject: `New Inquiry: ${service} – ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; color:#333; max-width:600px;">
-          <h2 style="color:#0ebac7;">New Contact Form Submission</h2>
+          <h2 style="color:#0ebac7;">🚀 New Contact Form Submission</h2>
           <hr style="border:1px solid #eee; margin:20px 0;" />
           <p><strong>Name:</strong> ${name}</p>
           <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
@@ -85,11 +100,15 @@ Sent via website contact form
       `.trim(),
     };
 
+    // -------------------------------
+    // Send Email
+    // -------------------------------
     await transporter.sendMail(mailOptions);
 
-    return new Response(JSON.stringify({ success: true, message: "Mail sent successfully!" }), {
-      status: 200,
-    });
+    return new Response(
+      JSON.stringify({ success: true, message: "Mail sent successfully!" }),
+      { status: 200, headers: { "Content-Type": "application/json" } }
+    );
   } catch (err) {
     console.error("Mail Error:", err);
     return new Response(
@@ -98,7 +117,7 @@ Sent via website contact form
         error: err.message || "Unknown error",
         message: "Failed to send email.",
       }),
-      { status: 500 }
+      { status: 500, headers: { "Content-Type": "application/json" } }
     );
   }
 }
