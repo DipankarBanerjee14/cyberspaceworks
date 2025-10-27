@@ -1,91 +1,60 @@
-// pages/api/contact.js   (or app/api/contact/route.js)
-
 import nodemailer from "nodemailer";
 
-/**
- * POST handler – receives the JSON payload from the ContactSection form
- */
 export async function POST(req) {
   try {
-    // -------------------------------------------------
-    // Parse & type-check payload
-    // -------------------------------------------------
     const body = await req.json();
     const { name, email, countryCode, contact, service, requirement } = body;
 
-    // -------------------------------------------------
-    // Required-field validation
-    // -------------------------------------------------
     if (!name || !email || !countryCode || !contact || !service || !requirement) {
-      return new Response(
-        JSON.stringify({ error: "All fields are required" }),
-        { status: 400, headers: { "Content-Type": "application/json" } }
-      );
+      return new Response(JSON.stringify({ error: "All fields are required" }), {
+        status: 400,
+        headers: { "Content-Type": "application/json" },
+      });
     }
 
-    // -------------------------------------------------
-    // Email format
-    // -------------------------------------------------
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      return new Response(
-        JSON.stringify({ error: "Please enter a valid email address" }),
-        { status: 400, headers: { "Content-Type": "application/json" } }
-      );
+      return new Response(JSON.stringify({ error: "Please enter a valid email address" }), {
+        status: 400,
+        headers: { "Content-Type": "application/json" },
+      });
     }
 
-    // -------------------------------------------------
-    // Contact number – exactly 10 digits
-    // -------------------------------------------------
     if (!/^\d{10}$/.test(contact)) {
-      return new Response(
-        JSON.stringify({ error: "Contact number must be exactly 10 digits" }),
-        { status: 400, headers: { "Content-Type": "application/json" } }
-      );
+      return new Response(JSON.stringify({ error: "Contact number must be exactly 10 digits" }), {
+        status: 400,
+        headers: { "Content-Type": "application/json" },
+      });
     }
 
-    // -------------------------------------------------
-    // Country code must start with "+"
-    // -------------------------------------------------
     if (!countryCode.startsWith("+")) {
-      return new Response(
-        JSON.stringify({ error: "Invalid country code" }),
-        { status: 400, headers: { "Content-Type": "application/json" } }
-      );
+      return new Response(JSON.stringify({ error: "Invalid country code" }), {
+        status: 400,
+        headers: { "Content-Type": "application/json" },
+      });
     }
 
-    // -------------------------------------------------
-    //  Load env vars (fail fast if missing)
-    // -------------------------------------------------
     const { EMAIL_HOST, EMAIL_USER, EMAIL_PASS, CONTACT_EMAIL_TO } = process.env;
-
     if (!EMAIL_HOST || !EMAIL_USER || !EMAIL_PASS || !CONTACT_EMAIL_TO) {
       console.error("Missing email env vars");
-      return new Response(
-        JSON.stringify({ error: "Server email configuration missing" }),
-        { status: 500, headers: { "Content-Type": "application/json" } }
-      );
+      return new Response(JSON.stringify({ error: "Server email configuration missing" }), {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      });
     }
 
-    // -------------------------------------------------
-    // Nodemailer transporter
-    // -------------------------------------------------
     const transporter = nodemailer.createTransport({
       host: EMAIL_HOST,
       port: 465,
-      secure: true, // SSL
+      secure: true,
       auth: { user: EMAIL_USER, pass: EMAIL_PASS },
-      // optional – useful for self-signed certs
       tls: { rejectUnauthorized: false },
     });
 
-    // -------------------------------------------------
-    // Email template (HTML + plain-text fallback)
-    // -------------------------------------------------
     const mailOptions = {
       from: `"Contact Form" <${EMAIL_USER}>`,
       to: CONTACT_EMAIL_TO,
-      replyTo: email, // recipient can reply directly to the user
+      replyTo: email,
       subject: `New Inquiry: ${service} – ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; color:#333; max-width:600px;">
@@ -116,27 +85,20 @@ Sent via website contact form
       `.trim(),
     };
 
-    // -------------------------------------------------
-    //  Send the email
-    // -------------------------------------------------
     await transporter.sendMail(mailOptions);
 
-    // -------------------------------------------------
-    //  Success response
-    // -------------------------------------------------
-    return new Response(
-      JSON.stringify({ success: true, message: "Thank you! Your message has been sent." }),
-      { status: 200, headers: { "Content-Type": "application/json" } }
-    );
+    return new Response(JSON.stringify({ success: true, message: "Mail sent successfully!" }), {
+      status: 200,
+    });
   } catch (err) {
-    console.error("Contact API Error:", err);
+    console.error("Mail Error:", err);
     return new Response(
       JSON.stringify({
         success: false,
-        error: "Failed to send message",
-        details: err.message || "Unknown error",
+        error: err.message || "Unknown error",
+        message: "Failed to send email.",
       }),
-      { status: 500, headers: { "Content-Type": "application/json" } }
+      { status: 500 }
     );
   }
 }
