@@ -103,7 +103,7 @@ function updateStars() {
         initial={{ opacity: 0, y: 80 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{
-          duration: 1.2,
+          duration: 0.5,
           ease: [0.25, 0.1, 0.25, 1], // smooth cubic-bezier easing
         }}
         viewport={{ once: true, amount: 0.6 }} // triggers once when 60% visible

@@ -6,11 +6,10 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Loader from "@/components/Loader";
-
+import BackToTopButton from "@/components/BackToTopButton";
 import cursor from "@/public/cursor.png";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import ScrollProgressCircle from "@/components/ScrollProgress";  // ← NEW
 
 const rubik = Rubik({
   weight: ["400", "500", "700"],
@@ -31,14 +30,13 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="icon" type="image/png" href="/logo2.png" />
         <title>
-          Cyberspace Works - Website, Software and App Developer in Howrah, Kolkata
+          Cyberspace Works - Website, Software and App Developer in Howrah,
+          Kolkata
         </title>
       </head>
       <body
-        className={`${rubik.variable} antialiased relative min-h-screen bg-black overflow-x-hidden`}
-        style={{
-          cursor: `url(${cursor.src}) 16 16, default`,
-        }}
+        className={`${rubik.variable} antialiased relative min-h-screen bg-black`}
+        style={{ cursor: `url(${cursor.src}) 16 16, default` }}
       >
         {loading && (
           <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black">
@@ -47,19 +45,16 @@ export default function RootLayout({ children }) {
         )}
 
         {!loading && (
-          <>
+          <div className="relative min-h-screen flex flex-col">
             <Navbar />
-
-            {/* Wrap children with the scroll progress circle */}
-            <main className="relative z-10">
-              <ScrollProgressCircle>{children}</ScrollProgressCircle>
-            </main>
-
-            <Analytics />
-            <SpeedInsights />
+            <main className="flex-1 relative z-10">{children}</main>
             <Footer />
-          </>
+            <BackToTopButton />
+          </div>
         )}
+
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
