@@ -172,7 +172,7 @@ export default function TermsAndConditions() {
             should be agreed upon mutually. If not agreed by us, we may
             terminate the project, seize the project assets (developed by us)
             and may not return the advance fee (if the incident happens within
-            15 days of the project's start).
+            15 days of the project&apos;s start).
           </p>
         </div>
 
@@ -208,7 +208,7 @@ export default function TermsAndConditions() {
 <ul className="list-disc list-inside text-gray-400 text-sm space-y-1">
   <li>
     The 3rd party products (Domain, Hosting, Business Email, App Publishing etc.)
-    won’t be refunded.
+   won&apos;t be refunded.
   </li>
   <li>
     To avail a refund client has to inform within 15 days from the project starting
@@ -216,7 +216,7 @@ export default function TermsAndConditions() {
     claim is made.
   </li>
   <li>
-    The project assets developed by us won’t be provided but contents or assets
+    The project assets developed by us won&apos;t be provided but contents or assets
     provided to us by the client will be returned.
   </li>
 </ul>

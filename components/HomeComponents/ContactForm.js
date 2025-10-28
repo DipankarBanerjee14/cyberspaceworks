@@ -134,12 +134,12 @@ const ContactSection = () => {
           className="lg:w-1/2 space-y-4 text-center lg:text-left"
         >
           <h1 className="text-4xl font-bold mb-4 leading-snug">
-            Let's <span className="text-cyan-400">Transform </span><br /> Your{" "}
+            Let&apos;s <span className="text-cyan-400">Transform </span><br /> Your{" "}
             <span className="text-cyan-400">Vision</span> into Reality
           </h1>
           <p className="text-gray-300">
             We understand your idea and what it means <br /> to you. To make it
-            a reality, we'll be happy to help you.
+            a reality, we&apos;ll be happy to help you.
           </p>
           <p className="text-gray-300">
             Fill in the form and let our team send a <br />
@@ -251,7 +251,7 @@ const ContactSection = () => {
               {/* Service Selection */}
               <div>
                 <label className="block mb-1 text-sm text-black font-medium">
-                  Service you're interested in
+                  Service you&apos;re interested in
                 </label>
                 <select
                   name="service"

@@ -4,12 +4,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { motion, useScroll, useSpring, useTransform, useMotionValue } from "framer-motion";
 
-/**
- * Robust Scroll Progress Circle
- * - Circle empty at top, fills as you scroll (0 → 1)
- * - Uses useScroll() when available, falls back to window scroll listener
- * - Smoothed by useSpring
- */
+
 export default function ScrollProgressCircle({ children }) {
   const [hydrated, setHydrated] = useState(false);
   const { scrollYProgress: scrollYProgressHook } = useScroll(); // may work or not depending on environment
@@ -20,20 +15,18 @@ export default function ScrollProgressCircle({ children }) {
     setHydrated(true);
   }, []);
 
-  // If hook provides updates, mirror them. Otherwise fall back to window listener.
+  
   useEffect(() => {
     let unsubHook = null;
 
-    // If hook exists and seems usable, subscribe to it
     if (scrollYProgressHook && typeof scrollYProgressHook.onChange === "function") {
       unsubHook = scrollYProgressHook.onChange((v) => {
-        // v is 0..1; mirror to localProgress
+     
         localProgress.set(v ?? 0);
       });
     }
 
-    // Fallback: if hook failed to provide useful updates, attach window scroll listener
-    // We'll use rAF throttling for performance.
+    
     const fallbackListener = () => {
       if (rafRef.current) return;
       rafRef.current = requestAnimationFrame(() => {
@@ -50,11 +43,11 @@ export default function ScrollProgressCircle({ children }) {
       });
     };
 
-    // Attach fallback listener only if hook isn't firing (we still attach but it won't conflict)
+  
     window.addEventListener("scroll", fallbackListener, { passive: true });
     window.addEventListener("resize", fallbackListener);
 
-    // run once to initialize
+  
     fallbackListener();
 
     return () => {
@@ -73,13 +66,10 @@ export default function ScrollProgressCircle({ children }) {
   const radius = 38;
   const circumference = 2 * Math.PI * radius;
 
-  // Map progress (0..1) to stroke offset (circumference -> 0)
   const strokeDashoffset = useTransform(smooth, [0, 1], [circumference, 0]);
 
-  // Optional: button fades in slightly after small scroll (0 -> 0.05)
   const opacity = useTransform(smooth, [0, 0.03], [0, 1]);
 
-  // Glow intensity mapping
   const glow = useTransform(
     smooth,
     [0, 1],
@@ -89,7 +79,7 @@ export default function ScrollProgressCircle({ children }) {
     ]
   );
 
-  // Ensure only render on client
+
   if (!hydrated) return <>{children}</>;
 
   return (

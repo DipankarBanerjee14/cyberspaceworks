@@ -264,7 +264,10 @@ const isActive = (href) => {
               <div className="flex flex-col p-6 space-y-6 text-white">
                 <div className="flex flex-col items-start space-y-2">
                   <Link href="/" onClick={() => setIsLeftMenuOpen(false)}>
-                    <img src="/logo2.png" alt="Logo" className="w-32 h-auto" />
+                    <Image src="/logo2.png" alt="Logo" 
+                     width={180} 
+                     height={70}
+                    className="w-32 h-auto" />
                   </Link>
                   <p className="text-sm text-gray-300">
                     Cyberspace Works - Website, Software, App Developer | Digital Marketing | Graphics Design | UI/UX | Research & Analysis
