@@ -4,7 +4,7 @@ import React from "react";
 
 export default function TermsAndConditions() {
   return (
-    <div className="min-h-screen bg-black text-white px-6 md:px-16 py-16">
+    <div className="min-h-screen bg-black text-white px-6  pb-10 pt-25">
       <section className="max-w-5xl mx-auto text-center mb-20">
         <h1 className="text-4xl md:text-5xl font-bold mb-6">
           Terms & Conditions
