@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 /* =====================
@@ -153,46 +154,54 @@ function Counter({ target, start }) {
    🔹 Dashboard Component
    ===================== */
 export default function Dashboard() {
-  const { ref: cardsRef, inView: cardsInView } = useInView({
-    triggerOnce: false,
-    threshold: 0.3,
+  const { ref, inView } = useInView({
+    triggerOnce: true, // ✅ only animate once
+    threshold: 0.2,
+    rootMargin: "0px 0px -100px 0px",
   });
 
-  const cyan = "#22d3ee"; // Tailwind cyan-400
-  const topCards = [
-    { title: "Years of Experience", target: 8, glow: cyan },
-    { title: "Completed Projects", target: 500, glow: cyan },
-    { title: "5⭐ Reviews", target: 100, glow: cyan },
-    { title: "Countries Served", target: 5, glow: cyan },
+  const cyan = "#22d3ee";
+
+  const cards = [
+    { title: "Years of Experience", target: 8, glow: cyan, from: { x: -100, y: 0 } },
+    { title: "Completed Projects", target: 500, glow: cyan, from: { x: 0, y: -100 } },
+    { title: "5⭐ Reviews", target: 100, glow: cyan, from: { x: 0, y: 100 } },
+    { title: "Countries Served", target: 5, glow: cyan, from: { x: 100, y: 0 } },
   ];
 
   return (
-    <main className="relative overflow-hidden py-6 px-2">
-      <div className=" text-white">
-        {/* ✅ Top Animated Cards Section */}
+    <main className="relative overflow-hidden py-10 px-4">
+      <div className="text-white max-w-7xl mx-auto">
         <div
-          ref={cardsRef}
+          ref={ref}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
         >
-          {topCards.map((item, i) => (
-            <StyledWrapper key={i} glow={item.glow}>
-              <div className="outer">
-                <div className="dot" />
-                <div className="card">
-                  <div className="ray" />
-                  <div className="text">
-                    <Counter target={item.target} start={cardsInView} />
+          {cards.map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, ...item.from }}
+              animate={inView ? { opacity: 1, x: 0, y: 0 } : {}}
+              transition={{ duration: 0.7, ease: "easeOut", delay: i * 0.15 }}
+            >
+              <StyledWrapper glow={item.glow}>
+                <div className="outer">
+                  <div className="dot" />
+                  <div className="card">
+                    <div className="ray" />
+                    <div className="text">
+                      <Counter target={item.target} start={inView} />
+                    </div>
+                    <div className="text-sm font-light tracking-wide mt-2 text-gray-300">
+                      {item.title}
+                    </div>
+                    <div className="line topl" />
+                    <div className="line leftl" />
+                    <div className="line bottoml" />
+                    <div className="line rightl" />
                   </div>
-                  <div className="text-sm font-light tracking-wide mt-2 text-gray-300">
-                    {item.title}
-                  </div>
-                  <div className="line topl" />
-                  <div className="line leftl" />
-                  <div className="line bottoml" />
-                  <div className="line rightl" />
                 </div>
-              </div>
-            </StyledWrapper>
+              </StyledWrapper>
+            </motion.div>
           ))}
         </div>
       </div>

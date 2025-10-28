@@ -4,6 +4,7 @@ import { useInView } from "react-intersection-observer";
 import Head from "next/head";
 import Chart from "chart.js/auto";
 import Card from "@/components/Card"
+import { motion } from "framer-motion";
 // Counter component with smooth animation
 function Counter({ target, start }) {
   const [count, setCount] = useState(0);
@@ -267,8 +268,7 @@ if (ctx4) {
     },
   });
 }
-
-
+  
     return () => {
       window.removeEventListener("mousemove", onMove);
       if (chartRef1.current) chartRef1.current.destroy();
@@ -292,6 +292,9 @@ if (ctx4) {
         return { start: "#fff", end: "#fff" };
     }
   };
+// 👇 Use separate refs for left & right animations
+  const { ref: leftRef, inView: leftInView } = useInView({ threshold: 0.2, triggerOnce: true });
+  const { ref: rightRef, inView: rightInView } = useInView({ threshold: 0.2, triggerOnce: true });
 
   return (
     <>
@@ -413,8 +416,14 @@ if (ctx4) {
 
           {/* Chart + Transactions */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-            {/* Chart 1 */}
-            <div className="flex flex-wrap relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_5px_rgba(0,150,255,0.5)] ">
+             <motion.div
+        ref={leftRef}
+        initial={{ opacity: 0, x: -120 }}
+        animate={leftInView ? { opacity: 1, x: 0 } : {}}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="flex flex-wrap relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_5px_rgba(0,150,255,0.5)]"
+      >
+            {/* Chart 1 */}      
               <div className="mb-10">
                 <div className="relative z-10">
                  
@@ -455,10 +464,16 @@ if (ctx4) {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Right chart */}
-            <div className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_5px_rgba(0,150,255,0.5)]">
+            <motion.div
+        ref={rightRef}
+        initial={{ opacity: 0, x: 120 }}
+        animate={rightInView ? { opacity: 1, x: 0 } : {}}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="relative rounded-2xl p-6 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_5px_rgba(0,150,255,0.5)]"
+      >
              
               <div className="relative z-10">
                 {/* Chart 3 */}
@@ -492,7 +507,7 @@ if (ctx4) {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
           </div>
         </div>

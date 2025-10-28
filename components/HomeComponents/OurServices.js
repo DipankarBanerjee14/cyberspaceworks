@@ -1,6 +1,8 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import styled from 'styled-components';
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import {
   FaLaptopCode,
   FaMobileAlt,
@@ -57,6 +59,29 @@ export default function OurServicesWithWires() {
   const resizeObserverRef = useRef(null);
 
   const [ready, setReady] = useState(false);
+
+  const { ref: sectionRef, inView } = useInView({
+    threshold: 0.3, // triggers when 30% visible
+    triggerOnce: true, // animate only first time
+  });
+
+  const topControls = useAnimation();
+  const bottomControls = useAnimation();
+
+  useEffect(() => {
+    if (inView) {
+      topControls.start({
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.8, ease: "easeOut", staggerChildren: 0.15 },
+      });
+      bottomControls.start({
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.8, ease: "easeOut", staggerChildren: 0.15 },
+      });
+    }
+  }, [inView, topControls, bottomControls]);
 
   const services = [
     {
@@ -443,7 +468,13 @@ export default function OurServicesWithWires() {
         </h2>
 
         {/* Top three boxes */}
-        <div className="flex flex-wrap justify-center gap-6 md:gap-8 mb-16">
+       
+          <motion.div
+  ref={sectionRef}
+  className="flex flex-wrap justify-center gap-6 md:gap-8 mb-16"
+  initial={{ opacity: 0, y: -80 }}
+  animate={topControls}
+>
           {/* Web Development */}
           <div
             ref={(el) => (boxRefs.current[0] = el)}
@@ -515,8 +546,7 @@ export default function OurServicesWithWires() {
               </p>
             </div>
           </div>
-        </div>
-
+</motion.div>
         {/* Chip area */}
         <div className="flex items-center justify-center relative my-6">
           <div
@@ -580,7 +610,11 @@ export default function OurServicesWithWires() {
         </div>
 
         {/* Bottom boxes */}
-        <div className="flex flex-wrap justify-center gap-6 md:gap-8 mt-16">
+       <motion.div
+  className="flex flex-wrap justify-center gap-6 md:gap-8 mt-16"
+  initial={{ opacity: 0, y: 80 }}
+  animate={bottomControls}
+>
           {/* UI/UX Design */}
           <div
             ref={(el) => (boxRefs.current[3] = el)}
@@ -676,7 +710,7 @@ export default function OurServicesWithWires() {
               </p>
             </div>
           </div>
-        </div>
+        </motion.div>
         </div>
       </div>
     </section>

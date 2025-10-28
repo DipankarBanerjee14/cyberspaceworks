@@ -35,119 +35,72 @@ const Footer = () => {
           </div>
 
           {/* Useful Links */}
-          <div>
-            <h3 className="text-base sm:text-lg font-semibold mb-3 text-black">
-              Useful Links
-            </h3>
-            <ul className="space-y-2 text-slate-900 text-sm sm:text-base">
-              <li>
-                <Link href="/" className="hover:text-slate-700 transition">
-                  Home
-                </Link>
-              </li>
-               <li>
-                <Link href="/services" className="hover:text-slate-700 transition">
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link href="/about-us" className="hover:text-slate-700 transition">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact-us" className="hover:text-slate-700 transition">
-                  Contact Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/privacy-policy"
-                  className="hover:text-slate-700 transition"
-                >
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/terms-and-conditions"
-                  className="hover:text-slate-700 transition"
-                >
-                  Terms & Conditions
-                </Link>
-              </li>
-              <li>
-                <Link href="/faq" className="hover:text-slate-700 transition">
-                  FAQ
-                </Link>
-              </li>
-            </ul>
-          </div>
+<div>
+  <h3 className="text-base sm:text-lg font-semibold mb-3 text-black">
+    Useful Links
+  </h3>
+  <ul className="space-y-2 text-slate-900 text-sm sm:text-base">
+    {[
+      { href: "/", label: "Home" },
+      { href: "/services", label: "Services" },
+      { href: "/about-us", label: "About Us" },
+      { href: "/contact-us", label: "Contact Us" },
+      { href: "/privacy-policy", label: "Privacy Policy" },
+      { href: "/terms-and-conditions", label: "Terms & Conditions" },
+      { href: "/faq", label: "FAQ" },
+    ].map((link) => (
+      <li key={link.href}>
+        <Link
+          href={link.href}
+          className="relative hover:text-slate-700 transition duration-200 after:absolute after:left-0 after:-bottom-0.5 after:w-0 after:h-[2px] after:bg-slate-700 after:transition-all after:duration-300 hover:after:w-full"
+        >
+          {link.label}
+        </Link>
+      </li>
+    ))}
+  </ul>
+</div>
 
-          {/* Services */}
-          <div>
-            <h3 className="text-base sm:text-lg font-semibold mb-3 text-black">
-              Services
-            </h3>
-            <ul className="space-y-2 text-slate-900 text-sm sm:text-base">
-              <li>
-                <Link
-                  href="/services/web-development"
-                  className="hover:text-slate-700 transition"
-                >
-                  Web Development
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services/app-development"
-                  className="hover:text-slate-700 transition"
-                >
-                  App Development
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services/software-development"
-                  className="hover:text-slate-700 transition"
-                >
-                  Software Development
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services/ui-ux-design"
-                  className="hover:text-slate-700 transition"
-                >
-                  UI/UX Design
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services/digital-marketing"
-                  className="hover:text-slate-700 transition"
-                >
-                  Digital Marketing
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services/graphic-design"
-                  className="hover:text-slate-700 transition"
-                >
-                  Graphic Design
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services/research-and-analytics"
-                  className="hover:text-slate-700 transition"
-                >
-                  Research and Analytics
-                </Link>
-              </li>
-            </ul>
-          </div>
+{/* Services */}
+<div>
+  <h3 className="text-base sm:text-lg font-semibold mb-3 text-black">
+    Services
+  </h3>
+  <ul className="space-y-2 text-slate-900 text-sm sm:text-base">
+    {[
+      { href: "/services/web-development", label: "Web Development" },
+      { href: "/services/app-development", label: "App Development" },
+      { href: "/services/software-development", label: "Software Development" },
+      { href: "/services/ui-ux-design", label: "UI/UX Design" },
+      { href: "/services/digital-marketing", label: "Digital Marketing" },
+      { href: "/services/graphic-design", label: "Graphic Design" },
+      { href: "/services/research-and-analytics", label: "Research and Analytics" },
+    ].map((item) => (
+      <li key={item.href}>
+        <Link
+          href={item.href}
+          className="
+            relative inline-block 
+            hover:text-slate-700 
+            transition 
+            duration-200
+            after:absolute 
+            after:left-0 
+            after:-bottom-0.5 
+            after:w-0 
+            after:h-[2px] 
+            after:bg-slate-700 
+            after:transition-all 
+            after:duration-300 
+            hover:after:w-full
+          "
+        >
+          {item.label}
+        </Link>
+      </li>
+    ))}
+  </ul>
+</div>
 
           {/* Contact */}
           <div>

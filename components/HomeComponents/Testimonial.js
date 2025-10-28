@@ -5,68 +5,89 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
 import { FaArrowRight, FaTimes } from 'react-icons/fa';
-import Image1 from '@/public/images1.jpg';
-import Image2 from '@/public/images2.jpg';
-import Image3 from '@/public/images3.jpg';
+import DeepChakroborty from '@/public/testimonials/DeepChakroborty.png';
+import Devpriyadutt from '@/public/testimonials/Devpriyadutt.png';
+import poojabanerjee from '@/public/testimonials/poojabanerjee.png';
+import rajoshriacharjee from '@/public/testimonials/rajoshriacharjee.png';
+import santanuBhowmik from '@/public/testimonials/santanuBhowmik.png';
+import sayanighosh from '@/public/testimonials/sayanighosh.png';
+import siddharthamallick from '@/public/testimonials/siddharthamallick.png';
+import subhamaydholay from '@/public/testimonials/subhamaydholay.png';
+import subhojitdhar from '@/public/testimonials/subhojitdhar.png';
+import sudipbanerjee from '@/public/testimonials/sudipbanerjee.png';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
 const testimonials = [
   {
-    firstname: 'Tom',
-    lastname: 'Ford',
+    firstname: 'Deep',
+    lastname: 'Chakroborty',
     position: 'CEO, Iennep',
     testimonial: 'Their design process was smooth and easy to follow. Highly recommend.',
-    avatar: Image1,
+    avatar: DeepChakroborty,
   },
   {
-    firstname: 'Devid',
-    lastname: 'Dee',
+    firstname: 'Devpriya',
+    lastname: 'Dutt',
     position: 'CEO, Deepstack',
     testimonial: 'Impressive results in record time. These guys know what they’re doing.',
-    avatar: Image2,
+    avatar: Devpriyadutt,
   },
   {
-    firstname: 'Jacob',
-    lastname: 'Thomason',
+    firstname: 'Pooja',
+    lastname: 'Banerjee',
     position: 'CEO, Rentpost',
     testimonial: 'Very professional team that delivered beyond expectations!',
-    avatar: Image3,
+    avatar: poojabanerjee,
   },
   {
-    firstname: 'Jenny',
-    lastname: 'Mark',
+    firstname: 'Rajoshri',
+    lastname: 'Acharjee',
     position: 'CEO, Cofi',
     testimonial: 'Loved working with them. Great results and support throughout.',
-    avatar: Image1,
+    avatar: rajoshriacharjee,
   },
   {
-    firstname: 'Olivia',
-    lastname: 'Stone',
+    firstname: 'Santanu',
+    lastname: 'Bhowmik',
     position: 'Founder, BlueSky',
     testimonial: 'The attention to detail and creativity blew my mind. Excellent job!',
-    avatar: Image2,
+    avatar: santanuBhowmik,
   },
   {
-    firstname: 'Lucas',
-    lastname: 'Gray',
+    firstname: 'Sayani',
+    lastname: 'Ghosh',
     position: 'Tech Lead, Novex',
     testimonial: 'Their innovative ideas helped us scale faster than expected.',
-    avatar: Image3,
+    avatar: sayanighosh,
   },
   {
-    firstname: 'Isabella',
-    lastname: 'Moore',
+    firstname: 'Siddhartha',
+    lastname: 'Mallick',
     position: 'CTO, CloudSync',
     testimonial: 'Smooth collaboration and stunning results. Would love to work again!',
-    avatar: Image1,
+    avatar: siddharthamallick,
   },
   {
-    firstname: 'Ethan',
-    lastname: 'Brown',
+    firstname: 'Subhamay',
+    lastname: 'Dholay',
     position: 'CEO, Zenith Corp',
     testimonial: 'The team’s dedication and professionalism stand out from the crowd.',
-    avatar: Image2,
+    avatar: subhamaydholay,
+  },
+   {
+    firstname: 'Subhojit',
+    lastname: 'Dhar',
+    position: 'CEO, Zenith Corp',
+    testimonial: 'The team’s dedication and professionalism stand out from the crowd.',
+    avatar: subhojitdhar,
+  },
+   {
+    firstname: 'Sudip',
+    lastname: 'Banerjee',
+    position: 'CEO, Zenith Corp',
+    testimonial: 'The team’s dedication and professionalism stand out from the crowd.',
+    avatar: sudipbanerjee,
   },
 ];
 
@@ -95,6 +116,7 @@ export default function Testimonials() {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
  const windowWidth = useWindowSize(); 
+  const swiperRef = useRef(null);
   return (
     <section className="relative  text-black px-6 py-5 overflow-hidden">
       <div className='max-w-7xl mx-auto'>
@@ -120,20 +142,29 @@ export default function Testimonials() {
         />
 
         <Swiper
-          modules={[ Autoplay]}
-          spaceBetween={20}
-          slidesPerView="auto"
-          autoplay={{
-            delay: 1000,
-            disableOnInteraction: false,
-          }}
+           onSwiper={(swiper) => (swiperRef.current = swiper)}
+           slidesPerView="auto"
+            spaceBetween={20}
+           loop={true}
+           speed={3000}
+           autoplay={{
+             delay: 1000,
+             disableOnInteraction: false, // keeps autoplay after drag
+             pauseOnMouseEnter: false,
+           }}
+           allowTouchMove={true}  // enable drag
+           grabCursor={true}      // show grabbing cursor
+           freeMode={false}       // ❌ disable freeMode for continuous autoplay
+           modules={[Autoplay]}
+           className="relative z-20 mySwiper"
+         
           // onInit={(swiper) => {
           //   swiper.params.navigation.prevEl = prevRef.current;
           //   swiper.params.navigation.nextEl = nextRef.current;
           //   swiper.navigation.init();
           //   swiper.navigation.update();
           // }}
-          grabCursor
+        
         >
           {testimonials.map((item, index) => {
             const isActive = activeIndex === index;
@@ -170,7 +201,7 @@ export default function Testimonials() {
 
                     <h4 className="text-lg font-semibold">{item.firstname}</h4>
                     <h4 className="text-lg font-semibold">{item.lastname}</h4>
-                    <p className="text-sm mt-2 text-gray-800">{item.position}</p>
+                    {/* <p className="text-sm mt-2 text-gray-800">{item.position}</p> */}
                   </div>
 
                   {/* Testimonial */}

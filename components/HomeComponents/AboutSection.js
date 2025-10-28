@@ -10,6 +10,8 @@ import {
   FaArrowRight,
   FaCheckCircle,
 } from "react-icons/fa";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import { FaBullseye, FaEye } from "react-icons/fa";
 import { FaLightbulb, FaHandshake, FaCogs,  } from "react-icons/fa";
 
@@ -31,7 +33,20 @@ const AboutSection = () => {
     background: `radial-gradient(400px at ${coords.x}px ${coords.y}px, rgba(147,51,234,0.2), transparent 60%)`,
     transition: "background-position 90ms linear, opacity 160ms ease",
   };
+ // 👇 Motion animation variants
+  const topVariant = {
+    hidden: { opacity: 0, y: -100 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+  };
 
+  const bottomVariant = {
+    hidden: { opacity: 0, y: 100 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+  };
+
+  // 👇 Visibility triggers
+  const { ref: topRef, inView: topInView } = useInView({ threshold: 0.2, triggerOnce: true });
+  const { ref: bottomRef, inView: bottomInView } = useInView({ threshold: 0.2, triggerOnce: true });
   return (
     <main className="relative overflow-hidden" style={{ background: "#000000" }}>
       {/* soft global purple glow */}
@@ -72,7 +87,13 @@ const AboutSection = () => {
           </h2>
 
           {/* 🔹 Top Row - Purple → White */}
-          <div className="mb-10">
+           <motion.div
+            ref={topRef}
+            variants={topVariant}
+            initial="hidden"
+            animate={topInView ? "visible" : "hidden"}
+            className="mb-10"
+          >
             <div className="relative rounded-2xl p-8 bg-gradient-to-b from-cyan-900 via-cyan-700 to-cyan-400 backdrop-blur-xl  overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,255,255,0.5)]">
               <div
                 className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
@@ -152,10 +173,16 @@ const AboutSection = () => {
                 </div>
               </div>
             </div>
-          </div>
+         </motion.div>
 
           {/* 🔹 Bottom Row - White → Cyan */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pb-10">
+          <motion.div
+            ref={bottomRef}
+            variants={bottomVariant}
+            initial="hidden"
+            animate={bottomInView ? "visible" : "hidden"}
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 pb-10"
+          >
           {[
   {
     icon: FaBullseye,
@@ -260,7 +287,7 @@ const AboutSection = () => {
                 </div>
               </div>
             ))}
-          </div>
+         </motion.div>        
         </div>
       </section>
     </main>

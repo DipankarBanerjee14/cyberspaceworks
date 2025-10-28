@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { FaAngleDown, FaLaptopCode, FaMobileAlt, FaCode, FaPalette, FaBullhorn, FaBrush } from "react-icons/fa";
 import Link from "next/link";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 import OurServices from "@/components/HomeComponents/OurServices.js"; 
 
 export default function HomePage() {
@@ -97,38 +98,47 @@ function updateStars() {
     return (
       <div className="relative w-full h-screen text-white overflow-hidden">
         <canvas ref={canvasRef} className="absolute inset-0 w-full h-full z-0" />
-        <main className="relative z-10 flex flex-col items-center justify-center h-[calc(100vh-100px)] text-center px-4 lg:pt-30 pt-3">
-          <h2 className="text-4xl md:text-6xl font-extrabold leading-tight">
-            Discover Endless Possibilities <br />
-            in the{" "}
-            <span className="text-cyan-400 drop-shadow-[0_0_15px_rgba(59,130,246,0.8)]">
-              Cyber-space
-            </span>
-          </h2>
-          <p className="mt-4 max-w-2xl text-gray-300">
-            Step into the Cyber-space and seize every opportunity with our services,<br/>
-            expert guidance, and strategic insights for unrivaled financial success.
-          </p>
+         <main className="relative z-10 flex flex-col items-center justify-center h-[calc(100vh-100px)] text-center px-4 lg:pt-30 pt-3">
+      <motion.div
+        initial={{ opacity: 0, y: 80 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 1.2,
+          ease: [0.25, 0.1, 0.25, 1], // smooth cubic-bezier easing
+        }}
+        viewport={{ once: true, amount: 0.6 }} // triggers once when 60% visible
+      >
+        <h2 className="text-4xl md:text-6xl font-extrabold leading-tight">
+          Discover Endless Possibilities <br />
+          in the{" "}
+          <span className="text-cyan-400 drop-shadow-[0_0_15px_rgba(59,130,246,0.8)]">
+            Cyber-space
+          </span>
+        </h2>
 
-          <div className="mt-6 flex gap-4">
-            {/* Contact Us Button */}
-            <ContactButton href="/contact-us">
-              <div className="wrap">
-                <p>
-                  <span>✧</span>
-                  <span>✦</span>
-                  Contact Us
-                </p>
-              </div>
-            </ContactButton>
+        <p className="mt-4 max-w-2xl text-gray-300">
+          Step into the Cyber-space and seize every opportunity with our services,
+          <br />
+          expert guidance, and strategic insights for unrivaled financial success.
+        </p>
 
-            {/* About Us Button */}
-            <div className="mt-4">
-              <AboutButton href="/about-us">About Us</AboutButton>
+        <div className="mt-6 flex gap-4 justify-center">
+          <ContactButton href="/contact-us">
+            <div className="wrap">
+              <p>
+                <span>✧</span>
+                <span>✦</span>
+                Contact Us
+              </p>
             </div>
-            
+          </ContactButton>
+
+          <div className="mt-4">
+            <AboutButton href="/about-us">About Us</AboutButton>
           </div>
-        </main>
+        </div>
+      </motion.div>
+    </main>
 
         <div
           onClick={scrollToServices}

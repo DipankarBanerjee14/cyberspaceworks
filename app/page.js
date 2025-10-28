@@ -9,7 +9,7 @@ import Testimonial from "@/components/HomeComponents/Testimonial";
 import OurPartners from "@/components/HomeComponents/OurPartners";
 import ContactForm from "@/components/HomeComponents/ContactForm";
 import DynamicCanonical from "@/components/DynamicCanonical";
-// ✅ Dynamic metadata function
+
 
 
 export const metadata = {

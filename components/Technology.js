@@ -98,9 +98,9 @@ const Technologies = ({ technologies = [] }) => {
   });
 
   return (
-    <div className="flex flex-col items-center justify-center py-12 z-0 ">
+    <div className="flex flex-col items-center justify-center  z-0 mb-10 lg:mb-0 lg:pt-10 pt-0">
       <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 tracking-wide text-center z-10">
-        Technologies We Use
+        <span className="text-cyan-400">Technologies</span> We Use
       </h2>
 
       {/* LG and above: circuit */}
