@@ -1,10 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, FreeMode } from "swiper/modules";
+import React from "react";
+import { motion } from "framer-motion";
 import "swiper/css";
 
+// Import logos
+import cognosutra from "../../public/cognosutra.jpg";
+import netlify from "../../public/netlify.png";
 import google from "../../public/google.png";
 import Vercel from "../../public/Vercel.png";
 import meta from "../../public/meta.png";
@@ -23,60 +26,66 @@ const logos = [
   growthshark,
   adobe,
   aws,
+  cognosutra,
+  netlify,
 ];
 
 const LogoSection = () => {
   return (
-    <section className="mt-12 relative z-10 px-6 pt-2">
-      <div className="flex items-center gap-6 max-w-7xl mx-auto">
-        {/* Heading */}
-        <div className="w-1/3">
-          <h2 className="lg:text-4xl  font-bold text-white text-3xl">
+    <section className="pt-15 relative z-10 px-6 overflow-hidden">
+      <div className="flex items-center gap-6 max-w-7xl mx-auto lg:flex-row flex-col lg:px-0 px-6">
+        
+        {/* ✨ Animated Heading */}
+        <motion.div
+          className="lg:w-1/3"
+          initial={{ opacity: 0, x: 100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-3xl lg:text-4xl font-bold text-white">
             Our Partners
           </h2>
-        </div>
+        </motion.div>
 
-        {/* Logo Slider */}
-        <div className="w-2/3 relative">
+        {/* ✨ Infinite Motion Logo Row */}
+        <motion.div
+          className="lg:w-2/3 lg:px-0 px-6 overflow-hidden relative"
+          initial={{ opacity: 0, x: -100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+          viewport={{ once: true }}
+        >
           {/* Left fade */}
           <div className="hidden lg:block pointer-events-none absolute top-0 left-0 h-full w-34 bg-gradient-to-r from-black to-transparent z-10"></div>
-
           {/* Right fade */}
           <div className="hidden lg:block pointer-events-none absolute top-0 right-0 h-full w-34 bg-gradient-to-l from-black to-transparent z-10"></div>
 
- <Swiper
-  slidesPerView="auto"
-  spaceBetween={50}
-  loop={true}
-  speed={4000}
-  autoplay={{
-    delay: 0,                 // no delay between slides
-    disableOnInteraction: false, // don't stop autoplay on click/tap
-    pauseOnMouseEnter: false,    // don't pause on hover
-  }}
-  allowTouchMove={true}  // enable drag
-  grabCursor={true}      // show grabbing cursor
-  freeMode={false}    
-           
-  modules={[Autoplay, FreeMode]}
->
-  {[...logos, ...logos, ...logos].map((logo, i) => (
-    <SwiperSlide
-      key={i}
-      className="!w-auto flex justify-center items-center transition-all duration-300 transform hover:scale-110 cursor-pointer py-4"
-    >
-      <Image
-        src={logo}
-        alt={`Logo ${i + 1}`}
-        height={56}
-        className="w-auto object-contain transition-all duration-500"
-      />
-    </SwiperSlide>
-  ))}
-</Swiper>
-
-
-        </div>
+          {/* 🌀 Motion Looping Logo Row */}
+          <motion.div
+            className="flex gap-16 py-6"
+            animate={{ x: ["0%", "-100%"] }}
+            transition={{
+              repeat: Infinity,
+              duration: 20,
+              ease: "linear",
+            }}
+          >
+            {[...logos, ...logos].map((logo, i) => (
+              <div
+                key={i}
+                className="flex-shrink-0 flex justify-center items-center hover:scale-110 transition-transform duration-300"
+              >
+                <Image
+                  src={logo}
+                  alt={`Logo ${i + 1}`}
+                  height={80}
+                  className="h-14 w-auto"
+                />
+              </div>
+            ))}
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

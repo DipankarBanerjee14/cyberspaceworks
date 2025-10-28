@@ -30,7 +30,7 @@ const ServicePage = ({
         />
 
         {/* Hero */}
-        <section className="max-w-7xl mx-auto text-center mb-20 ">
+        <section className="max-w-7xl mx-auto text-center mb-10 ">
           <h1 className="text-4xl md:text-5xl font-bold mb-6 z-10">{title}</h1>
           <p className="text-lg text-gray-300 leading-relaxed">{description}</p>
         </section>

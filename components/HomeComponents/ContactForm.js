@@ -1,10 +1,10 @@
 "use client";
-/* eslint-disable react/no-unescaped-entities */
-
 import React, { useState } from "react";
 import Link from "next/link";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -52,7 +52,6 @@ const ContactSection = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Final validation
     if (emailError || contactError || formData.contact.length !== 10) {
       setMessage("Please fix the errors above before submitting.");
       return;
@@ -93,8 +92,29 @@ const ContactSection = () => {
     }
   };
 
+  // Scroll-triggered animation
+  const { ref: formRef, inView: formInView } = useInView({
+    threshold: 0.2,
+    triggerOnce: true,
+    rootMargin: "0px 0px -100px 0px",
+  });
+
+  const formVariants = {
+    hidden: { opacity: 0, x: 200 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 20,
+        mass: 1,
+      },
+    },
+  };
+
   return (
-    <section className="relative py-20 bg-black text-white px-6">
+    <section className="relative py-20 bg-black text-white px-6 overflow-hidden">
       {/* Gradient Background */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -106,15 +126,20 @@ const ContactSection = () => {
       />
 
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 relative z-10">
-        {/* Header Section */}
-        <div className="lg:w-1/2 space-y-4 text-center lg:text-left">
+        {/* Header Section - Fade In */}
+        <motion.div
+          initial={{ opacity: 0, x: -100 }}
+          animate={formInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="lg:w-1/2 space-y-4 text-center lg:text-left"
+        >
           <h1 className="text-4xl font-bold mb-4 leading-snug">
-            Let's <span className="text-cyan-400">Transform </span><br /> Your{" "}
+            Let&apos;s <span className="text-cyan-400">Transform </span><br /> Your{" "}
             <span className="text-cyan-400">Vision</span> into Reality
           </h1>
           <p className="text-gray-300">
             We understand your idea and what it means <br /> to you. To make it
-            a reality, we'll be happy to help you.
+            a reality, we&apos;ll be happy to help you.
           </p>
           <p className="text-gray-300">
             Fill in the form and let our team send a <br />
@@ -130,10 +155,16 @@ const ContactSection = () => {
               Contact Us
             </Link>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Form Section */}
-        <div className="lg:w-1/2">
+        {/* Form Section - Slides in from Right */}
+        <motion.div
+          ref={formRef}
+          variants={formVariants}
+          initial="hidden"
+          animate={formInView ? "visible" : "hidden"}
+          className="lg:w-1/2"
+        >
           <div className="bg-cyan-400/80 rounded-xl p-6 sm:p-8 shadow-lg text-black">
             <form className="space-y-6" onSubmit={handleSubmit}>
               {/* Name + Email */}
@@ -167,42 +198,38 @@ const ContactSection = () => {
 
               {/* Country Code + Contact */}
               <div className="grid lg:grid-cols-2 grid-cols-1 gap-4">
-                {/* Country Code */}
-                <div className="" >
-                 <PhoneInput
-  country="in"
-  value={formData.countryCode}
-  onChange={(code) =>
-  setFormData((prev) => ({ ...prev, countryCode: `+${code}` }))
-}
-
-  inputProps={{ name: "countryCode", required: true }}
-  enableSearch
-  countryCodeEditable
-  containerStyle={{ width: "100%" }}
-  buttonStyle={{
-    backgroundColor: "#1F2937",
-    border: "1px solid #374151",
-    borderRight: "none",
-    borderRadius: "0.25rem", 
-    padding: "0 10px",
-  }}
-  inputStyle={{
-    width: "100%",
-    height: "48px",
-    border: "1px solid #374151",
-    borderRadius: "0.25rem", 
-    paddingLeft: "65px",
-    fontSize: "16px",
-    backgroundColor: "#1F2937",
-    color: "#fff",
-  }}
-  dropdownStyle={{ color: "#000" }}
-/>
-
+                <div>
+                  <PhoneInput
+                    country="in"
+                    value={formData.countryCode}
+                    onChange={(code) =>
+                      setFormData((prev) => ({ ...prev, countryCode: `+${code}` }))
+                    }
+                    inputProps={{ name: "countryCode", required: true }}
+                    enableSearch
+                    countryCodeEditable
+                    containerStyle={{ width: "100%" }}
+                    buttonStyle={{
+                      backgroundColor: "#1F2937",
+                      border: "1px solid #374151",
+                      borderRight: "none",
+                      borderRadius: "0.25rem",
+                      padding: "0 10px",
+                    }}
+                    inputStyle={{
+                      width: "100%",
+                      height: "48px",
+                      border: "1px solid #374151",
+                      borderRadius: "0.25rem",
+                      paddingLeft: "65px",
+                      fontSize: "16px",
+                      backgroundColor: "#1F2937",
+                      color: "#fff",
+                    }}
+                    dropdownStyle={{ color: "#000" }}
+                  />
                 </div>
 
-                {/* Contact Number */}
                 <div className="flex flex-col">
                   <input
                     type="tel"
@@ -220,10 +247,11 @@ const ContactSection = () => {
                   )}
                 </div>
               </div>
+
               {/* Service Selection */}
               <div>
                 <label className="block mb-1 text-sm text-black font-medium">
-                  Service you're interested in
+                  Service you&apos;re interested in
                 </label>
                 <select
                   name="service"
@@ -258,7 +286,7 @@ const ContactSection = () => {
                 <button
                   type="submit"
                   disabled={loading || emailError || contactError}
-                  className="py-2 px-8 bg-gray-300 hover:bg-gray-400 text-black font-semibold rounded-full duration-300 cursor-pointer shadow-lg shadow-black/50 hover:brightness-110 transition disabled:opacity-50 disabled:cursor-not-allowed  border border-white/40"
+                  className="py-2 px-8 bg-gray-300 hover:bg-gray-400 text-black font-semibold rounded-full duration-300 cursor-pointer shadow-lg shadow-black/50 hover:brightness-110 transition disabled:opacity-50 disabled:cursor-not-allowed border border-white/40"
                 >
                   {loading ? "Submitting..." : "Submit"}
                 </button>
@@ -272,7 +300,7 @@ const ContactSection = () => {
               )}
             </form>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

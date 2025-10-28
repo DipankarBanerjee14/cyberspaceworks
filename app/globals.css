@@ -168,3 +168,13 @@ html, body, #__next {
 .animate-pulseShadowSky { animation: pulseShadowSky 2s ease-in-out infinite; }
 .animate-pulseShadowBlue { animation: pulseShadowBlue 2s ease-in-out infinite; }
 .animate-pulseShadowIndigo { animation: pulseShadowIndigo 2s ease-in-out infinite; }
+
+.scroll-progress-circle {
+  filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.4));
+  transition: all 0.3s ease;
+}
+
+.scroll-progress-circle:hover {
+  scale: 1.1;
+  filter: drop-shadow(0 0 15px rgba(0, 255, 255, 0.7));
+}

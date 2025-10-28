@@ -1,6 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { FaBolt } from "react-icons/fa";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -171,6 +173,24 @@ const dataLine = {
       <p className="text-gray-400 text-sm leading-relaxed">{description}</p>
     </div>
   );
+/// === Animation Controls ===
+const { ref: leftRef, inView: leftInView } = useInView({
+  threshold: 0,               // trigger as soon as it enters
+  rootMargin: "0px 0px -150px 0px", // trigger 150px before visible
+  triggerOnce: true,
+});
+
+const { ref: rightRef, inView: rightInView } = useInView({
+  threshold: 0,
+  rootMargin: "0px 0px -150px 0px",
+  triggerOnce: true,
+});
+
+const { ref: bottomRef, inView: bottomInView } = useInView({
+  threshold: 0,
+  rootMargin: "0px 0px -150px 0px",
+  triggerOnce: true,
+});
 
   return (
     <main className="relative " style={{ background: "#000000" }}>
@@ -187,7 +207,14 @@ const dataLine = {
         <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
           {/* Left content */}
-          <div className="flex justify-center md:justify-start flex-col">
+           <motion.div
+  ref={leftRef}
+  initial={{ opacity: 0, x: -120 }}
+  animate={leftInView ? { opacity: 1, x: 0 } : {}}
+  transition={{ duration: 0.6, ease: "easeOut" }}
+  className="flex justify-center md:justify-start flex-col"
+>
+          
            
             <div className="flex items-baseline mb-4 lg:text-left text-center">
               <FaBolt className="text-white text-3xl mr-2 " />
@@ -199,6 +226,7 @@ const dataLine = {
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
               <CardWrapper>
                 <CardContent
                   icon={<FaLightbulb className="text-black" size={20} />}
@@ -231,10 +259,18 @@ const dataLine = {
                 />
               </CardWrapper>
             </div>
-          </div>
+         </motion.div>
 
           {/* Chart Section */}
-          <div className="relative rounded-2xl p-8 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_5px_rgba(0,150,255,0.5)]">
+         {/* RIGHT CHART SECTION */}
+<motion.div
+  ref={rightRef}
+  initial={{ opacity: 0, x: 120 }}
+  animate={rightInView ? { opacity: 1, x: 0 } : {}}
+  transition={{ duration: 0.6, ease: "easeOut" }}
+  className="relative rounded-2xl p-8 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_5px_rgba(0,150,255,0.5)]"
+>
+          
             {/* <div
               className="absolute -inset-20 blur-[180px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
               style={{
@@ -274,11 +310,17 @@ const dataLine = {
               Clients come to us because we turn ideas into impactful digital <br/>experiences — fast, reliable, and beautifully built.
 
             </p>
-          </div>
+         </motion.div>
         </div>
 
         {/* Bottom Reason Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-3">
+         <motion.div
+  ref={bottomRef}
+  initial={{ opacity: 0, y: 100 }}
+  animate={bottomInView ? { opacity: 1, y: 0 } : {}}
+  transition={{ duration: 0.6, ease: "easeOut" }}
+  className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-3"
+>
           <CardWrapper>
             <CardContent
               icon={<FaClock className="text-black" size={20} />}
@@ -310,7 +352,7 @@ const dataLine = {
               description="Serving startups and enterprises worldwide."
             />
           </CardWrapper>
-        </div>
+        </motion.div>
         </div>
       </section>
     </main>

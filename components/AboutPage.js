@@ -2,7 +2,12 @@
 
 import React, { useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+import "swiper/css";
 
+// Icons
 import {
   FaLaptopCode,
   FaMobileAlt,
@@ -17,12 +22,11 @@ import {
   FaGem,
 } from "react-icons/fa";
 import { SiGoogleanalytics } from "react-icons/si";
-import Link from "next/link";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, FreeMode } from "swiper/modules";
-import "swiper/css";
 
+// RE-USE YOUR ServiceCardSketch from Services page
+import ServiceCardSketch from "@/components/HomeComponents/ServiceCardSketch"; // Adjust path if needed
 
+// Values Data
 const values = [
   {
     title: "Customer-Centric Approach",
@@ -56,63 +60,28 @@ const values = [
   },
 ];
 
-const services = [
-  {
-    title: "Web Development",
-    icon: <FaLaptopCode className="text-cyan-400 text-4xl mb-3 mx-auto" />,
-    desc: "Crafting high-performance, visually stunning websites tailored for your business.",
-  },
-  {
-    title: "App Development",
-    icon: <FaMobileAlt className="text-cyan-400 text-4xl mb-3 mx-auto" />,
-    desc: "Building intuitive, scalable, and engaging mobile experiences.",
-  },
-  {
-    title: "Software Development",
-    icon: <FaCode className="text-cyan-400 text-4xl mb-3 mx-auto" />,
-    desc: "Custom software solutions engineered to streamline operations and drive growth.",
-  },
-  {
-    title: "UI/UX Design",
-    icon: <FaPalette className="text-cyan-400 text-4xl mb-3 mx-auto" />,
-    desc: "Designing sleek, user-focused interfaces that enhance experience and usability.",
-  },
-  {
-    title: "Digital Marketing",
-    icon: <FaBullhorn className="text-cyan-400 text-4xl mb-3 mx-auto" />,
-    desc: "Boosting brand visibility and engagement through strategic online campaigns.",
-  },
-  {
-    title: "Graphic Design",
-    icon: <FaBrush className="text-cyan-400 text-4xl mb-3 mx-auto" />,
-    desc: "Transforming ideas into powerful visuals that leave a lasting impression.",
-  },
-  {
-    title: "Research & Analytics",
-    icon: <SiGoogleanalytics className="text-cyan-400 text-4xl mb-3 mx-auto" />,
-    desc: "Delivering data-driven insights to fuel smarter decisions and business innovation.",
-  },
-];
+// Services Data (with icons sized for ServiceCardSketch)
+ const services = [
+    { name: "Web Development", icon: <FaLaptopCode size={32} />, desc: "Crafting high-performance, visually stunning websites tailored for your business.", href: "/services/web-development" },
+    { name: "App Development", icon: <FaMobileAlt size={32} />, desc: "Building intuitive, scalable, and engaging mobile app experiences for businesses.", href: "/services/app-development" },
+    { name: "Software Development", icon: <FaCode size={32} />, desc: "Custom software solutions engineered to streamline operations and drive growth.", href: "/services/software-development" },
+    { name: "UI/UX Design", icon: <FaPalette size={32} />, desc: "Designing sleek, user-focused interfaces that enhance experience and usability.", href: "/services/ui-ux-design" },
+    { name: "Digital Marketing", icon: <FaBullhorn size={32} />, desc: "Boosting brand visibility and engagement through strategic online campaigns.", href: "/services/digital-marketing" },
+    { name: "Graphic Design", icon: <FaBrush size={32} />, desc: "Transforming ideas into powerful, captivating visuals that leave a lasting impression.", href: "/services/graphic-design" },
+    { name: "Research & Analytics", icon: <SiGoogleanalytics size={32} />, desc: "Delivering data-driven insights to fuel smarter decisions and business innovation.", href: "/services/research-and-analytics" },
+  ];
 
 const AboutUs = () => {
   const swiperRef = useRef(null);
 
-  // Handle card click without stopping Swiper
-  const handleCardClick = (service) => {
-    console.log(`Clicked on ${service.title}`);
-    // Add your desired action here, e.g., open a modal, navigate, etc.
-  };
-
   return (
-     <>
-      
     <section className="bg-black text-white lg:pt-10 px-6 pt-20">
       <div className="max-w-7xl mx-auto">
         {/* Hero Section */}
-        <div className="grid lg:grid-cols-2 items-center gap-10 relative bg-black/10 rounded-2xl shadow-lg ">
+        <div className="grid lg:grid-cols-2 items-center gap-10 relative bg-black/10 rounded-2xl shadow-lg p-8 lg:p-0">
           <div className="flex flex-col gap-4 lg:text-left text-center">
             <h1 className="text-4xl lg:text-5xl font-bold">
-              Empowering <span className="text-cyan-400">Businesses</span> <br /> Through <span className="text-cyan-400">Technology</span> 
+              Empowering <span className="text-cyan-400">Businesses</span> <br /> Through <span className="text-cyan-400">Technology</span>
             </h1>
             <p className="text-gray-300 mb-5">
               We provide end-to-end support and are committed to helping businesses achieve their goals efficiently.
@@ -120,7 +89,7 @@ const AboutUs = () => {
             <div>
               <Link
                 href="/contact-us"
-                className="px-6 py-3 rounded-full bg-cyan-400 hover:bg-cyan-600 transition shadow-lg font-medium text-black"
+                className="px-6 py-3 rounded-full bg-cyan-400 hover:bg-cyan-600 transition shadow-lg font-medium text-black inline-block"
               >
                 Contact Us
               </Link>
@@ -140,13 +109,14 @@ const AboutUs = () => {
           </div>
         </div>
 
-        {/* Values Section */}
-        
-        <div className="">
-          <h2 className="text-3xl font-semibold text-center mb-10">Our Value</h2>
-          <p className="text-gray-400 text-center mb-12">
-            As a company, we prioritize a customer-first mindset, innovation, and integrity. Through collaboration and commitment to excellence, <br /> we deliver impactful solutions that exceed expectations.
+        {/* Our Values Section */}
+        <div className="mt-5">
+          <h2 className="text-4xl font-semibold text-center mb-10">Our <span className="text-cyan-400">Values</span></h2>
+          <p className="text-gray-400 text-center mb-12 max-w-4xl mx-auto">
+            As a company, we prioritize a customer-first mindset, innovation, and integrity. Through collaboration and commitment to<br className="hidden lg:block" />  excellence, we deliver impactful solutions that exceed expectations.
           </p>
+
+          {/* First Row: 3 Cards */}
           <div className="grid lg:grid-cols-3 gap-6 mb-12">
             {values.slice(0, 3).map((val, idx) => (
               <div
@@ -161,20 +131,15 @@ const AboutUs = () => {
                   className="absolute bottom-0 right-0 w-40 h-40 translate-x-20 translate-y-20 blur-2xl opacity-40"
                   style={{ background: "radial-gradient(circle, #6366f1 0%, transparent 100%)" }}
                 />
-                {/* <div
-                  className="absolute -inset-20 blur-[180px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{
-                    background:
-                      "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
-                  }}
-                /> */}
-                <h3 className="font-semibold text-xl mb-2 relative z-10">{val.title}</h3>
-                <p className="text-gray-400 relative z-10">{val.description}</p>
+                <h3 className="font-semibold text-xl mb-2 relative z-10 lg:text-left text-center">{val.title}</h3>
+                <p className="text-gray-400 relative z-10 lg:text-left text-center">{val.description}</p>
                 <div className="mt-4">{val.icon}</div>
               </div>
             ))}
           </div>
-          <div className="grid lg:grid-cols-2 gap-6">
+
+          {/* Second Row: 2 Cards */}
+          <div className="grid lg:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {values.slice(3).map((val, idx) => (
               <div
                 key={idx}
@@ -188,24 +153,17 @@ const AboutUs = () => {
                   className="absolute bottom-0 right-0 w-40 h-40 translate-x-20 translate-y-20 blur-2xl opacity-40"
                   style={{ background: "radial-gradient(circle, #6366f1 0%, transparent 100%)" }}
                 />
-                {/* <div
-                  className="absolute -inset-20 blur-[180px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{
-                    background:
-                      "radial-gradient(circle at center, rgba(0,150,255,0.7) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)",
-                  }}
-                /> */}
-                <h3 className="font-semibold text-xl mb-2 relative z-10">{val.title}</h3>
-                <p className="text-gray-400 relative z-10">{val.description}</p>
+                <h3 className="font-semibold text-xl mb-2 relative z-10 lg:text-left text-center">{val.title}</h3>
+                <p className="text-gray-400 relative z-10 lg:text-left text-center">{val.description}</p>
                 <div className="mt-4">{val.icon}</div>
               </div>
             ))}
           </div>
         </div>
-     
-        {/* What We Do Section */}
-        <div className=" pt-20 flex flex-col gap-10 items-start">
-          <div className="relative rounded-2xl p-8 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)]">
+
+        {/* What We Do + Services Swiper */}
+        <div className="pt-20 flex flex-col gap-10 items-start">
+          <div className="relative rounded-2xl p-8 bg-black/60 backdrop-blur-xl border border-white/10 overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,150,255,0.5)] w-full">
             <div
               className="absolute top-0 left-0 w-60 h-60 -translate-x-20 -translate-y-20 blur-2xl opacity-40"
               style={{ background: "radial-gradient(circle, #06b6d4 0%, transparent 100%)" }}
@@ -214,59 +172,62 @@ const AboutUs = () => {
               className="absolute bottom-0 right-0 w-60 h-60 translate-x-20 translate-y-20 blur-2xl opacity-40"
               style={{ background: "radial-gradient(circle, #6366f1 0%, transparent 100%)" }}
             />
-            <div>
-              <h2 className="text-3xl font-semibold mb-4 text-white relative z-10">
-                Your Vision, Powered by Innovation.
+            <div className="relative z-10">
+              <h2 className="lg:text-3xl text-2xl font-semibold mb-4 text-white lg:text-left text-center">
+                Your <span className="text-cyan-400">Vision</span>, Powered by Innovation.
               </h2>
-              <p className="text-gray-400 mb-6 relative z-10">
+              <p className="text-gray-400 mb-6 lg:text-left text-center">
                 Discover the boundless potential of your online presence with Cyberspace Works – where innovation meets imagination, and web development is elevated to an art form. Our journey is fueled by innovation and guided by your unique goals. We believe in the power of collaboration, working closely with you to understand your needs and aspirations. Whether you’re a startup striving for a digital debut or an established business aiming to revamp your online presence, we are your trusted partner on this transformative journey. We’re not just here to build websites or apps; we’re here to build your success. At Cyberspace Works, we merge cutting-edge technology with visionary design to create web solutions that not only impress but also drive growth.
               </p>
             </div>
           </div>
 
-          {/* Services Swiper */}
-          <div className="relative w-full pt-10 pb-20">
-            <div className="pointer-events-none absolute top-0 left-0 h-full w-24 bg-gradient-to-r from-black to-transparent z-10"></div>
-            <div className="pointer-events-none absolute top-0 right-0 h-full w-24 bg-gradient-to-l from-black to-transparent z-10"></div>
-<Swiper
-  onSwiper={(swiper) => (swiperRef.current = swiper)}
-  slidesPerView="auto"
-  spaceBetween={50}
-  loop={true}
-  speed={4000}
-  autoplay={{
-    delay: 0,
-    disableOnInteraction: false, // keeps autoplay after drag
-    pauseOnMouseEnter: false,
-  }}
-  allowTouchMove={true}  // enable drag
-  grabCursor={true}      // show grabbing cursor
-  freeMode={false}       // ❌ disable freeMode for continuous autoplay
-  modules={[Autoplay]}
-  className="relative z-20 mySwiper"
->
-  {[...services, ...services, ...services].map((service, index) => (
-    <SwiperSlide
-      key={index}
-      className="!w-[280px] flex justify-center items-center cursor-pointer"
-    >
-      <div
-        className="box-bg bg-gradient-to-br from-[#0b223f]/70 to-[#06263f]/50 border border-white/10 rounded-2xl p-6 text-center shadow-lg backdrop-blur flex flex-col items-center justify-between w-full h-[200px] transition-transform duration-300 hover:scale-95"
-        onClick={() => handleCardClick(service)}
-      >
-        {service.icon}
-        <h3 className="text-xl font-semibold text-white mb-2">{service.title}</h3>
-        <p className="text-gray-400 text-sm">{service.desc}</p>
-      </div>
-    </SwiperSlide>
-  ))}
-</Swiper>
+       {/* SERVICES SWIPER - USING ServiceCardSketch */}
+<div className="relative w-full pt-10 pb-20">
+  {/* Left/Right Fade only on desktop */}
+  <div className="hidden lg:block pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-black to-transparent z-10" />
+  <div className="hidden lg:block pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-black to-transparent z-10" />
 
-          </div>
+  <Swiper
+    onSwiper={(swiper) => (swiperRef.current = swiper)}
+    slidesPerView="auto"
+    spaceBetween={30}
+    loop={true}
+    speed={5000}
+    autoplay={{
+      delay: 0,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: false,
+    }}
+    allowTouchMove={true}
+    grabCursor={true}
+    freeMode={false}
+    modules={[Autoplay]}
+    className="mySwiper"
+  >
+    {[...services, ...services, ...services].map((service, index) => (
+      <SwiperSlide
+        key={index}
+        className="
+          flex justify-center items-center
+          sm:w-[260px] md:w-[260px] w-full h-full max-w-[300px]
+         py-5 px-3 mb-4
+        "
+      >
+        <ServiceCardSketch
+          icon={service.icon}
+          title={service.name}
+          desc={service.desc}
+          href={service.href}
+        />
+      </SwiperSlide>
+    ))}
+  </Swiper>
+</div>
+
         </div>
       </div>
     </section>
-     </>
   );
 };
 

@@ -159,7 +159,7 @@ const isActive = (href) => {
             </div>
 
             {/* Left Menu (Desktop) */}
-            <ul className="hidden lg:flex space-x-6 font-bold px-6 py-1.5 rounded-xl bg-black/10 border border-white/10 shadow-xl items-center backdrop-blur-sm absolute left-3 ml-4 left-menu-container">
+            <ul className="hidden lg:flex space-x-6 font-bold px-8 py-1.5 rounded-xl bg-black/10 border border-white/10 shadow-xl items-center backdrop-blur-sm absolute left-2.5 ml-4 left-menu-container">
               <li className="relative group">
                 <Link href="/" className={`transition-colors duration-300 ${isActive("/") ? "text-cyan-400" : "hover:text-cyan-400"}`}>
                   Home
@@ -245,11 +245,11 @@ const isActive = (href) => {
             </ul>
 
             {/* Right Menu - Social Icons */}
-            <ul className="hidden lg:flex space-x-3 font-bold px-6 py-1 rounded-xl bg-black/10 border border-white/10 shadow-xl items-center backdrop-blur-sm absolute right-12 top-1/2 -translate-y-1/2 mr-4 right-menu-container">
-              <div className="flex items-center space-x-3 mr-6">
+            <ul className="hidden lg:flex space-x-6 font-bold px-6 py-1 rounded-xl bg-black/10 border border-white/10 shadow-xl items-center backdrop-blur-sm absolute right-6 top-1/2 -translate-y-1/2 mr-4 right-menu-container">
+              <div className="flex items-center space-x-5 ">
                 {socialLinks.map((item) => (
                   <li key={item.name} className="flex flex-col items-center justify-center w-10 h-9" title={item.name}>
-                    <Link href={item.link} className="text-cyan-400 text-xl hover:text-cyan-600 cursor-pointer">
+                    <Link href={item.link} className="text-cyan-400 text-xl hover:text-cyan-600 cursor-pointer size-5">
                       {item.icon}
                     </Link>
                   </li>
@@ -264,7 +264,10 @@ const isActive = (href) => {
               <div className="flex flex-col p-6 space-y-6 text-white">
                 <div className="flex flex-col items-start space-y-2">
                   <Link href="/" onClick={() => setIsLeftMenuOpen(false)}>
-                    <img src="/logo2.png" alt="Logo" className="w-32 h-auto" />
+                    <Image src="/logo2.png" alt="Logo" 
+                     width={180} 
+                     height={70}
+                    className="w-32 h-auto" />
                   </Link>
                   <p className="text-sm text-gray-300">
                     Cyberspace Works - Website, Software, App Developer | Digital Marketing | Graphics Design | UI/UX | Research & Analysis
@@ -329,25 +332,67 @@ const isActive = (href) => {
       </header>
 {/* Mobile & Tablet Bottom Navigation */}
 <div className="lg:hidden fixed bottom-4 left-1/2 -translate-x-1/2 w-[350px] mx-auto bg-black/10 border border-white/10 shadow-xl backdrop-blur-sm rounded-2xl z-50">
-  {/* FAB */}
- 
-{/* Floating Action Button (FAB) */}
-<div className="absolute -top-6 left-1/2 -translate-x-1/2 z-50">
-  <Link 
-    href="/" 
-    className="bg-cyan-400 rounded-full p-2 shadow-lg w-14 h-14 flex items-center justify-center overflow-hidden cursor-pointer"
-  >
-    <Image 
-      src="/logo2.png" 
-      alt="Logo" 
-      width={65} 
-      height={65} 
-      className="object-cover w-auto h-16"
+ {/* FAB */}
+<div className="relative">
+  <div className="absolute -top-6 left-1/2 -translate-x-1/2 z-50">
+    
+    {/* Outer Pulsing Glow Ring */}
+    <div
+      className="absolute inset-0 w-14 h-14 rounded-full animate-pulseGlowRing"
+      style={{
+        background: 'conic-gradient(from 0deg, #0ea5e9, #06b6d4, #0ea5e9)',
+        filter: 'blur(16px)',
+        opacity: 0.9,
+        zIndex: -1,
+        transform: 'translateY(-8px)',
+        pointerEvents: 'none',
+      }}
+      aria-hidden="true"
     />
-  </Link>
+
+    {/* Inner Solid Circle */}
+    <div className="relative bg-black border border-gray-700 rounded-full p-2 shadow-lg w-14 h-14 flex items-center justify-center overflow-visible cursor-pointer">
+       <Link 
+    href="/" >
+      <Image
+        src="/logo2.png"
+        alt="Logo"
+        width={100}
+        height={100}
+        className="object-contain w-auto h-12"
+      />
+      </Link>
+    </div>
+  </div>
+
+  {/* Global CSS for Animation */}
+  <style jsx global>{`
+    @keyframes pulseGlowRing {
+      0%, 100% {
+        transform: translateY(-4px) scale(0.75);
+        opacity: 0.7;
+        filter: blur(10px);
+      }
+      50% {
+        transform: translateY(-4px) scale(0.75);
+        opacity: 1;
+        filter: blur(15px);
+      }
+    }
+
+    .animate-pulseGlowRing {
+      animation: pulseGlowRing 1.8s ease-in-out infinite;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .animate-pulseGlowRing {
+        animation: none;
+        opacity: 0.8;
+        filter: blur(16px);
+      }
+    }
+  `}</style>
 </div>
-
-
   {/* Bottom nav items */}
   <div className="flex justify-around items-center py-3 relative">
 
