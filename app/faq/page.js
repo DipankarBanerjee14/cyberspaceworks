@@ -38,15 +38,15 @@ export default function FAQPage() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white px-6 md:px-16 py-16">
-      <section className="max-w-5xl mx-auto text-center mb-20">
+    <div className=" bg-black text-white px-6  pb-10 pt-25">
+      <section className="max-w-7xl mx-auto text-center mb-20">
         <h1 className="text-4xl md:text-5xl font-bold mb-6">Frequently Asked Questions</h1>
         <p className="text-lg text-gray-300 leading-relaxed">
           Click on a question to reveal the answer.
         </p>
       </section>
 
-      <section className="max-w-6xl mx-auto mb-20">
+      <section className="max-w-7xl mx-auto ">
         <div className="space-y-4">
           {faqs.map((faq, index) => (
             <div
