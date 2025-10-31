@@ -116,7 +116,7 @@ function updateStars() {
           </span>
         </h2>
 
-        <p className="mt-4 max-w-2xl text-gray-300">
+        <p className="mt-4 max-w-2xl text-gray-300 text-center mx-auto">
           Step into the Cyber-space and seize every opportunity with our services,
           <br />
           expert guidance, and strategic insights for unrivaled financial success.
