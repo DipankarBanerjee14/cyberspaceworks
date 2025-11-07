@@ -14,7 +14,7 @@ export default function SoftwareDevelopment() {
     },
     {
       title: "AI & Machine Learning Integration",
-      description: "Designing and implementing intelligent features—such as predictive analytics, natural language processing, computer vision, and personalized recommendations—into existing or new software products to automate processes and enhance user experiences.Of course! Here is a list of 15 software development service offerings with a short description for each, perfect for an agency website or service catalog.",
+      description: "Designing and implementing intelligent features—such as predictive analytics, natural language processing, computer vision, and personalized recommendations—into existing or new software products to automate processes and enhance user experiences.",
     },
     {
       title: " E-Commerce Solutions",

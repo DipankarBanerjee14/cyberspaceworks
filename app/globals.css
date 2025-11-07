@@ -1,16 +1,25 @@
 @import "tailwindcss";
 
-/* Fonts */
+/* Default body font → Helvetica */
 body {
-  font-family: var(--font-geist-sans);
+  font-family: "Helvetica", "Arial", sans-serif;
   color: white;
 }
+
+/* Headings use Rubik (already imported in layout) */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-rubik);
 }
-code, pre {
-  font-family: var(--font-geist-mono);
+
+/* Paragraph, list & span use Helvetica */
+p,
+ul,
+ol,
+li,
+span {
+  font-family: "Helvetica", "Arial", sans-serif !important;
 }
+
 
 
 html, body, #__next {
