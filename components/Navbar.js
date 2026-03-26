@@ -288,8 +288,7 @@ const isActive = (href) => {
     href="mailto:cyberspaceworksofficial@gmail.com"
     className="hover:underline leading-snug text-center"
   >
-    cyberspaceworks<br>
-    official@gmail.com
+    cyberspaceworks<wbr />official@gmail.com
   </a>
 </p>
 
